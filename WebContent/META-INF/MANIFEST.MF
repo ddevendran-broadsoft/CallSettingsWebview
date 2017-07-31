@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Specification-Title: BWCallSettingsWeb
+Created-By: Broadsoft
+Specification-Vendor: Broadsoft.
+Specification-Version: 0.0
+Author: Broadsoft
+Version:@version@

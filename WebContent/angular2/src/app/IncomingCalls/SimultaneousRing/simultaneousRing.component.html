@@ -1,0 +1,87 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+<md-list class="primaryContentText">
+    <md-list-item class="simRingDescriptionTextAlign">
+        <p md-line><label class="restrictiveLabelStyle">{{customizedTextJson.simultaneous_ring.text}}</label></p>
+    </md-list-item>
+</md-list>
+<md-list class="controlBackground primaryContentText">
+    <md-list-item class="settingBorder itemHeight44">
+        <p md-line class="restrictiveLabelStyle" [class.errorTextColor]="isDoNotRingWhenOnCallUpdateError">{{customizedTextJson.simultaneous_ring.donot_ring_when_oncall}}</p>
+        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!isDoNotRingWhenOnCallUpdateInprogress"></md-spinner>
+        <md-slide-toggle [(ngModel)]="isDoNotRingWhenOnCallChecked" [checked]="isDoNotRingWhenOnCallChecked" (change)="doNotRingWhenOnCallActive($event)">
+        </md-slide-toggle>
+    </md-list-item>
+    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isDoNotRingWhenOnCallUpdateError">
+        <label class="restrictiveSmallLabelStyle errorTextColor">{{isDoNotRingWhenOnCallUpdateError}}</label>
+    </p>
+
+    <md-list-item class="settingBorder itemHeight44">
+        <p md-line class="restrictiveLabelStyle" [class.errorTextColor]="simRingUpdateError">{{customizedTextJson.simultaneous_ring.ring_numbers}}</p>
+        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!isSimRingUpdateInProgress"></md-spinner>
+        <md-slide-toggle [(ngModel)]="isRingNumbersChecked" (change)="ringNumberSwitch()"> </md-slide-toggle>
+    </md-list-item>
+
+    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="simRingUpdateError">
+        <label class="restrictiveSmallLabelStyle errorTextColor">{{simRingUpdateError}}</label>
+    </p>
+</md-list>
+<div *ngIf="isRingNumbersChecked">
+    <div *ngFor="let simRing of simRingArray ; let i = index " [class.callsettingHide]="!isRingNumbersChecked">
+        <div *ngIf="simRing && !simRing.tempDeleted">
+            <md-list class="controlBackground primaryContentText">
+                <md-list-item>
+                    <p md-line class="secondLevelSettingLeftPadding">
+                        <md-input-container class="restrictiveLabelStyle inputNumberWidth" floatPlaceholder="never" (keyup.enter)="simultaneousRingNumberEntered($event)"
+                            [class.callsettingErrorInput]="simRing.error" [class.inputInvokedColor]="simRing.validNumber">
+                            <input mdInput class="inputNumberWidth callsettingMarginNone" id="{{i}}_simRing" (keyup)="onPhoneNumberChange($event)" (keydown)="onPhoneNumberKeydown($event)"
+                                (blur)="simultaneousRingNumberEntered($event)" (focus)="onfocus(simRing)" placeholder={{this.customizedTextJson.set_number}}
+                                value="{{simRing.getNumber()}}" type="text" attr.maxlength="{{phoneNumberMaxLength}}">
+                        </md-input-container>
+                    </p>
+
+                    <p md-line class="callsettingSimultaneousRingFieldError" *ngIf="simRing.error"><label class="restrictiveSmallLabelStyle errorTextColor">{{simRing.error}}</label></p>
+                    <p [class.callsettingHide]="!simRing.getNumber()" md-line class="callsettingSimultaneousRingNumberInput">
+                        <md-checkbox id="{{i}}_simRingOption" *ngIf="!simRing.error" [(ngModel)]="simRing.isAnswerConfirmationRequired" [checked]="simRing.getIsAnswerConfirmationRequired()"
+                            [disableRipple]=true (change)="updateAnswerConfirmationRequired(simRing)">{{customizedTextJson.simultaneous_ring.answer_confirmation_required}}</md-checkbox>
+                    </p>
+
+                </md-list-item>
+            </md-list>
+        </div>
+    </div>
+    <md-card class="simRingRingNumbersBottomAlign controlBackground"></md-card>
+</div>
+
+<md-card class="controlBackground settingBorder" (click)="whenToRingChecked()" *ngIf="criteriaArray.length">
+    <md-list class="primaryContentText">
+        <md-list-item class="itemHeight44">
+            <label class="restrictiveLabelStyle">{{customizedTextJson.simultaneous_ring.when_to_ring}}</label>
+            <div *ngIf="isWhenToRingExpanded == true" class="settingCollapseIcon">
+            </div>
+            <div *ngIf="isWhenToRingExpanded == false" class="settingExpandIcon">
+            </div>
+        </md-list-item>
+    </md-list>
+</md-card>
+<md-card class="simRingCriteriaItemBottomAlign controlBackground"></md-card>
+<md-card *ngIf="isWhenToRingExpanded" class="controlBackground">
+    <div *ngFor="let criteria of criteriaArray;">
+        <div *ngIf="criteria">
+            <md-list class="primaryContentText">
+                <md-list-item class="simRingCriteriaAlign">
+                    <p md-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="criteria.errorMessage">{{criteria.getName()}}</p>
+                    <md-spinner class="callsettingSpinner" [class.callsettingHide]="!criteria.updateInprogress"></md-spinner>
+                    <md-slide-toggle [(ngModel)]="criteria.isActive" [checked]="criteria.getIsActive()" (change)="onCriteriaUpdate(criteria)">
+                    </md-slide-toggle>
+                </md-list-item>
+                <p md-line class="callsettingPanelHeaderServerErrorMsg secondLevelSettingLeftPadding" *ngIf="criteria.errorMessage">
+                    <label class="restrictiveSmallLabelStyle errorTextColor">{{criteria.errorMessage}}</label>
+                </p>
+
+            </md-list>
+        </div>
+    </div>
+    <md-card class="simRingCriteriaItemBottomAlign controlBackground"></md-card>
+</md-card>

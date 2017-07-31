@@ -1,0 +1,112 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+
+<md-card class="seperators" *ngIf='dndVisible' [class.callsettingDisable]="dndRetrievingError">
+    <md-list class="primaryContentText">
+        <md-list-item class="itemHeight44">
+            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="dndRetrievingError || dndUpdateError">{{customizedTextJson.do_not_disturb.name}}</h3>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isdndServiceFetched && !isdndUpdateInProgress"></md-spinner>
+            <md-slide-toggle [checked]="isDndChecked" (change)="dndActive()"> </md-slide-toggle>
+        </md-list-item>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndRetrievingError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{dndRetrievingError}}</label>
+        </p>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndUpdateError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{dndUpdateError}}</label>
+        </p>
+    </md-list>
+</md-card>
+
+<md-card class="seperators" *ngIf='acrVisible' [class.callsettingDisable]="isAcrServiceRetrievingError">
+    <md-list class="primaryContentText">
+        <md-list-item class="itemHeight44">
+            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="isAcrServiceRetrievingError  || acrUpdateError">{{customizedTextJson.anonymous_call_rejection.name}}</h3>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isAcrServiceFetched && !isACRUpdateInProgress"></md-spinner>
+            <md-slide-toggle [checked]="isAnonymousCallRejectionChecked"  (change)="anonymousCallRejectionActive()"> </md-slide-toggle>
+        </md-list-item>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcrServiceRetrievingError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{isAcrServiceRetrievingError}}</label>
+        </p>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="acrUpdateError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{acrUpdateError}}</label>
+        </p>
+    </md-list>
+</md-card>
+
+
+<md-card class="seperators" *ngIf='cfVisible' [class.callsettingDisable]="isCfRetrievingFailed">
+    <md-card (click)="callForwardingActive()">
+        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle"
+            [class.errorTextColor]="isCfRetrievingFailed">
+            {{customizedTextJson.call_forwarding.name}} </md-card-title>
+        
+        <md-card-subtitle *ngIf="getCFStatus() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle"
+            [class.callsettingHide]="isCfRetrievingFailed">
+            {{customizedTextJson.call_forwarding.on_text}}</md-card-subtitle>
+        <md-card-subtitle  *ngIf="getCFStatus() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle"
+            [class.callsettingHide]="isCfRetrievingFailed">
+            {{customizedTextJson.call_forwarding.off_text}}</md-card-subtitle>
+        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="isCfRetrievingFailed">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{customizedTextJson.error.unabletofetch}}</label>
+        </p>
+        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isAllCFServicesFetched"></md-spinner>
+        <div *ngIf="isCallForwardingExpanded == true" class=" settingCollapseIcon ">
+        </div>
+        <div *ngIf="isCallForwardingExpanded == false" class=" settingExpandIcon ">
+        </div>
+    </md-card>
+    <md-card *ngIf="isCallForwardingExpanded">
+        <callForward [cfAlwaysRetrievingError]="cfAlwaysRetrievingError" [cfBusyRetrievingError]="cfBusyRetrievingError"
+          [cfNoanswerRetrievingError]="cfNoanswerRetrievingError" [cfNotReachableRetrievingError]="cfNotReachableRetrievingError"></callForward>
+    </md-card>
+</md-card>
+<md-card class="seperators" *ngIf='simultaneousRingVisible' [class.callsettingDisable]="simulRingRetrievingError">
+    <md-card (click)="simultaneousRingActive()">
+        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle" [class.errorTextColor]="simulRingRetrievingError">{{customizedTextJson.simultaneous_ring.name}}</md-card-title>
+        <md-card-subtitle *ngIf="giveIsSimultaneousRingActive() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError">{{customizedTextJson.service_on}}</md-card-subtitle>
+        <md-card-subtitle *ngIf="giveIsSimultaneousRingActive() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError">{{customizedTextJson.simultaneous_ring.off_text}}</md-card-subtitle>
+        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="simulRingRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{simulRingRetrievingError}}</label></p>
+        <div *ngIf="isSimultaneousRingExpanded == true" class=" settingCollapseIcon ">
+        </div>
+        <div *ngIf="isSimultaneousRingExpanded == false" class=" settingExpandIcon ">
+        </div>
+    </md-card>
+    <md-card *ngIf="isSimultaneousRingExpanded">
+        <simultaneousRing></simultaneousRing>
+    </md-card>
+</md-card>
+
+<md-card class="seperators" *ngIf='roVisible' [class.callsettingDisable]="roRetrievingError">
+    <md-card>
+        <md-list class="primaryContentText">
+            <md-list-item class="itemHeight44">
+                <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="roRetrievingError || roUpdateError">{{customizedTextJson.remote_office.name}}</h3>
+                <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">{{roUpdateErrMsg}}</label></p>
+                <md-spinner class="callsettingSpinner" [class.callsettingHide]="isRoServiceFetched && !isROUpdateInprogress"></md-spinner>
+                <md-slide-toggle [(ngModel)]="isRemoteOfficeChecked" [checked]="isRemoteOfficeChecked" (change)="remoteOfficeActive()"> </md-slide-toggle>
+            </md-list-item>
+            <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateError">
+                <label class="restrictiveSmallLabelStyle errorTextColor">{{roUpdateError}}</label>
+            </p>
+        </md-list>
+    </md-card>
+    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{roRetrievingError}}</label></p>
+    <md-card *ngIf="isRemoteOfficeChecked">
+        <remoteOffice (onRONumberChange)="onRONumberChange($event);"></remoteOffice>
+    </md-card>
+</md-card>
+
+<md-card class="seperators" *ngIf='cwVisible' [class.callsettingDisable]="iscwServiceRetrievingError">
+    <md-list class="primaryContentText">
+        <md-list-item class="itemHeight44">
+            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="iscwServiceRetrievingError || callWaitingUpdateError">{{customizedTextJson.call_waiting.name}}</h3>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="iscwServiceFetched && !isCallWaitingInProgress"></md-spinner>
+            <md-slide-toggle [checked]="isCallWaitingChecked" (change)="callWaitingActive()"> </md-slide-toggle>
+        </md-list-item>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="iscwServiceRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{iscwServiceRetrievingError}}</label></p>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="callWaitingUpdateError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{callWaitingUpdateError}}</label>
+        </p>
+    </md-list>
+</md-card>

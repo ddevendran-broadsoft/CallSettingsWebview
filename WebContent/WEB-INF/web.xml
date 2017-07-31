@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright © 2017 BroadSoft Inc. All rights reserved. Proprietary Property of BroadSoft, Inc. Gaithersburg, MD. -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	
+	<display-name>BWCallSettingsWeb</display-name>
+	<description>BroadWorks CallSettings Web application</description>
+
+	<listener>
+  		<listener-class>com.broadsoft.xsp.logging.LoggingInitializer</listener-class> 
+	</listener>
+		
+	<listener>
+  		<listener-class>com.broadsoft.callsettingsweb.server.CallSettingsWebServletContextListener</listener-class> 
+	</listener>
+	
+	<env-entry>
+		<description>CallSettings Web application version</description>
+		<env-entry-name>webAppVersion</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>		
+		<env-entry-value>@version@</env-entry-value>
+	</env-entry>
+
+	<env-entry>
+		<description>Name of the Configuration File for this WebApp</description>
+		<env-entry-name>webAppConfigFile</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>BWCallSettingsWeb_@version@.properties</env-entry-value>
+		
+	</env-entry>
+	
+	<env-entry>
+		<description>Custom config label Properties file directory</description>
+		<env-entry-name>webAppCustomDir</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>WEB-INF/customDir</env-entry-value>
+	</env-entry>	
+  	
+	<!-- Default logging config file which defines the logging channels & settings. -->
+  	<env-entry>
+	  	<description>Logging configuration file</description> 
+	  	<env-entry-name>logConfig</env-entry-name> 
+	  	<env-entry-type>java.lang.String</env-entry-type> 
+	  	<env-entry-value>bwLogConfig.xml</env-entry-value>
+	</env-entry>
+	
+	
+	<!-- This env-entry is added to adapt web-app to use the new logging. 
+	     It's Resource factory is specified in context.xml file.
+	-->
+  	<resource-env-ref>
+    	<description>Object factory for LogManager instances.</description>
+   		<resource-env-ref-name>broadworks/logging/LogManager</resource-env-ref-name>
+    	<resource-env-ref-type>com.broadsoft.xsp.logging.LogManager</resource-env-ref-type>
+  	</resource-env-ref>	
+    
+    <servlet>
+		<servlet-name>CSWCustomTexts</servlet-name>
+		<servlet-class>com.broadsoft.callsettingsweb.server.branding.CustomTextsServlet</servlet-class>
+ 	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CSWCustomTexts</servlet-name>
+		<url-pattern>/customTexts</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>CSWCustomStyle</servlet-name>
+		<servlet-class>com.broadsoft.callsettingsweb.server.branding.CustomStylesServlet</servlet-class>
+ 	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CSWCustomStyle</servlet-name>
+		<url-pattern>/customStyle</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CSWAssetMapper</servlet-name>
+		<servlet-class>com.broadsoft.callsettingsweb.server.branding.CSWAssetMapperServlet</servlet-class>
+ 	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CSWAssetMapper</servlet-name>
+		<url-pattern>/assets/images/*</url-pattern>
+	</servlet-mapping>
+    
+	<welcome-file-list>
+		<welcome-file>cswindex.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

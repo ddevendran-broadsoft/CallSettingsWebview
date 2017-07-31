@@ -1,0 +1,532 @@
+body {
+    margin: 0px 0px 0px 0px !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.noServiceIconPosition {
+    height: 200px !important;
+    width: 160px !important;
+    top: 25%;
+    left: 28%;
+    position:absolute;
+}
+
+.noServiceTextMsg {
+    left: 20% !important;
+    position: fixed;
+    padding-top: 180px;
+    width: 250px;
+}
+
+.pageStyle{
+    width:100%; 
+    height: 100%;
+    position: absolute; 
+    top: 0; 
+    left: 0;
+}
+
+.appStyle {
+    width: 100%;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+select {
+    background: url("./../../assets/images/arrow-down.png") no-repeat 100% 50% !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    outline-width: 0;
+    padding-right : 16px ;
+    padding-left :2px ;
+    display: block;
+    border: none;
+    max-width: 240px;
+    min-width: 32px;
+    border-bottom: 1px solid #757575;
+    
+}
+
+.selectLeftMargin{
+margin-left :8px ;
+}
+
+label {
+    height: auto;
+}
+
+.primaryText{
+    font-weight: 500 !important ;
+}
+
+.headerArrow {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+    margin-left : 8px ;
+}
+.headerIcon {
+    height: 16px;
+    width: 16px ;
+    padding-right: 8px;
+}
+
+.settingExpandIcon ,
+.settingCollapseIcon {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    right:16px;
+    top : 18px ;
+    margin-left : 8px ;
+}
+
+.callSettingsHide{
+    display: none !important;
+}
+
+.secondLevelSettingLeftPadding{
+    padding-left: 12px !important;
+}
+
+.thirdLevelSettingLeftPadding{
+    padding-left: 24px  !important;
+}
+
+.itemHeight44 > .mat-list-item-content{
+
+    min-height : 44px !important ;
+}
+
+.nestedListItemBottomPadding > .mat-list-item-content{
+
+    padding-bottom: 24px !important ;
+}
+
+.nestedCheckboxPadding > .mat-checkbox-layout{
+
+    padding-top : 10px !important ;
+}
+
+.descriptionTextAlign > .mat-list-item-content {
+    padding-bottom : 20px !important ;
+}
+
+.remoteOfficeDescriptionTextAlign > .mat-list-item-content {
+    padding-bottom : 14px !important ;
+}
+
+.selectListItemComponent > .mat-list-item-content {
+    padding-top:16px !important ;
+}
+
+.simRingDescriptionTextAlign > .mat-list-item-content{
+    padding-bottom : 18px !important ;
+}
+
+.simRingCriteriaAlign  > .mat-list-item-content{
+
+    padding-bottom : 12px !important ;
+}
+
+.simRingCriteriaItemBottomAlign {
+    min-height:6px !important ;
+}
+
+.simRingRingNumbersBottomAlign{
+    min-height:24px !important ;
+}
+.callsettingsimRingServerErrorMsg{
+    margin-top: -14px;
+    margin-left: 16px;
+}
+
+.unifiedMessagingAlign > .mat-list-item-content{
+
+    padding-top : 4px !important;
+}
+
+.messageIndicatorAlign > .mat-list-item-content{
+
+    padding-bottom :8px  !important;
+}
+
+.cswMessageArrivesAlign > .mat-list-item-content{
+
+    height:12px !important;
+}
+
+.forwardToEmailInputAlign{
+
+    margin-top:6px !important;
+}
+.hintBottomPadding{
+    padding-bottom:8px !important ;
+}
+
+.numberOfRingsAlign{
+    padding-right:8px !important;
+}
+
+.mobilityEnableAlertAlign {
+    padding-bottom : 10px  !important;
+}
+
+.inputNumberWidth{
+    width: 160px !important ;
+}
+
+.cswDropdownContainer{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    display: -webkit-inline-box;
+}
+.cswInputContainer{
+    max-width:240px ;
+    border-bottom: 1px solid #757575;
+    display: flex;
+    align-items: center;
+}
+
+.cswDropdownInput{
+    border: 0px;
+    flex-grow: 1;
+    padding: 0px;
+}
+.cswDropdownArrow{
+    height: 5px;
+    padding-left: 8px;
+    flex-shrink: 0;
+}
+.cswSelectDropdown{
+    outline: none;
+    border: 0px 0px 1px 0px;
+}
+.cswFullWidth{
+    width: 100%;
+}
+.cswHide{
+    display: none !important;
+}
+
+.cswTextellipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.cdk-visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-transform: none;
+    width: 1px
+}
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%
+}
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 1000
+}
+.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000
+}
+.cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000
+}
+.cdk-overlay-backdrop {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: auto;
+    transition: opacity .4s cubic-bezier(.25, .8, .25, 1);
+    opacity: 0
+}
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+    opacity: .48
+}
+.cdk-overlay-dark-backdrop {
+    background: rgba(0, 0, 0, .6)
+}
+.cdk-overlay-transparent-backdrop {
+    background: 0 0
+}
+
+.mat-card {
+    padding: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
+    box-shadow: none !important;
+}
+.mat-checkbox-frame {
+    border-color: #323232 !important;
+    border-width: 1px !important;
+}
+.mat-checkbox-checkmark {
+    fill: #fafafa
+}
+
+.mat-checkbox-mixedmark {
+    background-color: #fafafa
+}
+.mat-checkbox-inner-container {
+    margin: auto 8px auto 0px !important;
+}
+.mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.3 !important;
+}
+.mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: #b0b0b0
+}
+.mat-checkbox-disabled:not(.mat-checkbox-checked) .mat-checkbox-frame {
+    border-color: #b0b0b0
+}
+
+.mat-checkbox-layout .mat-checkbox-label{
+
+    line-height : 20px !important ;
+}
+
+.mat-input-element:disabled {
+    color: rgba(0, 0, 0, .38)
+}
+.mat-input-container {
+    min-height: 22px ;
+    height: auto !important ;
+    min-width : 160px !important;
+}
+
+.mat-input-wrapper {
+    margin: 0 !important;
+    padding :0px !important ;
+}
+.mat-input-underline {
+    min-width: 160px !important;
+}
+.mat-list .mat-list-item,
+ .mat-list-item {
+    padding: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
+}
+.mat-list .mat-list-item .mat-line,
+ .mat-list-item .mat-line {
+    box-shadow: none !important;
+    white-space: normal !important;
+    overflow-x: visible !important;
+}
+.mat-list-item,
+.mat-list-item-content,
+.mat-card {
+    height: auto !important;
+}
+
+.mat-line{
+    height:auto !important ;
+}
+.mat-list .mat-subheader {
+    color: rgba(0, 0, 0, .54)
+}
+.mat-list {
+    padding-top: 0px!important;
+    display: block!important;
+}
+.mat-list-text {
+    padding-right: 10px !important;
+}
+
+.mat-progress-bar-background {
+    background: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20version%3D%271.1%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20xmlns%3Axlink%3D%27http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%27%20x%3D%270px%27%20y%3D%270px%27%20enable-background%3D%27new%200%200%205%202%27%20xml%3Aspace%3D%27preserve%27%20viewBox%3D%270%200%205%202%27%20preserveAspectRatio%3D%27none%20slice%27%3E%3Ccircle%20cx%3D%271%27%20cy%3D%271%27%20r%3D%271%27%20fill%3D%27%23c5cae9%27%2F%3E%3C%2Fsvg%3E)
+}
+.mat-progress-bar-buffer {
+    background-color: #c5cae9
+}
+.mat-progress-bar-fill::after {
+    background-color: #b4b4b4
+}
+
+.mat-card-title{
+    margin: 0px 0px 0px 16px !important;
+    padding-top: 14px;
+}
+
+.mat-card-subtitle{
+margin: 0px 0px 14px 16px !important;
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    opacity: 0.3 !important;
+}
+.mat-slide-toggle.mat-slide-toggle-focused:not(.mat-checked) .mat-ink-ripple {
+    opacity: 0.3 !important;
+}
+.mat-slide-toggle.mat-slide-toggle-focused .mat-ink-ripple {
+    opacity: 0.3 !important;
+}
+.mat-disabled .mat-slide-toggle-thumb {
+    background-color: #bdbdbd
+}
+.mat-disabled .mat-slide-toggle-bar {
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.mat-slide-toggle-container {
+    margin-right: 0px !important ;
+    width:33px !important ;
+    top: 3px !important;
+}
+
+.mat-slide-toggle {
+    margin: 0px 0px 0px 0px !important;
+    line-height : 0px !important ;
+}
+.mat-slide-toggle-thumb {
+    height: 14px !important;
+    width: 14px !important;
+}
+.mat-slide-toggle-bar {
+    width: 32px !important;
+    height: 8px !important;
+    opacity: 0.3 !important;
+}
+
+.mat-slide-toggle-thumb-container {
+    width: 20px !important;
+    margin-right: 0px !important ;
+}
+
+.mat-slide-toggle-label {
+    line-height : 0px !important ;
+}
+
+/*callsetting common start*/
+.callsettingDisable{
+    pointer-events: none;
+    /*opacity: 0.4;*/
+}
+.callsettingMarginNone{
+    margin: 0px !important;
+}
+.callsettingSpinner{
+    height: 22px !important;
+    width: 22px !important;
+}
+
+.callSettingSpinnerPosition{
+    position: absolute;
+    right: 40px;
+    top: 4px;
+    margin-left : 8px ;
+}
+
+.callsettingHide{
+    display: none !important;
+}
+
+.callsettingStickyHeader{
+    position: -webkit-sticky;
+    position: sticky !important;
+    top: 0px;
+    z-index: 2;
+}
+
+.callsettingHelperText{
+    height: 0px !important;
+    display: inline;
+    font-weight: normal;
+    color: transparent !important;
+    visibility: hidden !important;
+}
+.callsettingPanelHeaderServerErrorMsg{
+    margin: 0px 0px 0px 16px;
+}
+.callsettingTwoLinesHeaderServerErrorMsg{
+    margin: 14px 0px 0px 16px;
+}
+/*callsetting common end*/
+
+/*DesktopSelectContainer start*/
+.cswDesktopSelectContainer{
+    max-width: 240px;
+    border: 1px solid #757575;
+    border-radius: 6px;
+    margin-top: 8px;
+}
+.cswDesktopSelectContainer > md-checkbox:first-child{
+    border-top: 0px !important;
+}
+.cswDesktopSelectContainer > md-checkbox {
+    border-top: 1px solid #757575;
+}
+.cswDesktopSelectContainer > md-checkbox >  label{
+    padding-left: 10px;
+    width: calc(100% - 10px);
+}
+.cswDesktopSelectContainer > .mat-checkbox .mat-checkbox-ripple .mat-ripple-element {
+  /*background-color: rgba(53, 175, 249, 0.26);*/
+  opacity: 0 !important;
+}
+.cswDesktopInputContainerFocus{
+    border: 1px solid #2DBD9B !important;
+    border-radius: 6px;
+    padding: 4px;
+    max-width: 232px;
+}
+.cswInputContainerOption{
+    display: block;
+}
+/*DesktopSelectContainer end*/
+
+/*IncomingCalls start*/
+.callsettingSimultaneousRingNumberInput{
+    padding: 12px 0px 16px 24px !important;
+}
+.callsettingSimultaneousRingFieldError{
+    padding-left: 12px !important;
+    /*top: -16px;*/
+    position: relative;
+}
+/*IncomingCalls end*/
+
+/*CallForward start*/
+.callsettingCFServerError{
+    padding-left: 12px !important;
+    margin: 0px;
+}
+/*CallForward end*/
+
+/*CallControll start*/
+.callsettingCallControllServerError{
+    margin: 0px 0px 0px 16px;
+}
+/*CallControll end*/
+
+.loadingPageSpinner {
+    top: 40%;
+    left: 43%;
+    position:absolute;
+}

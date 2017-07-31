@@ -1,0 +1,36 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+<md-card class="seperators" [class.callsettingDisable]="isBcidServiceRetrievingError" *ngIf='bcidVisible'>
+    <md-list class="primaryContentText">
+        <md-list-item class="itemHeight44" >
+            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="isBcidServiceRetrievingError || isBcidServiceUpdateError">{{customizedTextJson.block_caller_id.name}}</h3>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isBcidServiceFetched"></md-spinner>
+            <md-slide-toggle [checked]="isBlockMyCalleridChecked" (change)="blockCallerIdActive()"> </md-slide-toggle>
+        </md-list-item>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isBcidServiceRetrievingError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{isBcidServiceRetrievingError}}</label>
+        </p>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isBcidServiceUpdateError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{isBcidServiceUpdateError}}</label>
+        </p>
+    </md-list>
+</md-card>
+
+<md-card class="seperators" [class.callsettingDisable]="isAcServiceRetrievingError" *ngIf='automaticCallbackVisible'>
+    <md-list>
+        <md-list-item  class="itemHeight44">
+            <h3 md-line  class="restrictiveButtonStyle" [class.errorTextColor]="isAcServiceRetrievingError || isAcServiceUpdateError">{{customizedTextJson.automatic_callback.name}}</h3>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isAcServiceFetched"></md-spinner>
+            <md-slide-toggle [checked]="isAutomaticCallbackChecked" (change)="automaticCallbackActive()"> </md-slide-toggle>
+        </md-list-item>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcServiceRetrievingError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{isAcServiceRetrievingError}}</label>
+        </p>
+        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcServiceUpdateError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{isAcServiceUpdateError}}</label>
+        </p>
+    </md-list>
+</md-card>
+
+

@@ -1,0 +1,22 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+<md-card class="seperators" *ngIf="broadWorksMobilityVisible" [class.callsettingDisable]="bwMobilityRetrievingError">
+    <md-card (click)=focusBroadWorksMobility()>
+        <md-card-title class="primaryContentText restrictiveButtonStyle"  [class.errorTextColor]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.name}}</md-card-title>
+        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == true" class="primaryColor restrictiveSmallLabelStyle" [class.callsettingHide]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.on_text}}</md-card-subtitle>
+        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == false" class="dimmedText restrictiveSmallLabelStyle" [class.callsettingHide]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.off_text}}</md-card-subtitle>
+        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isBWMobilityfetched"></md-spinner>
+        <div *ngIf="isBroadWorksMobilityActive == true">
+        <div *ngIf="isBroadWorksMobilityActive == true && !isBWMobilityExpanded" class=" settingExpandIcon  ">
+        </div>
+        <div *ngIf="isBroadWorksMobilityActive == false || isBWMobilityExpanded" class=" settingCollapseIcon ">
+        </div></div>
+        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="bwMobilityRetrievingError">
+            <label class="restrictiveSmallLabelStyle errorTextColor">{{bwMobilityRetrievingError}}</label>
+        </p>
+    </md-card>
+    <md-card *ngIf="isBroadWorksMobilityActive && isBWMobilityExpanded"  style="box-shadow:none">
+        <broadworksMobility></broadworksMobility>
+    </md-card>
+</md-card>

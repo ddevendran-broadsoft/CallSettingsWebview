@@ -1,0 +1,204 @@
+.mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+   background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+.mat-checkbox-indeterminate .mat-checkbox-background, .mat-checkbox-checked .mat-checkbox-background{
+   background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+
+.mat-slide-toggle.mat-slide-toggle-focused:not(.mat-checked) .mat-ink-ripple {
+    background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+
+.mat-slide-toggle.mat-slide-toggle-focused .mat-ink-ripple {
+     background-color: <PrimaryButton> !important; /*PrimaryButton */
+}
+
+.mat-slide-toggle-bar,
+.mat-slide-toggle-thumb {
+    background-color: <DimmedText> !important;
+} 
+
+.mat-input-placeholder {
+       color: <DimmedText>!important; /*DimmedText */
+}
+
+.mat-input-placeholder.mat-focused {
+       color: <DimmedText> !important; /*DimmedText */
+}
+
+.mat-progress-circle path,
+.mat-progress-spinner path,
+.mat-spinner path {
+    stroke: <SymbolicGreen> ;
+}
+
+.mat-checkbox-checkmark-path {
+    stroke: <ContentBackground> !important
+}
+
+.mat-card {   
+    background: <ContentBackground> !important ; /*ContentBackground*/
+}
+
+select ,
+.cswDropdownArrow {
+    background: url("<customImagesLocation>/arrow-down.png") no-repeat 100% 50% !important;
+}
+
+.cswInputContainerFocus{
+    border-bottom-color: <SymbolicGreen> !important;
+}
+
+option{
+    color:<PrimaryContentText> !important ;
+}
+
+.callSettingsFontFamily{
+    font-family:<FontFamily> !important ;
+}
+
+.mat-list-item-content{
+    font-family:<FontFamily> !important ; /*font-style*/
+}
+
+.restrictiveButtonStyle{
+    font-size: <RestrictiveButtonStyle>px !important ; 
+}
+
+ .restrictiveLabelStyle{
+ font-size:<RestrictiveLabelStyle>px !important; 
+}
+
+.restrictiveSmallLabelStyle{
+    font-size:<RestrictiveSmallLabelStyle>px !important; 
+}
+
+.primaryContentText{
+    color:<PrimaryContentText> !important ;
+}
+
+.primaryText{
+    color:<PrimaryText> !important ;
+}
+
+.dimmedText {
+
+    color :<DimmedText> !important ;
+}
+
+.primaryColor{
+
+    color : <SymbolicGreen> !important ;
+}
+
+.errorTextColor{
+
+    color:<SymbolicRed> !important;
+}
+
+.primaryBackground{
+    background-color: <PrimaryBackground> !important ;
+}
+
+.controlBackground{
+    background-color:<ControlBackground> !important ;
+}
+
+.seperators{
+    border-bottom: 1px solid <Separators>;
+}
+ 
+.settingBorder{
+    border-top: 1px solid <ContentBackground>;
+}
+
+.headerExpandIcon
+{
+     background:url("<customImagesLocation>/chevron_header_closed.png") no-repeat  !important ;
+	 background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+ }
+
+.headerCollapseIcon{
+     background:url("<customImagesLocation>/chevron_header_open.png") no-repeat !important ;
+	 background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+}
+
+.settingExpandIcon{
+     background:url("<customImagesLocation>/chevron_content_closed.png") no-repeat !important ;
+	 background-size: contain !important;
+}
+
+.settingCollapseIcon{
+     background:url("<customImagesLocation>/chevron_content_open.png") no-repeat !important ;
+	 background-size: contain !important;
+}
+ 
+
+.incomingCallIcon{
+     background:url("<customImagesLocation>/incomingcalls.png") no-repeat !important ;
+	 background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+}
+
+.outgoingCallIcon{
+     background:url("<customImagesLocation>/outgoingcalls.png") no-repeat !important ;
+	 background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+}
+
+.voicemailIcon{
+     background:url("<customImagesLocation>/voicemail.png") no-repeat !important ;
+	 background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+}
+
+.callControlIcon{
+
+     background:url("<customImagesLocation>/call_control.png") no-repeat !important ;
+     background-repeat: no-repeat !important ;
+     background-size: contain !important ;
+ }
+
+.noServiceIcon {
+     background:url("<customImagesLocation>/settings.png") no-repeat !important ;
+     background-size: contain !important ;
+     background-repeat: no-repeat !important ;
+ }
+
+.mat-checkbox-inner-container {
+    height: <RestrictiveLabelStyle>px !important; /*restrictiveLabelStyle*/
+    width: <RestrictiveLabelStyle>px !important; /*restrictiveLabelStyle*/
+}
+
+.mat-checkbox-label{ 
+     font-size:<RestrictiveLabelStyle>px !important; /*restrictiveLabelStyle*/
+     font-family:<FontFamily> !important ;
+}
+
+.inputInvokedColor > .mat-input-wrapper > .mat-input-underline {
+    color :<SymbolicGreen> !important ;
+}
+
+.callsettingErrorInput > .mat-input-wrapper > .mat-input-underline{
+	border-color:<SymbolicRed> !important;
+}
+
+.appStyle{
+	max-width:700px
+}
+
+.appSideBorder{
+
+    border-right: 1px solid <DimmedText>; /*DimmedText Color */
+    border-left: 1px solid <DimmedText>; /*DimmedText Color */
+}

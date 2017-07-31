@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<project name="CallSettingsWeb" basedir="." default="dist">
+    
+	<property name="codeSrc" value="../WebContent" />
+	
+ 	<property name="staging" value="../output" />
+ 	<property name="distribution" value="../dist" />
+ 	
+	<property file="build.properties" />
+	
+	<target name="clean" description="Clean output directories">
+		<echo>cleaning output folder...</echo>
+		<delete dir="${staging}" />
+		<delete dir="${distribution}" />
+		<mkdir dir="${staging}" />
+	</target>
+	
+
+	<target name="staging"
+		description="Preparing the staging folder for building and packaging" depends="clean">
+		<echo>Copying required Files for packaging...</echo>
+		<mkdir dir="${staging}/WEB-INF" />
+		<mkdir dir="${staging}/META-INF" />
+		<mkdir dir="${staging}/WEB-INF/classes"/>
+		<copy todir="${staging}/WEB-INF">
+			<fileset dir="${codeSrc}/WEB-INF" >
+				<exclude name="**/servlet-api.jar"/>
+				<exclude name="**/BWCommunicationUtility.jar"/>
+			</fileset>
+		</copy>
+       
+		<copy todir="${staging}/META-INF">
+			<fileset dir="${codeSrc}/META-INF" />
+		</copy>
+		 
+	</target>
+	
+	<target name="compileAng2ForDev" description="Building angular in Dev mode">
+		<echo>Building angular files...</echo>
+		<exec executable="cmd" dir="${codeSrc}/angular2/">
+			<arg value="/c" />
+			<arg value="ng build -dev --base-href ./../" />
+			
+		</exec>
+	</target>
+
+	<target name="compileAng2ForProd" description="Building angular in Production mode">
+		<echo>Building angular files...</echo>
+		<exec executable="cmd" dir="${codeSrc}/angular2/">
+			<arg value="/c" />
+			<arg value="ng build --prod --base-href ./" />
+
+		</exec>
+	</target>
+	
+	<target name="compileJava" description="Compile main source tree java files">
+		<echo>Compiling java files...</echo>
+		<javac target="1.7" source="1.7" destdir="${staging}/WEB-INF/classes"
+			debug="true" deprecation="false" optimize="false" failonerror="true">
+			<src path="../src" />
+			<classpath>
+				<fileset dir="${staging}/WEB-INF/lib" includes="**.jar" />
+				
+			</classpath>
+
+		</javac>
+
+	</target>
+	
+	<target name="postCompile" description="Post Compile tasks">
+			<echo>post Compile tasks...</echo>
+		
+			<move todir="${staging}/WEB-INF/customDir/branding/images">
+				<fileset dir="${staging}/js/assets/images" />
+			</move>
+
+			<move todir="${staging}/assets/">
+				<fileset dir="${staging}/js/assets/">
+					
+				</fileset>
+			</move>
+				
+			
+
+			<replace token="@codeImport@" value=" 
+				&lt;%@page import=&quot;java.io.BufferedReader,java.io.InputStreamReader&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;java.lang.Exception&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;com.broadsoft.callsettingsweb.server.branding.I18nManager&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;com.broadsoft.callsettingsweb.server.loggers.ChannelLoggerUtil&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;com.broadsoft.xsp.app.base.ChannelSeverity&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;com.broadsoft.callsettingsweb.server.util.ApplicationUtil&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;com.broadsoft.callsettingsweb.server.AppConstants&quot;%&gt; ${line.separator}
+				&lt;%@page import=&quot;net.sf.json.JSONObject&quot;%&gt;">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+			
+			<replace token="@codeFav1@" value="
+				&lt;% ${line.separator}
+				
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;,  &quot; Request Method :  &quot;  + request.getMethod()); ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;,  &quot; Request Content Type :  &quot;  + request.getContentType()); ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;,  &quot; Request Content Length :  &quot;  + request.getContentLength()); ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;, &quot; Request URI :  &quot; + request.getRequestURI()); ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;, &quot; Request URL :  &quot; + request.getRequestURL()); ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;, &quot; Authorization Header :  &quot; + request.getHeader(&quot;Authorization&quot;)); ${line.separator}
+					${line.separator}${line.separator}
+					
+					String heroApplicationInput =  &quot;&quot;; ${line.separator}
+					String customizationTexts = &quot;&quot;; ${line.separator}
+					String userDomain = &quot;&quot;; ${line.separator}
+					String xsiContextPath = &quot;&quot;; ${line.separator}
+				
+					${line.separator}${line.separator}
+					try { ${line.separator}
+						${line.separator}
+						StringBuilder buffer = new StringBuilder(); ${line.separator}
+						BufferedReader reader = request.getReader(); ${line.separator}
+						String line; ${line.separator}
+						while ((line = reader.readLine()) != null) { ${line.separator}
+							buffer.append(line); ${line.separator}
+								
+						} ${line.separator}
+						heroApplicationInput = buffer.toString(); ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.FIELD_DEBUG, &quot;cswindex.jsp &quot;, &quot; Request body read from input buffer, : &quot;+heroApplicationInput); ${line.separator}
+						${line.separator}${line.separator}
+				
+					} catch (Exception ex) { ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Exception occurred in reading the application input data.&quot; + ApplicationUtil.getStackTrace(ex) ); ${line.separator}
+						response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); ${line.separator}
+						return; ${line.separator}
+					}	${line.separator}
+					${line.separator}${line.separator}
+				
+					String authFailedParam = request.getParameter(&quot;authFailed&quot;); ${line.separator}
+					if(authFailedParam != null &amp;&amp; authFailedParam.trim().length() &lt;= 0) { ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Application invoked with the reloaded parameter.&quot; ); ${line.separator}
+						response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); ${line.separator}
+						return; ${line.separator}
+					} ${line.separator}
+					${line.separator}	
+					String brandableApp = request.getParameter(&quot;brandable&quot;); ${line.separator}
+					if(brandableApp == null || brandableApp.trim().length() &lt;= 0) { ${line.separator}
+						if(!(request.getMethod().equals(&quot;POST&quot;) &amp;&amp; request.getContentLength() > 0) ) { ${line.separator}
+							response.setStatus(HttpServletResponse.SC_BAD_REQUEST); ${line.separator}
+							out.println(&quot;Invalid request received from the application. Please check the request method and request content. Only HTTP POST supported.&quot;); ${line.separator}
+							ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Invalid request type or no request content received.&quot; ); ${line.separator}
+							return; ${line.separator}
+						} ${line.separator}
+					} ${line.separator}
+					
+					${line.separator}${line.separator}
+					if(brandableApp != null &amp;&amp; brandableApp.trim().length() &gt; 0) { ${line.separator}
+			
+						heroApplicationInput = ApplicationUtil.readJSONForAppTest(); ${line.separator}
+			
+					} ${line.separator}
+					${line.separator}${line.separator}
+					
+					userDomain = ApplicationUtil.getDomainForRequest(request);${line.separator}
+					xsiContextPath = ApplicationUtil.getXsiContextPathOrUrl(request);${line.separator}
+					${line.separator}
+					%&gt; ${line.separator}
+				">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<replace token="@codeFav2@" value="
+				&lt;%= heroApplicationInput %&gt; ; ">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<replace token="@codeUserDomainAssign@" value="&lt;%= userDomain %&gt;">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<replace token="@codexsiContextPathAssign@" value="&lt;%= xsiContextPath %&gt;">
+						
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<replace token="@codeFav3@" value="
+				&lt;% ${line.separator}
+				try { ${line.separator}
+				
+				customizationTexts = I18nManager.getInstance().getDefaultTexts(); ${line.separator}
+				${line.separator}${line.separator}
+				
+				} catch (Exception ex) { ${line.separator}
+					ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Exception occurred in reading the cutomization texts.&quot; + ApplicationUtil.getStackTrace(ex)); ${line.separator}
+					response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR); ${line.separator}
+					return; ${line.separator}
+				} ${line.separator}
+					
+				%&gt; ${line.separator}
+				">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<replace token="@codeCustomTextAssign@" value="
+				&lt;%= customizationTexts %&gt; ; ">
+				
+				<fileset dir="${staging}" includes="cswindex.jsp" />
+			</replace>
+		
+			<echo>Engraving version on CallSettings Web...</echo>
+			
+			<replace token="@appName@" value="${appName}">
+				<fileset dir="${staging}/WEB-INF" includes="*xml" />
+				<fileset dir="${staging}/META-INF" includes="*xml" />
+				<fileset dir="${staging}/META-INF" includes="MANIFEST.MF" />
+				<fileset dir="${staging}" includes="cswindex.*" />
+			</replace>		
+			<replace token="@version@" value="${version}">
+				<fileset dir="${staging}/WEB-INF" includes="*xml" />
+				<fileset dir="${staging}/META-INF" includes="*xml" />
+				<fileset dir="${staging}/META-INF" includes="MANIFEST.MF" />
+				<fileset dir="${staging}" includes="cswindex.*" />
+			</replace>
+			
+
+		</target>
+
+	<target name="dist" description="building war file"
+			depends="clean, staging, compileAng2ForProd, compileJava, postCompile">
+		<echo>Building war file...</echo>
+		<mkdir dir="${distribution}" />
+		<war destfile="${distribution}/${appName}_${version}.war"
+			basedir="${staging}"
+			includes="*/**">
+			<manifest>
+			  <attribute name="Built-By" value="Broadsoft"/>
+			  <attribute name="Implementation-Vendor" value="Broadsoft"/>
+			  <attribute name="Implementation-Title" value="${appName}"/>
+			  <attribute name="Implementation-Version" value="${version}"/>
+			  
+			</manifest>
+		</war>
+		
+		<!--<delete dir="${staging}" />-->
+	</target>
+	
+	<target name="distDev" description="building war file"
+				depends="clean, staging, compileAng2ForDev, compileJava, postCompile">
+		
+	</target>
+
+
+</project>

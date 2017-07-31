@@ -1,0 +1,14 @@
+<!--  Copyright © 2017 BroadSoft Inc. All rights reserved. Proprietary Property of BroadSoft, Inc. Gaithersburg, MD. -->
+<!-- The contents of this file will be loaded for each web application -->
+<Context path="/callsettings" docBase="BWCallSettingsWeb_0.1" swallowOutput="true">
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+   <!-- Setup the resource for the log manager (defining the resource factory) used to provide logging services 
+        to the web application. It's referenced in the deployment descriptor.
+    -->
+   <Resource name="broadworks/logging/LogManager"  				  
+	 type="com.broadsoft.xsp.logging.LogManager"
+	 factory="com.broadsoft.xsp.logging.LogManagerFactory"/>
+</Context>

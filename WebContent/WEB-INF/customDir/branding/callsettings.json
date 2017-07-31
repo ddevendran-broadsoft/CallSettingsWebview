@@ -1,0 +1,1730 @@
+{
+	"services": {
+		"en_US": {
+			"incoming_calls": "Incoming Calls",
+			"outgoing_calls": "Outgoing Calls",
+			"voice_mail": "Voicemail",
+			"call_control": "Call Control",
+			"service_on": "ON",
+			"set_number": "Set number",
+			"none": "None",
+			"error": {
+				"numberexist": "Phone number already exists.",
+				"updatefailed": "Unable to update data. Try again or contact the administrator.",
+				"unabletofetch": "Settings unavailable. Try again or contact the administrator.",
+				"networkerror": "Your network is offline.",
+				"code": "Code: ",
+				"noservice": "Settings unavailable. Try again or contact the administrator."
+			},
+			"do_not_disturb": {
+				"name": "Do Not Disturb",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Call Forwarding",
+				"text": " ",
+				"ring_splash": "Ring Splash",
+				"number_of_rings": "Number of rings",
+				"number_required": "Phone number required.",
+				"off_text": "OFF - Call options not configured",
+				"on_text": "ON",
+				"err_msg": "Data unavailable. Try again or contact the administrator."
+			},
+			"call_forwarding_always": {
+				"name": "Always",
+				"text": " ",
+				"err_text": "Phone number required.",
+				"ring_splash": "Ring Splash",
+				"server_err_text": "Unable to update data. Try again or contact the administrator.",
+				"invalid_phone_number_msg": "Invalid phone number."
+			},
+			"call_forwarding_busy": {
+				"name": "When Busy",
+				"text": " ",
+				"err_text": "Phone number required.",
+				"server_err_text": "Unable to update data. Try again or contact the administrator.",
+				"invalid_phone_number_msg": "Invalid phone number."
+			},
+			"call_forwarding_no_answer": {
+				"name": "When No Answer",
+				"text": " ",
+				"no_of_rings": "Number of rings",
+				"err_text": "Phone number required.",
+				"server_err_text": "Unable to update data. Try again or contact the administrator.",
+				"invalid_phone_number_msg": "Invalid phone number."
+			},
+			"call_forwarding_not_reachable": {
+				"name": "When Not Reachable",
+				"text": " ",
+				"err_text": "Phone number required.",
+				"server_err_text": "Unable to update data. Try again or contact the administrator.",
+				"invalid_phone_number_msg": "Invalid phone number."
+			},
+			"simultaneous_ring": {
+				"name": "Simultaneous Ring",
+				"off_text": "OFF - Ring number not configured",
+				"text": "Ring multiple devices at the same time for incoming calls.",
+				"phone_number_required": "Phone number required.",
+				"donot_ring_when_oncall": "Do Not Ring When On a Call",
+				"ring_numbers": "Ring Numbers",
+				"answer_confirmation_required": "Answer confirmation required",
+				"when_to_ring": "When to Ring",
+				"error_duplicateNumber": "Phone number exists."
+			},
+			"block_caller_id": {
+				"name": "Block My Caller ID",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Remote Office",
+				"text": "Make calls from a remote phone and have it appear from your business line. In addition, any incoming calls to your business line will ring on this remote phone.",
+				"remote_phone_number": "Remote phone number",
+				"err_msg": "Phone number required.",
+				"invalid_phone_number_msg": "Invalid phone number.",
+				"server_err_msg": "Some Internal Server Error Occurred. Please try again."
+			},
+			"anonymous_call_rejection": {
+				"name": "Anonymous Call Rejection",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Automatic Callback",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Call Waiting",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Voicemail Service",
+				"text": " ",
+				"send_calls_to_voice_mail": "Send Calls to Voicemail",
+				"settings": "Settings",
+				"all_settings": "All settings",
+				"always": "Always",
+				"when_busy": "When busy",
+				"when_unanswered": "When no answer",
+				"number_of_rings": "Number of rings",
+				"when_message_arrives": "When a Message Arrives",
+				"use_unified_messaging": "Use unified messaging",
+				"message_waiting_indicator": "Message waiting indicator",
+				"forward_to_email_address": "Forward to email address",
+				"email_notification": "Email Notification",
+				"email_carbon_copy": "Email Carbon Copy",
+				"set_email_address": "Set email address",
+				"press_0_to_transfer": "Press '0' to transfer",
+				"email_address_required": "Email address required.",
+				"phone_number_required": "Phone number required.",
+				"invalid_phone_number_msg": "Invalid phone number.",
+				"invalid_email_address_msg": "Invalid email address.",
+				"none": "None"
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configuring alerting options for incoming and outgoing calls per number.",
+				"primary_number": "Primary Number",
+				"on_text": "ON",
+				"off_text": "OFF",
+				"ring_fixed_devices": "Ring fixed devices",
+				"shared_call_appearance": "Shared call appearance",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Executive assistant",
+				"ring_mobile_devices": "Ring mobile devices",
+				"mobile_number": "Mobile Number",
+				"enable_alerting": "Enable alerting",
+				"general_settings": "General settings",
+				"all_settings": "All settings",
+				"alert_agent_calls": "Alert agent calls",
+				"alert_click_to_dial_calls": "Alert click to dial calls",
+				"alert_group_paging_calls": "Alert group paging calls",
+				"answer_confirmation": "Answer confirmation",
+				"call_control_services": "Call control services",
+				"enable_diversion_inhibitor": "Enable diversion inhibitor",
+				"use_mobility_calling_line_id": "Use Mobility calling line ID",
+				"dont_forward_calls": "Do Not Forward Calls",
+				"caller_id": "Caller ID",
+				"server_err_text": "Unable to update data. Try again or contact the administrator.",
+				"rng_mobile_dev_validation_msg": "The BW Mobility Alerting Policy set to Ring Mobile Devices only.  However, no mobile number to alert.",
+				"devices_to_ring_checkbox_validation": "The BW Mobility Alerting Policy not set.  The Alerting Policy must be set to Ring Fixed Devices or Ring Mobile Devices or ring both fixed and mobile devices.",
+				"none": "None"
+			}
+		},
+
+		"es": {
+			"incoming_calls": "Llamadas entrantes",
+			"outgoing_calls": "Llamadas salientes",
+			"voice_mail": "Mensaje de voz",
+			"call_control": "Control de llamadas",
+			"service_on": "en uso",
+			"set_number": "Definir número",
+			"none": "Ninguno",
+			"error": {
+				"numberexist": "El número de teléfono ya existe.",
+				"updatefailed": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"unabletofetch": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador",
+				"code": "Código: ",
+				"networkerror": "Su red está fuera de línea.",
+				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador."
+			},
+			"do_not_disturb": {
+				"name": "No molestar",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Desvío de llamadas",
+				"text": " ",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"number_of_rings": "Número de tonos",
+				"number_required": "Se requiere un número de teléfono.",
+				"off_text": "DESACTIVADO - Opciones de llamada no configuradas",
+				"on_text": "ACTIVADO",
+				"err_msg": "Datos no disponibles. Inténtelo de nuevo o contacte con el administrador"
+			},
+			"call_forwarding_always": {
+				"name": "Siempre",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido"
+			},
+			"call_forwarding_busy": {
+				"name": "Si está ocupado",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido"
+			},
+			"call_forwarding_no_answer": {
+				"name": "Si no hay respuesta",
+				"text": " ",
+				"no_of_rings": "Número de tonos",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido"
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Si no está disponible",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido"
+			},
+			"simultaneous_ring": {
+				"name": "Tono simultáneo",
+				"off_text": "DESACTIVADO - Número de tono no configurado",
+				"text": "Hacer sonar varios dispositivos al mismo tiempo para llamadas entrantes.",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"donot_ring_when_oncall": "Sin tono si está hablando",
+				"ring_numbers": "Números de tono",
+				"answer_confirmation_required": "Se requiere confirmación de respuesta",
+				"when_to_ring": "Cuándo emitir tono",
+				"error_duplicateNumber": "Teléfono ya existente"
+			},
+			"block_caller_id": {
+				"name": "Bloquear mi ID de llamante",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Oficina remota",
+				"text": "Realice llamadas desde un teléfono remoto y haga que aparezca como su línea empresarial. Además, las llamadas entrantes a su línea empresarial sonarán en este teléfono.",
+				"remote_phone_number": "Número de teléfono remoto",
+				"err_msg": "Se requiere un número de teléfono.",
+				"invalid_phone_number_msg": "Número de teléfono no válido"
+			},
+			"anonymous_call_rejection": {
+				"name": "Rechazo de llamadas anónimas",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Devolución de llamada automática",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Llamada en espera",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Servicio de buzón de voz",
+				"text": " ",
+				"send_calls_to_voice_mail":"Enviar llamadas a buzón de voz",
+				"settings":"Ajustes",
+				"all_settings":"Todos los ajustes",
+				"always":"Siempre",
+				"when_busy":"Si está ocupado",
+				"when_unanswered":"Si no hay respuesta",
+				"number_of_rings":"Número de tonos",
+				"when_message_arrives":"Cuando llegue un mensaje",
+				"use_unified_messaging":"Mensajería unificada",
+				"message_waiting_indicator":"Indicador de espera de mensaje",
+				"forward_to_email_address":"Reenviar a dirección de correo electrónico",
+				"email_notification":"Notificación de correo electrónico",
+				"email_carbon_copy":"Con copia de correo electrónico",
+				"set_email_address":"Definir dirección de correo electrónico",
+				"press_0_to_transfer":"Pulse '0' para transferir",
+				"email_address_required":"Se requiere una dirección de correo electrónico.",
+				"phone_number_required":"Se requiere un número de teléfono.",
+				"invalid_phone_number_msg":"Número de teléfono no válido.",
+				"invalid_email_address_msg":"Dirección de correo electrónico no válida.",
+				"none":"Ninguno"
+
+			},
+			"broadworks_mobility": {
+				"name":"BroadWorks Mobility",
+				"text":"Configuración de opciones de alerta para llamadas entrantes y salientes por número.",
+				"primary_number":"Número principal",
+				"ring_fixed_devices":"Tono en los dispositivos fijos",
+				"shared_call_appearance":"Apariencia de llamada compartida",
+				"broadworks_anywhere":"BroadWorks Anywhere",
+				"on_text": "ACTIVADO",
+				"off_text": "DESACTIVADO",
+				"executive_assistant":"Asistente ejecutivo/a",
+				"ring_mobile_devices":"Tono en los dispositivos celulares",
+				"mobile_number":"Número de celular",
+				"enable_alerting":"Habilitar alertas",
+				"general_settings":"Ajustes generales",
+				"all_settings":"Todos los ajustes",
+				"alert_agent_calls":"Alertar de llamadas de agente",
+				"alert_click_to_dial_calls":"Alertar de llamadas Clic para marcar",
+				"alert_group_paging_calls":"Alertar de llamadas de aviso a grupo",
+				"answer_confirmation":"Confirmación de respuesta",
+				"call_control_services":"Servicios de control de llamadas",
+				"enable_diversion_inhibitor":"Activar inhibidor de desvío",
+				"use_mobility_calling_line_id":"Usar ID de línea de llamada de Mobility",
+				"dont_forward_calls":"No transferir llamadas",
+				"caller_id":"ID de llamante",
+				"server_err_text":"No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador",
+				"rng_mobile_dev_validation_msg": "La política de alertas de BW Mobility está configurada para Tono en los dispositivos celulares únicamente.  Sin embargo, no hay ningún número celular al que alertar.",
+				"devices_to_ring_checkbox_validation": "Política de alertas de BW Mobility no configurada.  La política de alertas debe estar configurada para Tono en los dispositivos fijos o Tono en los dispositivos celulares, o bien para tono en dispositivos tanto fijos como celulares.",
+				"none": "Ninguno`"
+			}
+		},
+
+		"es_ES": {
+			"incoming_calls": "Llamadas entrantes",
+			"outgoing_calls": "Llamadas salientes",
+			"voice_mail": "Buzón de voz",
+			"call_control": "Control de llamadas",
+			"service_on": "ACTIVADO",
+			"set_number": "Definir número",
+			"none": "Ninguno",
+			"error": {
+				"numberexist": "El número de teléfono ya existe.",
+				"updatefailed": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"unabletofetch": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador.",
+				"networkerror": "Su red está fuera de línea.",
+				"code": "Código: ",
+				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador."
+			},
+			"do_not_disturb": {
+				"name": "No molestar",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Desvío de llamadas",
+				"text": " ",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"number_of_rings": "Número de tonos",
+				"number_required": "Se requiere un número de teléfono.",
+				"off_text": "DESACTIVADO - Opciones de llamada no configuradas",
+				"on_text": "ACTIVADO",
+				"err_msg": "Datos no disponibles. Inténtelo de nuevo o contacte con el administrador."
+			},
+			"call_forwarding_always": {
+				"name": "Siempre",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"call_forwarding_busy": {
+				"name": "Si está ocupado",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"call_forwarding_no_answer": {
+				"name": "Si no hay respuesta",
+				"text": " ",
+				"no_of_rings": "Número de tonos",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Si no está disponible",
+				"text": " ",
+				"err_text": "Se requiere un número de teléfono.",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"simultaneous_ring": {
+				"name": "Tono simultáneo",
+				"off_text": "DESACTIVADO - Número de tono no configurado",
+				"text": "Hacer sonar varios dispositivos al mismo tiempo para llamadas entrantes.",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"donot_ring_when_oncall": "Sin tono si está hablando",
+				"ring_numbers": "Números de tono",
+				"answer_confirmation_required": "Se requiere confirmación de respuesta",
+				"when_to_ring": "Cuándo emitir tono",
+				"error_duplicateNumber": "Teléfono ya existente."
+			},
+			"block_caller_id": {
+				"name": "Bloquear mi ID de llamante",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Oficina remota",
+				"text": "Realice llamadas desde un teléfono remoto y haga que aparezca como su línea empresarial. Además, las llamadas entrantes a su línea empresarial sonarán en este teléfono.",
+				"remote_phone_number": "Número de teléfono remoto",
+				"err_msg": "Se requiere un número de teléfono.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"anonymous_call_rejection": {
+				"name": "Rechazo de llamadas anónimas",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Devolución de llamada automática",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Llamada en espera",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Servicio de buzón de voz",
+				"text": " ",
+				"send_calls_to_voice_mail": "Enviar llamadas a buzón de voz",
+				"settings": "Ajustes",
+				"all_settings": "Todos los ajustes",
+				"always": "Siempre",
+				"when_busy": "Si está ocupado",
+				"when_unanswered": "Si no hay respuesta",
+				"number_of_rings": "Número de tonos",
+				"when_message_arrives": "Cuando llegue un mensaje",
+				"use_unified_messaging": "Usar mensajería unificada",
+				"message_waiting_indicator": "Indicador de espera de mensaje",
+				"forward_to_email_address": "Reenviar a dirección de correo electrónico",
+				"email_notification": "Notificación de correo electrónico",
+				"email_carbon_copy": "Con copia de correo electrónico",
+				"set_email_address": "Definir dirección de correo electrónico",
+				"press_0_to_transfer": "Pulse '0' para transferir",
+				"email_address_required": "Se requiere una dirección de correo electrónico.",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"invalid_phone_number_msg": "Número de teléfono no válido.",
+				"invalid_email_address_msg": "Dirección de correo electrónico no válida.",
+				"none": "Ninguno"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configuración de opciones de alerta para llamadas entrantes y salientes por número.",
+				"primary_number": "Número principal",
+				"ring_fixed_devices": "Tono en los dispositivos fijos",
+				"on_text": "ACTIVADO",
+				"off_text": "DESACTIVADO",
+				"shared_call_appearance": "Apariencia de llamada compartida",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Asistente ejecutivo/a",
+				"ring_mobile_devices": "Tono en los dispositivos móviles",
+				"mobile_number": "Número de móvil",
+				"enable_alerting": "Habilitar alertas",
+				"general_settings": "Ajustes generales",
+				"all_settings": "Todos los ajustes",
+				"alert_agent_calls": "Alertar de llamadas de agente",
+				"alert_click_to_dial_calls": "Alertar de llamadas Clic para marcar",
+				"alert_group_paging_calls": "Alertar de llamadas de aviso a grupo",
+				"answer_confirmation": "Confirmación de respuesta",
+				"call_control_services": "Servicios de control de llamadas",
+				"enable_diversion_inhibitor": "Activar inhibidor de desvío",
+				"use_mobility_calling_line_id": "Usar ID de línea de llamada de Mobility",
+				"dont_forward_calls": "No transferir llamadas",
+				"caller_id": "ID de llamante",
+				"server_err_text": "o es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador.",
+				"rng_mobile_dev_validation_msg": "La política de alertas de BW Mobility está configurada para Tono en los dispositivos móviles únicamente.  Sin embargo, no hay ningún número móvil al que alertar.",
+				"devices_to_ring_checkbox_validation": "Política de alertas de BW Mobility no configurada.  La política de alertas debe estar configurada para Tono en los dispositivos fijos o Tono en los dispositivos móviles, o bien para tono en dispositivos tanto fijos como móviles.",
+				"none": "Ninguno"
+
+
+			}
+		},
+
+		"ko_KO": {
+			"incoming_calls": "수신 전화",
+			"outgoing_calls": "발신 전화",
+			"voice_mail": "음성 사서함",
+			"call_control": "통화 제어",
+			"service_on": "켜짐",
+			"set_number": "번호 설정",
+			"None": "없음",
+
+			"error": {
+				"numberexist": "전화번호가 이미 있습니다.",
+				"updatefailed": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"unabletofetch": "설정을 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"networkerror": "네트워크가 오프라인 상태입니다.",
+				"code": "코드: ",
+				"noservice": "설정을 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오."
+
+			},
+			"do_not_disturb": {
+				"name": "방해 금지",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "착신 전환",
+				"text": "",
+				"ring_splash": "벨울림 시작",
+				"number_of_rings": "벨소리 수",
+				"number_required": "화번호가 필요합니다.",
+				"off_text": "꺼짐 - 전화 옵션이 구성되지 않음",
+				"on_text": "켜짐",
+				"err_msg": "데이터를 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오."
+			},
+			"call_forwarding_always": {
+				"name": "항상",
+				"text": "",
+				"err_text": "전화번호가 필요합니다.",
+				"ring_splash": "벨울림 시작",
+				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"invalid_phone_number_msg": "잘못된 전화번호."
+
+			},
+			"call_forwarding_busy": {
+				"name": "다른 용무 중일 때",
+				"text": "",
+				"err_text": "전화번호가 필요합니다.",
+				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"invalid_phone_number_msg": "잘못된 전화번호."
+			},
+			"call_forwarding_no_answer": {
+				"name": "응답이 없을 때",
+				"text": "",
+				"no_of_rings": "벨소리 수",
+				"err_text": "전화번호가 필요합니다.",
+				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"invalid_phone_number_msg": "잘못된 전화번호."
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "연결할 수 없을 때",
+				"text": "",
+				"err_text": "전화번호가 필요합니다.",
+				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"invalid_phone_number_msg": "잘못된 전화번호."
+
+			},
+			"simultaneous_ring": {
+				"name": "동시 착신",
+				"off_text": "꺼짐 - 전화번호가 구성되지 않음",
+				"text": "전화 수신 시 여러 장치에서 벨소리가 동시에 울립니다.",
+				"phone_number_required": "전화번호가 필요합니다.",
+				"donot_ring_when_oncall": "통화 중일 때 전화 안 함.",
+				"ring_numbers": "전화 번호",
+				"answer_confirmation_required": "응답 확인이 필요합니다",
+				"when_to_ring": "전화를 걸 때",
+				"error_duplicateNumber": "전화번호가 있습니다."
+
+			},
+			"block_caller_id": {
+				"name": "내 발신자 ID 차단",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "원격 사무실",
+				"text": "원격으로 전화를 걸면 회사 라인에 표시됩니다. 또한 회사 라인에 대한 모든 수신 전화는 이 원격 전화에서 울립니다.",
+				"remote_phone_number": "원격 전화 번호",
+				"err_msg": "전화번호가 필요합니다.",
+				"invalid_phone_number_msg": "잘못된 전화번호."
+
+			},
+			"anonymous_call_rejection": {
+				"name": "익명 전화 거부",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "자동 회신",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "통화 대기",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "음성 사서함 서비스",
+				"text": "",
+				"send_calls_to_voice_mail": "음성 메일로 호출 보내기",
+				"settings": "설정",
+				"all_settings": "모든 설정",
+				"always": "항상",
+				"when_busy": "다른 용무 중일 때",
+				"when_unanswered": "응답이 없을 때",
+				"number_of_rings": "벨소리 수",
+				"when_message_arrives": "메시지 수신 시",
+				"use_unified_messaging": "통합 메시징 사용",
+				"message_waiting_indicator": "메시지 대기 표시기",
+				"forward_to_email_address": "이메일 주소로 전달",
+				"email_notification": "이메일 알림",
+				"email_carbon_copy": "이메일 복사본",
+				"set_email_address": "이메일 주소 설정",
+				"press_0_to_transfer": "전송하려면 '0' 누르기",
+				"email_address_required": "이메일 주소가 필요합니다.",
+				"phone_number_required": "전화번호가 필요합니다.",
+				"invalid_phone_number_msg": "잘못된 전화번호입니다.",
+				"invalid_email_address_msg": "잘못된 이메일 주소입니다.",
+				"none": "없음"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "번호마다 수신 및 발신 통화에 대한 경고 옵션을 구성합니다.",
+				"primary_number": "기본 전화번호",
+				"on_text": "켜짐",
+				"off_text": "꺼짐",
+				"ring_fixed_devices": "고정된 장치에 전화 걸기",
+				"shared_call_appearance": "공유 호출 표시 형식",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "실행 지원",
+				"ring_mobile_devices": "모바일 장치 전화 연결",
+				"mobile_number": "휴대전화 번호",
+				"enable_alerting": "경고 사용",
+				"general_settings": "일반 설정",
+				"all_settings": "모든 설정",
+				"alert_agent_calls": "에이전트 통화 경고",
+				"alert_click_to_dial_calls": "클릭하여 전화 걸기 경고",
+				"alert_group_paging_calls": "그룹 페이지 통화 경고",
+				"answer_confirmation": "응답 확인",
+				"call_control_services": "통화 제어 서비스",
+				"enable_diversion_inhibitor": "전환방지 기능 사용",
+				"use_mobility_calling_line_id": "모빌리티 통화 회선 ID 사용",
+				"dont_forward_calls": "착신전환 안 함",
+				"caller_id": "발신자 ID",
+				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"rng_mobile_dev_validation_msg": "BW 모빌리티 경고 정책이 모바일 장치 전화 연결로만 설정되었습니다.  하지만 경고할 휴대전화 번호가 없습니다.",
+				"devices_to_ring_checkbox_validation": "BW 모빌리티 경고 정책이 설정되지 않았습니다.  경고 정책은 고정된 장치에 전화 걸기 또는 모바일 장치에 전화 걸기 또는 고정된 장치와 모바일 장치에 모두 전화 걸기로 설정해야 합니다.",
+				"none": "없음"
+
+
+			}
+		},
+
+		"ja_JA": {
+			"incoming_calls": "着信した電話",
+			"outgoing_calls": "発信",
+			"voice_mail": "ボイスメール",
+			"call_control": "通話コントロール",
+			"service_on": "オン",
+			"set_number": "番号設定",
+			"none": "無し",
+
+			"error": {
+				"numberexist": "電話番号はすでに存在しています。",
+				"updatefailed": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
+				"unabletofetch": "設定を利用できません。再試行するか管理者にお問い合わせください",
+				"code": "コード： ",
+				"networkerror": "お使いのネットワークはオフラインになっています。",
+				"noservice": "設定を利用できません。再試行するか管理者にお問い合わせください。"
+				
+			},
+			"do_not_disturb": {
+				"name": "着信拒否",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "転送",
+				"text": "",
+				"ring_splash": "リングスプラッシュ",
+				"number_of_rings": "呼び出し音の再生数",
+				"number_required": "電話番号が必要です。",
+				"off_text": "OFF -コールオプション未設定",
+				"on_text": "オンに",
+				"err_msg": "データを利用できません。再試行するか管理者にお問い合わせください"
+
+			},
+			"call_forwarding_always": {
+				"name": "常時",
+				"text": "",
+				"err_text": "電話番号が必要です。",
+				"ring_splash": "リングスプラッシュ",
+				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
+				"invalid_phone_number_msg": "正しくない電話番号"
+			},
+			"call_forwarding_busy": {
+				"name": "話中",
+				"err_text": "電話番号が必要です。",
+				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
+				"invalid_phone_number_msg": "正しくない電話番号"
+			},
+			"call_forwarding_no_answer": {
+				"name": "無応答場合",
+				"text": "",
+				"no_of_rings": "呼び出し音の再生数",
+				"err_text": "電話番号が必要です。 ",
+				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
+				"invalid_phone_number_msg": "正しくない電話番号"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "未到達",
+				"text": "",
+				"err_text": "電話番号が必要です。",
+				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
+				"invalid_phone_number_msg": "正しくない電話番号"
+
+			},
+			"simultaneous_ring": {
+				"name": "同時呼び出し",
+				"off_text": "OFF -呼び出し番号未設定",
+				"text": "同時に複数デバイスの着信を呼び出します。",
+				"phone_number_required": "電話番号が必要です。",
+				"donot_ring_when_oncall": "通話中に呼び出さないでください",
+				"ring_numbers": "呼び出し番号",
+				"answer_confirmation_required": "応答確認要",
+				"when_to_ring": "呼び出す場合",
+				"error_duplicateNumber": "電話番号既存"
+
+			},
+			"block_caller_id": {
+				"name": "発信者番号通知をブロック",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "リモートオーフィス",
+				"text": " リモート電話から電話をかけ、ビジネスラインにそれが表示されます。さらにビジネスラインへのすべての着信はこのリモート電話で鳴ります。",
+				"remote_phone_number": "リモート電話番号",
+				"err_msg": "電話番号が必要です。",
+				"invalid_phone_number_msg": "正しくない電話番号"
+	
+
+			},
+			"anonymous_call_rejection": {
+				"name": "非通知電話の着信を拒否",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "自動コールバック",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "コールウェイティング",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "ボイスメールサービス",
+				"text": "",
+				"send_calls_to_voice_mail": "ボイスメールにコールを送信",
+				"settings": "設定",
+				"all_settings": "すべての設定",
+				"always": "常時",
+				"when_busy": "話中に",
+				"when_unanswered": "無応答時",
+				"number_of_rings": "呼び出し音の再生数",
+				"when_message_arrives": "メッセージ到着時",
+				"use_unified_messaging": "ユニファイドメッセージングを利用",
+				"message_waiting_indicator": "メッセージ待機指示器",
+				"forward_to_email_address": "Eメールアドレスに転送",
+				"email_notification": "Eメール通知",
+				"email_carbon_copy": "Eメールカーボンコピー",
+				"set_email_address": "Eメールアドレスを設定",
+				"press_0_to_transfer": "転送のため‘0’を押す",
+				"email_address_required": "Eメールアドレスが必要です。",
+				"phone_number_required": "電話番号が必要です。",
+				"invalid_phone_number_msg": "無効な電話番号です。",
+				"invalid_email_address_msg": "無効なEメールアドレスです。",
+				"none": "無し"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": " 着信および発信番号ごとにアラートオプションを設定します。",
+				"primary_number": "主要電話番号",
+				"ring_fixed_devices": "固定デバイス呼び出し",
+				"on_text": "オン",
+				"off_text": "オフ",
+				"shared_call_appearance": "シェアードコールアピアランス",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "エグゼクティブアシスタント",
+				"ring_mobile_devices": "モバイルデバイス呼び出し",
+				"mobile_number": "モバイル番号",
+				"enable_alerting": "アラートを有効",
+				"general_settings": "全般設定",
+				"all_settings": "すべての設定",
+				"alert_agent_calls": "アラートエージェントとコール",
+				"alert_click_to_dial_calls": "クリックトゥーコールをアラート",
+				"alert_group_paging_calls": "アラートグループページングコール",
+				"answer_confirmation": "応答確認",
+				"call_control_services": "呼び出し制御サービス",
+				"enable_diversion_inhibitor": "変換禁止機能を有効にする",
+				"use_mobility_calling_line_id": "モビリティコールラインIDを使用",
+				"dont_forward_calls": "コール転送しないでください",
+				"caller_id": "発信者番号通知",
+				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください",
+				"rng_mobile_dev_validation_msg": "BWモビリティアラートポリシーはモバイルデバイスだけ呼び出すことに設定します。しかしアラートする携帯番号がありません。",
+				"devices_to_ring_checkbox_validation": "BWモビリティアラートポリシーは設定されていません。アラートポリシーは固定デバイス、モバイルデバイス、または両方への呼び出しを設定するのが必要です。",
+				"none": "無し"
+
+
+			}
+		},
+
+		"it_IT": {
+			"incoming_calls": "Chiamate in arrivo",
+			"outgoing_calls": "Chiamate in uscita",
+			"voice_mail": "Segreteria telefonica",
+			"call_control": "Controllo chiamate",
+			"service_on": "Attivo",
+			"set_number": "Imposta numero",
+			"None": "Nessuno",
+			"error": {
+				"numberexist": "Numero di telefono già esistente",
+				"updatefailed": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"unabletofetch": "Impostazioni non disponibili Riprovare o contattare l'amministratore",
+				"networkerror": "La rete è offline.",
+				"code": "Codice: ",
+				"noservice": "Impostazioni non disponibili Riprovare o contattare l'amministratore."
+				
+			},
+			"do_not_disturb": {
+				"name": "Non disturbare",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Deviazione chiamate",
+				"text": "",
+				"ring_splash": "Squillo di avviso",
+				"number_of_rings": "Numero di squilli",
+				"number_required": "Numero di telefono richiesto.",
+				"off_text": "Disattivato - Opzioni di chiamata non configurate",
+				"on_text": "Attivo",
+				"err_msg": "Dati non disponibili. Riprovare o contattare l'amministratore."
+
+			},
+			"call_forwarding_always": {
+				"name": "Sempre",
+				"text": "",
+				"err_text": "Numero di telefono richiesto.",
+				"ring_splash": "Squillo di avviso",
+				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"invalid_phone_number_msg": "Numero di telefono non valido"
+
+			},
+			"call_forwarding_busy": {
+				"name": "Quando occupato",
+				"text": " ",
+				"err_text": "Numero di telefono richiesto.",
+				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"invalid_phone_number_msg": "Numero di telefono non valido."
+			},
+			"call_forwarding_no_answer": {
+				"name": "Quando nessuna risposta",
+				"text": "",
+				"no_of_rings": "Numero di squilli",
+				"err_text": "Numero di telefono richiesto.",
+				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"invalid_phone_number_msg": "Numero di telefono non valido"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Quando non raggiungibile",
+				"text": "",
+				"err_text": "Numero di telefono richiesto.",
+				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"invalid_phone_number_msg": "Numero di telefono non valido"
+
+			},
+			"simultaneous_ring": {
+				"name": "Squilli simultanei",
+				"off_text": "Disattivato - Numero di squilli non configurato",
+				"text": "Squilla contemporaneamente su più dispositivi per le chiamate in arrivo.",
+				"phone_number_required": "Numero di telefono richiesto.",
+				"donot_ring_when_oncall": "Non squillare con chiamata in corso",
+				"ring_numbers": "Numeri per squillo simultaneo",
+				"answer_confirmation_required": "Conferma risposta richiesta",
+				"when_to_ring": "Quando squillare",
+				"error_duplicateNumber": "Numero di telefono esistente"
+
+			},
+			"block_caller_id": {
+				"name": "Blocca il mio ID chiamante",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Ufficio remoto",
+				"text": "Esegui chiamate da un telefono remoto facendo in modo che sembrino provenire dal telefono di ufficio. Inoltre, le chiamate in arrivo alla linea dell'ufficio squilleranno su questo telefono remoto.",
+				"remote_phone_number": "Numero di telefono remoto",
+				"err_msg": "Numero di telefono richiesto.",
+				"invalid_phone_number_msg": "Numero di telefono non valido."
+
+			},
+			"anonymous_call_rejection": {
+				"name": "Rifiuto chiamata anonima",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Richiamata automatica",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Avviso di chiamata",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Servizio di segreteria telefonica",
+				"text": "",
+				"send_calls_to_voice_mail": "Invia chiamate alla segreteria telefonica",
+				"settings": "Impostazioni",
+				"all_settings": "Tutte le impostazioni",
+				"always": "Sempre",
+				"when_busy": "Quando occupato",
+				"when_unanswered": "Quando nessuna risposta",
+				"number_of_rings": "Numero di squilli",
+				"when_message_arrives": "Quando arriva un messaggio",
+				"use_unified_messaging": "Usa messaggistica unificata",
+				"message_waiting_indicator": "Indicatore messaggio in attesa",
+				"forward_to_email_address": "Inoltra a indirizzo e-mail",
+				"email_notification": "Invia notifica via e-mail",
+				"email_carbon_copy": "Copia per conoscenza e-mail",
+				"set_email_address": "Imposta indirizzo e-mail",
+				"press_0_to_transfer": "Premi '0' per trasferire",
+				"email_address_required": "Indirizzo e-mail richiesto",
+				"phone_number_required": "Numero di telefono richiesto.",
+				"invalid_phone_number_msg": "Numero di telefono non valido.",
+				"invalid_email_address_msg": "Indirizzo e-mail non valido.",
+				"none": "Nessuno"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configurazione delle opzioni di avviso per le chiamate in entrata e in uscita per numero",
+				"primary_number": "Numero principale",
+				"on_text": "Attivo",
+				"off_text": "Disattivato",
+				"ring_fixed_devices": "Squilla su dispositivi fissi",
+				"shared_call_appearance": "Aspetto chiamata condivisa",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Assistente",
+				"ring_mobile_devices": "Squilla su dispositivi mobili",
+				"mobile_number": "Numero di cellulare",
+				"enable_alerting": "Attiva avvisi",
+				"general_settings": "Impostazioni generali",
+				"all_settings": "Tutte le impostazioni",
+				"alert_agent_calls": "Chiamate di avviso all'agente",
+				"alert_click_to_dial_calls": "Chiamate di avviso servizio di richiamata",
+				"alert_group_paging_calls": "Chiamate di avviso gruppo di ricerca",
+				"answer_confirmation": "Conferma risposta",
+				"call_control_services": "Servizi di controllo chiamate",
+				"enable_diversion_inhibitor": "Abilita inibitore deviazione",
+				"use_mobility_calling_line_id": "Usa ID linea chiamante Mobility",
+				"dont_forward_calls": "Non deviare chiamate",
+				"caller_id": "ID chiamante",
+				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
+				"rng_mobile_dev_validation_msg": "Criterio di avviso di BW Mobility impostato per squillare solo su dispositivi mobili.  Tuttavia, non vi è un numero di cellulare a cui inviare l'avviso.",
+				"devices_to_ring_checkbox_validation": "Criterio di avviso di BW Mobility non impostato.  Il criterio di avviso di BW Mobility deve essere impostato per squillare su dispositivi fissi o su dispositivi mobili o su entrambi i tipi di dispositivi.",
+				"none": "Nessuno"
+
+
+			}
+		},
+
+		"de_DE": {
+			"incoming_calls": "Eingehende Anrufe",
+			"outgoing_calls": "Ausgehende Anrufe",
+			"voice_mail": "Voicemail",
+			"call_control": "Anrufsteuerung",
+			"service_on": "EIN",
+			"set_number": "Nummer festlegen",
+			"None": "Keine",
+
+			"error": {
+				"numberexist": "Telefonnummer ist bereits vorhanden.",
+				"updatefailed": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"unabletofetch": "Einstellungen nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"networkerror": "Ihr Netzwerk ist offline.",
+				"code": "Code: ",
+				"noservice": "Einstellungen nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator."
+				
+			},
+			"do_not_disturb": {
+				"name": "Bitte nicht stören",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Anrufweiterleitung",
+				"text": "",
+				"ring_splash": "Klingeln",
+				"number_of_rings": "Anzahl der Rufzeichen",
+				"number_required": "Telefonnummer ist erforderlich.",
+				"off_text": "AUS - Anrufoptionen nicht konfiguriert",
+				"on_text": "EIN",
+				"err_msg": "Daten nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator."
+			},
+			"call_forwarding_always": {
+				"name": "Immer",
+				"text": "",
+				"err_text": "Telefonnummer ist erforderlich.",
+				"ring_splash": "Klingeln",
+				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer"
+
+			},
+			"call_forwarding_busy": {
+				"name": "Wenn besetzt",
+				"text": "",
+				"err_text": "Telefonnummer ist erforderlich.",
+				"server_err_text": "Interner Serverfehler aufgetreten Bitte versuchen Sie es erneut oder wenden Sie sich an den Administrator, wenn das Problem weiterhin besteht.",
+				"invalid_phone_number_msg": "Ungültige DN"
+
+			},
+			"call_forwarding_no_answer": {
+				"name": "Wenn keine Antwort",
+				"text": "",
+				"no_of_rings": "Anzahl der Rufzeichen",
+				"err_text": "Telefonnummer ist erforderlich.",
+				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Wenn nicht erreichbar",
+				"text": "",
+				"err_text": "Telefonnummer ist erforderlich.",
+				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer"
+
+			},
+			"simultaneous_ring": {
+				"name": "Parallelruf",
+				"off_text": "AUS - Rufnummer nicht konfiguriert",
+				"text": "Eingehende Anrufe werden auf mehreren Geräten gleichzeitig signalisiert.",
+				"phone_number_required": "Telefonnummer ist erforderlich.",
+				"donot_ring_when_oncall": "Kein Rufton, wenn besetzt",
+				"ring_numbers": "Rufnummern",
+				"answer_confirmation_required": "Antwortbestätigung erforderlich",
+				"when_to_ring": "Wann soll Anruf signalisiert werden",
+				"error_duplicateNumber": "Telefonnummer ist bereits vorhanden"
+
+			},
+			"block_caller_id": {
+				"name": "Meine Anrufer-ID unterdrücken",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Remote Office",
+				"text": "Tätigen Sie Anrufe über ein Remote-Telefon und lassen Sie Ihren Geschäftsanschluss anzeigen. Außerdem klingelt bei auf Ihrem Geschäftsanschluss eingehenden Anrufen dieses Remote-Telefon.",
+				"remote_phone_number": "Remote-Telefonnummer",
+				"err_msg": "Telefonnummer ist erforderlich.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer"
+
+			},
+			"anonymous_call_rejection": {
+				"name": "Abweisen unbekannter Anrufer",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Automatischer Rückruf",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Anklopfen",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Voicemail-Dienst",
+				"text": "",
+				"send_calls_to_voice_mail": "Anrufe auf Voicemail umleiten",
+				"settings": "Einstellungen",
+				"all_settings": "Alle Einstellungen",
+				"always": "Immer",
+				"when_busy": "Wenn besetzt",
+				"when_unanswered": "Wenn keine Antwort",
+				"number_of_rings": "Anzahl der Rufzeichen",
+				"when_message_arrives": "Wenn eine Nachricht eingeht",
+				"use_unified_messaging": "Unified Messaging verwenden",
+				"message_waiting_indicator": "Anzeige für wartende Nachrichten",
+				"forward_to_email_address": "An E-Mail-Adresse weiterleiten",
+				"email_notification": "E-Mail-Benachrichtigung",
+				"email_carbon_copy": "E-Mail-Kopie",
+				"set_email_address": "E-Mail-Adresse festlegen",
+				"press_0_to_transfer": "Mit '0' übergeben",
+				"email_address_required": "E-Mail-Adresse ist erforderlich.",
+				"phone_number_required": "Telefonnummer ist erforderlich.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer.",
+				"invalid_email_address_msg": "Ungültige E-Mail-Adresse.",
+				"none": "Keine"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Konfigurieren der Benachrichtigungsoptionen für eingehende und ausgehende Anrufe pro Nummer.",
+				"primary_number": "Primäre Nummer",
+				"ring_fixed_devices": "Alle Festnetztelefone klingeln lassen",
+				"shared_call_appearance": "Anrufleitung geteilt",
+				"on_text": "EIN",
+				"off_text": "AUS",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Executive Assistant",
+				"ring_mobile_devices": "Alle mobilen Geräte klingeln lassen",
+				"mobile_number": "Mobilnummer",
+				"enable_alerting": "Benachrichtigungen aktivieren",
+				"general_settings": "Allgemeine Einstellungen",
+				"all_settings": "Alle Einstellungen",
+				"alert_agent_calls": "Benachrichtigung für Agentenanrufe",
+				"alert_click_to_dial_calls": "Benachrichtigung für Click-to-Dial-Anrufe",
+				"alert_group_paging_calls": "Benachrichtigung für Gruppen-Paging-Anrufe",
+				"answer_confirmation": "Antwortbestätigung",
+				"call_control_services": "Anrufsteuerungsdienste",
+				"enable_diversion_inhibitor": "Umleitungssperre aktivieren",
+				"use_mobility_calling_line_id": "Mobility-Anrufleitungs-ID verwenden",
+				"dont_forward_calls": "Anrufe nicht weiterleiten",
+				"caller_id": "Anrufer-ID",
+				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"rng_mobile_dev_validation_msg": "Die BW Mobility-Benachrichtigungsrichtlinie ist auf 'Nur mobile Geräte klingeln lassen' festgelegt.  Es ist jedoch keine Nummer für die Benachrichtigung vorhanden.",
+				"devices_to_ring_checkbox_validation": "Die BW Mobility-Benachrichtigungsrichtlinie ist nicht festgelegt.  Die BW Mobility-Benachrichtigungsrichtlinie muss so festgelegt werden, dass alle Festnetztelefone oder alle mobilen Geräte klingeln, oder dass sowohl Festnetztelefone als auch mobile Telefone klingeln.",
+				"none": "Keine"
+
+
+			}
+		},
+
+		"fr_CA": {
+			"incoming_calls": "Appels entrants",
+			"outgoing_calls": "Appels sortants",
+			"voice_mail": "Messagerie vocale",
+			"call_control": "Contrôle d'appel",
+			"service_on": "Activé",
+			"set_number": "Définir le numéro",
+			"None": "Aucun(e)",
+
+			"error": {
+				"numberexist": "Le numéro de téléphone existe déjà.",
+				"updatefailed": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
+				"unabletofetch": "Paramètres non disponibles. Réessayez ou communiquez avec l'administrateur",
+				"networkerror": "Votre réseau est hors ligne.",
+				"code": "Code: ",
+				"noservice": "Paramètres non disponibles. Réessayez ou communiquez avec l'administrateur."
+				
+			},
+			"do_not_disturb": {
+				"name": "Ne pas déranger",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Renvoi d'appel",
+				"text": "",
+				"ring_splash": "Tonalité d'avertissement",
+				"number_of_rings": "Nombre de sonneries",
+				"number_required": "Le numéro de téléphone est obligatoire.",
+				"off_text": "Désactivé - Options d'appel non configurées",
+				"on_text": "Activé",
+				"err_msg": "Données non disponibles. Réessayez ou communiquez avec l'administrateur"
+
+			},
+			"call_forwarding_always": {
+				"name": "Toujours",
+				"text": "",
+				"err_text": "Le numéro de téléphone est obligatoire.",
+				"ring_splash": "Tonalité d'avertissement",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+			},
+			"call_forwarding_busy": {
+				"name": "Sur occupation",
+				"text": "",
+				"err_text": "Le numéro de téléphone est obligatoire.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"call_forwarding_no_answer": {
+				"name": "Sur non réponse",
+				"text": "",
+				"no_of_rings": "Nombre de sonneries",
+				"err_text": "Le numéro de téléphone est obligatoire.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Si non disponible",
+				"text": "",
+				"err_text": "Le numéro de téléphone est obligatoire.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"simultaneous_ring": {
+				"name": "Sonnerie simultanée",
+				"off_text": "Désactivé - Numéro de sonnerie non configuré",
+				"text": "Faire sonner plusieurs appareils simultanément pour les appels entrants.",
+				"phone_number_required": "Le numéro de téléphone est obligatoire.",
+				"donot_ring_when_oncall": "Ne pas sonner si déjà au téléphone",
+				"ring_numbers": "Numéros de sonnerie",
+				"answer_confirmation_required": "Confirmation de réponse requise",
+				"when_to_ring": "Quand sonner",
+				"error_duplicateNumber": "Le numéro de téléphone existe déjà.."
+
+			},
+			"block_caller_id": {
+				"name": "Bloquer mon identification d'appelant",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Bureau à distance",
+				"text": "Faites des appels à partir d'un téléphone distant comme s'ils étaient faits à partir de votre ligne téléphonique d'affaires. De plus, les appels entrants vers votre ligne d'affaires sonneront sur ce téléphone distant.",
+				"remote_phone_number": "Numéro de téléphone distant",
+				"err_msg": "Le numéro de téléphone est obligatoire.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"anonymous_call_rejection": {
+				"name": "Refus des appels anonymes",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Rappel automatique",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Appel en attente",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Service de messagerie vocale",
+				"text": "",
+				"send_calls_to_voice_mail": "Envoyer les appels à la messagerie vocale",
+				"settings": "Paramètres",
+				"all_settings": "Tous les paramètres",
+				"always": "Toujours",
+				"when_busy": "Sur occupation",
+				"when_unanswered": "Sur non-réponse",
+				"number_of_rings": "Nombre de sonneries",
+				"when_message_arrives": "Lorsqu'un message est reçu",
+				"use_unified_messaging": "Utiliser la messagerie unifiée",
+				"message_waiting_indicator": "Indicateur de message en attente",
+				"forward_to_email_address": "Renvoyer à l'adresse de courriel",
+				"email_notification": "Notification par courriel",
+				"email_carbon_copy": "Copie conforme par courriel",
+				"set_email_address": "Définir l'adresse de courriel",
+				"press_0_to_transfer": "Appuyer sur '0' pour transférer",
+				"email_address_required": "L'adresse de courriel est obligatoire.",
+				"phone_number_required": "Le numéro de téléphone est obligatoire.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide.",
+				"invalid_email_address_msg": "Adresse de courriel non valide.",
+				"none": "Aucun(e)"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configuration des options d'alerte pour les appels entrants et sortants par numéro.",
+				"primary_number": "Numéro principal",
+				"ring_fixed_devices": "Sonnerie sur les appareils fixes",
+				"on_text": "Activé",
+				"off_text": "Désactivé",
+				"shared_call_appearance": "Apparition d'appel partagé (SCA)",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Assistant de la direction",
+				"ring_mobile_devices": "Sonnerie sur les appareils cellulaires",
+				"mobile_number": "Numéro de cellulaire",
+				"enable_alerting": "Activer les alertes",
+				"general_settings": "Paramètres généraux",
+				"all_settings": "Tous les paramètres",
+				"alert_agent_calls": "Alerte : appels vers un agent",
+				"alert_click_to_dial_calls": "Alerte : appels Cliquez pour appeler",
+				"alert_group_paging_calls": "Alerte : appels d'avertissement de groupe",
+				"answer_confirmation": "Confirmation de réponse",
+				"call_control_services": "Services de contrôle d'appel",
+				"enable_diversion_inhibitor": "Activer le gestionnaire de renvoi",
+				"use_mobility_calling_line_id": "Utiliser l'ID de la ligne appelante Mobility",
+				"dont_forward_calls": "Ne pas renvoyer les appels",
+				"caller_id": "Identification d'appelant",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur",
+				"rng_mobile_dev_validation_msg": "La politique d'alerte BW Mobility est définie à Sonnerie sur les appareils cellulaires seulement.  Cependant, aucun numéro cellulaire n'est défini pour l'alerte.",
+				"devices_to_ring_checkbox_validation": "La politique d'alerte BW Mobility n'est pas définie.  La politique d'alerte doit être définie à Sonnerie sur les appareils fixes, Sonnerie sur les appareils cellulaires ou sonnerie sur les appareils fixes et cellulaires.",
+				"none": "Aucun(e)"
+
+
+			}
+		},
+
+		"fr_FR": {
+			"incoming_calls": "Appels entrants",
+			"outgoing_calls": "Appels sortants",
+			"voice_mail": "Messagerie vocale",
+			"call_control": "Contrôle d'appel",
+			"service_on": "Activé",
+			"set_number": "Définir le numéro",
+			"None": "Aucun(e)",
+
+			"error": {
+				"numberexist": "Le numéro de téléphone existe déjà.",
+				"updatefailed": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
+				"unabletofetch": "Paramètres non disponibles. Réessayez ou contactez l'administrateur",
+				"networkerror": "Votre réseau est hors connexion.",
+				"code": "Code: ",
+				"noservice": "Paramètres non disponibles. Réessayez ou contactez l'administrateur."
+				
+			},
+			"do_not_disturb": {
+				"name": "Ne pas déranger",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Renvoi d 'appel",
+				"text": "",
+				"ring_splash": "Accueil d'appel",
+				"number_of_rings": "Nb de sonneries",
+				"number_required": "Numéro de téléphone requis.",
+				"off_text": "Désactivé - Options d'appel non configurées ",
+				"on_text": "Activé",
+				"err_msg": "Données non disponibles. Réessayez ou contactez l'administrateur"
+
+			},
+			"call_forwarding_always": {
+				"name": "Toujours",
+				"text": "",
+				"err_text": "Numéro de téléphone requis.",
+				"ring_splash": "Accueil d'appel",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"call_forwarding_busy": {
+				"name": "Sur occupation",
+				"text": "",
+				"err_text": "Numéro de téléphone requis.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+
+			},
+			"call_forwarding_no_answer": {
+				"name": "Sur non réponse",
+				"text": "",
+				"no_of_rings": "Nb de sonneries",
+				"err_text": "Numéro de téléphone requis.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Si non joignable",
+				"text": "",
+				"err_text": "Numéro de téléphone requis.",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+			},
+			"simultaneous_ring": {
+				"name": "Appel simultané",
+				"off_text": "Désactivé - Numéro d'appel non configuré",
+				"text": "Faites sonner plusieurs appareils simultanément pour les appels entrants.",
+				"phone_number_required": "Numéro de téléphone requis.",
+				"donot_ring_when_oncall": "Ne pas sonner si un appel est en cours",
+				"ring_numbers": "Numéros d'appel",
+				"answer_confirmation_required": "Confirmation de la réponse requise",
+				"when_to_ring": "Quand faire sonner",
+				"error_duplicateNumber": "Le numéro de téléphone existe déjà"
+			},
+			"block_caller_id": {
+				"name": "Bloquer mon ID d'appelant",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Bureau distant",
+				"text": "Passez des appels depuis un téléphone distant en les faisant apparaître comme s'ils étaient émis depuis votre ligne professionnelle. De plus, tous les appels vers votre ligne professionnelle sonneront sur votre téléphone distant.",
+				"remote_phone_number": "Numéro de téléphone distant",
+				"err_msg": "Numéro de téléphone requis.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide"
+			},
+			"anonymous_call_rejection": {
+				"name": "Refus des appels anonymes",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Rappel automatique",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Mise en attente",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Service de messagerie vocale",
+				"text": "",
+				"send_calls_to_voice_mail": "Renvoyer les appels vers la messagerie vocale",
+				"settings": "Paramètres",
+				"all_settings": "Tous les paramètres",
+				"always": "Toujours",
+				"when_busy": "Sur occupation",
+				"when_unanswered": "Sur non-réponse",
+				"number_of_rings": "Nb de sonneries",
+				"when_message_arrives": "Lorsqu'un message arrive",
+				"use_unified_messaging": "Utiliser la messagerie unifiée",
+				"message_waiting_indicator": "Indicateur de message en attente",
+				"forward_to_email_address": "Transférer à une adresse e-mail",
+				"email_notification": "Notification par e-mail",
+				"email_carbon_copy": "Copie carbone par e-mail",
+				"set_email_address": "Définir l'adresse e-mail",
+				"press_0_to_transfer": "Appuyer sur '0' pour transférer",
+				"email_address_required": "L'adresse e-mail est requise.",
+				"phone_number_required": "Numéro de téléphone requis.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide.",
+				"invalid_email_address_msg": "Adresse e-mail non valide.",
+				"none": "Aucun(e)"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configuration des options d'alerte pour les appels entrants et sortants par numéro.",
+				"primary_number": "Numéro principal",
+				"on_text": "Activé",
+				"off_text": "Désactivé",
+				"ring_fixed_devices": "Appeler les appareils fixes",
+				"shared_call_appearance": "Apparition d'appel partagé (SCA)",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Assistant cadre",
+				"ring_mobile_devices": "Appeler les appareils mobiles",
+				"mobile_number": "Numéro de mobile",
+				"enable_alerting": "Activer les alertes",
+				"general_settings": "Paramètres généraux",
+				"all_settings": "Tous les paramètres",
+				"alert_agent_calls": "Alerte pour les appels aux agents",
+				"alert_click_to_dial_calls": "Alerte pour les appels de type Click to Dial",
+				"alert_group_paging_calls": "Alerte pour les appels de type Group Paging",
+				"answer_confirmation": "Confirmation de réponse",
+				"call_control_services": "Services de contrôle d'appel",
+				"enable_diversion_inhibitor": "Activer le blocage du transfert d'appel",
+				"use_mobility_calling_line_id": "Utiliser l'ID de ligne appelante Mobility",
+				"dont_forward_calls": "Ne pas renvoyer les appels",
+				"caller_id": "ID de l'appelant",
+				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur",
+				"rng_mobile_dev_validation_msg": "La politique d'alerte BW Mobility est définie sur Appeler les appareils mobiles seulement.  Cependant, il n'y a aucun numéro mobile à alerter.",
+				"devices_to_ring_checkbox_validation": "La politique d'alerte BW Mobility n'est pas définie.  La politique d'alerte doit être définie sur Appeler les appareils fixes, Appeler les appareils mobiles ou appeler les appareils fixes et mobiles.",
+				"none": "Aucun(e)"
+
+			}
+		},
+
+		"nl_NL": {
+			"incoming_calls": "Inkomende gesprekken",
+			"outgoing_calls": "Uitgaande gesprekken",
+			"voice_mail": "Voicemail",
+			"call_control": "Gespreksbeheer",
+			"service_on": "AAN",
+			"set_number": "Stel nummer in",
+			"None": "Geen",
+
+			"error": {
+				"numberexist": "Telefoonnummer bestaat al.",
+				"updatefailed": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
+				"unabletofetch": "Instellingen niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder",
+				"networkerror": "Uw netwerk is offline.",
+				"code": "Code: ",
+				"noservice": "Instellingen niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder."
+				
+			},
+			"do_not_disturb": {
+				"name": "Niet storen",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "Gesprekken doorschakelen",
+				"text": "",
+				"ring_splash": "Automatisch doorverbinden",
+				"number_of_rings": "Aantal belsignalen",
+				"number_required": "Telefoonnummer verplicht.",
+				"off_text": "UIT - Oproepopties niet geconfigureerd",
+				"on_text": "AAN",
+				"err_msg": "Gegevens niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder"
+
+			},
+			"call_forwarding_always": {
+				"name": "Altijd",
+				"text": "",
+				"err_text": "Telefoonnummer verplicht.",
+				"ring_splash": "Automatisch doorverbinden",
+				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
+			},
+			"call_forwarding_busy": {
+				"name": "Indien in gesprek",
+				"text": "",
+				"err_text": "Telefoonnummer verplicht.",
+				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
+
+			},
+			"call_forwarding_no_answer": {
+				"name": "Indien geen antwoord",
+				"text": "",
+				"no_of_rings": "Aantal belsignalen",
+				"err_text": "Telefoonnummer verplicht.",
+				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "Indien niet te bereiken",
+				"text": "",
+				"err_text": "Telefoonnummer verplicht.",
+				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
+
+			},
+			"simultaneous_ring": {
+				"name": "Gelijktijdig belsignaal",
+				"off_text": "UIT - Belnummer niet geconfigureerd",
+				"text": "Bel meerdere apparaten tegelijkertijd voor inkomende gesprekken.",
+				"phone_number_required": "Telefoonnummer verplicht.",
+				"donot_ring_when_oncall": "Niet bellen tijdens een gesprek",
+				"ring_numbers": "Belnummers",
+				"answer_confirmation_required": "Beantwoordbevestiging vereist",
+				"when_to_ring": "Wanneer bellen",
+				"error_duplicateNumber": "Telefoonnummer bestaat."
+
+			},
+			"block_caller_id": {
+				"name": "Blokkeer mijn Beller-ID",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "Extern kantoor",
+				"text": "Bellen vanaf een externe telefoon en laten verschijnen als uw zakelijke lijn. Bovendien zullen inkomende telefoongesprekken naar uw zakelijke lijn op deze externe telefoon overgaan.",
+				"remote_phone_number": "Extern telefoonnummer",
+				"err_msg": "Telefoonnummer verplicht.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
+
+			},
+			"anonymous_call_rejection": {
+				"name": "Afwijzing anoniem nummer",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "Automatisch terugbellen",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "Wisselgesprek",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "Voicemailservice",
+				"text": "",
+				"send_calls_to_voice_mail": "Gesprekken naar voicemail verzenden",
+				"settings": "Instellingen",
+				"all_settings": "Alle instellingen",
+				"always": "Altijd",
+				"when_busy": "Bij in gesprek",
+				"when_unanswered": "Bij geen antwoord",
+				"number_of_rings": "Aantal belsignalen",
+				"when_message_arrives": "Wanneer een bericht aankomt",
+				"use_unified_messaging": "Gebruik vast bericht",
+				"message_waiting_indicator": "Weergave wachtend bericht",
+				"forward_to_email_address": "Doorsturen naar e-mailadres",
+				"email_notification": "E-mail notificatie",
+				"email_carbon_copy": "E-mailkopie",
+				"set_email_address": "Stel e-mailadres in",
+				"press_0_to_transfer": "Druk op '0' om door te sturen",
+				"email_address_required": "E-mailadres vereist.",
+				"phone_number_required": "Telefoonnummer verplicht.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer.",
+				"invalid_email_address_msg": "Ongeldig e-mailadres.",
+				"none": "Geen"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "Configureer waarschuwingsopties voor inkomende en uitgaande gesprekken per nummer.",
+				"primary_number": "Hoofdnummer",
+				"ring_fixed_devices": "Bel naar vaste apparaten",
+				"on_text": "AAN",
+				"off_text": "UIT",
+				"shared_call_appearance": "Gedeelde oproep",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "Executive Assistant",
+				"ring_mobile_devices": "Bel mobiele apparaten",
+				"mobile_number": "Mobiel nummer",
+				"enable_alerting": "Schakel waarschuwing in",
+				"general_settings": "Algemene instellingen",
+				"all_settings": "Alle instellingen",
+				"alert_agent_calls": "Waarschuwing oproep agent",
+				"alert_click_to_dial_calls": "Waarschuwing oproepen klikken om te bellen",
+				"alert_group_paging_calls": "Waarschuwing groepsoproepen",
+				"answer_confirmation": "Antwoordbevestiging",
+				"call_control_services": "Services gespreksbeheer",
+				"enable_diversion_inhibitor": "Doorschakelstop inschakelen",
+				"use_mobility_calling_line_id": "Gebruik Mobility bellijn ID",
+				"dont_forward_calls": "Verbind geen oproepen door",
+				"caller_id": "Beller-ID",
+				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder",
+				"rng_mobile_dev_validation_msg": "Het BW Mobility-waarschuwingsbeleid ingesteld op alleen Mobiele apparaten bellen.  Maar geen mobiel nummer om te waarschuwen.",
+				"devices_to_ring_checkbox_validation": "Het BW Mobility-waarschuwingsbeleid is niet ingesteld.  Het waarschuwingsbeleid moet ingesteld worden op Vaste apparaten bellen of Mobiele apparaten bellen of zowel mobiele als vaste apparaten bellen.",
+				"none": "Geen"
+
+
+			}
+		},
+
+		"zh_CN": {
+			"incoming_calls": "来电",
+			"outgoing_calls": "去电",
+			"voice_mail": "语音邮件",
+			"call_control": "通话控制",
+			"service_on": "开",
+			"set_number": "设置号码",
+			"None": "无",
+			"error": {
+				"numberexist": "电话号码已存在.",
+				"updatefailed": "无法更新数据。请重试或联系管理员。",
+				"unabletofetch": "设置不可用。请重试或联系管理员。",
+				"networkerror": "您的网络已离线。",
+				"code": "代码： ",
+				"noservice": "设置不可用。请重试或联系管理员。"
+				
+			},
+			"do_not_disturb": {
+				"name": "请勿打扰",
+				"text": " "
+			},
+			"call_forwarding": {
+				"name": "呼叫转移",
+				"text": "",
+				"ring_splash": "响铃通知",
+				"number_of_rings": "响铃次数",
+				"number_required": "需要电话号码。",
+				"off_text": "关 - 未配置通话选项",
+				"on_text": "开",
+				"err_msg": "数据不可用。请重试或联系管理员。"
+
+			},
+			"call_forwarding_always": {
+				"name": "始终",
+				"text": "",
+				"err_text": "需要电话号码。",
+				"ring_splash": "响铃通知",
+				"server_err_text": "无法更新数据。请重试或联系管理员。",
+				"invalid_phone_number_msg": "无效电话号码"
+
+			},
+			"call_forwarding_busy": {
+				"name": "遇忙时",
+				"text": "",
+				"err_text": "需要电话号码。",
+				"server_err_text": "无法更新数据。请重试或联系管理员。",
+				"invalid_phone_number_msg": "无效电话号码"
+
+			},
+			"call_forwarding_no_answer": {
+				"name": "无应答时",
+				"text": "",
+				"no_of_rings": "响铃次数",
+				"err_text": "需要电话号码。",
+				"server_err_text": "无法更新数据。请重试或联系管理员。",
+				"invalid_phone_number_msg": "无效电话号码"
+
+			},
+			"call_forwarding_not_reachable": {
+				"name": "无法接通时",
+				"text": "",
+				"err_text": "需要电话号码。",
+				"server_err_text": "无法更新数据。请重试或联系管理员。",
+				"invalid_phone_number_msg": "无效电话号码"
+
+			},
+			"simultaneous_ring": {
+				"name": "同时响铃",
+				"off_text": "关 - 未配置响铃次数",
+				"text": "有来电时同时在多个设备上响铃。",
+				"phone_number_required": "需要电话号码。",
+				"donot_ring_when_oncall": "通话时不要响铃",
+				"ring_numbers": "响铃号码",
+				"answer_confirmation_required": "需要应答确认",
+				"when_to_ring": "何时响铃",
+				"error_duplicateNumber": "电话号码已存在"
+
+			},
+			"block_caller_id": {
+				"name": "阻止我的呼叫者 ID",
+				"text": " "
+			},
+			"remote_office": {
+				"name": "远程办公",
+				"text": "从一台远程电话进行通话，并使之表现为来自您的业务电话。此外，任何您业务电话的来电都会在这台远程电话上响铃。",
+				"remote_phone_number": "远程电话号码",
+				"err_msg": "需要电话号码。",
+				"invalid_phone_number_msg": "无效电话号码"				
+
+			},
+			"anonymous_call_rejection": {
+				"name": "拒绝匿名呼叫",
+				"text": " "
+			},
+			"automatic_callback": {
+				"name": "自动回呼",
+				"text": " "
+			},
+			"call_waiting": {
+				"name": "呼叫等待中",
+				"text": " "
+			},
+			"voice_management": {
+				"name": "语音邮件服务",
+				"text": "",
+				"send_calls_to_voice_mail": "将通话转到语音邮件",
+				"settings": "设置",
+				"all_settings": "全部设置",
+				"always": "始终",
+				"when_busy": "遇忙",
+				"when_unanswered": "无应答时",
+				"number_of_rings": "响铃次数",
+				"when_message_arrives": " 当消息到达时",
+				"use_unified_messaging": "使用统一消息系统",
+				"message_waiting_indicator": "消息等待指示",
+				"forward_to_email_address": "转接到电子邮件地址",
+				"email_notification": "电子邮件通知",
+				"email_carbon_copy": "电子邮件密送",
+				"set_email_address": "设置电子邮件地址",
+				"press_0_to_transfer": "按 '0' 以转接",
+				"email_address_required": "需要电子邮件地址。",
+				"phone_number_required": "需要电话号码。",
+				"invalid_phone_number_msg": "无效电话号码。",
+				"invalid_email_address_msg": "无效电子邮件地址。",
+				"none": "无"
+
+			},
+			"broadworks_mobility": {
+				"name": "BroadWorks Mobility",
+				"text": "配置每个号码的来去电提醒选项。",
+				"primary_number": "基本号码",
+				"on_text": "开",
+				"off_text": "关",
+				"ring_fixed_devices": "在固定设备上响铃",
+				"shared_call_appearance": "共享通话外观",
+				"broadworks_anywhere": "BroadWorks Anywhere",
+				"executive_assistant": "执行助手",
+				"ring_mobile_devices": "在移动设备上响铃",
+				"mobile_number": "移动号码",
+				"enable_alerting": "启用提醒",
+				"general_settings": "常规设置",
+				"all_settings": "全部设置",
+				"alert_agent_calls": "提醒代理通话",
+				"alert_click_to_dial_calls": "提醒点击即拨通话",
+				"alert_group_paging_calls": "提醒组寻呼通话",
+				"answer_confirmation": "应答确认",
+				"call_control_services": "通话控制服务",
+				"enable_diversion_inhibitor": "启用呼叫转移限制功能",
+				"use_mobility_calling_line_id": "使用 Mobility 通话线路 ID",
+				"dont_forward_calls": "不转接通话",
+				"caller_id": "呼叫者 ID",
+				"server_err_text": "无法更新数据。请重试或联系管理员。",
+				"rng_mobile_dev_validation_msg": "BW Mobility 提醒策略设置为仅“在移动设备上响铃”。但是，没有可提醒的移动设备号码。",
+				"devices_to_ring_checkbox_validation": "未设置 BW Mobility 提醒策略。提醒策略必须设置为“在固定设备上响铃”或“在移动设备上响铃”，或同时在固定和移动设备上响铃。",
+				"none": "无"
+
+
+			}
+		}
+
+	}
+
+}

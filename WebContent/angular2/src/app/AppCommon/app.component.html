@@ -1,0 +1,91 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+<div *ngIf='!isReady' class="loadingPageSpinner" >
+    <md-spinner></md-spinner>
+</div>
+
+<div *ngIf='isReady' class="pageStyle">
+    <div class="appStyle appSideBorder">
+
+
+
+        <div *ngIf="isNoServiceVisible" class="pageStyle primaryBackground">
+            <div class="noServiceIcon noServiceIconPosition">
+                <label class="primaryText noServiceTextMsg">{{customizedTextJson.error.noservice}}</label>
+            </div>
+            
+        </div>
+        
+        <div class="callsettingStickyHeader" *ngIf="isIncomingCallsVisible">
+            <md-card class="primaryBackground settingBorder" (click)="incomingCallExpanded()">
+                <md-list>
+                    <md-list-item class="itemHeight44" >
+                        <div class="headerIcon incomingCallIcon"></div>
+                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.incoming_calls}}</label>
+                        <div *ngIf="isIncomingCallExpanded == true" class=" headerCollapseIcon headerArrow">
+                        </div>
+                        <div *ngIf="isIncomingCallExpanded == false" class=" headerExpandIcon headerArrow">
+                        </div>
+
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+        <div *ngIf="isIncomingCallExpanded">
+            <incoming></incoming>
+        </div>
+        <div class="callsettingStickyHeader" *ngIf="isOutgoingCallsVisible">
+            <md-card class="primaryBackground settingBorder" (click)="outgoingCallExpanded()">
+                <md-list >
+                    <md-list-item class="itemHeight44">
+                        <div class="headerIcon outgoingCallIcon"></div>
+                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.outgoing_calls}}</label>
+                        <div *ngIf="isOutgoingCallExpanded == true" class=" headerCollapseIcon headerArrow">
+                        </div>
+                        <div *ngIf="isOutgoingCallExpanded == false" class=" headerExpandIcon headerArrow">
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+        <div *ngIf="isOutgoingCallExpanded">
+            <outgoing></outgoing>
+        </div>
+        <div class="callsettingStickyHeader" *ngIf="isVoiceMailVisible">
+            <md-card class="primaryBackground settingBorder" (click)="voicemailExpanded()">
+                <md-list>
+                    <md-list-item class="itemHeight44">
+                        <div class="headerIcon voicemailIcon"></div>
+                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.voice_mail}}</label>
+                        <div *ngIf="isVoiceMailExpanded == true" class=" headerCollapseIcon headerArrow">
+                        </div>
+                        <div *ngIf="isVoiceMailExpanded == false" class=" headerExpandIcon headerArrow">
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+         <div *ngIf="isVoiceMailExpanded">
+            <voicemail></voicemail>
+         </div>
+
+        <div class="callsettingStickyHeader" *ngIf="isCallControlVisible">
+            <md-card class="primaryBackground settingBorder" (click)="callControlExpanded()">
+                <md-list>
+                    <md-list-item class="itemHeight44">
+                        <div class="headerIcon callControlIcon"></div>
+                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.call_control}}</label>
+                        <div *ngIf="isCallControlExpanded == true" class=" headerCollapseIcon headerArrow">
+                        </div>
+                        <div *ngIf="isCallControlExpanded == false" class=" headerExpandIcon headerArrow">
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+        <div *ngIf="isCallControlExpanded">
+            <callControl></callControl>
+        </div>
+    </div>
+</div>
