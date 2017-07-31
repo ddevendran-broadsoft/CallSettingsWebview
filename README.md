@@ -1,10 +1,12 @@
 # CallSettingsWebview
 
-NOTE : Replace the <IP-Address> referred throughout with the IP address of the machine where the dev environment is to be setup. IP address is to be used when the application has to be accessed from a different machine or a phone while the setup is done in a different machine. Alternatively, 127.0.0.1 can be used when the setup is on the same machine where the application is accessed from.
-----------------------------------------------------------------------------------------------------------------------------------------
 
+NOTE : Replace the <IP-Address> referred throughout with the IP address of the machine where the dev environment is to be setup. IP address is to be used when the application has to be accessed from a different machine or a phone while the setup is done in a different machine. Alternatively, 127.0.0.1 can be used when the setup is on the same machine where the application is accessed from.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
 Steps to setup development environment :
-================================
+----------------------------------------------------------------------------------------------------------------------------------------
 Check out the CallSettingsWeb code base
 
 Make the below modifications in the files to run the application in dev mode.
