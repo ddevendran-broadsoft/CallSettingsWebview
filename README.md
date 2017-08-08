@@ -45,3 +45,7 @@ Ensure that the above entry is present. If this is not set, the generated war wi
               <br> <b> >ant </b> <br>
 This builds the “BWCallSetingsWeb_<version_number>.war” file inside the “dist’ folder. <br>
 This “BWCallSetingsWeb_<version_number>.war” is deployed in XSP.
+<br><br><br>
+
+Please refer to the document for setup and other details :
+http://xchange.broadsoft.com/php/xchange/system/files/Release_23/ReleaseDocs/FeatureDescriptions/CallSettingsWebViewFD-R230.pdf
