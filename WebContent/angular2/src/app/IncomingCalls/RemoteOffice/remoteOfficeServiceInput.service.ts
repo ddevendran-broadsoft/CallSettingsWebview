@@ -9,7 +9,7 @@ export class RemoteOfficeServiceInput {
     private isRemoteOfficeChecked: boolean;
     private remoteOfficeNumber: number;
 
-    constructor() { }
+    constructor() {}
 
     setIsRemoteOfficeChecked(isRemoteOfficeChecked) {
         this.isRemoteOfficeChecked = isRemoteOfficeChecked;

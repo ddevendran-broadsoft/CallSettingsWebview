@@ -89,6 +89,11 @@ label {
     margin-left : 8px ;
 }
 
+.callCenterArrow{
+
+    top:12px !important ;
+}
+
 .callSettingsHide{
     display: none !important;
 }
@@ -111,9 +116,18 @@ label {
     padding-bottom: 24px !important ;
 }
 
+.nestedListItemTopPadding > .mat-list-item-content {
+    padding-top: 8px !important ;
+}
+
 .nestedCheckboxPadding > .mat-checkbox-layout{
 
     padding-top : 10px !important ;
+}
+
+.sequentialRingSelectAlign > .mat-list-item-content{
+
+    padding-top:10px !important;
 }
 
 .descriptionTextAlign > .mat-list-item-content {
@@ -180,6 +194,30 @@ label {
     padding-bottom : 10px  !important;
 }
 
+.broadworksAnywhereAlign{
+
+    padding-top:12px !important;
+}
+
+.noPadding > .mat-list-item-content{
+
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+}
+
+.outOfOfficeListItem >.mat-list-item-content{
+    height: 40px !important ;
+}
+
+/*.errorMessageAlign{
+
+    padding-top:6px !important;
+}*/
+
+.toggleAlign > .mat-slide-toggle-label > .mat-slide-toggle-container{
+
+    top:-4px !important;
+}
 .inputNumberWidth{
     width: 160px !important ;
 }
@@ -439,7 +477,7 @@ margin: 0px 0px 14px 16px !important;
 .callSettingSpinnerPosition{
     position: absolute;
     right: 40px;
-    top: 4px;
+    top: 12px;
     margin-left : 8px ;
 }
 
@@ -462,10 +500,10 @@ margin: 0px 0px 14px 16px !important;
     visibility: hidden !important;
 }
 .callsettingPanelHeaderServerErrorMsg{
-    margin: 0px 0px 0px 16px;
+    margin: 8px 0px 8px 16px
 }
 .callsettingTwoLinesHeaderServerErrorMsg{
-    margin: 14px 0px 0px 16px;
+    margin: 8px 0px 8px 16px !important;
 }
 /*callsetting common end*/
 
@@ -505,9 +543,21 @@ margin: 0px 0px 14px 16px !important;
 .callsettingSimultaneousRingNumberInput{
     padding: 12px 0px 16px 24px !important;
 }
+.callsettingSequentiaRingNumberInput{
+    padding: 12px 0px 16px 24px !important;
+}
 .callsettingSimultaneousRingFieldError{
     padding-left: 12px !important;
     /*top: -16px;*/
+    position: relative;
+}
+.callsettingSequentialRingFieldError{
+    padding-left: 12px !important;
+    /*top: -16px;*/
+    position: relative;
+}
+.callsettingWhenRingFieldError{
+    margin: 0px 0px 0px 16px;
     position: relative;
 }
 /*IncomingCalls end*/
@@ -529,4 +579,35 @@ margin: 0px 0px 14px 16px !important;
     top: 40%;
     left: 43%;
     position:absolute;
+}
+
+.seqCard{
+
+    height: 50px !important ;
+}
+
+.whenToRingErrorMessage{
+
+    padding-top:5px !important ;
+}
+
+.outOfOfficeInputUnderline > .mat-input-wrapper > .mat-input-underline {
+    margin-top: 2px !important;
+    position: relative !important;
+}
+
+.ccMargin{
+
+    margin-top :0px !important ;
+    margin-bottom: 8px !important ;
+}
+
+.placeholderText > .mat-input-wrapper> .mat-input-table > .mat-input-infix > .mat-input-placeholder-wrapper {
+
+    overflow: visible !important;
+}
+
+.bwAnywhereSpinnerPos {
+	padding-bottom: 10px !important;
+    padding-right: 5px !important;
 }

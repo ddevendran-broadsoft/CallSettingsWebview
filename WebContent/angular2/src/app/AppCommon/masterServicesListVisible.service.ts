@@ -6,27 +6,32 @@ import { Injectable } from '@angular/core';
 
 export class MasterServiceListVisible {
 
-    private acrVisible: boolean = true;
-    private cfaVisible: boolean = true;
-    private cfbVisible: boolean = true;
-    private cfnaVisible: boolean = true;
-    private cfnrVisible: boolean = true;
-    private bcidVisible: boolean = true; 
-    private dndVisible: boolean = true;
-    private roVisible: boolean = true;
-    private cwVisible: boolean = true;
-    private simultaneousRingVisible: boolean = true;
-    private automaticCallbackVisible: boolean = true; 
-    private voicemailVisible: boolean = true;
-    private bwMobilityVisible: boolean = true;
+    private broadWorksAnywhereVisible = true;
 
-    constructor(){}
+    private acrVisible = true;
+    private cfaVisible = true;
+    private cfbVisible = true;
+    private cfnaVisible = true;
+    private cfnrVisible = true;
+    private bcidVisible = true;
+    private dndVisible = true;
+    private roVisible = true;
+    private cwVisible = true;
+    private simultaneousRingVisible = true;
+    private sequentialRingVisible = true;
+    private automaticCallbackVisible = true;
+    private voicemailVisible = true;
+    private bwMobilityVisible = true;
+    private PAVisible = true;
+    private callcenterVisible = true;
+
+    constructor() { }
 
     setAcrVisible(acrVisible) {
         this.acrVisible = acrVisible;
     }
 
-    getAcrVisible() {    
+    getAcrVisible() {
         return this.acrVisible;
     }
 
@@ -79,12 +84,12 @@ export class MasterServiceListVisible {
     }
 
     setRoVisible(roVisible) {
-        
+
         this.roVisible = roVisible;
     }
 
     setCwVisible(cwVisible) {
-        
+
         this.cwVisible = cwVisible;
     }
 
@@ -94,6 +99,14 @@ export class MasterServiceListVisible {
 
     getRoVisible() {
         return this.roVisible;
+    }
+
+    getSequentialRingVisible() {
+        return this.sequentialRingVisible;
+    }
+
+    setSequentialRingVisible(sequentialRingVisible) {
+        this.sequentialRingVisible = sequentialRingVisible;
     }
 
     setSimultaneousRingVisible(simultaneousRingVisible) {
@@ -112,7 +125,7 @@ export class MasterServiceListVisible {
         return this.automaticCallbackVisible;
     }
 
-     setVoicemailVisible(voicemailVisible) {
+    setVoicemailVisible(voicemailVisible) {
         this.voicemailVisible = voicemailVisible;
     }
 
@@ -126,6 +139,30 @@ export class MasterServiceListVisible {
 
     getBWMobilityVisible() {
         return this.bwMobilityVisible;
+    }
+
+    setPAVisible(PAVisible) {
+        this.PAVisible = PAVisible;
+    }
+
+    getPAVisible() {
+        return this.PAVisible;
+    }
+
+    setcallCenterVisible(callcenterVisible) {
+        this.callcenterVisible = callcenterVisible;
+    }
+
+    getCallCenterVisible() {
+        return this.callcenterVisible;
+    }
+
+    setBroadWorksAnywhereVisible(broadWorksAnywhereVisible) {
+        this.broadWorksAnywhereVisible = broadWorksAnywhereVisible;
+    }
+
+    getBroadWorksAnywhereVisible() {
+        return this.broadWorksAnywhereVisible;
     }
 
 }

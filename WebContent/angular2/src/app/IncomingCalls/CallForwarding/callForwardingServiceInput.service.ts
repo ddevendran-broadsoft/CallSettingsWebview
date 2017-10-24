@@ -13,19 +13,19 @@ export class CallForwardingServiceInput {
     private cfaRingSplashChecked: boolean;
     private numberOfRings;
 
-    private isCallForwardingAlwaysChecked: boolean = false;
-    private isCallForwardingBusyChecked: boolean = false;
-    private isCallForwardingNoAnswerChecked: boolean = false;
-    private isCallForwardingNotReachableChecked: boolean = false;
+    isCallForwardingAlwaysChecked = false;
+    isCallForwardingBusyChecked = false;
+    isCallForwardingNoAnswerChecked = false;
+    isCallForwardingNotReachableChecked = false;
 
-    private isCallForwardingActive: boolean = false;
+    isCallForwardingActive = false;
 
-    private isCFActive: boolean = false;
-
-    constructor() { }
+    isCFActive = false;
+    constructor() {}
 
     setIsCFActive(isCFActive) {
-        this.isCFActive = isCFActive;
+        this.isCFActive = isCFActive || this.isCallForwardingAlwaysChecked || this.isCallForwardingBusyChecked
+         || this.isCallForwardingNoAnswerChecked || this.isCallForwardingNotReachableChecked;
     }
 
     getIsCFActive() {
@@ -94,7 +94,7 @@ export class CallForwardingServiceInput {
     }
 
     getIsCallForwardingAlwaysChecked() {
-        return this.isCallForwardingAlwaysChecked;
+       return this.isCallForwardingAlwaysChecked;
 
     }
 

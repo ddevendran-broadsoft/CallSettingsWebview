@@ -1,4 +1,4 @@
-<!--  Copyright © 2017 BroadSoft Inc. All rights reserved. Proprietary Property of BroadSoft, Inc. Gaithersburg, MD. -->
+<!--  Copyright Â© 2017 BroadSoft Inc. All rights reserved. Proprietary Property of BroadSoft, Inc. Gaithersburg, MD. -->
 
 @codeImport@
 
@@ -20,7 +20,7 @@ var localeCustomTexts = @codeCustomTextAssign@;
 var xhttp = new XMLHttpRequest();
 var isTextsLoaded = false;
 
-(function () {
+(function () { 
 	
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {

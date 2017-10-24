@@ -5,7 +5,7 @@ import { Http, Response, Request, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import { HttpServices } from 'app/AppCommon/httpservices.service';
 import { RemoteOfficeServiceInput } from 'app/IncomingCalls/RemoteOffice/remoteOfficeServiceInput.service';
 
@@ -20,10 +20,10 @@ export class RemoteOfficeService {
     getRemoteOfficeService(roUrl, postROGet) {
         this.httpservices.httpGetRequest(roUrl)
             .subscribe((res) => {
-                var roParsedJson = (res.json());
-                this.remoteOfficeServiceInput.setIsRemoteOfficeChecked((roParsedJson["RemoteOffice"]["active"]["$"] == "true"));
-                if (roParsedJson["RemoteOffice"]["remoteOfficeNumber"]) {
-                    this.remoteOfficeServiceInput.setRemoteOfficeNumber(roParsedJson["RemoteOffice"]["remoteOfficeNumber"]["$"]);
+                let roParsedJson = (res.json());
+                this.remoteOfficeServiceInput.setIsRemoteOfficeChecked((roParsedJson['RemoteOffice']['active']['$'] === 'true'));
+                if (roParsedJson['RemoteOffice']['remoteOfficeNumber'] ) {
+                    this.remoteOfficeServiceInput.setRemoteOfficeNumber(roParsedJson['RemoteOffice']['remoteOfficeNumber']['$']);
                 }
 
                 postROGet(roParsedJson);
@@ -33,14 +33,15 @@ export class RemoteOfficeService {
     }
 
     putRemoteOfficeService(roUrl, isRemoteOfficeChecked, remoteOfficeNumber, postROPut) {
-        var body;
+        let body;
 
-        body = '<?xml version="1.0" encoding="ISO-8859-1"?><RemoteOffice xmlns="http://schema.broadsoft.com/xsi"><active>' + isRemoteOfficeChecked + '</active>';
+        body = '<?xml version="1.0" encoding="ISO-8859-1"?><RemoteOffice xmlns="http://schema.broadsoft.com/xsi"><active>'
+                + isRemoteOfficeChecked + '</active>';
 
         if (remoteOfficeNumber) {
             body = body + '<remoteOfficeNumber>' + remoteOfficeNumber + '</remoteOfficeNumber>';
         }
-        if (isRemoteOfficeChecked == false && !remoteOfficeNumber) {
+        if (isRemoteOfficeChecked === false && !remoteOfficeNumber) {
             body = body + '<remoteOfficeNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 

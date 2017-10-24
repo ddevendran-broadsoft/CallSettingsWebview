@@ -22,7 +22,7 @@
                 <md-list>
                     <md-list-item class="itemHeight44" >
                         <div class="headerIcon incomingCallIcon"></div>
-                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.incoming_calls}}</label>
+                        <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="incomingCallExpanded()" tabindex="0">{{customizedTextJson.incoming_calls}}</label>
                         <div *ngIf="isIncomingCallExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isIncomingCallExpanded == false" class=" headerExpandIcon headerArrow">
@@ -40,7 +40,7 @@
                 <md-list >
                     <md-list-item class="itemHeight44">
                         <div class="headerIcon outgoingCallIcon"></div>
-                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.outgoing_calls}}</label>
+                        <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="outgoingCallExpanded()" tabindex="0">{{customizedTextJson.outgoing_calls}}</label>
                         <div *ngIf="isOutgoingCallExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isOutgoingCallExpanded == false" class=" headerExpandIcon headerArrow">
@@ -57,7 +57,7 @@
                 <md-list>
                     <md-list-item class="itemHeight44">
                         <div class="headerIcon voicemailIcon"></div>
-                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.voice_mail}}</label>
+                        <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="voicemailExpanded()" tabindex="0">{{customizedTextJson.voice_mail}}</label>
                         <div *ngIf="isVoiceMailExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isVoiceMailExpanded == false" class=" headerExpandIcon headerArrow">
@@ -75,7 +75,7 @@
                 <md-list>
                     <md-list-item class="itemHeight44">
                         <div class="headerIcon callControlIcon"></div>
-                        <label class="primaryText restrictiveButtonStyle">{{customizedTextJson.call_control}}</label>
+                        <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="callControlExpanded()" tabindex="0">{{customizedTextJson.call_control}}</label>
                         <div *ngIf="isCallControlExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isCallControlExpanded == false" class=" headerExpandIcon headerArrow">

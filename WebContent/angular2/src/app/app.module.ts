@@ -11,34 +11,43 @@ import { BroadworksMobilityComponent } from './CallControl/BroadWorksMobility/br
 import 'hammerjs'
 
 import { AppComponent } from './AppCommon/app.component';
-import { incomingComponent } from './IncomingCalls/incoming.component';
+import {IncomingComponent } from './IncomingCalls/incoming.component';
 import { SimultaneousRingComponent } from './IncomingCalls/SimultaneousRing/simultaneousRing.component';
-import { outgoingComponent } from  './OutgoingCalls/outgoing.component';
-import { remoteOfficeComponent } from './IncomingCalls/RemoteOffice/remoteOffice.component';
-import { callForwardComponent } from './IncomingCalls/CallForwarding/callForward.component';
+import {OutgoingComponent } from './OutgoingCalls/outgoing.component';
+import {RemoteOfficeComponent } from './IncomingCalls/RemoteOffice/remoteOffice.component';
+import { CallForwardComponent } from './IncomingCalls/CallForwarding/callForward.component';
 import { voicemailComponent } from './Voicemail/voicemail.component';
+import { OutOfOfficeComponent } from './IncomingCalls/OutOfOffice/outOfOffice.component';
+import { CallCenterComponent } from './CallControl/CallCenterQueues/callcenter.component';
+import { SequentialRingComponent } from './IncomingCalls/SequentialRing/sequentialRing.component';
+import { BroadworksAnywhereComponent } from './CallControl/BroadworksAnywhere/broadworksAnywhere.component';
 
 import { Util } from './AppCommon/util';
-import { DesktopSelectDropdown } from './common/desktopSelectDropdown.component';
+import {DesktopSelectDropdown } from './common/desktopSelectDropdown.component';
 import { CallControlComponent } from './CallControl/callControl.component';
-import { ServiceRouteProvider } from './AppCommon/serviceRouteProvider.service'; 
+import { ServiceRouteProvider } from './AppCommon/serviceRouteProvider.service';
 import { HttpServices } from './AppCommon/httpservices.service';
-import { CallControlServiceInput } from 'app/CallControl/callControlServiceInput.service';
-import { BroadWorksMobilityService } from 'app/CallControl/BroadWorksMobility/broadWorksMobilityService.service';
+import { BroadWorksMobilityServiceInput } from 'app/CallControl/BroadWorksMobility/broadWorksMobilityServiceInput.service';
+import { BroadWorksMobilityService } from 'app/CallControl/BroadWorksMobility/broadWorksMobility.service';
 import { XSIServices } from './AppCommon/xsiServiceList.service';
 import { VoicemailServiceInput } from 'app/Voicemail/voicemailServiceInput.service';
+// import { BroadworksAnywhereService } from 'app/CallControl/BroadworksAnywhere/broadworksAnywhereService.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    incomingComponent,
-    outgoingComponent,
+   IncomingComponent,
+   OutgoingComponent,
     voicemailComponent,
     SimultaneousRingComponent,
-    remoteOfficeComponent ,
-    callForwardComponent,
+   RemoteOfficeComponent,
+    CallForwardComponent,
     BroadworksMobilityComponent,
     CallControlComponent,
+    OutOfOfficeComponent,
+    CallCenterComponent,
+    SequentialRingComponent,
+    BroadworksAnywhereComponent,
     DesktopSelectDropdown
   ],
   imports: [
@@ -47,7 +56,9 @@ import { VoicemailServiceInput } from 'app/Voicemail/voicemailServiceInput.servi
     HttpModule,
     MaterialModule.forRoot()
   ],
-  providers: [VoicemailServiceInput, ServiceRouteProvider, BroadWorksMobilityService, CallControlServiceInput, HttpServices, CallForwardingService, CallForwardingServiceInput, Util, ServiceRouteProvider],
+  providers: [VoicemailServiceInput, ServiceRouteProvider, BroadWorksMobilityService,
+              BroadWorksMobilityServiceInput, HttpServices, CallForwardingService,
+              CallForwardingServiceInput, Util, ServiceRouteProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

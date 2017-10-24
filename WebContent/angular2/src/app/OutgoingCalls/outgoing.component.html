@@ -4,15 +4,15 @@
 <md-card class="seperators" [class.callsettingDisable]="isBcidServiceRetrievingError" *ngIf='bcidVisible'>
     <md-list class="primaryContentText">
         <md-list-item class="itemHeight44" >
-            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="isBcidServiceRetrievingError || isBcidServiceUpdateError">{{customizedTextJson.block_caller_id.name}}</h3>
+            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="isBcidServiceRetrievingError || isBcidServiceUpdateError" tabindex="0">{{customizedTextJson.block_caller_id.name}}</h3>
             <md-spinner class="callsettingSpinner" [class.callsettingHide]="isBcidServiceFetched"></md-spinner>
-            <md-slide-toggle [checked]="isBlockMyCalleridChecked" (change)="blockCallerIdActive()"> </md-slide-toggle>
+            <md-slide-toggle [checked]="isBlockMyCalleridChecked" (change)="blockCallerIdActive()" (keyup.enter)="blockCallerIdActive()" tabindex="0"> </md-slide-toggle>
         </md-list-item>
         <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isBcidServiceRetrievingError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{isBcidServiceRetrievingError}}</label>
+            <label class="restrictiveSmallLabelStyle callSettingsFontFamily errorTextColor" tabindex="0">{{isBcidServiceRetrievingError}}</label>
         </p>
         <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isBcidServiceUpdateError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{isBcidServiceUpdateError}}</label>
+            <label class="restrictiveSmallLabelStyle callSettingsFontFamily errorTextColor" tabindex="0">{{isBcidServiceUpdateError}}</label>
         </p>
     </md-list>
 </md-card>
@@ -20,15 +20,15 @@
 <md-card class="seperators" [class.callsettingDisable]="isAcServiceRetrievingError" *ngIf='automaticCallbackVisible'>
     <md-list>
         <md-list-item  class="itemHeight44">
-            <h3 md-line  class="restrictiveButtonStyle" [class.errorTextColor]="isAcServiceRetrievingError || isAcServiceUpdateError">{{customizedTextJson.automatic_callback.name}}</h3>
+            <h3 md-line  class="restrictiveButtonStyle" [class.errorTextColor]="isAcServiceRetrievingError || isAcServiceUpdateError" tabindex="0">{{customizedTextJson.automatic_callback.name}}</h3>
             <md-spinner class="callsettingSpinner" [class.callsettingHide]="isAcServiceFetched"></md-spinner>
-            <md-slide-toggle [checked]="isAutomaticCallbackChecked" (change)="automaticCallbackActive()"> </md-slide-toggle>
+            <md-slide-toggle [checked]="isAutomaticCallbackChecked" (change)="automaticCallbackActive()" (keyup.enter)="automaticCallbackActive()" tabindex="0"> </md-slide-toggle>
         </md-list-item>
         <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcServiceRetrievingError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{isAcServiceRetrievingError}}</label>
+            <label class="restrictiveSmallLabelStyle callSettingsFontFamily errorTextColor" tabindex="0">{{isAcServiceRetrievingError}}</label>
         </p>
         <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcServiceUpdateError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{isAcServiceUpdateError}}</label>
+            <label class="restrictiveSmallLabelStyle callSettingsFontFamily errorTextColor" tabindex="0">{{isAcServiceUpdateError}}</label>
         </p>
     </md-list>
 </md-card>

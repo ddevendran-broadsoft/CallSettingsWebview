@@ -8,25 +8,41 @@ import { CallControlServiceInput } from 'app/CallControl/callControlServiceInput
 
 export class CallControlService {
 
-    constructor(private httpServices: HttpServices, private callControlServiceInput : CallControlServiceInput){}
+    constructor(private httpServices: HttpServices, private callControlServiceInput: CallControlServiceInput) {}
 
-    getPrimaryNumber(profileUrl, postPrimaryNumberGet) {
+    getProfileData(profileUrl, postProfileDataGet) {
 
         this.httpServices.httpGetRequest(profileUrl)
         .subscribe((res) => {
-            var profileParsedJson = res.json();
-            console.log("Profile Parsed JSON: ", profileParsedJson);
-            if(profileParsedJson.Profile.details.number) {
+            let profileParsedJson = res.json();
+            console.log('Profile Parsed JSON: ', profileParsedJson);
+            if (profileParsedJson.Profile.details.number) {
                 this.callControlServiceInput.setPrimaryNumber(profileParsedJson.Profile.details.number.$);
+                console.log('Number >>>>>', profileParsedJson.Profile.details.number.$)
             } else {
-                console.log("Number Not Found")
+                console.log('Number Not Found')
             }
-            postPrimaryNumberGet(profileParsedJson);
+            if (profileParsedJson.Profile.details.groupId) {
+                this.callControlServiceInput.setGroupId(profileParsedJson.Profile.details.groupId.$);
+                 console.log('groupId >>>>>', profileParsedJson.Profile.details.groupId.$)
+            } else {
+                console.log('groupId Not Found')
+            }
+
+
+            if (profileParsedJson.Profile.details.serviceProvider.$) {
+                this.callControlServiceInput.setIsEnterprise(profileParsedJson['Profile']['details']['serviceProvider']['@isEnterprise']);
+                this.callControlServiceInput.setServiceProviderId(profileParsedJson.Profile.details.serviceProvider.$);
+                console.log('ServiceProviderId >>>>>', profileParsedJson.Profile.details.serviceProvider.$)
+                 console.log('IsEnterprise >>>>>', profileParsedJson['Profile']['details']['serviceProvider']['@isEnterprise'])
+            }
+
+            postProfileDataGet(profileParsedJson);
 
         },
         (err) => {
-            console.log("Some Error Occurred while fetching Profile");
-            postPrimaryNumberGet(null);
+            console.log('Some Error Occurred while fetching Profile');
+            postProfileDataGet(null);
         });
     }
 

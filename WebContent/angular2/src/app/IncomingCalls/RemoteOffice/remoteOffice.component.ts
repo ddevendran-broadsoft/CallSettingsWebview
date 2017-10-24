@@ -2,29 +2,28 @@
 
 import { Component, OnInit, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { RemoteOfficeService } from 'app/IncomingCalls/RemoteOffice/remoteOffice.service';
-import { incomingComponent } from 'app/IncomingCalls/incoming.component';
+import { IncomingComponent } from 'app/IncomingCalls/incoming.component';
 import { ServiceRouteProvider } from 'app/AppCommon/serviceRouteProvider.service';
 import { Util } from 'app/AppCommon/util';
 
 @Component({
     selector: 'remoteOffice',
     templateUrl: 'remoteOffice.component.html',
-    providers: [ServiceRouteProvider, RemoteOfficeService, incomingComponent]
+    providers: [ServiceRouteProvider, RemoteOfficeService, IncomingComponent]
 })
 
-export class remoteOfficeComponent implements AfterViewInit {
+export class RemoteOfficeComponent implements AfterViewInit, OnInit {
 
-    @Output("onRONumberChange") onRONumberChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+    private isBlurInvokedForPhNum = false;
+    @Output('onRONumberChange') onRONumberChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    inputWidth = 160;
+    isRemoteOfficeInputFieldFocused = false;
+    roPhonenumberFieldValidationError = '';
     customizedTextJson = window['customizedTexts'];
     remoteOfficeNumber;
-    isRemoteOfficeInputFieldFocused: boolean = false;
     roUpdateSrvErrMsg: string;
-    inputWidth = 160;
-
-    private roPhonenumberFieldValidationError: string = "";
-
-    constructor(private serviceRouteProvider: ServiceRouteProvider, private incomingComponent: incomingComponent, private remoteOfficeService: RemoteOfficeService,
+    constructor(private serviceRouteProvider: ServiceRouteProvider, private incomingComponent: IncomingComponent,
+                  private remoteOfficeService: RemoteOfficeService,
         private util: Util) {
     }
 
@@ -41,69 +40,82 @@ export class remoteOfficeComponent implements AfterViewInit {
         }, 1);
     }
 
-    private validateROPhoneNumber() {
+    validateROPhoneNumber() {
         if (!this.remoteOfficeNumber) {
             this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.err_msg;
         }
     }
 
-    /*This method validates for each keystroke given by the user*/
-    private onPhonenumberChange(event) {
+
+
+    onPhonenumberChange(event) {
         let key;
-        this.roUpdateSrvErrMsg = "";
+        this.roUpdateSrvErrMsg = '';
         this.isRemoteOfficeInputFieldFocused = true;
         if (event.key) {
             key = event.key;
         } else {
             key = String.fromCharCode(event.keyCode);
         }
-        if (key == "Enter") {
+        if (key === 'Enter') {
             this.onAdditionalsettingsPhonenumberBlur(event);
         } else if (!this.util.phoneNumberRegx.test(key)) {
             event.returnValue = false;
             if (event.preventDefault) {
                 event.preventDefault();
             }
-            if (event.srcElement.value == "") {
+            if (event.srcElement.value === '') {
                 this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.err_msg;
             }
         } else {
-            this.roPhonenumberFieldValidationError = "";
+            this.roPhonenumberFieldValidationError = '';
         }
     }
 
-    private updateInputCotainerWidth() {
+    onPasteEvent(event) {
+        this.util.validatePhoneNumberOnCopyPaste(event);
+    }
+
+    updateInputCotainerWidth() {
         this.inputWidth = this.util.getInputDynamicWidth(this.remoteOfficeNumber);
     }
 
-    private onAdditionalsettingsPhonenumberBlur(event) {
+    onAdditionalsettingsPhonenumberBlur(event) {
 
-        this.roUpdateSrvErrMsg = "";
         this.isRemoteOfficeInputFieldFocused = false;
-        let pnumber = event.target.value;
-        if (!pnumber) {
-            this.remoteOfficeService.setRemoteOfficeNumber("");
-            this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.err_msg;
-            this.incomingComponent.isRemoteOfficeChecked = false;
-            this.setRemoteOfficeInput(this.incomingComponent.isRemoteOfficeChecked);
+        if (!this.isBlurInvokedForPhNum) {
+            this.roUpdateSrvErrMsg = '';
+            this.isBlurInvokedForPhNum = true;
+            let pnumber = event.target.value;
+            if (!pnumber) {
+                this.remoteOfficeService.setRemoteOfficeNumber('');
+                this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.err_msg;
+                this.incomingComponent.isRemoteOfficeChecked = false;
+                this.setRemoteOfficeInput(this.incomingComponent.isRemoteOfficeChecked);
 
-            this.onRONumberChange.emit(false);
+                this.onRONumberChange.emit(false);
 
-        } else if (pnumber && !(this.util.isValidSipUri(pnumber) || this.util.isE164valid(pnumber))) {
-            this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.invalid_phone_number_msg;
-        } else {
-            this.roPhonenumberFieldValidationError = "";
-            this.incomingComponent.isRemoteOfficeChecked = true;
-            this.setRemoteOfficeInput(this.incomingComponent.isRemoteOfficeChecked);
+            } else if (pnumber && !(this.util.isValidSipUri(pnumber) || this.util.isE164valid(pnumber))) {
+                this.roPhonenumberFieldValidationError = this.customizedTextJson.remote_office.invalid_phone_number_msg;
+            } else {
+                this.roPhonenumberFieldValidationError = '';
+                this.incomingComponent.isRemoteOfficeChecked = true;
+                this.setRemoteOfficeInput(this.incomingComponent.isRemoteOfficeChecked);
+            }
         }
+
     }
 
-    /*This method sends the updated Remote office number to the server*/
-    private setRemoteOfficeInput(isRemoteOfficeChecked) {
+    stopRedundantBlurCall() {
+        this.isBlurInvokedForPhNum = false;
+    }
 
-        this.roUpdateSrvErrMsg = "";
+    setRemoteOfficeInput(isRemoteOfficeChecked) {
+
+        this.roUpdateSrvErrMsg = '';
         this.incomingComponent.isRoServiceFetched = false;
-        this.remoteOfficeService.putRemoteOfficeService(this.serviceRouteProvider.fetchRemoteOfficeUrl(), isRemoteOfficeChecked, this.remoteOfficeNumber, this.postROPut.bind(this));
+        this.remoteOfficeService.putRemoteOfficeService(this.serviceRouteProvider.fetchRemoteOfficeUrl(), isRemoteOfficeChecked,
+                                  this.remoteOfficeNumber, this.postROPut.bind(this));
     }
 
     /*Callback method to be invoked after the server has responded for Remote Office service HTTP PUT request*/
@@ -111,7 +123,8 @@ export class remoteOfficeComponent implements AfterViewInit {
 
         this.remoteOfficeNumber = this.remoteOfficeService.fetchRemoteOfficeNumber();
         if (error) {
-            if (error.status == 0) {
+            console.log('Error object: ', error.status);
+            if (error.status === 0) {
                 this.roUpdateSrvErrMsg = this.customizedTextJson.error.networkerror;
             } else {
                 this.roUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, error.status);

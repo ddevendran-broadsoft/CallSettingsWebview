@@ -1,4 +1,4 @@
-/* Copyright © 2017 BroadSoft Inc. */
+/* Copyright Â© 2017 BroadSoft Inc. */
 package com.broadsoft.callsettingsweb.server;
 
 public class AppConstants {
@@ -73,4 +73,7 @@ public class AppConstants {
 	public static final String ROBOTO_FONT = "Roboto";
 
 	public static final String LOCALE_US_ENGLISH = "en_US";
+	public static final String LOCALE_JA_JAPANESE = "ja_JA";
+	public static final String LOCALE_KO_KOREAN = "ko_KO";
+	public static final String LOCALE_ZH_CHINESE = "zh_CN";
 }

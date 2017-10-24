@@ -14,7 +14,9 @@
 				"unabletofetch": "Settings unavailable. Try again or contact the administrator.",
 				"networkerror": "Your network is offline.",
 				"code": "Code: ",
-				"noservice": "Settings unavailable. Try again or contact the administrator."
+				"noservice": "Settings unavailable. Try again or contact the administrator.",
+				"invalid_number": "Invalid phone number.",
+				"number_required": "Phone number required."
 			},
 			"do_not_disturb": {
 				"name": "Do Not Disturb",
@@ -71,6 +73,21 @@
 				"when_to_ring": "When to Ring",
 				"error_duplicateNumber": "Phone number exists."
 			},
+			"sequential_ring": {
+				"name": "Sequential Ring",
+				"off_text": "OFF - When to Ring option not selected",
+				"text": "Ring multiple devices one after the other for incoming calls.",
+				"ring_base_location": "Ring Base Location First",
+				"number_of_rings": "Number of rings",
+				"continue_if_busy": "Continue if busy",
+				"caller_may_cancel": "Caller May Cancel",
+				"ring_numbers": "Ring Numbers",
+				"answer_confirmation_required": "Answer confirmation required",
+				"when_to_ring": "When to Ring",
+				"criteria_activation_required": "At least one option must be selected to activate Sequential Ring.",
+				"criteria_required": "Criteria must be added to activate Sequential Ring.",
+				"invalid_phone_number_msg": "Invalid phone number."
+			},
 			"block_caller_id": {
 				"name": "Block My Caller ID",
 				"text": " "
@@ -119,6 +136,31 @@
 				"invalid_email_address_msg": "Invalid email address.",
 				"none": "None"
 			},
+			"out_of_office": {
+				"name": "Out of Office",
+				"off_text": "OFF - Availability not specified",
+				"on_text": "ON",
+				"text": "Generate an auto-response message that includes your availability, when you will return, and the option to transfer the call to an alternate number.",
+				"availability": "Availability",
+				"until": "Until",
+				"transfer": "Transfer",
+				"ring_splash": "Ring Splash",
+				"business_trip": "Business Trip",
+				"gone_for_the_day": "Gone for the Day",
+				"lunch": "Lunch",
+				"meeting": "Meeting",
+				"out_of_office": "Out Of Office",
+				"temporarily_out": "Temporarily Out",
+				"training": "Training",
+				"unavailable": "Unavailable",
+				"vacation": "Vacation",
+				"forever": "Forever",
+				"one_day": "1 day",
+				"one_hour": "1 hour",
+				"none": "None",
+				"expire_time_err": "Invalid Expiration date time.",
+				"date_time_require": "Expiration date time required."
+			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
 				"text": "Configuring alerting options for incoming and outgoing calls per number.",
@@ -147,9 +189,35 @@
 				"rng_mobile_dev_validation_msg": "The BW Mobility Alerting Policy set to Ring Mobile Devices only.  However, no mobile number to alert.",
 				"devices_to_ring_checkbox_validation": "The BW Mobility Alerting Policy not set.  The Alerting Policy must be set to Ring Fixed Devices or Ring Mobile Devices or ring both fixed and mobile devices.",
 				"none": "None"
+			},
+			"callcenter": {
+				"name": "Call Center Queues",
+				"status": "Status",
+				"unavailable_codes": "Unavailable codes",
+				"sign_in": "Signed In",
+				"sign_out": "Signed Out",
+				"available": "Available",
+				"unavailable": "Unavailable",
+				"wrap_up": "Wrapping Up",
+				"callcenter_id": "Call Center ID's",
+				"extension": "ext.",
+				"none": "None"
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "OFF - Location not configured",
+				"off_location_not_enabled": "OFF - Location not enabled",
+				"text": "Use your selected phones as an extension of your business phone number and dial plan.",
+				"alert_all_locations": "Alert All Locations",
+				"ring_numbers": "Ring Numbers",
+				"set_description": "Set description",
+				"do_not_forward": "Do not forward",
+				"answer_confirmation": "Answer confirmation",
+				"call_control": "Call control",
+				"phone_number_required": "Phone number is required to activate Broadworks Anywhere.",
+				"phone_number_exists": "Phone number already exists."
 			}
 		},
-
 		"es": {
 			"incoming_calls": "Llamadas entrantes",
 			"outgoing_calls": "Llamadas salientes",
@@ -164,7 +232,9 @@
 				"unabletofetch": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador",
 				"code": "Código: ",
 				"networkerror": "Su red está fuera de línea.",
-				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador."
+				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador.",
+				"number_required": "Se requiere un número de teléfono.",
+				"invalid_number": "Número de teléfono no válido"
 			},
 			"do_not_disturb": {
 				"name": "No molestar",
@@ -247,59 +317,124 @@
 			"voice_management": {
 				"name": "Servicio de buzón de voz",
 				"text": " ",
-				"send_calls_to_voice_mail":"Enviar llamadas a buzón de voz",
-				"settings":"Ajustes",
-				"all_settings":"Todos los ajustes",
-				"always":"Siempre",
-				"when_busy":"Si está ocupado",
-				"when_unanswered":"Si no hay respuesta",
-				"number_of_rings":"Número de tonos",
-				"when_message_arrives":"Cuando llegue un mensaje",
-				"use_unified_messaging":"Mensajería unificada",
-				"message_waiting_indicator":"Indicador de espera de mensaje",
-				"forward_to_email_address":"Reenviar a dirección de correo electrónico",
-				"email_notification":"Notificación de correo electrónico",
-				"email_carbon_copy":"Con copia de correo electrónico",
-				"set_email_address":"Definir dirección de correo electrónico",
-				"press_0_to_transfer":"Pulse '0' para transferir",
-				"email_address_required":"Se requiere una dirección de correo electrónico.",
-				"phone_number_required":"Se requiere un número de teléfono.",
-				"invalid_phone_number_msg":"Número de teléfono no válido.",
-				"invalid_email_address_msg":"Dirección de correo electrónico no válida.",
-				"none":"Ninguno"
-
+				"send_calls_to_voice_mail": "Enviar llamadas a buzón de voz",
+				"settings": "Ajustes",
+				"all_settings": "Todos los ajustes",
+				"always": "Siempre",
+				"when_busy": "Si está ocupado",
+				"when_unanswered": "Si no hay respuesta",
+				"number_of_rings": "Número de tonos",
+				"when_message_arrives": "Cuando llegue un mensaje",
+				"use_unified_messaging": "Mensajería unificada",
+				"message_waiting_indicator": "Indicador de espera de mensaje",
+				"forward_to_email_address": "Reenviar a dirección de correo electrónico",
+				"email_notification": "Notificación de correo electrónico",
+				"email_carbon_copy": "Con copia de correo electrónico",
+				"set_email_address": "Definir dirección de correo electrónico",
+				"press_0_to_transfer": "Pulse '0' para transferir",
+				"email_address_required": "Se requiere una dirección de correo electrónico.",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"invalid_phone_number_msg": "Número de teléfono no válido.",
+				"invalid_email_address_msg": "Dirección de correo electrónico no válida.",
+				"none": "Ninguno"
 			},
 			"broadworks_mobility": {
-				"name":"BroadWorks Mobility",
-				"text":"Configuración de opciones de alerta para llamadas entrantes y salientes por número.",
-				"primary_number":"Número principal",
-				"ring_fixed_devices":"Tono en los dispositivos fijos",
-				"shared_call_appearance":"Apariencia de llamada compartida",
-				"broadworks_anywhere":"BroadWorks Anywhere",
+				"name": "BroadWorks Mobility",
+				"text": "Configuración de opciones de alerta para llamadas entrantes y salientes por número.",
+				"primary_number": "Número principal",
+				"ring_fixed_devices": "Tono en los dispositivos fijos",
+				"shared_call_appearance": "Apariencia de llamada compartida",
+				"broadworks_anywhere": "BroadWorks Anywhere",
 				"on_text": "ACTIVADO",
 				"off_text": "DESACTIVADO",
-				"executive_assistant":"Asistente ejecutivo/a",
-				"ring_mobile_devices":"Tono en los dispositivos celulares",
-				"mobile_number":"Número de celular",
-				"enable_alerting":"Habilitar alertas",
-				"general_settings":"Ajustes generales",
-				"all_settings":"Todos los ajustes",
-				"alert_agent_calls":"Alertar de llamadas de agente",
-				"alert_click_to_dial_calls":"Alertar de llamadas Clic para marcar",
-				"alert_group_paging_calls":"Alertar de llamadas de aviso a grupo",
-				"answer_confirmation":"Confirmación de respuesta",
-				"call_control_services":"Servicios de control de llamadas",
-				"enable_diversion_inhibitor":"Activar inhibidor de desvío",
-				"use_mobility_calling_line_id":"Usar ID de línea de llamada de Mobility",
-				"dont_forward_calls":"No transferir llamadas",
-				"caller_id":"ID de llamante",
-				"server_err_text":"No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador",
+				"executive_assistant": "Asistente ejecutivo/a",
+				"ring_mobile_devices": "Tono en los dispositivos celulares",
+				"mobile_number": "Número de celular",
+				"enable_alerting": "Habilitar alertas",
+				"general_settings": "Ajustes generales",
+				"all_settings": "Todos los ajustes",
+				"alert_agent_calls": "Alertar de llamadas de agente",
+				"alert_click_to_dial_calls": "Alertar de llamadas Clic para marcar",
+				"alert_group_paging_calls": "Alertar de llamadas de aviso a grupo",
+				"answer_confirmation": "Confirmación de respuesta",
+				"call_control_services": "Servicios de control de llamadas",
+				"enable_diversion_inhibitor": "Activar inhibidor de desvío",
+				"use_mobility_calling_line_id": "Usar ID de línea de llamada de Mobility",
+				"dont_forward_calls": "No transferir llamadas",
+				"caller_id": "ID de llamante",
+				"server_err_text": "No es posible actualizar los datos. Inténtelo de nuevo o contacte con el administrador",
 				"rng_mobile_dev_validation_msg": "La política de alertas de BW Mobility está configurada para Tono en los dispositivos celulares únicamente.  Sin embargo, no hay ningún número celular al que alertar.",
 				"devices_to_ring_checkbox_validation": "Política de alertas de BW Mobility no configurada.  La política de alertas debe estar configurada para Tono en los dispositivos fijos o Tono en los dispositivos celulares, o bien para tono en dispositivos tanto fijos como celulares.",
 				"none": "Ninguno`"
+			},
+			"sequential_ring": {
+				"name": "Tono secuencial",
+				"off_text": "DESACTIVADO - Opción Cuándo emitir tono no seleccionada",
+				"text": "Hacer sonar varios dispositivos uno tras otro para llamadas entrantes.",
+				"ring_base_location": "Tono antes en la ubicación base",
+				"number_of_rings": "Número de tonos",
+				"continue_if_busy": "Continuar si está ocupado",
+				"caller_may_cancel": "El interlocutor puede cancelar",
+				"ring_numbers": "Números de tono",
+				"answer_confirmation_required": "Se requiere confirmación de respuesta",
+				"when_to_ring": "Cuándo emitir tono",
+				"criteria_activation_required": "Se debe seleccionar al menos una opción para activar el Tono secuencial.",
+				"criteria_required": "Se deben agregar criterios para activar el Tono secuencial.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "DESACTIVADO - Ubicación no configurada",
+				"off_location_not_enabled": "DESACTIVADO - Ubicación no activada",
+				"text": "Utilizar sus teléfonos seleccionados como extensión de su número de teléfono de empresa y plan de marcación.",
+				"alert_all_locations": "Alerta en todas las ubicaciones",
+				"ring_numbers": "Números de tono",
+				"set_description": "Definir descripción",
+				"do_not_forward": "No transferir",
+				"answer_confirmation": "Confirmación de respuesta",
+				"call_control": "Control de llamadas",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"phone_number_exists": "El número de teléfono ya existe."
+			},
+			"out_of_office": {
+				"name": "Ausente",
+				"off_text": "DESACTIVADO - Disponibilidad no especificada",
+				"on_text": "ON",
+				"text": "Generar un mensaje de respuesta automática que incluye su disponibilidad, en qué momento prevé regresar y la opción para transferir la llamada a un número alternativo.",
+				"availability": "Disponibilidad",
+				"until": "Hasta",
+				"transfer": "Transferir",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"business_trip": "Viaje de trabajo",
+				"gone_for_the_day": "No vuelve hoy",
+				"lunch": "Almuerzo",
+				"meeting": "Reunión",
+				"out_of_office": "Ausente",
+				"temporarily_out": "Ausente temporalmente",
+				"training": "En un curso",
+				"unavailable": "No disponible",
+				"vacation": "De vacaciones",
+				"forever": "Para siempre",
+				"one_day": "1 día",
+				"one_hour": "1 hora",
+				"none": "Ninguno",
+				"expire_time_err": "Fecha y hora de caducidad no válidas.",
+				"date_time_require": "Se requiere una fecha y hora de caducidad."
+			},
+			"callcenter": {
+				"name": "Colas de centro de llamadas",
+				"status": "Estado",
+				"unavailable_codes": "Códigos no disponibles",
+				"sign_in": "Sesión iniciada",
+				"sign_out": "Sesión cerrada",
+				"available": "Disponible",
+				"unavailable": "No disponible",
+				"wrap_up": "Cerrando",
+				"callcenter_id": "ID de centro de llamadas",
+				"extension": "ext.",
+				"none": "Ninguno"
 			}
 		},
-
 		"es_ES": {
 			"incoming_calls": "Llamadas entrantes",
 			"outgoing_calls": "Llamadas salientes",
@@ -314,7 +449,9 @@
 				"unabletofetch": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador.",
 				"networkerror": "Su red está fuera de línea.",
 				"code": "Código: ",
-				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador."
+				"noservice": "Ajustes no disponibles. Inténtelo de nuevo o contacte con el administrador.",
+				"number_required": "Se requiere un número de teléfono.",
+				"invalid_number": "Número de teléfono no válido."
 			},
 			"do_not_disturb": {
 				"name": "No molestar",
@@ -417,7 +554,6 @@
 				"invalid_phone_number_msg": "Número de teléfono no válido.",
 				"invalid_email_address_msg": "Dirección de correo electrónico no válida.",
 				"none": "Ninguno"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -447,11 +583,75 @@
 				"rng_mobile_dev_validation_msg": "La política de alertas de BW Mobility está configurada para Tono en los dispositivos móviles únicamente.  Sin embargo, no hay ningún número móvil al que alertar.",
 				"devices_to_ring_checkbox_validation": "Política de alertas de BW Mobility no configurada.  La política de alertas debe estar configurada para Tono en los dispositivos fijos o Tono en los dispositivos móviles, o bien para tono en dispositivos tanto fijos como móviles.",
 				"none": "Ninguno"
-
-
+			},
+			"sequential_ring": {
+				"name": "Tono secuencial",
+				"off_text": "DESACTIVADO - Opción Cuándo emitir tono no seleccionada",
+				"text": "Hacer sonar varios dispositivos uno tras otro para llamadas entrantes.",
+				"ring_base_location": "Tono antes en la ubicación base",
+				"number_of_rings": "Número de tonos",
+				"continue_if_busy": "Continuar si está ocupado",
+				"caller_may_cancel": "El interlocutor puede cancelar",
+				"ring_numbers": "Números de tono",
+				"answer_confirmation_required": "Se requiere confirmación de respuesta",
+				"when_to_ring": "Cuándo emitir tono",
+				"criteria_activation_required": "Se debe seleccionar al menos una opción para activar el Tono secuencial.",
+				"criteria_required": "Se deben agregar criterios para activar el Tono secuencial.",
+				"invalid_phone_number_msg": "Número de teléfono no válido."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "DESACTIVADO - Ubicación no configurada",
+				"off_location_not_enabled": "DESACTIVADO - Ubicación no activada",
+				"text": "seleccionados como extensión de su número de teléfono de empresa y plan de marcación.",
+				"alert_all_locations": "Alerta en todas las ubicaciones",
+				"ring_numbers": "Números de tono",
+				"set_description": "Definir descripción",
+				"do_not_forward": "No transferir",
+				"answer_confirmation": "Confirmación de respuesta",
+				"call_control": "Control de llamada",
+				"phone_number_required": "Se requiere un número de teléfono.",
+				"phone_number_exists": "El número de teléfono ya existe."
+			},
+			"out_of_office": {
+				"name": "Ausente",
+				"off_text": "DESACTIVADO - Disponibilidad no especificada",
+				"on_text": "ON",
+				"text": "Generar un mensaje de respuesta automática que incluye su disponibilidad, en qué momento prevé regresar y la opción para transferir la llamada a un número alternativo.",
+				"availability": "Disponibilidad",
+				"until": "Hasta",
+				"transfer": "Transferir",
+				"ring_splash": "Ráfaga de tono de servicio",
+				"business_trip": "Viaje de trabajo",
+				"gone_for_the_day": "No regresa hoy",
+				"lunch": "Almuerzo",
+				"meeting": "Reunión",
+				"out_of_office": "Ausente",
+				"temporarily_out": "temporalmente",
+				"training": "En un curso",
+				"unavailable": "No disponible",
+				"vacation": "De vacaciones",
+				"forever": "Para siempre",
+				"one_day": "1 día",
+				"one_hour": "1 hora",
+				"none": "Ninguno",
+				"expire_time_err": "Fecha y hora de caducidad no válidas.",
+				"date_time_require": "Se requiere una fecha y hora de caducidad."
+			},
+			"callcenter": {
+				"name": "Colas de centro de llamadas",
+				"status": "Estado",
+				"unavailable_codes": "Códigos no disponibles",
+				"sign_in": "Sesión iniciada",
+				"sign_out": "Sesión cerrada",
+				"available": "Disponible",
+				"unavailable": "No disponible",
+				"wrap_up": "Cerrando",
+				"callcenter_id": "ID de centro de llamadas",
+				"extension": "ext.",
+				"none": "Ninguno"
 			}
 		},
-
 		"ko_KO": {
 			"incoming_calls": "수신 전화",
 			"outgoing_calls": "발신 전화",
@@ -460,15 +660,15 @@
 			"service_on": "켜짐",
 			"set_number": "번호 설정",
 			"None": "없음",
-
 			"error": {
 				"numberexist": "전화번호가 이미 있습니다.",
 				"updatefailed": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
 				"unabletofetch": "설정을 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
 				"networkerror": "네트워크가 오프라인 상태입니다.",
 				"code": "코드: ",
-				"noservice": "설정을 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오."
-
+				"noservice": "설정을 사용할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
+				"number_required": "화번호가 필요합니다.",
+				"invalid_number": "잘못된 전화번호."
 			},
 			"do_not_disturb": {
 				"name": "방해 금지",
@@ -491,7 +691,6 @@
 				"ring_splash": "벨울림 시작",
 				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
 				"invalid_phone_number_msg": "잘못된 전화번호."
-
 			},
 			"call_forwarding_busy": {
 				"name": "다른 용무 중일 때",
@@ -507,7 +706,6 @@
 				"err_text": "전화번호가 필요합니다.",
 				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
 				"invalid_phone_number_msg": "잘못된 전화번호."
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "연결할 수 없을 때",
@@ -515,7 +713,6 @@
 				"err_text": "전화번호가 필요합니다.",
 				"server_err_text": "데이터를 업데이트할 수 없습니다. 다시 시도하거나 관리자에게 문의하십시오.",
 				"invalid_phone_number_msg": "잘못된 전화번호."
-
 			},
 			"simultaneous_ring": {
 				"name": "동시 착신",
@@ -527,7 +724,6 @@
 				"answer_confirmation_required": "응답 확인이 필요합니다",
 				"when_to_ring": "전화를 걸 때",
 				"error_duplicateNumber": "전화번호가 있습니다."
-
 			},
 			"block_caller_id": {
 				"name": "내 발신자 ID 차단",
@@ -539,7 +735,6 @@
 				"remote_phone_number": "원격 전화 번호",
 				"err_msg": "전화번호가 필요합니다.",
 				"invalid_phone_number_msg": "잘못된 전화번호."
-
 			},
 			"anonymous_call_rejection": {
 				"name": "익명 전화 거부",
@@ -576,7 +771,6 @@
 				"invalid_phone_number_msg": "잘못된 전화번호입니다.",
 				"invalid_email_address_msg": "잘못된 이메일 주소입니다.",
 				"none": "없음"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -606,11 +800,75 @@
 				"rng_mobile_dev_validation_msg": "BW 모빌리티 경고 정책이 모바일 장치 전화 연결로만 설정되었습니다.  하지만 경고할 휴대전화 번호가 없습니다.",
 				"devices_to_ring_checkbox_validation": "BW 모빌리티 경고 정책이 설정되지 않았습니다.  경고 정책은 고정된 장치에 전화 걸기 또는 모바일 장치에 전화 걸기 또는 고정된 장치와 모바일 장치에 모두 전화 걸기로 설정해야 합니다.",
 				"none": "없음"
-
-
+			},
+			"sequential_ring": {
+				"name": "순차 착신",
+				"off_text": "꺼짐 - 전화를 걸 때 옵션이 선택되지 않음",
+				"text": "전화 수신 시 여러 장치에서 순서대로 벨소리를 울립니다.",
+				"ring_base_location": "기본 위치에서 먼저 울림",
+				"number_of_rings": "벨소리 수",
+				"continue_if_busy": "통화 중인 경우 계속",
+				"caller_may_cancel": "발신자가 취소 가능",
+				"ring_numbers": "착신 전화",
+				"answer_confirmation_required": "응답 확인 필요",
+				"when_to_ring": "전화를 걸 때",
+				"criteria_activation_required": "순차 착신을 활성화하려면 옵션을 하나 이상 선택해야 합니다.",
+				"criteria_required": "순차 착신을 활성화하려면 기준을 추가해야 합니다.",
+				"invalid_phone_number_msg": "잘못된 전화번호입니다."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "꺼짐 - 위치가 설정되지 않음",
+				"off_location_not_enabled": "꺼짐 - 위치가 활성화되지 않음",
+				"text": "내선번호로 사용합니다.",
+				"alert_all_locations": "모든 위치에 알림",
+				"ring_numbers": "착신 전화",
+				"set_description": "설명 지정",
+				"do_not_forward": "착신전환 금지",
+				"answer_confirmation": "응답 확인",
+				"call_control": "통화 제어",
+				"phone_number_required": "전화번호가 필요합니다.",
+				"phone_number_exists": "전화번호가 이미 있습니다."
+			},
+			"out_of_office": {
+				"name": "외근",
+				"off_text": "꺼짐 - 상태정보가 지정되지 않음",
+				"on_text": "ON",
+				"text": "사용자의 상태정보, 복귀 시간 및 다른 번호로 통화를 전환하는 옵션을 제공하는 일반적인 자동 응답 메시지입니다.",
+				"availability": "상태정보",
+				"until": "복귀 시간:",
+				"transfer": "전환",
+				"ring_splash": "자동 착신",
+				"business_trip": "출장",
+				"gone_for_the_day": "비번",
+				"lunch": "점심",
+				"meeting": "회의",
+				"out_of_office": "외근",
+				"temporarily_out": "잠시 외출",
+				"training": "교육",
+				"unavailable": "통화 불가",
+				"vacation": "휴가",
+				"forever": "무기한",
+				"one_day": "1일",
+				"one_hour": "1시간",
+				"none": "없음",
+				"expire_time_err": "잘못된 만료 날짜/시간입니다.",
+				"date_time_require": "만료 날짜/시간은 필수 항목입니다."
+			},
+			"callcenter": {
+				"name": "콜센터 대기열",
+				"status": "상태정보",
+				"unavailable_codes": "사용 불가능한 코드",
+				"sign_in": "로그인됨",
+				"sign_out": "로그아웃됨",
+				"available": "통화 가능",
+				"unavailable": "통화 불가",
+				"wrap_up": "마무리 중",
+				"callcenter_id": "콜센터 ID",
+				"extension": "내선번호:",
+				"none": "없음"
 			}
 		},
-
 		"ja_JA": {
 			"incoming_calls": "着信した電話",
 			"outgoing_calls": "発信",
@@ -619,15 +877,15 @@
 			"service_on": "オン",
 			"set_number": "番号設定",
 			"none": "無し",
-
 			"error": {
 				"numberexist": "電話番号はすでに存在しています。",
 				"updatefailed": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
 				"unabletofetch": "設定を利用できません。再試行するか管理者にお問い合わせください",
 				"code": "コード： ",
 				"networkerror": "お使いのネットワークはオフラインになっています。",
-				"noservice": "設定を利用できません。再試行するか管理者にお問い合わせください。"
-				
+				"noservice": "設定を利用できません。再試行するか管理者にお問い合わせください。",
+				"number_required": "電話番号が必要です。",
+				"invalid_number": "正しくない電話番号"
 			},
 			"do_not_disturb": {
 				"name": "着信拒否",
@@ -642,7 +900,6 @@
 				"off_text": "OFF -コールオプション未設定",
 				"on_text": "オンに",
 				"err_msg": "データを利用できません。再試行するか管理者にお問い合わせください"
-
 			},
 			"call_forwarding_always": {
 				"name": "常時",
@@ -665,7 +922,6 @@
 				"err_text": "電話番号が必要です。 ",
 				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
 				"invalid_phone_number_msg": "正しくない電話番号"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "未到達",
@@ -673,7 +929,6 @@
 				"err_text": "電話番号が必要です。",
 				"server_err_text": "データをアップデートできません。再試行するか管理者にお問い合わせください。",
 				"invalid_phone_number_msg": "正しくない電話番号"
-
 			},
 			"simultaneous_ring": {
 				"name": "同時呼び出し",
@@ -685,7 +940,6 @@
 				"answer_confirmation_required": "応答確認要",
 				"when_to_ring": "呼び出す場合",
 				"error_duplicateNumber": "電話番号既存"
-
 			},
 			"block_caller_id": {
 				"name": "発信者番号通知をブロック",
@@ -697,8 +951,6 @@
 				"remote_phone_number": "リモート電話番号",
 				"err_msg": "電話番号が必要です。",
 				"invalid_phone_number_msg": "正しくない電話番号"
-	
-
 			},
 			"anonymous_call_rejection": {
 				"name": "非通知電話の着信を拒否",
@@ -735,7 +987,6 @@
 				"invalid_phone_number_msg": "無効な電話番号です。",
 				"invalid_email_address_msg": "無効なEメールアドレスです。",
 				"none": "無し"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -765,11 +1016,75 @@
 				"rng_mobile_dev_validation_msg": "BWモビリティアラートポリシーはモバイルデバイスだけ呼び出すことに設定します。しかしアラートする携帯番号がありません。",
 				"devices_to_ring_checkbox_validation": "BWモビリティアラートポリシーは設定されていません。アラートポリシーは固定デバイス、モバイルデバイス、または両方への呼び出しを設定するのが必要です。",
 				"none": "無し"
-
-
+			},
+			"sequential_ring": {
+				"name": "順次リング",
+				"off_text": "オフ - 選択されていないオプションを呼び出すときに",
+				"text": "着信のためにマルチデバイスを順次に呼び出すします。",
+				"ring_base_location": "初めにベースロケーションを呼び出します",
+				"number_of_rings": "呼び出し音の再生数",
+				"continue_if_busy": "忙しいところ延期します",
+				"caller_may_cancel": "発呼者がキャンセルできます",
+				"ring_numbers": "呼び出し番号",
+				"answer_confirmation_required": "回答の確認が必要です",
+				"when_to_ring": "呼び出す場合",
+				"criteria_activation_required": "順次リングを有効にするについては、少なくともオプション一つを選択する必要があります。",
+				"criteria_required": "順次リングを有効にするについては、条件を追加する必要があります。",
+				"invalid_phone_number_msg": "無効な電話番号です。"
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "オフ - 場所が設定されていない場合に",
+				"off_location_not_enabled": "オフ - 場所が無効である場合に",
+				"text": "ビジネス電話番号とダイヤルプランの拡張として、選択した電話を使用してください。",
+				"alert_all_locations": "すべての場所に通知します",
+				"ring_numbers": "呼び出し番号",
+				"set_description": "説明を設定します",
+				"do_not_forward": "転送しません",
+				"answer_confirmation": "応答確認",
+				"call_control": "コールコントロール",
+				"phone_number_required": "電話番号が必要です。",
+				"phone_number_exists": "電話番号はすでに存在しています。"
+			},
+			"out_of_office": {
+				"name": "外出中",
+				"off_text": "オフ - 外出中のため、利用できません",
+				"on_text": "ON",
+				"text": "可用性、返事時および代替番号への転送オプションを含む自動応答メッセージを生成します。",
+				"availability": "状態",
+				"until": "まで",
+				"transfer": "転送",
+				"ring_splash": "リングスプラッシュ",
+				"business_trip": "出張",
+				"gone_for_the_day": "退社中",
+				"lunch": "昼食",
+				"meeting": "会議中",
+				"out_of_office": "外出中",
+				"temporarily_out": "臨時不在中",
+				"training": "トレーニング中",
+				"unavailable": "出られません",
+				"vacation": "休暇中",
+				"forever": "期限なし",
+				"one_day": "1日",
+				"one_hour": "1時間",
+				"none": "無し",
+				"expire_time_err": "失効日時が無効です。",
+				"date_time_require": "有効期限が必要です。"
+			},
+			"callcenter": {
+				"name": "センターキューに電話をかけます",
+				"status": "ステータス",
+				"unavailable_codes": "使用できないコードです",
+				"sign_in": "サインイン中",
+				"sign_out": "サインアウト中",
+				"available": "出られます",
+				"unavailable": "出られません",
+				"wrap_up": "後処理",
+				"callcenter_id": "センターIDに電話をかけます",
+				"extension": "内線",
+				"none": "無し"
 			}
 		},
-
 		"it_IT": {
 			"incoming_calls": "Chiamate in arrivo",
 			"outgoing_calls": "Chiamate in uscita",
@@ -784,8 +1099,9 @@
 				"unabletofetch": "Impostazioni non disponibili Riprovare o contattare l'amministratore",
 				"networkerror": "La rete è offline.",
 				"code": "Codice: ",
-				"noservice": "Impostazioni non disponibili Riprovare o contattare l'amministratore."
-				
+				"noservice": "Impostazioni non disponibili Riprovare o contattare l'amministratore.",
+				"number_required": "Numero di telefono richiesto.",
+				"invalid_number": "Numero di telefono non valido"
 			},
 			"do_not_disturb": {
 				"name": "Non disturbare",
@@ -800,7 +1116,6 @@
 				"off_text": "Disattivato - Opzioni di chiamata non configurate",
 				"on_text": "Attivo",
 				"err_msg": "Dati non disponibili. Riprovare o contattare l'amministratore."
-
 			},
 			"call_forwarding_always": {
 				"name": "Sempre",
@@ -809,7 +1124,6 @@
 				"ring_splash": "Squillo di avviso",
 				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
 				"invalid_phone_number_msg": "Numero di telefono non valido"
-
 			},
 			"call_forwarding_busy": {
 				"name": "Quando occupato",
@@ -825,7 +1139,6 @@
 				"err_text": "Numero di telefono richiesto.",
 				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
 				"invalid_phone_number_msg": "Numero di telefono non valido"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "Quando non raggiungibile",
@@ -833,7 +1146,6 @@
 				"err_text": "Numero di telefono richiesto.",
 				"server_err_text": "Impossibile aggiornare i dati. Riprovare o contattare l'amministratore.",
 				"invalid_phone_number_msg": "Numero di telefono non valido"
-
 			},
 			"simultaneous_ring": {
 				"name": "Squilli simultanei",
@@ -845,7 +1157,6 @@
 				"answer_confirmation_required": "Conferma risposta richiesta",
 				"when_to_ring": "Quando squillare",
 				"error_duplicateNumber": "Numero di telefono esistente"
-
 			},
 			"block_caller_id": {
 				"name": "Blocca il mio ID chiamante",
@@ -857,7 +1168,6 @@
 				"remote_phone_number": "Numero di telefono remoto",
 				"err_msg": "Numero di telefono richiesto.",
 				"invalid_phone_number_msg": "Numero di telefono non valido."
-
 			},
 			"anonymous_call_rejection": {
 				"name": "Rifiuto chiamata anonima",
@@ -894,7 +1204,6 @@
 				"invalid_phone_number_msg": "Numero di telefono non valido.",
 				"invalid_email_address_msg": "Indirizzo e-mail non valido.",
 				"none": "Nessuno"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -924,11 +1233,75 @@
 				"rng_mobile_dev_validation_msg": "Criterio di avviso di BW Mobility impostato per squillare solo su dispositivi mobili.  Tuttavia, non vi è un numero di cellulare a cui inviare l'avviso.",
 				"devices_to_ring_checkbox_validation": "Criterio di avviso di BW Mobility non impostato.  Il criterio di avviso di BW Mobility deve essere impostato per squillare su dispositivi fissi o su dispositivi mobili o su entrambi i tipi di dispositivi.",
 				"none": "Nessuno"
-
-
+			},
+			"sequential_ring": {
+				"name": "Squillo sequenziale",
+				"off_text": "Disattivato - Opzione Quando squillare non selezionata",
+				"text": "Fai squillare sequenzialmente più dispositivi per le chiamate in arrivo.",
+				"ring_base_location": "Squilla prima nella posizione base",
+				"number_of_rings": "Numero di squilli",
+				"continue_if_busy": "Continua se occupato",
+				"caller_may_cancel": "Il chiamante può annullare",
+				"ring_numbers": "Numeri per squillo simultaneo",
+				"answer_confirmation_required": "Conferma risposta richiesta",
+				"when_to_ring": "Quando squillare",
+				"criteria_activation_required": "Per attivare Squillo sequenziale è necessario selezionare almeno un'opzione.",
+				"criteria_required": "Per attivare Squillo sequenziale è necessario aggiungere i criteri.",
+				"invalid_phone_number_msg": "Numero di telefono non valido."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "Disattivato - Posizione non configurata",
+				"off_location_not_enabled": "Disattivato - Posizione non abilitata",
+				"text": "Usa i telefoni selezionati come estensione del numero telefonico dell'ufficio e piano di composizione.",
+				"alert_all_locations": "Avvisa tutte le posizioni",
+				"ring_numbers": "Numeri per squillo simultaneo",
+				"set_description": "Imposta descrizione",
+				"do_not_forward": "Non inoltrare",
+				"answer_confirmation": "Conferma risposta",
+				"call_control": "Controllo chiamate",
+				"phone_number_required": "Numero di telefono richiesto.",
+				"phone_number_exists": "Numero di telefono già esistente"
+			},
+			"out_of_office": {
+				"name": "Fuori ufficio",
+				"off_text": "Disattivato - Disponibilità non specificata",
+				"on_text": "ON",
+				"text": "Genera un messaggio di risposta automatica che include la tua disponibilità, quando tornerai e la possibilità di trasferire la chiamata a un numero alternativo.",
+				"availability": "Disponibilità",
+				"until": "Fino alle",
+				"transfer": "Trasferisci",
+				"ring_splash": "Squillo di avviso",
+				"business_trip": "Viaggio di lavoro",
+				"gone_for_the_day": "Uscito per oggi",
+				"lunch": "Pranzo",
+				"meeting": "Riunione",
+				"out_of_office": "Fuori ufficio",
+				"temporarily_out": "Temporaneamente assente",
+				"training": "Formazione",
+				"unavailable": "Non disponibile",
+				"vacation": "Vacanza",
+				"forever": "Per sempre",
+				"one_day": "1 giorno",
+				"one_hour": "1 ora",
+				"none": "Nessuna",
+				"expire_time_err": "Data/ora di scadenza non valida.",
+				"date_time_require": "Data/ora di scadenza richiesta."
+			},
+			"callcenter": {
+				"name": "Code del call center",
+				"status": "Stato",
+				"unavailable_codes": "Codici non disponibili",
+				"sign_in": "Accesso eseguito",
+				"sign_out": "Disconnessione eseguita",
+				"available": "Disponibile",
+				"unavailable": "Non disponibile",
+				"wrap_up": "Conclusione",
+				"callcenter_id": "ID call center",
+				"extension": "est.",
+				"none": "Nessuna"
 			}
 		},
-
 		"de_DE": {
 			"incoming_calls": "Eingehende Anrufe",
 			"outgoing_calls": "Ausgehende Anrufe",
@@ -937,15 +1310,15 @@
 			"service_on": "EIN",
 			"set_number": "Nummer festlegen",
 			"None": "Keine",
-
 			"error": {
 				"numberexist": "Telefonnummer ist bereits vorhanden.",
 				"updatefailed": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
 				"unabletofetch": "Einstellungen nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
 				"networkerror": "Ihr Netzwerk ist offline.",
 				"code": "Code: ",
-				"noservice": "Einstellungen nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator."
-				
+				"noservice": "Einstellungen nicht verfügbar. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
+				"number_required": "Telefonnummer ist erforderlich.",
+				"invalid_number": "Ungültige Telefonnummer"
 			},
 			"do_not_disturb": {
 				"name": "Bitte nicht stören",
@@ -968,7 +1341,6 @@
 				"ring_splash": "Klingeln",
 				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
 				"invalid_phone_number_msg": "Ungültige Telefonnummer"
-
 			},
 			"call_forwarding_busy": {
 				"name": "Wenn besetzt",
@@ -976,7 +1348,6 @@
 				"err_text": "Telefonnummer ist erforderlich.",
 				"server_err_text": "Interner Serverfehler aufgetreten Bitte versuchen Sie es erneut oder wenden Sie sich an den Administrator, wenn das Problem weiterhin besteht.",
 				"invalid_phone_number_msg": "Ungültige DN"
-
 			},
 			"call_forwarding_no_answer": {
 				"name": "Wenn keine Antwort",
@@ -985,7 +1356,6 @@
 				"err_text": "Telefonnummer ist erforderlich.",
 				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
 				"invalid_phone_number_msg": "Ungültige Telefonnummer"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "Wenn nicht erreichbar",
@@ -993,7 +1363,6 @@
 				"err_text": "Telefonnummer ist erforderlich.",
 				"server_err_text": "Daten können nicht aktualisiert werden. Versuchen Sie es erneut, oder wenden Sie sich an den Administrator.",
 				"invalid_phone_number_msg": "Ungültige Telefonnummer"
-
 			},
 			"simultaneous_ring": {
 				"name": "Parallelruf",
@@ -1005,7 +1374,6 @@
 				"answer_confirmation_required": "Antwortbestätigung erforderlich",
 				"when_to_ring": "Wann soll Anruf signalisiert werden",
 				"error_duplicateNumber": "Telefonnummer ist bereits vorhanden"
-
 			},
 			"block_caller_id": {
 				"name": "Meine Anrufer-ID unterdrücken",
@@ -1017,7 +1385,6 @@
 				"remote_phone_number": "Remote-Telefonnummer",
 				"err_msg": "Telefonnummer ist erforderlich.",
 				"invalid_phone_number_msg": "Ungültige Telefonnummer"
-
 			},
 			"anonymous_call_rejection": {
 				"name": "Abweisen unbekannter Anrufer",
@@ -1054,7 +1421,6 @@
 				"invalid_phone_number_msg": "Ungültige Telefonnummer.",
 				"invalid_email_address_msg": "Ungültige E-Mail-Adresse.",
 				"none": "Keine"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -1084,11 +1450,75 @@
 				"rng_mobile_dev_validation_msg": "Die BW Mobility-Benachrichtigungsrichtlinie ist auf 'Nur mobile Geräte klingeln lassen' festgelegt.  Es ist jedoch keine Nummer für die Benachrichtigung vorhanden.",
 				"devices_to_ring_checkbox_validation": "Die BW Mobility-Benachrichtigungsrichtlinie ist nicht festgelegt.  Die BW Mobility-Benachrichtigungsrichtlinie muss so festgelegt werden, dass alle Festnetztelefone oder alle mobilen Geräte klingeln, oder dass sowohl Festnetztelefone als auch mobile Telefone klingeln.",
 				"none": "Keine"
-
-
+			},
+			"sequential_ring": {
+				"name": "Sequenzielle Anrufsignalisierung",
+				"off_text": "AUS – Option zur Anrufsignalisierung nicht ausgewählt",
+				"text": "Eingehende Anrufe werden auf mehreren Geräten nacheinander signalisiert.",
+				"ring_base_location": "Zuerst am Basisstandort signalisieren",
+				"number_of_rings": "Anzahl der Rufzeichen",
+				"continue_if_busy": "Weiter, wenn besetzt",
+				"caller_may_cancel": "Anrufer kann abbrechen",
+				"ring_numbers": "Rufnummern",
+				"answer_confirmation_required": "Antwortbestätigung erforderlich",
+				"when_to_ring": "Wann soll Anruf signalisiert werden",
+				"criteria_activation_required": "Zur Aktivierung der sequenziellen Anrufsignalisierung muss mindestens eine Option ausgewählt werden.",
+				"criteria_required": "Zur Aktivierung der sequenziellen Anrufsignalisierung müssen Kriterien hinzugefügt werden.",
+				"invalid_phone_number_msg": "Ungültige Telefonnummer."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "AUS - Standort nicht konfiguriert",
+				"off_location_not_enabled": "AUS - Standort nicht aktiviert",
+				"text": "Verwenden Sie die ausgewählten Telefone als Durchwahl für Ihre geschäftliche Rufnummer und den Wählplan.",
+				"alert_all_locations": "Alle Standorte benachrichtigens",
+				"ring_numbers": "Rufnummern",
+				"set_description": "Beschreibung festlegen",
+				"do_not_forward": "Nicht weiterleiten",
+				"answer_confirmation": "Antwortbestätigung",
+				"call_control": "Anrufsteuerung",
+				"phone_number_required": "Telefonnummer ist erforderlich.",
+				"phone_number_exists": "Telefonnummer ist bereits vorhanden."
+			},
+			"out_of_office": {
+				"name": "Außer Haus",
+				"off_text": "AUS – Verfügbarkeit nicht angegeben",
+				"on_text": "ON",
+				"text": "Generieren Sie eine automatische Antwort mit Angaben zur Verfügbarkeit, dem Zeitpunkt der Rückkehr und der Möglichkeit zur Übergabe des Anrufs an eine alternative Nummer.",
+				"availability": "Verfügbarkeit",
+				"until": "Bis",
+				"transfer": "Übergeben",
+				"ring_splash": "Klingeln",
+				"business_trip": "Geschäftsreise",
+				"gone_for_the_day": "Feierabend",
+				"lunch": "Mittagspause",
+				"meeting": "Meeting",
+				"out_of_office": "Außer Haus",
+				"temporarily_out": "Vorübergehend abwesend",
+				"training": "Schulung",
+				"unavailable": "Nicht verfügbar",
+				"vacation": "Urlaub",
+				"forever": "Dauerhaft",
+				"one_day": "1 Tag",
+				"one_hour": "1  Stunde",
+				"none": "Keine",
+				"expire_time_err": "Ablaufzeit/Ablaufdatum ungültig.",
+				"date_time_require": "Ablaufzeit/Ablaufdatum erforderlich."
+			},
+			"callcenter": {
+				"name": "Callcenter-Warteschlangen",
+				"status": "Status",
+				"unavailable_codes": "Codes für \"Nicht verfügbar\"",
+				"sign_in": "Angemeldet",
+				"sign_out": "Abgemeldet",
+				"available": "Verfügbar",
+				"unavailable": "Nicht verfügbar",
+				"wrap_up": "Nachbearbeitung",
+				"callcenter_id": "Callcenter-IDs",
+				"extension": "Durchwahl",
+				"none": "Keine"
 			}
 		},
-
 		"fr_CA": {
 			"incoming_calls": "Appels entrants",
 			"outgoing_calls": "Appels sortants",
@@ -1097,15 +1527,15 @@
 			"service_on": "Activé",
 			"set_number": "Définir le numéro",
 			"None": "Aucun(e)",
-
 			"error": {
 				"numberexist": "Le numéro de téléphone existe déjà.",
 				"updatefailed": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
 				"unabletofetch": "Paramètres non disponibles. Réessayez ou communiquez avec l'administrateur",
 				"networkerror": "Votre réseau est hors ligne.",
 				"code": "Code: ",
-				"noservice": "Paramètres non disponibles. Réessayez ou communiquez avec l'administrateur."
-				
+				"noservice": "Paramètres non disponibles. Réessayez ou communiquez avec l'administrateur.",
+				"number_required": "Le numéro de téléphone est obligatoire.",
+				"invalid_number": "Numéro de téléphone non valide"
 			},
 			"do_not_disturb": {
 				"name": "Ne pas déranger",
@@ -1120,7 +1550,6 @@
 				"off_text": "Désactivé - Options d'appel non configurées",
 				"on_text": "Activé",
 				"err_msg": "Données non disponibles. Réessayez ou communiquez avec l'administrateur"
-
 			},
 			"call_forwarding_always": {
 				"name": "Toujours",
@@ -1136,7 +1565,6 @@
 				"err_text": "Le numéro de téléphone est obligatoire.",
 				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"call_forwarding_no_answer": {
 				"name": "Sur non réponse",
@@ -1145,7 +1573,6 @@
 				"err_text": "Le numéro de téléphone est obligatoire.",
 				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "Si non disponible",
@@ -1153,7 +1580,6 @@
 				"err_text": "Le numéro de téléphone est obligatoire.",
 				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou communiquez avec l'administrateur.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"simultaneous_ring": {
 				"name": "Sonnerie simultanée",
@@ -1165,7 +1591,6 @@
 				"answer_confirmation_required": "Confirmation de réponse requise",
 				"when_to_ring": "Quand sonner",
 				"error_duplicateNumber": "Le numéro de téléphone existe déjà.."
-
 			},
 			"block_caller_id": {
 				"name": "Bloquer mon identification d'appelant",
@@ -1177,7 +1602,6 @@
 				"remote_phone_number": "Numéro de téléphone distant",
 				"err_msg": "Le numéro de téléphone est obligatoire.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"anonymous_call_rejection": {
 				"name": "Refus des appels anonymes",
@@ -1214,7 +1638,6 @@
 				"invalid_phone_number_msg": "Numéro de téléphone non valide.",
 				"invalid_email_address_msg": "Adresse de courriel non valide.",
 				"none": "Aucun(e)"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -1244,11 +1667,75 @@
 				"rng_mobile_dev_validation_msg": "La politique d'alerte BW Mobility est définie à Sonnerie sur les appareils cellulaires seulement.  Cependant, aucun numéro cellulaire n'est défini pour l'alerte.",
 				"devices_to_ring_checkbox_validation": "La politique d'alerte BW Mobility n'est pas définie.  La politique d'alerte doit être définie à Sonnerie sur les appareils fixes, Sonnerie sur les appareils cellulaires ou sonnerie sur les appareils fixes et cellulaires.",
 				"none": "Aucun(e)"
-
-
+			},
+			"sequential_ring": {
+				"name": "Sonnerie séquentielle",
+				"off_text": "Désactivé - Option Quand sonner non sélectionnée",
+				"text": "Faites sonner les appareils l’un après l’autre pour les appels entrants.",
+				"ring_base_location": "Faire sonner d’abord l’emplacement de la base",
+				"number_of_rings": "Nombre de sonneries",
+				"continue_if_busy": "Continuer si occupé",
+				"caller_may_cancel": "L’appelant peut annuler",
+				"ring_numbers": "Numéros de sonnerie",
+				"answer_confirmation_required": "Confirmation de réponse requise",
+				"when_to_ring": "Quand faire sonner",
+				"criteria_activation_required": "Sélectionnez au moins une option pour activer la sonnerie séquentielle.",
+				"criteria_required": "Ajoutez des critères pour activer la sonnerie séquentielle.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "Désactivé - Emplacement non configuré",
+				"off_location_not_enabled": "Désactivé - Emplacement non activé",
+				"text": "Utilisez vos téléphones sélectionnés comme s'ils étaient des postes de votre ligne téléphonique d'affaires et de votre plan de numérotation.",
+				"alert_all_locations": "Alerter tous les emplacements",
+				"ring_numbers": "Numéros de sonnerie",
+				"set_description": "Définir la description",
+				"do_not_forward": "Ne pas renvoyer",
+				"answer_confirmation": "Confirmation de réponse",
+				"call_control": "Contrôle d'appel",
+				"phone_number_required": "Le numéro de téléphone est obligatoire.",
+				"phone_number_exists": "Le numéro de téléphone existe déjà."
+			},
+			"out_of_office": {
+				"name": "Absence du bureau",
+				"off_text": "Désactivé - Disponibilité non indiquée",
+				"on_text": "ON",
+				"text": "Générez un message de réponse automatique incluant votre disponibilité, quand vous reviendrez et l’option de transfert d’appel à un numéro alternatif.",
+				"availability": "Disponibilité",
+				"until": "Jusqu'à",
+				"transfer": "Transférer",
+				"ring_splash": "Tonalité d'avertissement",
+				"business_trip": "Voyage d'affaires",
+				"gone_for_the_day": "Absence pour la journée",
+				"lunch": "Pause-repas",
+				"meeting": "Réunion",
+				"out_of_office": "Absence du bureau",
+				"temporarily_out": "Absence temporaire",
+				"training": "Formation",
+				"unavailable": "Non disponible",
+				"vacation": "Congé",
+				"forever": "De façon permanente",
+				"one_day": "1 jour",
+				"one_hour": "1 heure",
+				"none": "Aucun(e)",
+				"expire_time_err": "Heure de la date d’expiration non valide.",
+				"date_time_require": "Heure de la date d’expiration requise."
+			},
+			"callcenter": {
+				"name": "Files d’attente des centres d'appel",
+				"status": "État",
+				"unavailable_codes": "Codes de non-disponibilité",
+				"sign_in": "Connecté",
+				"sign_out": "Déconnecté",
+				"available": "Disponible",
+				"unavailable": "Non disponible",
+				"wrap_up": "Conclusion",
+				"callcenter_id": "ID du centre d'appel",
+				"extension": "poste",
+				"none": "Aucun(e)"
 			}
 		},
-
 		"fr_FR": {
 			"incoming_calls": "Appels entrants",
 			"outgoing_calls": "Appels sortants",
@@ -1257,15 +1744,15 @@
 			"service_on": "Activé",
 			"set_number": "Définir le numéro",
 			"None": "Aucun(e)",
-
 			"error": {
 				"numberexist": "Le numéro de téléphone existe déjà.",
 				"updatefailed": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
 				"unabletofetch": "Paramètres non disponibles. Réessayez ou contactez l'administrateur",
 				"networkerror": "Votre réseau est hors connexion.",
 				"code": "Code: ",
-				"noservice": "Paramètres non disponibles. Réessayez ou contactez l'administrateur."
-				
+				"noservice": "Paramètres non disponibles. Réessayez ou contactez l'administrateur.",
+				"number_required": "Numéro de téléphone requis.",
+				"invalid_number": "Numéro de téléphone non valide"
 			},
 			"do_not_disturb": {
 				"name": "Ne pas déranger",
@@ -1280,7 +1767,6 @@
 				"off_text": "Désactivé - Options d'appel non configurées ",
 				"on_text": "Activé",
 				"err_msg": "Données non disponibles. Réessayez ou contactez l'administrateur"
-
 			},
 			"call_forwarding_always": {
 				"name": "Toujours",
@@ -1289,7 +1775,6 @@
 				"ring_splash": "Accueil d'appel",
 				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"call_forwarding_busy": {
 				"name": "Sur occupation",
@@ -1297,7 +1782,6 @@
 				"err_text": "Numéro de téléphone requis.",
 				"server_err_text": "Impossible de mettre à jour les données. Réessayez ou contactez l'administrateur.",
 				"invalid_phone_number_msg": "Numéro de téléphone non valide"
-
 			},
 			"call_forwarding_no_answer": {
 				"name": "Sur non réponse",
@@ -1371,7 +1855,6 @@
 				"invalid_phone_number_msg": "Numéro de téléphone non valide.",
 				"invalid_email_address_msg": "Adresse e-mail non valide.",
 				"none": "Aucun(e)"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -1401,10 +1884,75 @@
 				"rng_mobile_dev_validation_msg": "La politique d'alerte BW Mobility est définie sur Appeler les appareils mobiles seulement.  Cependant, il n'y a aucun numéro mobile à alerter.",
 				"devices_to_ring_checkbox_validation": "La politique d'alerte BW Mobility n'est pas définie.  La politique d'alerte doit être définie sur Appeler les appareils fixes, Appeler les appareils mobiles ou appeler les appareils fixes et mobiles.",
 				"none": "Aucun(e)"
-
+			},
+			"sequential_ring": {
+				"name": "Sonnerie séquentielle",
+				"off_text": "Désactivé- L'option Quand faire sonner n'est pas sélectionnée",
+				"text": "Faites sonner plusieurs appareils l'un après l'autre pour les appels entrants.",
+				"ring_base_location": "Faire sonner d'abord l'emplacement de la base",
+				"number_of_rings": "Nb de sonneries",
+				"continue_if_busy": "Continuer si occupé",
+				"caller_may_cancel": "L'appelant peut annuler",
+				"ring_numbers": "Numéros d'appel",
+				"answer_confirmation_required": "Confirmation de la réponse requise",
+				"when_to_ring": "Quand faire sonner",
+				"criteria_activation_required": "Au moins une option doit être sélectionnée pour activer la sonnerie séquentielle.",
+				"criteria_required": "Des critères doivent être ajoutés pour activer la sonnerie séquentielle.",
+				"invalid_phone_number_msg": "Numéro de téléphone non valide."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "Désactivé - Emplacement non configuré",
+				"off_location_not_enabled": "Désactivé - Emplacement non activé",
+				"text": "Utilisez vos téléphones sélectionnés comme un poste de votre numéro de téléphone et plan de numérotation professionnels.",
+				"alert_all_locations": "Alerter tous les emplacements",
+				"ring_numbers": "Numéros d'appel",
+				"set_description": "Définir la description",
+				"do_not_forward": "Ne pas faire de renvoi",
+				"answer_confirmation": "Confirmation de réponse",
+				"call_control": "Contrôle d'appel",
+				"phone_number_required": "Numéro de téléphone requis.",
+				"phone_number_exists": "Le numéro de téléphone existe déjà."
+			},
+			"out_of_office": {
+				"name": "À l'extérieur",
+				"off_text": "Désactivé - Disponibilité non spécifiée",
+				"on_text": "ON",
+				"text": "Générez un message de réponse automatique incluant votre disponibilité, le moment où vous serez de retour et l'option de transfert de l'appel vers un autre numéro.",
+				"availability": "Disponibilité",
+				"until": "Jusqu'à",
+				"transfer": "Transférer",
+				"ring_splash": "Accueil d'appel",
+				"business_trip": "Déplacement professionnel",
+				"gone_for_the_day": "Absent pour la journée",
+				"lunch": "Pause-déjeuner",
+				"meeting": "Réunion",
+				"out_of_office": "À l'extérieur",
+				"temporarily_out": "Absence temporaire",
+				"training": "Formation",
+				"unavailable": "Non disponible",
+				"vacation": "Vacances",
+				"forever": "Toujours",
+				"one_day": "1 jour",
+				"one_hour": "1 heure",
+				"none": "Aucun(e)",
+				"expire_time_err": "Heure de la date d’expiration non valide.",
+				"date_time_require": "Heure de la date d’expiration requise."
+			},
+			"callcenter": {
+				"name": "Files d'attente des centres d'appel",
+				"status": "État",
+				"unavailable_codes": "Codes d'indisponibilité",
+				"sign_in": "Connecté",
+				"sign_out": "Déconnecté",
+				"available": "Disponible",
+				"unavailable": "Non disponible",
+				"wrap_up": "En train de terminer",
+				"callcenter_id": "ID du centre d'appel",
+				"extension": "poste",
+				"none": "Aucun(e)"
 			}
 		},
-
 		"nl_NL": {
 			"incoming_calls": "Inkomende gesprekken",
 			"outgoing_calls": "Uitgaande gesprekken",
@@ -1413,15 +1961,15 @@
 			"service_on": "AAN",
 			"set_number": "Stel nummer in",
 			"None": "Geen",
-
 			"error": {
 				"numberexist": "Telefoonnummer bestaat al.",
 				"updatefailed": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
 				"unabletofetch": "Instellingen niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder",
 				"networkerror": "Uw netwerk is offline.",
 				"code": "Code: ",
-				"noservice": "Instellingen niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder."
-				
+				"noservice": "Instellingen niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder.",
+				"number_required": "Telefoonnummer verplicht.",
+				"invalid_number": "Ongeldig telefoonnummer"
 			},
 			"do_not_disturb": {
 				"name": "Niet storen",
@@ -1436,7 +1984,6 @@
 				"off_text": "UIT - Oproepopties niet geconfigureerd",
 				"on_text": "AAN",
 				"err_msg": "Gegevens niet beschikbaar. Probeer het opnieuw of neem contact op met de beheerder"
-
 			},
 			"call_forwarding_always": {
 				"name": "Altijd",
@@ -1452,7 +1999,6 @@
 				"err_text": "Telefoonnummer verplicht.",
 				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
 				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
-
 			},
 			"call_forwarding_no_answer": {
 				"name": "Indien geen antwoord",
@@ -1461,7 +2007,6 @@
 				"err_text": "Telefoonnummer verplicht.",
 				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
 				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "Indien niet te bereiken",
@@ -1469,7 +2014,6 @@
 				"err_text": "Telefoonnummer verplicht.",
 				"server_err_text": "Kan de gegevens niet bijwerken. Probeer het opnieuw of neem contact op met de beheerder.",
 				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
-
 			},
 			"simultaneous_ring": {
 				"name": "Gelijktijdig belsignaal",
@@ -1481,7 +2025,6 @@
 				"answer_confirmation_required": "Beantwoordbevestiging vereist",
 				"when_to_ring": "Wanneer bellen",
 				"error_duplicateNumber": "Telefoonnummer bestaat."
-
 			},
 			"block_caller_id": {
 				"name": "Blokkeer mijn Beller-ID",
@@ -1493,7 +2036,6 @@
 				"remote_phone_number": "Extern telefoonnummer",
 				"err_msg": "Telefoonnummer verplicht.",
 				"invalid_phone_number_msg": "Ongeldig telefoonnummer"
-
 			},
 			"anonymous_call_rejection": {
 				"name": "Afwijzing anoniem nummer",
@@ -1530,7 +2072,6 @@
 				"invalid_phone_number_msg": "Ongeldig telefoonnummer.",
 				"invalid_email_address_msg": "Ongeldig e-mailadres.",
 				"none": "Geen"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -1560,11 +2101,75 @@
 				"rng_mobile_dev_validation_msg": "Het BW Mobility-waarschuwingsbeleid ingesteld op alleen Mobiele apparaten bellen.  Maar geen mobiel nummer om te waarschuwen.",
 				"devices_to_ring_checkbox_validation": "Het BW Mobility-waarschuwingsbeleid is niet ingesteld.  Het waarschuwingsbeleid moet ingesteld worden op Vaste apparaten bellen of Mobiele apparaten bellen of zowel mobiele als vaste apparaten bellen.",
 				"none": "Geen"
-
-
+			},
+			"sequential_ring": {
+				"name": "Sequential Ring",
+				"off_text": "UIT - Optie 'Wanneer bellen' niet geselecteerd",
+				"text": "Bel meerdere apparaten na elkaar voor inkomende gesprekken.",
+				"ring_base_location": "Bel eerst de basislocatie",
+				"number_of_rings": "Aantal belsignalen",
+				"continue_if_busy": "Ga door bij in gesprek",
+				"caller_may_cancel": "Oproeper kan annuleren",
+				"ring_numbers": "Belnummers",
+				"answer_confirmation_required": "Beantwoordbevestiging vereist",
+				"when_to_ring": "Wanneer bellen",
+				"criteria_activation_required": "Ten minste één optie moet worden geselecteerd om sequential ring te activeren.",
+				"criteria_required": "Criteria moeten worden toegevoegd om sequential ring te activeren.",
+				"invalid_phone_number_msg": "Ongeldig telefoonnummer."
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "UIT - Locatie niet geconfigureerd",
+				"off_location_not_enabled": "UIT - Locatie niet ingeschakeld",
+				"text": "Gebruik uw geselecteerde telefoons als een extensie van uw bedrijfstelefoon en belplan.",
+				"alert_all_locations": "Alarmeer alle locaties",
+				"ring_numbers": "Belnummers",
+				"set_description": "Omschrijving instellen",
+				"do_not_forward": "Niet doorverbinden",
+				"answer_confirmation": "Antwoordbevestiging",
+				"call_control": "Gespreksbeheer",
+				"phone_number_required": "Telefoonnummer verplicht.",
+				"phone_number_exists": "Telefoonnummer bestaat al."
+			},
+			"out_of_office": {
+				"name": "Out of Office",
+				"off_text": "UIT - Beschikbaarheid niet gespecificeerd",
+				"on_text": "ON",
+				"text": "Genereer een automatisch antwoordbericht dat uw beschikbaarheid bevat, wanneer u terug bent en de optie om de oproep door te verbinden naar een ander nummer.",
+				"availability": "Beschikbaarheid",
+				"until": "Tot",
+				"transfer": "Doorverbinden",
+				"ring_splash": "Ring Splash",
+				"business_trip": "Zakenreis",
+				"gone_for_the_day": "Voor een dag afwezig",
+				"lunch": "Lunch",
+				"meeting": "Vergadering",
+				"out_of_office": "Out of Office",
+				"temporarily_out": "Tijdelijk afwezig",
+				"training": "Training",
+				"unavailable": "Onbeschikbaar",
+				"vacation": "Vakantie",
+				"forever": "Altijd",
+				"one_day": "1 dag",
+				"one_hour": "1 uur",
+				"none": "Geen",
+				"expire_time_err": "Ongeldige tijd vervaldatum.",
+				"date_time_require": "Tijd vervaldatum vereist."
+			},
+			"callcenter": {
+				"name": "Call Center-wachtrijen",
+				"status": "Status",
+				"unavailable_codes": "Onbeschikbare codes",
+				"sign_in": "Ingelogd",
+				"sign_out": "Uitgelogd",
+				"available": "Beschikbaar",
+				"unavailable": "Onbeschikbaar",
+				"wrap_up": "Wrapping Up",
+				"callcenter_id": "Call Center ID's",
+				"extension": "ext.",
+				"none": "Geen"
 			}
 		},
-
 		"zh_CN": {
 			"incoming_calls": "来电",
 			"outgoing_calls": "去电",
@@ -1579,8 +2184,9 @@
 				"unabletofetch": "设置不可用。请重试或联系管理员。",
 				"networkerror": "您的网络已离线。",
 				"code": "代码： ",
-				"noservice": "设置不可用。请重试或联系管理员。"
-				
+				"noservice": "设置不可用。请重试或联系管理员。",
+				"number_required": "需要电话号码。",
+				"invalid_number": "无效电话号码"
 			},
 			"do_not_disturb": {
 				"name": "请勿打扰",
@@ -1595,7 +2201,6 @@
 				"off_text": "关 - 未配置通话选项",
 				"on_text": "开",
 				"err_msg": "数据不可用。请重试或联系管理员。"
-
 			},
 			"call_forwarding_always": {
 				"name": "始终",
@@ -1604,7 +2209,6 @@
 				"ring_splash": "响铃通知",
 				"server_err_text": "无法更新数据。请重试或联系管理员。",
 				"invalid_phone_number_msg": "无效电话号码"
-
 			},
 			"call_forwarding_busy": {
 				"name": "遇忙时",
@@ -1612,7 +2216,6 @@
 				"err_text": "需要电话号码。",
 				"server_err_text": "无法更新数据。请重试或联系管理员。",
 				"invalid_phone_number_msg": "无效电话号码"
-
 			},
 			"call_forwarding_no_answer": {
 				"name": "无应答时",
@@ -1621,7 +2224,6 @@
 				"err_text": "需要电话号码。",
 				"server_err_text": "无法更新数据。请重试或联系管理员。",
 				"invalid_phone_number_msg": "无效电话号码"
-
 			},
 			"call_forwarding_not_reachable": {
 				"name": "无法接通时",
@@ -1629,7 +2231,6 @@
 				"err_text": "需要电话号码。",
 				"server_err_text": "无法更新数据。请重试或联系管理员。",
 				"invalid_phone_number_msg": "无效电话号码"
-
 			},
 			"simultaneous_ring": {
 				"name": "同时响铃",
@@ -1641,7 +2242,6 @@
 				"answer_confirmation_required": "需要应答确认",
 				"when_to_ring": "何时响铃",
 				"error_duplicateNumber": "电话号码已存在"
-
 			},
 			"block_caller_id": {
 				"name": "阻止我的呼叫者 ID",
@@ -1652,8 +2252,7 @@
 				"text": "从一台远程电话进行通话，并使之表现为来自您的业务电话。此外，任何您业务电话的来电都会在这台远程电话上响铃。",
 				"remote_phone_number": "远程电话号码",
 				"err_msg": "需要电话号码。",
-				"invalid_phone_number_msg": "无效电话号码"				
-
+				"invalid_phone_number_msg": "无效电话号码"
 			},
 			"anonymous_call_rejection": {
 				"name": "拒绝匿名呼叫",
@@ -1690,7 +2289,6 @@
 				"invalid_phone_number_msg": "无效电话号码。",
 				"invalid_email_address_msg": "无效电子邮件地址。",
 				"none": "无"
-
 			},
 			"broadworks_mobility": {
 				"name": "BroadWorks Mobility",
@@ -1720,11 +2318,75 @@
 				"rng_mobile_dev_validation_msg": "BW Mobility 提醒策略设置为仅“在移动设备上响铃”。但是，没有可提醒的移动设备号码。",
 				"devices_to_ring_checkbox_validation": "未设置 BW Mobility 提醒策略。提醒策略必须设置为“在固定设备上响铃”或“在移动设备上响铃”，或同时在固定和移动设备上响铃。",
 				"none": "无"
-
-
+			},
+			"sequential_ring": {
+				"name": "连续响铃",
+				"off_text": "停止-未选择何时响铃",
+				"text": "来电时，多台装置依次振铃。",
+				"ring_base_location": "铃音库位置第一",
+				"number_of_rings": "响铃次数",
+				"continue_if_busy": "遇忙时转移，继续呼叫",
+				"caller_may_cancel": "呼叫者可能取消",
+				"ring_numbers": "响铃号码",
+				"answer_confirmation_required": "需要应答确认",
+				"when_to_ring": "何时响铃",
+				"criteria_activation_required": "要激活连续响铃，须至少选择一项。",
+				"criteria_required": "要激活连续响铃，必须增加条件。",
+				"invalid_phone_number_msg": "无效电话号码。"
+			},
+			"broadworks_anywhere": {
+				"name": "BroadWorks Anywhere",
+				"off_location_not_configured": "停止-位置不匹配",
+				"off_location_not_enabled": "停止-位置未启用",
+				"text": "用您所选的电话作为工作电话和拨号计划。",
+				"alert_all_locations": "提醒所有位置",
+				"ring_numbers": "响铃号码",
+				"set_description": "设置简介",
+				"do_not_forward": "不发送",
+				"answer_confirmation": "应答确认",
+				"call_control": "呼叫控制",
+				"phone_number_required": "需要电话号码。",
+				"phone_number_exists": "电话号码已存在。"
+			},
+			"out_of_office": {
+				"name": "外出",
+				"off_text": "停止-可用性未规定",
+				"on_text": "ON",
+				"text": "生成一个自动回复消息，内容包括您可否使用、您返回的时间和将呼叫转移到备用号码的选择。",
+				"availability": "可用性",
+				"until": "直到",
+				"transfer": "转移",
+				"ring_splash": "Ring Splash",
+				"business_trip": "出差",
+				"gone_for_the_day": "今天已下班",
+				"lunch": "午餐",
+				"meeting": "会议中",
+				"out_of_office": "外出",
+				"temporarily_out": "暂时外出",
+				"training": "培训",
+				"unavailable": "不可用",
+				"vacation": "休假",
+				"forever": "永久",
+				"one_day": "1 天",
+				"one_hour": "1 小时",
+				"none": "无",
+				"expire_time_err": "无效的有效期/时间。",
+				"date_time_require": "规定的有效期/时间。"
+			},
+			"callcenter": {
+				"name": "呼叫中心队列",
+				"status": "状态",
+				"unavailable_codes": "不可用编码",
+				"sign_in": "已登录",
+				"sign_out": "已注销",
+				"available": "可用",
+				"unavailable": "不可用",
+				"wrap_up": "正在结束",
+				"callcenter_id": "呼叫中心ID",
+				"extension": "ext.",
+				"none": "无"
 			}
+
 		}
-
 	}
-
 }

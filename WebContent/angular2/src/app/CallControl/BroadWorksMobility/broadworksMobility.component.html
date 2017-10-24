@@ -2,7 +2,7 @@
 
 <md-list class="primaryContentText">
     <md-list-item class="descriptionTextAlign">
-        <p md-line class="restrictiveLabelStyle">
+        <p md-line class="restrictiveLabelStyle" tabindex="0">
             {{customizedTextJson.broadworks_mobility.text}}
         </p>
     </md-list-item>
@@ -10,14 +10,14 @@
 <md-card class="controlBackground settingBorder" [class.callsettingDisable]="primaryNumberRetrievingError">
     <md-list class="primaryContentText">
         <md-list-item (click)="primaryNumberExpand()" class="itemHeight44">
-            <label class="restrictiveLabelStyle" [class.errorTextColor]="primaryNumberRetrievingError">{{customizedTextJson.broadworks_mobility.primary_number}} {{primaryNumber}}</label>
+            <label class="restrictiveLabelStyle" [class.errorTextColor]="primaryNumberRetrievingError" (keyup.enter)="primaryNumberExpand()" tabindex="0">{{customizedTextJson.broadworks_mobility.primary_number}} {{primaryNumber}}</label>
             
             <div *ngIf="isPrimaryNumberExpanded == true" class="settingCollapseIcon">
             </div>
             <div *ngIf="isPrimaryNumberExpanded == false" class="settingExpandIcon">
             </div>
         </md-list-item>
-        <p md-line class="callsettingCallControllServerError" *ngIf="primaryNumberRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{primaryNumberRetrievingError}}</label></p>
+        <p md-line class="callsettingCallControllServerError" *ngIf="primaryNumberRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{primaryNumberRetrievingError}}</label></p>
         
         <md-list-item *ngIf="isPrimaryNumberExpanded">
              
@@ -34,14 +34,14 @@
                 </select>
 
                 <span id="{{pnrfdSelectedOptionsTextContainerId}}"  *ngIf="isDesktop" (click)="showCurrentOptionsDropdown();" class="cswInputContainer"
-                  [class.cswDesktopInputContainerFocus]="pnrfdDesktopMenuShow" [class.cswInputContainerFocus]="isPNRFDOptionsFocused"> 
+                  (keyup.enter)="showCurrentOptionsDropdown();" [class.cswDesktopInputContainerFocus]="pnrfdDesktopMenuShow" [class.cswInputContainerFocus]="isPNRFDOptionsFocused" tabindex="0"> 
                     <div type="text" id="csSelectedOptionsText" maxlength="10" 
                         class="cswDropdownInput cswTextellipsis restrictiveLabelStyle callSettingsFontFamily controlBackground primaryContentText" [class.callsettingHide]="isPNRFDOptionsFocused && !pnrfdDesktopMenuShow">{{selectedSettings}}</div>
                         <img class="cswDropdownArrow" [class.callsettingHide]="isPNRFDOptionsFocused && !pnrfdDesktopMenuShow">
                 </span>
 
                 <desktop-select focusableInTouchMode="false" *ngIf="pnrfdDesktopMenuShow" [selectOptionsList]="pnrfdDOList" [inputContainer]="pnrfdSelectedOptionsTextContainerId"
-                    (onChange)="onPNRFDOptionsChange($event);" (onDesktopSelectMenuHide)="onPNRFDOptionsHide($event)">
+                    (onChange)="onPNRFDOptionsChange($event);" (onDesktopSelectMenuHide)="onPNRFDOptionsHide($event)" (keyup.esc)="onPNRFDOptionsHide()">
                 </desktop-select>
 
         </span>
@@ -59,18 +59,18 @@
                 <select *ngIf="!isDesktop" id="pnrmdSelectDropdown" class="cswFullWidth cswSelectDropdown restrictiveLabelStyle callSettingsFontFamily" size="{{mobileDeviceNumbers.length < 4 ? mobileDeviceNumbers.length : 4}}"
                     (change)="onUpdateRingMobileOptions($event);" [class.cswInputContainerFocus]="isPNRMDOptionsFocused" (focus)="showRingMobileOptionsDropdown();" (blur)="onPNRMDOptionsBlur()" multiple>
                     <option *ngFor="let mobileDeviceNumber of mobileDeviceNumbers" [value]="mobileDeviceNumber" class="restrictiveLabelStyle"
-                       [selected]="allSelectedMobileDeviceNumbers && allSelectedMobileDeviceNumbers.lastIndexOf(mobileDeviceNumber)>-1">{{mobileDeviceNumber}}</option>
+                       [selected]="allSelectedMobileDeviceNumbers && allSelectedMobileDeviceNumbers.lastIndexOf(mobileDeviceNumber)>-1" tabindex="0">{{mobileDeviceNumber}}</option>
                 </select>
 
                 <span id="{{pnrmdSelectedOptionsTextContainerId}}" *ngIf="isDesktop" (click)="showRingMobileOptionsDropdown();" class="cswInputContainer"
-                  [class.cswDesktopInputContainerFocus]="pnrmdDesktopMenuShow" [class.cswInputContainerFocus]="isPNRMDOptionsFocused"> 
+                  (keyup.enter)="showRingMobileOptionsDropdown();" [class.cswDesktopInputContainerFocus]="pnrmdDesktopMenuShow" [class.cswInputContainerFocus]="isPNRMDOptionsFocused" tabindex="0"> 
                     <div type="text" id="csSelectedOptionsText" maxlength="10" 
                         class="cswDropdownInput cswTextellipsis restrictiveLabelStyle callSettingsFontFamily controlBackground primaryContentText" [class.callsettingHide]="isPNRMDOptionsFocused && !pnrmdDesktopMenuShow">{{mobileDeviceOptinputValue}}</div>
                         <img class="cswDropdownArrow" [class.callsettingHide]="isPNRMDOptionsFocused && !pnrmdDesktopMenuShow">
                 </span>
 
                 <desktop-select focusableInTouchMode="false" *ngIf="pnrmdDesktopMenuShow" [selectOptionsList]="pnrmdDOList" [inputContainer]="pnrmdSelectedOptionsTextContainerId"
-                    (onChange)="onPNRMDOptionsChange($event);" (onDesktopSelectMenuHide)="onPNRMDOptionsHide($event)">
+                    (onChange)="onPNRMDOptionsChange($event);" (onDesktopSelectMenuHide)="onPNRMDOptionsHide($event)" (keyup.esc)="onPNRMDOptionsHide()">
                 </desktop-select>
             </span>
             
@@ -90,7 +90,7 @@
 <md-card class="controlBackground settingBorder" [class.callsettingDisable]="mobileNumberRetrievingError">
     <md-list class="primaryContentText" *ngIf="mobileNumber">
         <md-list-item (click)="mobileNumberExpand()" class="itemHeight44">
-            <label class="restrictiveLabelStyle" [class.errorTextColor]="mobileNumberRetrievingError">{{customizedTextJson.broadworks_mobility.mobile_number}}  {{mobileNumber}}</label>
+            <label class="restrictiveLabelStyle" [class.errorTextColor]="mobileNumberRetrievingError"  (keyup.enter)="mobileNumberExpand()" tabindex="0">{{customizedTextJson.broadworks_mobility.mobile_number}}  {{mobileNumber}}</label>
             <div *ngIf="isMobileNumberExpanded == true" class="settingCollapseIcon">
             </div>
             <div *ngIf="isMobileNumberExpanded == false" class="settingExpandIcon">
@@ -100,12 +100,12 @@
             <label class="restrictiveSmallLabelStyle errorTextColor">{{mobileNumberRetrievingError}}</label>
         </p>
         <md-list-item *ngIf="isMobileNumberExpanded">
-             <p md-line class="secondLevelSettingLeftPadding mobilityEnableAlertAlign"><md-checkbox [disableRipple]=true [checked]="isEnableAlertingChecked" (change)="enableAlertingActive()">
+             <p md-line class="secondLevelSettingLeftPadding mobilityEnableAlertAlign"><md-checkbox [disableRipple]=true [checked]="isEnableAlertingChecked" (change)="enableAlertingActive()" (keyup.enter)="enableAlertingActive()" tabindex="0">
                  {{customizedTextJson.broadworks_mobility.enable_alerting}}</md-checkbox></p>
-             <p md-line class="secondLevelSettingLeftPadding" *ngIf="enableAlertingErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+             <p md-line class="secondLevelSettingLeftPadding" *ngIf="enableAlertingErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
                  {{enableAlertingErrMsg}}</label></p>
-            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="restrictiveLabelStyle">{{customizedTextJson.broadworks_mobility.general_settings}}</label></p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="selectGenSettingsErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.broadworks_mobility.general_settings}}</label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="selectGenSettingsErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
                 {{selectGenSettingsErrMsg}}</label></p>
 
        <p md-line style="font-size:14px ;padding:0px 0px 16px 12px;"> 
@@ -114,18 +114,18 @@
                     <select *ngIf="!isDesktop" id="mngsSelectDropdown" class="cswFullWidth cswSelectDropdown restrictiveLabelStyle callSettingsFontFamily" size="{{mngsDOList.length < 3 ? mngsDOList.length : 3}}"
                          (change)="onUpdateGeneralSettingOptions($event);" [class.cswInputContainerFocus]="isMNGSDOptionsFocused" (focus)="showGeneralSettingsDropdown();" (blur)="onMNGSDOptionsBlur()" multiple>
                         <option *ngFor="let genOpt of mngsDOList" [value]="genOpt.name" class="restrictiveLabelStyle"
-                          [selected]="allSelectedGeneralSettingsOptions && allSelectedGeneralSettingsOptions.lastIndexOf(genOpt.name)>-1">{{genOpt.getName()}}</option>
+                          [selected]="allSelectedGeneralSettingsOptions && allSelectedGeneralSettingsOptions.lastIndexOf(genOpt.name)>-1" tabindex="0">{{genOpt.getName()}}</option>
                     </select>
                    
                     <span id="{{mngsSelectedOptionsTextContinerId}}" *ngIf="isDesktop" (click)="showGeneralSettingsDropdown();" class="cswInputContainer"
-                      [class.cswDesktopInputContainerFocus]="mngsDesktopMenuShow" [class.cswInputContainerFocus]="isMNGSDOptionsFocused"> 
+                      (keyup.enter)="showGeneralSettingsDropdown();" [class.cswDesktopInputContainerFocus]="mngsDesktopMenuShow" [class.cswInputContainerFocus]="isMNGSDOptionsFocused" tabindex="0"> 
                         <div type="text" id="csSelectedOptionsText" maxlength="10" 
                             class="cswDropdownInput cswTextellipsis restrictiveLabelStyle callSettingsFontFamily controlBackground primaryContentText" [class.callsettingHide]="isMNGSDOptionsFocused && !mngsDesktopMenuShow">{{geninputValue}}</div>
                             <img class="cswDropdownArrow" [class.callsettingHide]="isMNGSDOptionsFocused && !mngsDesktopMenuShow">
                     </span>
 
                     <desktop-select focusableInTouchMode="false" *ngIf="mngsDesktopMenuShow" [selectOptionsList]="mngsDOList" [inputContainer]="mngsSelectedOptionsTextContinerId"
-                        (onChange)="onMNGSDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNGSDOptionsHide($event)">
+                        (onChange)="onMNGSDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNGSDOptionsHide($event)" (keyup.esc)="onMNGSDOptionsHide()">
                     </desktop-select>
                 </span>
             </p>                  
@@ -133,10 +133,10 @@
 
 
         <md-list-item *ngIf="isMobileNumberExpanded">
-            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"  *ngIf="devicesToRingCheckboxMIValidation"><label class="restrictiveSmallLabelStyle errorTextColor">{{devicesToRingCheckboxMIValidation}}</label></p>
- <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><md-checkbox [checked]="isRingFixedDevicesMobileIdentityChecked"  [disableRipple]=true  (change)="ringFixedDevicesUnderMobileIdentityActive()">
+            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"  *ngIf="devicesToRingCheckboxMIValidation"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{devicesToRingCheckboxMIValidation}}</label></p>
+ <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><md-checkbox [checked]="isRingFixedDevicesMobileIdentityChecked"  [disableRipple]=true  (change)="ringFixedDevicesUnderMobileIdentityActive()" (keyup.enter)="ringFixedDevicesUnderMobileIdentityActive()" tabindex="0">
      {{customizedTextJson.broadworks_mobility.ring_fixed_devices}}</md-checkbox></p>
-<p md-line class="secondLevelSettingLeftPadding" *ngIf="ringFixedDevMISrvErr"><label class="restrictiveSmallLabelStyle errorTextColor">
+<p md-line class="secondLevelSettingLeftPadding" *ngIf="ringFixedDevMISrvErr"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
     {{ringFixedDevMISrvErr}}</label></p>
 
        <p md-line style="font-size:14px ;padding:0px 0px 16px 12px;"> 
@@ -145,28 +145,28 @@
                 <select *ngIf="!isDesktop" id="mnrfdSelectDropdown" class="cswFullWidth cswSelectDropdown restrictiveLabelStyle callSettingsFontFamily" size="{{cOptions.length < 4 ? cOptions.length : 4}}"
                     (change)="onUpdateOptionsInsideMobileNumber($event);" [class.cswInputContainerFocus]="isMNRFDOptionsFocused" (focus)="showCurrentOptionsDropdownUnderMobileIdentity();" (blur)="onMNRFDOptionsBlur()" multiple>
                     <option *ngFor="let opt of cOptions" [value]="opt" class="restrictiveLabelStyle"
-                      [selected]="allSelectedSettingsMobileNumber && allSelectedSettingsMobileNumber.lastIndexOf(opt)>-1">{{opt}}</option>
+                      [selected]="allSelectedSettingsMobileNumber && allSelectedSettingsMobileNumber.lastIndexOf(opt)>-1" tabindex="0">{{opt}}</option>
                 </select>
 
                 
                 <span id="{{mnrfdSelectedOptionsTextContainerId}}"  *ngIf="isDesktop" (click)="showCurrentOptionsDropdownUnderMobileIdentity();" class="cswInputContainer"
-                  [class.cswDesktopInputContainerFocus]="mnrfdDesktopMenuShow" [class.cswInputContainerFocus]="isMNRFDOptionsFocused"> 
+                  (keyup.enter)="showCurrentOptionsDropdownUnderMobileIdentity();" [class.cswDesktopInputContainerFocus]="mnrfdDesktopMenuShow" [class.cswInputContainerFocus]="isMNRFDOptionsFocused" tabindex="0"> 
                     <div type="text" id="csSelectedOptionsText" maxlength="10" 
                         class="cswDropdownInput cswTextellipsis restrictiveLabelStyle callSettingsFontFamily controlBackground primaryContentText" [class.callsettingHide]="isMNRFDOptionsFocused && !mnrfdDesktopMenuShow">{{selectedSettingsMobileNumber}}</div>
                         <img class="cswDropdownArrow" [class.callsettingHide]="isMNRFDOptionsFocused && !mnrfdDesktopMenuShow">
                 </span>
 
                 <desktop-select focusableInTouchMode="false" *ngIf="mnrfdDesktopMenuShow" [selectOptionsList]="mnrfdDOList" [inputContainer]="mnrfdSelectedOptionsTextContainerId"
-                    (onChange)="onMNRFDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNRFDOptionsHide($event)">
+                    (onChange)="onMNRFDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNRFDOptionsHide($event)" (keyup.esc)="onMNRFDOptionsHide()">
                 </desktop-select>
                 </span>
             </p>
 
         </md-list-item>
          <md-list-item *ngIf="isMobileNumberExpanded">
-            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><md-checkbox [checked]="isRingMobileDevicesUnderMobileIdentityChecked"  [disableRipple]=true (change)="ringMobileDevicesUnderMobileIdentityActive()">
+            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><md-checkbox [checked]="isRingMobileDevicesUnderMobileIdentityChecked"  [disableRipple]=true (change)="ringMobileDevicesUnderMobileIdentityActive()" (keyup.enter)="ringMobileDevicesUnderMobileIdentityActive()" tabindex="0">
                 {{customizedTextJson.broadworks_mobility.ring_mobile_devices}}</md-checkbox></p>
-            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding" *ngIf="ringMobDevMISrvErr"><label class="restrictiveSmallLabelStyle errorTextColor">{{ringMobDevMISrvErr}}</label></p>
+            <p md-line class="secondLevelSettingLeftPadding hintBottomPadding" *ngIf="ringMobDevMISrvErr"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{ringMobDevMISrvErr}}</label></p>
 
             <p md-line style="font-size:14px ;padding:0px 0px 24px 12px;">
                 <span>
@@ -174,18 +174,18 @@
                 <select *ngIf="!isDesktop" id="mnrmdSelectDropdown" class="cswFullWidth cswSelectDropdown restrictiveLabelStyle callSettingsFontFamily" size="{{mobileDeviceNumbers.length < 3 ? mobileDeviceNumbers.length : 3}}"
                     (change)="onUpdateRingMobileOptionsUnderMobileIdentity($event);" [class.cswInputContainerFocus]="isMNRMDOptionsFocused" (focus)="showRingMobileDropdownForMobileIdentity();" (blur)="onMNRMDDOptionsBlur()" multiple>
                     <option *ngFor="let mobileDeviceNumber of mobileDeviceNumbers" [value]="mobileDeviceNumber" class="restrictiveLabelStyle"
-                      [selected]="allSelectedMobileNumbersUnderMobileIdentity && allSelectedMobileNumbersUnderMobileIdentity.lastIndexOf(mobileDeviceNumber)>-1">{{mobileDeviceNumber}}</option>
+                      [selected]="allSelectedMobileNumbersUnderMobileIdentity && allSelectedMobileNumbersUnderMobileIdentity.lastIndexOf(mobileDeviceNumber)>-1" tabindex="0">{{mobileDeviceNumber}}</option>
                 </select>
                 
                 <span id="{{mnrmdSelectedOptionsTextContainerId}}"  *ngIf="isDesktop" (click)="showRingMobileDropdownForMobileIdentity();" class="cswInputContainer"
-                  [class.cswDesktopInputContainerFocus]="mnrmdDesktopMenuShow" [class.cswInputContainerFocus]="isMNRMDOptionsFocused"> 
+                  (keyup.enter)="showRingMobileDropdownForMobileIdentity();" [class.cswDesktopInputContainerFocus]="mnrmdDesktopMenuShow" [class.cswInputContainerFocus]="isMNRMDOptionsFocused" tabindex="0"> 
                     <div type="text" id="csSelectedOptionsText" maxlength="10" 
                         class="cswDropdownInput cswTextellipsis restrictiveLabelStyle callSettingsFontFamily controlBackground primaryContentText" [class.callsettingHide]="isMNRMDOptionsFocused && !mnrmdDesktopMenuShow">{{mobileDeviceOptinputValueUnderMobileIdentity}}</div>
                         <img class="cswDropdownArrow" [class.callsettingHide]="isMNRMDOptionsFocused && !mnrmdDesktopMenuShow">
                 </span>
 
                 <desktop-select focusableInTouchMode="false" *ngIf="mnrmdDesktopMenuShow" [selectOptionsList]="mnrmdDOList" [inputContainer]="mnrmdSelectedOptionsTextContainerId"
-                    (onChange)="onMNRMDDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNRMDDOptionsHide($event)">
+                    (onChange)="onMNRMDDOptionsChange($event);" (onDesktopSelectMenuHide)="onMNRMDDOptionsHide($event)" (keyup.esc)="onMNRMDDOptionsHide()">
                 </desktop-select>
             </span>
             </p>

@@ -8,7 +8,7 @@ export class XSIMasterServicesList {
 
     private masterServicesList;
 
-    constructor(){}
+    constructor() {}
 
     setXSIMasterServicesList(masterServicesList) {
         this.masterServicesList = masterServicesList;

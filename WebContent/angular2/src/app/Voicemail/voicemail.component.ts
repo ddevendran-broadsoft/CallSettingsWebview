@@ -418,7 +418,15 @@ export class voicemailComponent implements AfterViewInit {
   }
 
   //Invoked when Email Notification toggle is switched ON/OFF
-  emailNotificationChecked() {
+  emailNotificationChecked(event) {
+
+    if(event.key) {
+      if(event.key === 'Enter') {
+        this.isEmailNotificationChecked = !this.isEmailNotificationChecked;
+      }
+    } else {
+      this.isEmailNotificationChecked = event.checked;
+    }
 
     if ((this.notifyEmailAddress && !this.emailNotificationError) || (!this.isEmailNotificationChecked && this.notifyEmailAddress )) {
       this.isVMServiceUpdateInprgress = true;
@@ -431,6 +439,7 @@ export class voicemailComponent implements AfterViewInit {
     } else if (!this.notifyEmailAddress){
       this.emailNotificationError = this.customizedTextJson.voice_management.email_address_required;
     }
+
   }
 
   //Invoked when email address for Email Notification is provided
@@ -459,7 +468,15 @@ export class voicemailComponent implements AfterViewInit {
   }
 
   //Invoked when Email Carbon Copy toggle is switched ON/OFF
-  emailCarbonCopyChecked() {
+  emailCarbonCopyChecked(event) {
+
+    if(event.key) {
+      if(event.key === 'Enter') {
+        this.isEmailCarbonCopyChecked = !(this.isEmailCarbonCopyChecked);
+      }
+    } else {
+      this.isEmailCarbonCopyChecked = event.checked;
+    }
 
     if ((this.carbonCopyEmailAddress && !this.emailCarbonCopyError) || (!this.isEmailCarbonCopyChecked && this.carbonCopyEmailAddress)) {
       this.voicemailServiceInput.setSendCarbonCopyVoiceMessage(this.isEmailCarbonCopyChecked);
@@ -502,7 +519,15 @@ export class voicemailComponent implements AfterViewInit {
   }
 
   //Invoked when Press 0 to transfer toggle is switched ON/OFF
-  transferNumberChecked() {
+  transferNumberChecked(event) {
+
+    if(event.key) {
+      if(event.key === 'Enter') {
+        this.isTransferChecked = !(this.isTransferChecked);
+      }
+    } else {
+      this.isTransferChecked = event.checked;
+    }
 
     if ((this.transferPhoneNumber && !this.transferNumberError) || (!this.isTransferChecked && this.transferPhoneNumber)) {
       this.isVMServiceUpdateInprgress = true;
@@ -517,6 +542,7 @@ export class voicemailComponent implements AfterViewInit {
     } else if (!this.transferPhoneNumber) {
       this.transferNumberError = this.customizedTextJson.voice_management.phone_number_required;
     }
+
   }
 
   //Invoked when phone number for Press 0 to transfer is provided
@@ -618,11 +644,13 @@ export class voicemailComponent implements AfterViewInit {
 
   //Invoked when checkbox corresponding to Message Waiting Indicator is checked/unchecked
   unifiedMessagingIndicatorChecked() {
-    if (this.voicemailService.fetchMessageWaitingIndicator()) {
+    if (this.isMessageWaitingIndicatorChecked) {
       this.isMessageWaitingIndicatorChecked = false;
     } else {
       this.isMessageWaitingIndicatorChecked = true;
     }
+
+    this.voicemailServiceInput.setUnifiedMessagingChecked(this.isMessageWaitingIndicatorChecked);
 
     this.processingType = "Unified Voice and Email Messaging";
     this.isVMServiceUpdateInprgress = true;

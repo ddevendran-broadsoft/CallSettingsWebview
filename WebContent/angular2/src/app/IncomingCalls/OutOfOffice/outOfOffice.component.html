@@ -1,0 +1,74 @@
+
+<p md-line class="secondLevelSettingLeftPadding" *ngIf="pAFetchErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+        {{pAFetchErrMsg}}</label></p>
+<md-list class="primaryContentText" *ngIf="!pAFetchErrMsg">
+    <md-list-item class="descriptionTextAlign">
+        <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.out_of_office.text}}</p>
+    </md-list-item>
+    <md-list-item class="nestedListItemBottomPadding">
+        <p md-line class="restrictiveSmallLabelStyle hintBottomPadding" tabindex="0"> {{customizedTextJson.out_of_office.availability}}</p>
+
+        <p md-line> <select class="restrictiveLabelStyle" (blur)="blurTransfer();" [(ngModel)]="presence" (change)="onSelectAvailability($event);"
+                (focus)="setTransferFocus();" [class.cswInputContainerFocus]="isTransferFocused" tabindex="0">
+                        <option *ngFor="let available of availability ">
+                            {{available}}
+                        </option>
+                    </select></p>
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="presenceUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+                    {{presenceUpdateErrMsg}}</label></p>
+    </md-list-item>
+
+    <md-list-item class="outOfOfficeListItem">
+            <p md-line *ngIf="selectedExpiryOption" class="restrictiveSmallLabelStyle" tabindex="0">
+                    {{customizedTextJson.out_of_office.until}} - {{selectedExpiryOption}}
+                </p>
+                <p md-line *ngIf="!selectedExpiryOption" class="restrictiveSmallLabelStyle" tabindex="0">
+                    {{customizedTextJson.out_of_office.until}}
+                </p>
+                <md-spinner class="callsettingSpinner" [class.callsettingHide]="isUntilFetched"></md-spinner>
+                <p> <md-slide-toggle id="untilSlideToggle" [disabled]="isUntilToggleDisabled" (change)="toggleUntil()" [checked]="isUntilChecked" (keyup.enter)="toggleUntil()" tabindex="0"></md-slide-toggle></p>
+    </md-list-item>
+
+    <md-list-item class="nestedListItemBottomPadding" *ngIf="isUntilChecked">
+        <p md-line>
+            <md-input-container floatPlaceholder="never"  class="restrictiveLabelStyle outOfOfficeInputUnderline placeholderText"
+                [class.inputInvokedColor]="isDateTimeSelectorFocused">
+                <input mdInput placeholder="" type="datetime-local" [(ngModel)]="currentDateTime" (blur)="selectExpirationTimeOption($event);"
+                    (focus)="focusDateTimeSelector()" (keyup.enter)="selectExpirationTimeOption($event);" tabindex="0">
+            </md-input-container>
+        </p>
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="expiryTimeUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+                    {{expiryTimeUpdateErrMsg}}</label></p>
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="untilUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+            {{untilUpdateErrMsg}}</label></p>
+    </md-list-item>
+
+    <md-list-item class="outOfOfficeListItem">
+            <p md-line class="restrictiveSmallLabelStyle callSettingsFontFamily" tabindex="0">{{customizedTextJson.out_of_office.transfer}}</p>
+            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isEnableTransferFetched"></md-spinner>
+            <p><md-slide-toggle (change)="toggleEnableTransfer()" [checked]="isTransferEnabled" (keyup.enter)="toggleEnableTransfer()" tabindex="0"></md-slide-toggle></p>
+    </md-list-item>
+
+    <md-list-item *ngIf="isTransferEnabled">   
+        <p md-line>
+            <md-input-container floatPlaceholder="never"  class="restrictiveLabelStyle outOfOfficeInputUnderline placeholderText"
+                [class.inputInvokedColor]="isPhoneNumFocused" [class.callsettingErrorInput]="transferNoUpdateErrMsg">
+                <input mdInput placeholder={{this.customizedTextJson.set_number}} (keyup)="focusNewNumberInp($event)" (blur)="getUserInpTranferNo($event);"
+                    (keyup.enter)="getUserInpTranferNo($event);" [(ngModel)]="transferNo" (change)="stopRedundantBlurCall()"
+                    tabindex="0">
+            </md-input-container>
+        </p>
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="transferNoUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+                    {{transferNoUpdateErrMsg}}</label></p>
+        
+
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="transferEnableErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+            {{transferEnableErrMsg}}</label></p>
+    </md-list-item>
+    <md-list-item class="nestedListItemBottomPadding selectListItemComponent">
+        <md-checkbox [disableRipple]=true (keyup.enter)="ringSplashActive()" (change)="ringSplashActive()" [checked]="isRingSplashChecked"
+            tabindex="0">{{customizedTextJson.out_of_office.ring_splash}}</md-checkbox>
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="ringSplashUpdErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+                    {{ringSplashUpdErrMsg}}</label></p>
+    </md-list-item>
+</md-list>

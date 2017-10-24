@@ -3,16 +3,16 @@
 <md-card>
 <md-list *ngIf="voicemailVisible" [class.callsettingDisable]="vmServiceRetrievingError">
     <md-list-item class="itemHeight44">
-        <p md-line class="restrictiveButtonStyle" [class.errorTextColor]="vmServiceRetrievingError || vmServiceUpdateError">{{customizedTextJson.voice_management.name}}</p>
+        <p md-line class="restrictiveButtonStyle" [class.errorTextColor]="vmServiceRetrievingError || vmServiceUpdateError" tabindex="0">{{customizedTextJson.voice_management.name}}</p>
         <md-spinner class="callsettingSpinner" [class.callsettingHide]="isVoicemailServiceFetched && !isVMServiceUpdateInprgress"></md-spinner>
-        <md-slide-toggle [checked]="isVoicemailServiceChecked" (change)="voicemailServiceActive()">
+        <md-slide-toggle [checked]="isVoicemailServiceChecked" (change)="voicemailServiceActive()" (keyup.enter)="voicemailServiceActive()" tabindex="0">
         </md-slide-toggle>
     </md-list-item>
     <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="vmServiceRetrievingError">
-        <label class="restrictiveSmallLabelStyle errorTextColor">{{vmServiceRetrievingError}}</label>
+        <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{vmServiceRetrievingError}}</label>
     </p>
     <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="vmServiceUpdateError">
-        <label class="restrictiveSmallLabelStyle errorTextColor">{{vmServiceUpdateError}}</label>
+        <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{vmServiceUpdateError}}</label>
     </p>
 </md-list>
 </md-card>
@@ -23,7 +23,7 @@
         <md-card (click)="sendCallstoVoicemailChecked()">
             <md-list class="controlBackground primaryContentText">
                 <md-list-item class="itemHeight44">
-                    <label class="restrictiveLabelStyle" [class.errorTextColor]="vmRingSelectedRetrievingError">{{customizedTextJson.voice_management.send_calls_to_voice_mail}}</label>
+                    <label class="restrictiveLabelStyle" [class.errorTextColor]="vmRingSelectedRetrievingError" (keyup.enter)="sendCallstoVoicemailChecked()" tabindex="0">{{customizedTextJson.voice_management.send_calls_to_voice_mail}}</label>
                     <div *ngIf="issendCallstoVoicemailChecked == true" class="settingCollapseIcon">
                     </div>
                     <div *ngIf="issendCallstoVoicemailChecked == false" class="settingExpandIcon">
@@ -31,13 +31,13 @@
                 </md-list-item>
             </md-list>
             <p md-line class="callsettingPanelHeaderServerErrorMsg controlBackground" *ngIf="vmRingSelectedRetrievingError">
-                <label class="restrictiveSmallLabelStyle errorTextColor">{{vmRingSelectedRetrievingError}}</label>
+                <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{vmRingSelectedRetrievingError}}</label>
             </p>
         </md-card>
         <md-card *ngIf="issendCallstoVoicemailChecked">
             <md-list class="controlBackground primaryContentText">
                 <md-list-item class="nestedListItemBottomPadding">
-                    <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="restrictiveSmallLabelStyle">{{customizedTextJson.voice_management.settings}}</label></p>
+                    <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="restrictiveSmallLabelStyle" tabindex="0">{{customizedTextJson.voice_management.settings}}</label></p>
 
                     <p md-line class="secondLevelSettingLeftPadding">
                         <span> 
@@ -46,14 +46,15 @@
                                 <option *ngFor="let opt of callSettingsOptionsList" [value]="opt.name" [selected]="sendCallsSelectedOptions.lastIndexOf(opt.name)>-1" class="restrictiveLabelStyle">{{opt.getName()}}</option>
                             </select>
 
-                            <span id="{{csSelectedOptionsTextContinerId}}"  *ngIf="isDesktop" (click)="showSendCallsCurrentOptionsDropdown($event);" class="cswInputContainer" [class.cswDesktopInputContainerFocus]="cswDesktopMenuShow" [class.cswInputContainerFocus]="isCallsettingsFocused"> 
+                            <span id="{{csSelectedOptionsTextContinerId}}"  *ngIf="isDesktop" (click)="showSendCallsCurrentOptionsDropdown($event);" class="cswInputContainer" [class.cswDesktopInputContainerFocus]="cswDesktopMenuShow" 
+                                (keyup.enter)="showSendCallsCurrentOptionsDropdown($event);" [class.cswInputContainerFocus]="isCallsettingsFocused" tabindex="0"> 
                                 <div type="text" id="csSelectedOptionsText" maxlength="10" 
                                     class="cswDropdownInput cswTextellipsis restrictiveLabelStyle" [class.callsettingHide]="isCallsettingsFocused && !cswDesktopMenuShow">{{inputValue}}</div>
                                     <img id="dpIcon" class="cswDropdownArrow" [class.callsettingHide]="isCallsettingsFocused && !cswDesktopMenuShow">
                             </span>
 
                             <desktop-select focusableInTouchMode="false" *ngIf="cswDesktopMenuShow" [selectOptionsList]="callSettingsOptionsList" [inputContainer]="csSelectedOptionsTextContinerId"
-                                (onChange)="onCallSettingsOptionsChange($event);" (onDesktopSelectMenuHide)="onDesktopSelectMenuHide($event)">
+                                (onChange)="onCallSettingsOptionsChange($event);" (onDesktopSelectMenuHide)="onDesktopSelectMenuHide($event)" (keyup.esc)="onDesktopSelectMenuHide();">
                             </desktop-select>
                         </span>
                     </p>
@@ -61,14 +62,14 @@
 
 
 
-                <md-list-item class="nestedListItemBottomPadding "> <label class="restrictiveLabelStyle secondLevelSettingLeftPadding numberOfRingsAlign">{{customizedTextJson.voice_management.number_of_rings}}</label>
-                    <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily" (change)="setNumberOfRings($event)" [(ngModel)]="voicemailRingSelected">
-            <option *ngFor="let voicemailRing of voicemailRings" class="restrictiveLabelStyle primaryContentText" >
+                <md-list-item class="nestedListItemBottomPadding "> <label class="restrictiveLabelStyle secondLevelSettingLeftPadding numberOfRingsAlign" tabindex="0">{{customizedTextJson.voice_management.number_of_rings}}</label>
+                    <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily" (change)="setNumberOfRings($event)" [(ngModel)]="voicemailRingSelected" tabindex="0">
+            <option *ngFor="let voicemailRing of voicemailRings" class="restrictiveLabelStyle primaryContentText" tabindex="0" >
                      {{voicemailRing}}
             </option>
         </select>
                 </md-list-item>
-                 <md-list-item *ngIf="sendCallsUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding">{{sendCallsUpdateError}}</label></md-list-item>
+                 <md-list-item *ngIf="sendCallsUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding" tabindex="0">{{sendCallsUpdateError}}</label></md-list-item>
             </md-list>
         </md-card>
     </md-card>
@@ -78,7 +79,7 @@
         <md-card (click)="whenMessageArrivesChecked()">
             <md-list class="controlBackground primaryContentText">
                 <md-list-item class="itemHeight44">
-                    <label class="restrictiveLabelStyle">{{customizedTextJson.voice_management.when_message_arrives}}</label>
+                    <label class="restrictiveLabelStyle" (keyup.enter)="whenMessageArrivesChecked()" tabindex="0">{{customizedTextJson.voice_management.when_message_arrives}}</label>
                     <div *ngIf="iswhenMessageArrivesChecked == true" class="settingCollapseIcon">
                     </div>
                     <div *ngIf="iswhenMessageArrivesChecked == false" class="settingExpandIcon">
@@ -89,18 +90,18 @@
         <md-card *ngIf="iswhenMessageArrivesChecked">
             <md-list class="controlBackground primaryContentText">
                 <md-list-item class="unifiedMessagingAlign">
-                    <p md-line class="restrictiveLabelStyle secondLevelSettingLeftPadding">{{customizedTextJson.voice_management.use_unified_messaging}}</p>
-                    <md-slide-toggle [checked]="isunifiedMessagingChecked" (change)="isUnifiedMessagingEnabled()"> </md-slide-toggle>
+                    <p md-line class="restrictiveLabelStyle secondLevelSettingLeftPadding" tabindex="0">{{customizedTextJson.voice_management.use_unified_messaging}}</p>
+                    <md-slide-toggle [checked]="isunifiedMessagingChecked" (change)="isUnifiedMessagingEnabled()" (keyup.enter)="isUnifiedMessagingEnabled()" tabindex="0"> </md-slide-toggle>
                 </md-list-item>
                 <md-list-item *ngIf="isunifiedMessagingChecked" class="messageIndicatorAlign">
                     <p md-line class="thirdLevelSettingLeftPadding">
-                        <md-checkbox [checked]="isMessageWaitingIndicatorChecked" [disableRipple]=true class="restrictiveLabelStyle" (change)="unifiedMessagingIndicatorChecked()">{{customizedTextJson.voice_management.message_waiting_indicator}}</md-checkbox>
+                        <md-checkbox [checked]="isMessageWaitingIndicatorChecked" [disableRipple]=true class="restrictiveLabelStyle" (change)="unifiedMessagingIndicatorChecked()" (keyup.enter)="unifiedMessagingIndicatorChecked()" tabindex="0">{{customizedTextJson.voice_management.message_waiting_indicator}}</md-checkbox>
                         <p>
                 </md-list-item>
                 <md-list-item *ngIf="isforwardToEmailChecked" class="cswMessageArrivesAlign"></md-list-item>
                 <md-list-item>
-                    <p md-line class="restrictiveLabelStyle secondLevelSettingLeftPadding">{{customizedTextJson.voice_management.forward_to_email_address}}</p>
-                    <md-slide-toggle class="forwardToEmailAddressBottomPadding" [checked]="isforwardToEmailChecked" (change)="isForwardToEmailEnabled()">
+                    <p md-line class="restrictiveLabelStyle secondLevelSettingLeftPadding" tabindex="0">{{customizedTextJson.voice_management.forward_to_email_address}}</p>
+                    <md-slide-toggle class="forwardToEmailAddressBottomPadding" [checked]="isforwardToEmailChecked" (change)="isForwardToEmailEnabled()" (keyup.enter)="isForwardToEmailEnabled()" tabindex="0">
                     </md-slide-toggle>
                 </md-list-item>
                 <md-list-item *ngIf="isforwardToEmailChecked">
@@ -109,14 +110,14 @@
                             [class.inputInvokedColor]="isForwardToEmailFocused">
                             <input mdInput value="deliveryEmailAddress" class="callsettingMarginNone" placeholder={{customizedTextJson.voice_management.set_email_address}} [(ngModel)]="deliveryEmailAddress"
                                 [style.width.px]="ForwardToEmailInputWidth" (blur)="forwardToEmailAddress($event)" (input)="updateForwardToEmailInputWidth()"
-                                (keyup)="forwardToEmailKeyup()" (keyup.enter)="forwardToEmailAddress($event)">
+                                (keyup)="forwardToEmailKeyup()" (keyup.enter)="forwardToEmailAddress($event)" tabindex="0">
                         </md-input-container>
                         <p>
-                            <p md-line class="thirdLevelSettingLeftPadding" *ngIf="!deliveryEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor">{{customizedTextJson.voice_management.email_address_required}} </label></p>
-                            <p md-line class="thirdLevelSettingLeftPadding" *ngIf="deliveryEmailAddress &&  forwardToEmailError"><label class="restrictiveSmallLabelStyle errorTextColor">{{forwardToEmailError}} </label></p>
+                            <p md-line class="thirdLevelSettingLeftPadding" *ngIf="!deliveryEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{customizedTextJson.voice_management.email_address_required}} </label></p>
+                            <p md-line class="thirdLevelSettingLeftPadding" *ngIf="deliveryEmailAddress &&  forwardToEmailError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{forwardToEmailError}} </label></p>
                 </md-list-item>
                 <md-list-item class="cswMessageArrivesAlign"></md-list-item>
-                 <md-list-item *ngIf="forwardToEmailUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor thirdLevelSettingLeftPadding">{{forwardToEmailUpdateError}}</label></md-list-item>
+                 <md-list-item *ngIf="forwardToEmailUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor thirdLevelSettingLeftPadding" tabindex="0">{{forwardToEmailUpdateError}}</label></md-list-item>
             </md-list>
         </md-card>
     </md-card>
@@ -125,8 +126,8 @@
 
     <md-list class="primaryContentText controlBackground">
         <md-list-item class="itemHeight44 settingBorder">
-            <p md-line class="restrictiveLabelStyle">{{customizedTextJson.voice_management.email_notification}}</p>
-            <md-slide-toggle [(ngModel)]="isEmailNotificationChecked" [checked]="isEmailNotificationChecked" (change)="emailNotificationChecked()">
+            <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.voice_management.email_notification}}</p>
+            <md-slide-toggle [checked]="isEmailNotificationChecked" (change)="emailNotificationChecked($event)" (keyup.enter)="emailNotificationChecked($event)" tabindex="0">
             </md-slide-toggle>
         </md-list-item>
         <md-list-item *ngIf="isEmailNotificationChecked" class="nestedListItemBottomPadding">
@@ -135,16 +136,16 @@
                     [class.inputInvokedColor]="isEmailNotificationFocused">
                     <input mdInput placeholder={{customizedTextJson.voice_management.set_email_address}} id="sendByEmailId" value="notifyEmailAddress"
                         [style.width.px]="EmailNotificationInputWidth" class="callsettingMarginNone" [(ngModel)]="notifyEmailAddress" (blur)="emailNotificationInput($event)"
-                        (input)="updateEmailNotificationInputWidth()" (keyup)="emailNotificationKeyup()" (keyup.enter)="emailNotificationInput($event)">
+                        (input)="updateEmailNotificationInputWidth()" (keyup)="emailNotificationKeyup()" (keyup.enter)="emailNotificationInput($event)" tabindex="0">
                 </md-input-container>
             </p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!notifyEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor">{{customizedTextJson.voice_management.email_address_required}} </label></p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="notifyEmailAddress &&  emailNotificationError"><label class="restrictiveSmallLabelStyle errorTextColor">{{emailNotificationError}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!notifyEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{customizedTextJson.voice_management.email_address_required}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="notifyEmailAddress &&  emailNotificationError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{emailNotificationError}} </label></p>
         </md-list-item>
-        <md-list-item *ngIf="emailNotificationUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding">{{emailNotificationUpdateError}}</label></md-list-item>
+        <md-list-item *ngIf="emailNotificationUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding" tabindex="0">{{emailNotificationUpdateError}}</label></md-list-item>
         <md-list-item class="itemHeight44 settingBorder">
-            <p md-line class="restrictiveLabelStyle">{{customizedTextJson.voice_management.email_carbon_copy}}</p>
-            <md-slide-toggle [(ngModel)]="isEmailCarbonCopyChecked" (change)="emailCarbonCopyChecked()"> </md-slide-toggle>
+            <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.voice_management.email_carbon_copy}}</p>
+            <md-slide-toggle [checked]="isEmailCarbonCopyChecked" (change)="emailCarbonCopyChecked($event)" (keyup.enter)="emailCarbonCopyChecked($event)" tabindex="0"> </md-slide-toggle>
         </md-list-item>
         <md-list-item class="nestedListItemBottomPadding" *ngIf="isEmailCarbonCopyChecked">
             <p md-line class="secondLevelSettingLeftPadding">
@@ -153,16 +154,16 @@
                     <input mdInput placeholder={{customizedTextJson.voice_management.set_email_address}} id="emailCarbonCopyEmailId" value="carbonCopyEmailAddress"
                         [style.width.px]="EmailCarbonCopyInputWidth" class="callsettingMarginNone" [(ngModel)]="carbonCopyEmailAddress"
                         (blur)="emailCarbonCopyInput($event)" (input)="updateEmailCarbonCopyInputWidth()" (keyup)="emailCarbonCopyKeyup()"
-                        (keyup.enter)="emailCarbonCopyInput($event)">
+                        (keyup.enter)="emailCarbonCopyInput($event)" tabindex="0">
                 </md-input-container>
             </p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!carbonCopyEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor">{{customizedTextJson.voice_management.email_address_required}} </label></p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="carbonCopyEmailAddress &&  emailCarbonCopyError"><label class="restrictiveSmallLabelStyle errorTextColor">{{emailCarbonCopyError}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!carbonCopyEmailAddress "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{customizedTextJson.voice_management.email_address_required}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="carbonCopyEmailAddress &&  emailCarbonCopyError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{emailCarbonCopyError}} </label></p>
         </md-list-item>
          <md-list-item *ngIf="emailCarbonCopyUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding">{{emailCarbonCopyUpdateError}}</label></md-list-item>
         <md-list-item class="itemHeight44 settingBorder">
-            <p md-line class="restrictiveLabelStyle">{{customizedTextJson.voice_management.press_0_to_transfer}}</p>
-            <md-slide-toggle [(ngModel)]="isTransferChecked" (change)="transferNumberChecked()"> </md-slide-toggle>
+            <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.voice_management.press_0_to_transfer}}</p>
+            <md-slide-toggle [checked]="isTransferChecked" (change)="transferNumberChecked($event)" (keyup.enter)="transferNumberChecked($event)" tabindex="0"> </md-slide-toggle>
         </md-list-item>
         <md-list-item class="nestedListItemBottomPadding" *ngIf="isTransferChecked">
             <p md-line class="secondLevelSettingLeftPadding">
@@ -170,12 +171,12 @@
                     [class.inputInvokedColor]="isTransferNumberFocused">
                     <input mdInput placeholder={{customizedTextJson.set_number}} id="transferEmailId" value="transferPhoneNumber" attr.maxlength="{{phoneNumberMaxLength}}" class="callsettingMarginNone" [(ngModel)]="transferPhoneNumber"
                         (input)="onPasteEvent($event)" (blur)="transferPhoneNumberInput($event)" (keyup)="onPhoneNumberChange($event);"
-                        (keydown)="onPhonenumberKeydown($event);" (keyup.enter)="transferPhoneNumberInput($event)">
+                        (keydown)="onPhonenumberKeydown($event);" (keyup.enter)="transferPhoneNumberInput($event)" tabindex="0">
                 </md-input-container>
             </p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!transferPhoneNumber "><label class="restrictiveSmallLabelStyle errorTextColor">{{customizedTextJson.voice_management.phone_number_required}} </label></p>
-            <p md-line class="secondLevelSettingLeftPadding" *ngIf="transferPhoneNumber &&  transferNumberError"><label class="restrictiveSmallLabelStyle errorTextColor">{{transferNumberError}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="!transferPhoneNumber "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{customizedTextJson.voice_management.phone_number_required}} </label></p>
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="transferPhoneNumber &&  transferNumberError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{transferNumberError}} </label></p>
         </md-list-item>
-        <md-list-item *ngIf="transferNumberUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding">{{transferNumberUpdateError}}</label></md-list-item>
+        <md-list-item *ngIf="transferNumberUpdateError" class="messageIndicatorAlign"><label class="restrictiveSmallLabelStyle errorTextColor secondLevelSettingLeftPadding" tabindex="0">{{transferNumberUpdateError}}</label></md-list-item>
     </md-list>
 </div>

@@ -1,12 +1,13 @@
 /* Copyright © 2017 BroadSoft Inc. */
 
 import { Component } from '@angular/core';
-import { BroadWorksMobilityService } from 'app/CallControl/BroadWorksMobility/broadWorksMobilityService.service';
+import { BroadWorksMobilityService } from 'app/CallControl/BroadWorksMobility/broadWorksMobility.service';
 import { ServiceRouteProvider } from 'app/AppCommon/serviceRouteProvider.service';
 import { CallControlService } from 'app/CallControl/callControlService.service';
 import { CallControlServiceInput } from 'app/CallControl/callControlServiceInput.service';
 import { DesktopSelectOption } from 'app/common/desktopSelectDropdown.component';
 import { Util } from 'app/AppCommon/util';
+import { XSIServices } from 'app/AppCommon/xsiServiceList.service';
 
 @Component({
   selector: 'broadworksMobility',
@@ -15,6 +16,10 @@ import { Util } from 'app/AppCommon/util';
 })
 
 export class BroadworksMobilityComponent {
+  isBroadWorksMobilityActive: boolean;
+  bwMobilityRetrievingError: string;
+  isBWMobilityfetched: boolean;
+  broadWorksMobilityVisible: any;
   ringMobDevSrvErr: string;
   ringFixedDevSrvErr: string;
   ringFixedDevMISrvErr: any;
@@ -98,7 +103,9 @@ export class BroadworksMobilityComponent {
   previousSelectedGenSetting = [];
   static isBWMobFetchingFirstTime = true;
 
-  constructor(private util: Util, private callControlServiceInput: CallControlServiceInput, private callControlService: CallControlService, private broadWorksMobilityService: BroadWorksMobilityService, private serviceRouteProvider: ServiceRouteProvider) {
+  constructor(private util: Util, private callControlServiceInput: CallControlServiceInput, private callControlService: CallControlService,
+    private broadWorksMobilityService: BroadWorksMobilityService, private serviceRouteProvider: ServiceRouteProvider,
+    private xsiServices: XSIServices) {
 
     this.populateMNGSDOList();
 
@@ -112,7 +119,7 @@ export class BroadworksMobilityComponent {
 
   /*Populates the drop down option names for Mobile Number General Settings */
   private populateMNGSDOList() {
-    
+
     this.mngsDOList.push(new DesktopSelectOption(this.customizedTextJson.broadworks_mobility.alert_agent_calls, false));
     this.mngsDOList.push(new DesktopSelectOption(this.customizedTextJson.broadworks_mobility.alert_click_to_dial_calls, false));
     this.mngsDOList.push(new DesktopSelectOption(this.customizedTextJson.broadworks_mobility.alert_group_paging_calls, false));
@@ -141,48 +148,48 @@ export class BroadworksMobilityComponent {
 
       BroadworksMobilityComponent.isBWMobFetchingFirstTime = false;
 
-    } else { /*Fetch the modified data updated by the user*/
-
-      this.fetchAllMobileDeviceNumbersLatest();
-
-      this.fetchActiveSettingsInsideBroadworksMobilityLatest();
-
-      this.fetchActiveMobileDeviceNumbersLatest();
-
-      this.fetchDevicesToRingLatest();
-
+    } else {
+      this.initializeBWMobility();
     }
     this.initializePrimaryNumber();
     this.initializeMobileIdentity();
 
   }
+  initializeBWMobility() {
 
-  fetchActiveMobileDeviceNumbersLatest() {
-    this.allSelectedMobileDeviceNumbers = this.broadWorksMobilityService.fetchAllSelectedMobileDeviceNumbers();
-    this.pnrmdDOList = this.broadWorksMobilityService.fetchPNRMDDOList();
-    this.updateRingMobileOptions(this.allSelectedMobileDeviceNumbers);
+    if (this.serviceRouteProvider.fetchBroadWorksMobilityUrl()) {
+      this.broadWorksMobilityVisible = this.xsiServices.fetchBWMobilityVisible();
+    }
+    if (this.broadWorksMobilityVisible) {
+      this.isBWMobilityfetched = false;
+      this.bwMobilityRetrievingError = '';
+      this.broadWorksMobilityService.getBWMobilityStatus(this.serviceRouteProvider.fetchBroadWorksMobilityUrl(),
+        this.postBroadWorksMobilityGet.bind(this));
+    }
   }
 
-  fetchActiveSettingsInsideBroadworksMobilityLatest() {
-    this.allSelectedSettings = this.broadWorksMobilityService.fetchAllSelectedSettingsInBWMob();
-    this.pnrfdDOList = this.broadWorksMobilityService.fetchPNRFDDOList();
-    this.updateCurrentOptions(this.allSelectedSettings);
-  }
+  postBroadWorksMobilityGet(bwMobilityParsedJson) {
 
-  fetchAllMobileDeviceNumbersLatest() {
-    this.mobileDeviceNumbers = this.broadWorksMobilityService.fetchAllMobileDeviceNumbers();
-    this.mnrmdDOList = this.broadWorksMobilityService.fetchMNRMDDOList();
-  }
+    this.isBWMobilityfetched = true;
+    if (bwMobilityParsedJson) {
+      this.isBroadWorksMobilityActive = this.broadWorksMobilityService.fetchBWMobilityStatus();
+      this.broadWorksMobilityParsedJson = this.broadWorksMobilityService.fetchBWMobilityParsedJson();
+      this.initializeAllMobileDeviceNumbers();
+      this.fetchActiveSettingsInsideBroadworksMobility();
+      this.fetchActiveMobileDeviceNumbers();
+      this.fetchDevicesToRing();
 
-  fetchDevicesToRingLatest() {
-    this.isRingFixedDevicesUnderBWMobilityChecked = this.broadWorksMobilityService.fetchIsRingFixedDevicesUnderBWMobilityChecked();
-    this.isRingMobileDevicesUnderBWMobilityChecked = this.broadWorksMobilityService.fetchIsRingMobileDevicesUnderBWMobilityChecked();
+    } else {
+      this.isBroadWorksMobilityActive = !(this.broadWorksMobilityService.fetchBWMobilityStatus());
+      this.bwMobilityRetrievingError = this.customizedTextJson.error.unabletofetch;
+    }
+    console.log('isBroadWorksMobilityActive: ', this.isBroadWorksMobilityActive);
   }
 
   initializePrimaryNumber() {
 
     this.primaryNumberRetrievingError = "";
-    this.callControlService.getPrimaryNumber(this.serviceRouteProvider.fetchProfileUrl(), this.postPrimaryNumberGet.bind(this));
+    this.primaryNumber = this.callControlService.fetchPrimaryNumber();
   }
 
   initializeAllMobileDeviceNumbers() {
@@ -242,9 +249,10 @@ export class BroadworksMobilityComponent {
   }
 
   enableAlertingActive() {
-    
+
     this.enableAlertingErrMsg = "";
     this.isPutEnableAlertingErrOccurred = false;
+    this.enableAlertingErrMsg = "";
     if (!this.isEnableAlertingChecked) {
       this.isEnableAlertingChecked = true;
     } else {
@@ -258,7 +266,7 @@ export class BroadworksMobilityComponent {
 
     if (error) {
 
-      if(error.status == 0) {
+      if (error.status == 0) {
         this.enableAlertingErrMsg = this.customizedTextJson.error.networkerror;
       } else {
         this.enableAlertingErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, error.status);
@@ -302,7 +310,7 @@ export class BroadworksMobilityComponent {
     } else {
       console.log("Cannot fetch Settings");
     }
-    if(this.isDesktop){
+    if (this.isDesktop) {
       if (this.allSelectedSettingsMobileNumber.length === 0) {
         this.selectedSettingsMobileNumber = this.customizedTextJson.none;
       } else {
@@ -333,7 +341,7 @@ export class BroadworksMobilityComponent {
 
       this.isAlertClickToDialCallsChecked = (this.broadworksMobilityMobileIdentitySettingsParsedJson.BroadWorksMobilityMobileIdentity.alertClickToDialCalls.$ == "true");
       this.broadWorksMobilityService.setIsAlertClickToDialCallsChecked(this.isAlertClickToDialCallsChecked);
-      if(this.isAlertClickToDialCallsChecked) {
+      if (this.isAlertClickToDialCallsChecked) {
         this.allSelectedGeneralSettingsOptions.push(this.customizedTextJson.broadworks_mobility.alert_click_to_dial_calls);
       }
 
@@ -366,15 +374,15 @@ export class BroadworksMobilityComponent {
       if (this.isUseMobilityCallingLineIDChecked) {
         this.allSelectedGeneralSettingsOptions.push(this.customizedTextJson.broadworks_mobility.use_mobility_calling_line_id);
       }
-      
+
     } else {
       console.error("Some Error occurred while fetching the general settings");
     }
 
-    if(this.isDesktop){
+    if (this.isDesktop) {
       if (this.allSelectedGeneralSettingsOptions.length === 0) {
         this.geninputValue = this.customizedTextJson.none;
-      
+
       } else {
         this.geninputValue = this.allSelectedGeneralSettingsOptions.join();
       }
@@ -383,7 +391,7 @@ export class BroadworksMobilityComponent {
   }
 
   private updateMNGSDOList() {
-   
+
     this.util.updateDesktopOption(this.mngsDOList, this.customizedTextJson.broadworks_mobility.alert_agent_calls, this.isAlertAgentCallsChecked);
     this.util.updateDesktopOption(this.mngsDOList, this.customizedTextJson.broadworks_mobility.alert_group_paging_calls, this.isAlertGroupPagingCallsChecked);
     this.util.updateDesktopOption(this.mngsDOList, this.customizedTextJson.broadworks_mobility.answer_confirmation, this.isAnswerConfirmationRequiredChecked);
@@ -419,8 +427,8 @@ export class BroadworksMobilityComponent {
         this.allSelectedSettings.push(this.customizedTextJson.broadworks_mobility.executive_assistant);
       }
       this.broadWorksMobilityService.setAllSelectedSettingsInBWMob(this.allSelectedSettings);
-      if(this.isDesktop){
-        if(this.allSelectedSettings.length === 0){
+      if (this.isDesktop) {
+        if (this.allSelectedSettings.length === 0) {
           this.selectedSettings = this.customizedTextJson.none;
         } else {
           this.selectedSettings = this.allSelectedSettings.join();
@@ -466,7 +474,7 @@ export class BroadworksMobilityComponent {
     this.broadWorksMobilityService.setAllSelectedMobileDeviceNumbers(this.allSelectedMobileDeviceNumbers);
     this.broadWorksMobilityService.setPNRMDDOList(this.pnrmdDOList);
 
-    if(this.isDesktop){
+    if (this.isDesktop) {
       if (this.allSelectedMobileDeviceNumbers.length === 0) {
         this.mobileDeviceOptinputValue = this.customizedTextJson.none;
       } else {
@@ -525,6 +533,7 @@ export class BroadworksMobilityComponent {
     this.isDevicesToRingPutErrOccurred = false;
     this.devicesToRingCheckboxValidation = "";
     this.ringMobDevSrvErr = "";
+    this.ringMobDevSrvErr = "";
     if (!this.isRingMobileDevicesUnderBWMobilityChecked) {
       this.isRingMobileDevicesUnderBWMobilityChecked = true;
     } else {
@@ -582,7 +591,7 @@ export class BroadworksMobilityComponent {
         this.devicesToRingCheckboxMIValidation = this.customizedTextJson.broadworks_mobility.rng_mobile_dev_validation_msg;
       } else if (err.status == 409) {
         this.devicesToRingCheckboxMIValidation = this.customizedTextJson.broadworks_mobility.devices_to_ring_checkbox_validation;
-      } else if(err.status == 0) {
+      } else if (err.status == 0) {
         this.devicesToRingCheckboxMIValidation = this.customizedTextJson.error.networkerror;
       } else {
         this.devicesToRingCheckboxMIValidation = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
@@ -601,7 +610,7 @@ export class BroadworksMobilityComponent {
         this.devicesToRingCheckboxValidation = this.customizedTextJson.broadworks_mobility.rng_mobile_dev_validation_msg;
       } else if (err.status == 409) {
         this.devicesToRingCheckboxValidation = this.customizedTextJson.broadworks_mobility.devices_to_ring_checkbox_validation;
-      } else if(err.status == 0) {
+      } else if (err.status == 0) {
         this.devicesToRingCheckboxValidation = this.customizedTextJson.error.networkerror;
       } else {
         this.devicesToRingCheckboxValidation = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
@@ -642,7 +651,7 @@ export class BroadworksMobilityComponent {
     this.updateMNRMDDOList();
     this.broadWorksMobilityService.setMNRMDDOList(this.mnrmdDOList);
 
-    if(this.isDesktop){
+    if (this.isDesktop) {
       if (this.allSelectedMobileNumbersUnderMobileIdentity.length === 0) {
         this.mobileDeviceOptinputValueUnderMobileIdentity = this.customizedTextJson.none;
       } else {
@@ -692,7 +701,7 @@ export class BroadworksMobilityComponent {
   onMNRMDDOptionsBlur() {
     this.isMNRMDOptionsFocused = false;
   }
-  
+
   onMNRMDDOptionsHide(flag: boolean) {
     this.mnrmdDesktopMenuShow = flag;
     this.onMNRMDDOptionsBlur();
@@ -717,21 +726,21 @@ export class BroadworksMobilityComponent {
         }
       }
     }
-  
+
     this.UpdateRingMobileOptionsUnderMobileIdentity(this.allSelectedMobileNumbersUnderMobileIdentity);
   }
 
   mobileDeviceOptinputValueUnderMobileIdentity: string;
 
   private UpdateRingMobileOptionsUnderMobileIdentity(allSelectedMobileNumbersUnderMobileIdentity) {
-   
-      if(this.isDesktop){
-        if (this.allSelectedMobileNumbersUnderMobileIdentity.length === 0){
-          this.mobileDeviceOptinputValueUnderMobileIdentity = this.customizedTextJson.none;
-        } else {
-          this.mobileDeviceOptinputValueUnderMobileIdentity = allSelectedMobileNumbersUnderMobileIdentity.join();
-        }
+
+    if (this.isDesktop) {
+      if (this.allSelectedMobileNumbersUnderMobileIdentity.length === 0) {
+        this.mobileDeviceOptinputValueUnderMobileIdentity = this.customizedTextJson.none;
+      } else {
+        this.mobileDeviceOptinputValueUnderMobileIdentity = allSelectedMobileNumbersUnderMobileIdentity.join();
       }
+    }
     this.sendAllSelectedMobileNumbersUnderMobileIdentity();
     this.previousSelectedMobile = this.allSelectedMobileNumbersUnderMobileIdentity;
   }
@@ -768,20 +777,20 @@ export class BroadworksMobilityComponent {
 
   private updateRingMobileOptions(allSelectedMobileDeviceNumbers) {
 
-      if(this.isDesktop){
-        if (this.allSelectedMobileDeviceNumbers.length === 0){
-          this.mobileDeviceOptinputValue = this.customizedTextJson.none;
-        } else {
-          this.mobileDeviceOptinputValue = allSelectedMobileDeviceNumbers.join();
-        }
+    if (this.isDesktop) {
+      if (this.allSelectedMobileDeviceNumbers.length === 0) {
+        this.mobileDeviceOptinputValue = this.customizedTextJson.none;
+      } else {
+        this.mobileDeviceOptinputValue = allSelectedMobileDeviceNumbers.join();
       }
+    }
     this.sendAllSelectedMobileDeviceNumbers();
 
     this.previousSelectedPrimaryMobile = this.allSelectedMobileDeviceNumbers;
   }
 
   private showRingMobileOptionsDropdown() {
-   
+
     this.isPNRMDOptionsFocused = true;
     if (this.isDesktop) {
       this.pnrmdDesktopMenuShow = true;
@@ -790,7 +799,7 @@ export class BroadworksMobilityComponent {
   }
 
   private showRingMobileDropdownForMobileIdentity() {
-    
+
     this.isMNRMDOptionsFocused = true;
     if (this.isDesktop) {
       this.mnrmdDesktopMenuShow = true;
@@ -798,7 +807,7 @@ export class BroadworksMobilityComponent {
   }
 
   private sendAllSelectedMobileNumbersUnderMobileIdentity() {
-    
+
     this.ringMobDevMISrvErr = "";
     this.devicesToRingCheckboxMIValidation = "";
     this.broadWorksMobilityService.putSelectedMobileNumbersUnderMobileIdentity(this.serviceRouteProvider.fetchBroadWorksMobilityUrl(), this.allSelectedMobileNumbersUnderMobileIdentity, this.postSelectedMobileNumbersUnderMobileIdentityPut.bind(this))
@@ -828,9 +837,9 @@ export class BroadworksMobilityComponent {
       console.log("Mobile numbers successfully updated under Mobile Identity");
       this.allSelectedMobileNumbersUnderMobileIdentity = allSelectedMobileNumbersUnderMobileIdentity;
     } else {
-     if(err.status == 0){
+      if (err.status == 0) {
         this.ringMobDevMISrvErr = this.customizedTextJson.error.networkerror;
-      } else if(err.status == 400) {
+      } else if (err.status == 400) {
         this.ringMobDevMISrvErr = this.customizedTextJson.broadworks_mobility.rng_mobile_dev_validation_msg;
       } else {
         this.ringMobDevMISrvErr = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
@@ -842,6 +851,7 @@ export class BroadworksMobilityComponent {
     this.isSelectedMobileDeviceNumbersPutErrOccurred = false;
     this.ringMobDevSrvErr = "";
     this.devicesToRingCheckboxValidation = "";
+    this.broadWorksMobilityService.putSelectedMobileDeviceNumbers(this.serviceRouteProvider.fetchBroadWorksMobilityUrl(), this.allSelectedMobileDeviceNumbers, this.postSelectedMobileDeviceNumbersPut.bind(this));
     this.broadWorksMobilityService.putSelectedMobileDeviceNumbers(this.serviceRouteProvider.fetchBroadWorksMobilityUrl(), this.allSelectedMobileDeviceNumbers, this.postSelectedMobileDeviceNumbersPut.bind(this));
 
 
@@ -855,7 +865,7 @@ export class BroadworksMobilityComponent {
       this.isSelectedMobileDeviceNumbersPutErrOccurred = true;
       if (err.status == 0) {
         this.ringMobDevSrvErr = this.customizedTextJson.error.networkerror;
-      } else if(err.status == 400)  {
+      } else if (err.status == 400) {
         this.ringMobDevSrvErr = this.customizedTextJson.broadworks_mobility.rng_mobile_dev_validation_msg;
       } else {
         this.ringMobDevSrvErr = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
@@ -866,7 +876,7 @@ export class BroadworksMobilityComponent {
 
   /* ============================ */
 
-  private onMNGSDOptionsBlur(){
+  private onMNGSDOptionsBlur() {
     this.isMNGSDOptionsFocused = false;
   }
   onMNGSDOptionsHide(flag: boolean) {
@@ -917,15 +927,15 @@ export class BroadworksMobilityComponent {
       if (result.indexOf(this.customizedTextJson.broadworks_mobility.use_mobility_calling_line_id) > -1) {
         this.allSelectedGeneralSettingsOptions.push(this.customizedTextJson.broadworks_mobility.use_mobility_calling_line_id);
       }
-      
-      if(this.isDesktop){
-        if (result.length === 0){
+
+      if (this.isDesktop) {
+        if (result.length === 0) {
           this.geninputValue = this.customizedTextJson.none;
         } else {
           this.geninputValue = result.join();
         }
       }
-      
+
       this.sendSelectedGeneralSettingsOptions();
 
 
@@ -934,7 +944,7 @@ export class BroadworksMobilityComponent {
   }
 
   private showGeneralSettingsDropdown() {
-    
+
     this.isMNGSDOptionsFocused = true;
     if (this.isDesktop) {
       this.mngsDesktopMenuShow = true;
@@ -958,12 +968,12 @@ export class BroadworksMobilityComponent {
   postSelectedGeneralSettingsOptionsPut(error) {
 
     if (error) {
-      if(error.status == 0) {
+      if (error.status == 0) {
         this.selectGenSettingsErrMsg = this.customizedTextJson.error.networkerror;
       } else {
         this.selectGenSettingsErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, error.status);
       }
-      
+
     }
     this.isAlertAgentCallsChecked = this.broadWorksMobilityService.fetchIsAlertAgentCallsChecked();
     this.isAlertClickToDialCallsChecked = this.broadWorksMobilityService.fetchIsAlertClickToDialCallsChecked();
@@ -978,7 +988,7 @@ export class BroadworksMobilityComponent {
   /* ============================ */
 
   private onPNRFDOptionsBlur() {
-    this.isPNRFDOptionsFocused=false
+    this.isPNRFDOptionsFocused = false
   }
   onPNRFDOptionsHide(flag: boolean) {
     this.pnrfdDesktopMenuShow = flag;
@@ -1002,7 +1012,7 @@ export class BroadworksMobilityComponent {
         }
       }
     }
-    
+
     this.updateCurrentOptions(this.allSelectedSettings);
   }
 
@@ -1042,13 +1052,13 @@ export class BroadworksMobilityComponent {
 
   private updateCurrentOptionsInsideMobileNumber(allSelectedSettingsMobileNumber) {
 
-      if(this.isDesktop){
-        if (this.allSelectedSettingsMobileNumber.length === 0){
-          this.selectedSettingsMobileNumber = this.customizedTextJson.none;
-        } else {
-          this.selectedSettingsMobileNumber = allSelectedSettingsMobileNumber.join();
-        }
+    if (this.isDesktop) {
+      if (this.allSelectedSettingsMobileNumber.length === 0) {
+        this.selectedSettingsMobileNumber = this.customizedTextJson.none;
+      } else {
+        this.selectedSettingsMobileNumber = allSelectedSettingsMobileNumber.join();
       }
+    }
     this.sendAllSelectedSettingsInsideMobileNumber();
     this.previousSelectedMobile = this.allSelectedSettingsMobileNumber;
 
@@ -1059,13 +1069,13 @@ export class BroadworksMobilityComponent {
 
   private updateCurrentOptions(allSelectedSettings) {
 
-      if(this.isDesktop){
-        if(this.allSelectedSettings.length === 0){
-          this.selectedSettings = this.customizedTextJson.none;
-        } else {
-          this.selectedSettings = allSelectedSettings.join();
-        }
+    if (this.isDesktop) {
+      if (this.allSelectedSettings.length === 0) {
+        this.selectedSettings = this.customizedTextJson.none;
+      } else {
+        this.selectedSettings = allSelectedSettings.join();
       }
+    }
     this.sendAllSelectedSettings();
     this.previousSelectedPrimaryFixed = this.allSelectedSettings;
   }
@@ -1088,7 +1098,7 @@ export class BroadworksMobilityComponent {
   postSelectedSettingsInsideMobileNumberPut(isSelectedSettingsMobileIdentityPutErrOccurred, err) {
 
     if (isSelectedSettingsMobileIdentityPutErrOccurred) {
-     if(err.status == 0) {
+      if (err.status == 0) {
         this.ringFixedDevMISrvErr = this.customizedTextJson.error.networkerror;
       } else {
         this.ringFixedDevMISrvErr = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
@@ -1121,7 +1131,7 @@ export class BroadworksMobilityComponent {
       this.isSelectedSettingsBWMobilityPutErrOccurred = isSelectedSettingsBWMobilityPutErrOccurred;
       if (err.status == 0) {
         this.ringFixedDevSrvErr = this.customizedTextJson.error.networkerror;
-      } else  {
+      } else {
         this.ringFixedDevSrvErr = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }
 

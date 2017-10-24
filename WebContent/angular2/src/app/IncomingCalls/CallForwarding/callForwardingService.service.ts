@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Request, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { HttpServices } from 'app/AppCommon/httpservices.service';
 import { CallForwardingServiceInput } from 'app/IncomingCalls/CallForwarding/callForwardingServiceInput.service';
@@ -12,7 +12,7 @@ import { CallForwardingServiceInput } from 'app/IncomingCalls/CallForwarding/cal
 @Injectable()
 
 export class CallForwardingService {
-    private url: string = 'http://localhost:8081/BWWebProxy/proxy';
+    private url = 'http://localhost:8081/BWWebProxy/proxy';
     private res: Response;
     private headers: Headers = new Headers();
 
@@ -23,17 +23,24 @@ export class CallForwardingService {
         this.httpservices.httpGetRequest(cfaUrl)
             .subscribe((res) => {
 
-                var cfaParsedJson = res.json();
-                this.callForwardingServiceInput.setIsCallForwardingAlwaysChecked((cfaParsedJson["CallForwardingAlways"]["active"]["$"] == "true"));
+                let cfaParsedJson = res.json();
+                this.callForwardingServiceInput.setIsCallForwardingAlwaysChecked
+                                                    ((cfaParsedJson['CallForwardingAlways']['active']['$'] === 'true'));
 
-                if (cfaParsedJson["CallForwardingAlways"]["forwardToPhoneNumber"]) {
-                    this.callForwardingServiceInput.setCallForwardingAlwaysNumber(cfaParsedJson["CallForwardingAlways"]["forwardToPhoneNumber"]["$"]);
+                if (cfaParsedJson['CallForwardingAlways']['forwardToPhoneNumber']) {
+                    this.callForwardingServiceInput.setCallForwardingAlwaysNumber
+                                                        (cfaParsedJson['CallForwardingAlways']['forwardToPhoneNumber']['$']);
+                } else {
+                    this.callForwardingServiceInput.setCallForwardingAlwaysNumber("");
                 }
                 if (this.callForwardingServiceInput.getIsCallForwardingAlwaysChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);
+                } else {
+                    this.callForwardingServiceInput.setIsCFActive(false);
                 }
 
-                this.callForwardingServiceInput.setCfaRingSplashChecked((cfaParsedJson["CallForwardingAlways"]["ringSplash"]["$"] == "true"));
+                this.callForwardingServiceInput.setCfaRingSplashChecked
+                                                    ((cfaParsedJson['CallForwardingAlways']['ringSplash']['$'] === 'true'));
                 postCFAGet(cfaParsedJson);
             }, (err) => {
                 postCFAGet(null);
@@ -43,15 +50,21 @@ export class CallForwardingService {
     getCallForwardingBusyService(cfbUrl, postCFBGet) {
         this.httpservices.httpGetRequest(cfbUrl)
             .subscribe((res) => {
-                var cfbParsedJson = res.json();
+                let cfbParsedJson = res.json();
 
-                this.callForwardingServiceInput.setIsCallForwardingBusyChecked((cfbParsedJson["CallForwardingBusy"]["active"]["$"] == "true"))
-                if (cfbParsedJson["CallForwardingBusy"]["forwardToPhoneNumber"]) {
-                    this.callForwardingServiceInput.setCallForwardingBusyNumber(cfbParsedJson["CallForwardingBusy"]["forwardToPhoneNumber"]["$"]);
+                this.callForwardingServiceInput.setIsCallForwardingBusyChecked
+                                                    ((cfbParsedJson['CallForwardingBusy']['active']['$'] === 'true'))
+                if (cfbParsedJson['CallForwardingBusy']['forwardToPhoneNumber']) {
+                    this.callForwardingServiceInput.setCallForwardingBusyNumber
+                                                      (cfbParsedJson['CallForwardingBusy']['forwardToPhoneNumber']['$']);
+                } else {
+                    this.callForwardingServiceInput.setCallForwardingBusyNumber("");
                 }
 
                 if (this.callForwardingServiceInput.getIsCallForwardingBusyChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);
+                } else {
+                    this.callForwardingServiceInput.setIsCFActive(false);
                 }
                 postCFBGet(cfbParsedJson);
             }, (err) => {
@@ -62,21 +75,28 @@ export class CallForwardingService {
     getCallForwardingNoAnswerService(cfnaUrl, postCFNAGet) {
         this.httpservices.httpGetRequest(cfnaUrl)
             .subscribe((res) => {
-                var cfnaParsedJson = res.json();
+                let cfnaParsedJson = res.json();
 
-                this.callForwardingServiceInput.setIsCallForwardingNoAnswerChecked((cfnaParsedJson["CallForwardingNoAnswer"]["active"]["$"] == "true"));
+                this.callForwardingServiceInput.setIsCallForwardingNoAnswerChecked
+                                                  ((cfnaParsedJson['CallForwardingNoAnswer']['active']['$'] === 'true'));
 
-                if (cfnaParsedJson["CallForwardingNoAnswer"]["numberOfRings"]) {
-                    this.callForwardingServiceInput.setCallForwardingNoAnswerRings(cfnaParsedJson["CallForwardingNoAnswer"]["numberOfRings"]["$"]);
+                if (cfnaParsedJson['CallForwardingNoAnswer']['numberOfRings']) {
+                    this.callForwardingServiceInput.setCallForwardingNoAnswerRings
+                                                        (cfnaParsedJson['CallForwardingNoAnswer']['numberOfRings']['$']);
                 }
 
-                if (cfnaParsedJson["CallForwardingNoAnswer"]["forwardToPhoneNumber"]) {
+                if (cfnaParsedJson['CallForwardingNoAnswer']['forwardToPhoneNumber']) {
 
-                    this.callForwardingServiceInput.setCallForwardingNoAnswerNumber(cfnaParsedJson["CallForwardingNoAnswer"]["forwardToPhoneNumber"]["$"]);
+                    this.callForwardingServiceInput.setCallForwardingNoAnswerNumber
+                                                        (cfnaParsedJson['CallForwardingNoAnswer']['forwardToPhoneNumber']['$']);
 
+                } else {
+                    this.callForwardingServiceInput.setCallForwardingNoAnswerNumber("");
                 }
                 if (this.callForwardingServiceInput.getIsCallForwardingNoAnswerChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);
+                } else {
+                    this.callForwardingServiceInput.setIsCFActive(false);
                 }
                 postCFNAGet(cfnaParsedJson);
             }, (err) => {
@@ -87,13 +107,19 @@ export class CallForwardingService {
     getCallForwardingNotReachableService(cfnrUrl, postCFNRGet) {
         this.httpservices.httpGetRequest(cfnrUrl)
             .subscribe((res) => {
-                var cfnrParsedJson = res.json();
-                this.callForwardingServiceInput.setIsCallForwardingNotReachableChecked((cfnrParsedJson["CallForwardingNotReachable"]["active"]["$"] == "true"));
-                if (cfnrParsedJson["CallForwardingNotReachable"]["forwardToPhoneNumber"]) {
-                    this.callForwardingServiceInput.setCallForwardingNotReachableNumber(cfnrParsedJson["CallForwardingNotReachable"]["forwardToPhoneNumber"]["$"]);
+                let cfnrParsedJson = res.json();
+                this.callForwardingServiceInput.setIsCallForwardingNotReachableChecked
+                                                    ((cfnrParsedJson['CallForwardingNotReachable']['active']['$'] === 'true'));
+                if (cfnrParsedJson['CallForwardingNotReachable']['forwardToPhoneNumber']) {
+                    this.callForwardingServiceInput.setCallForwardingNotReachableNumber
+                                                         (cfnrParsedJson['CallForwardingNotReachable']['forwardToPhoneNumber']['$']);
+                } else {
+                    this.callForwardingServiceInput.setCallForwardingNotReachableNumber('');
                 }
                 if (this.callForwardingServiceInput.getIsCallForwardingNotReachableChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);
+                } else {
+                    this.callForwardingServiceInput.setIsCFActive(false);
                 }
                 postCFNRGet(cfnrParsedJson);
             }, (err) => {
@@ -104,13 +130,15 @@ export class CallForwardingService {
 
     putCallForwardingAlwaysService(cfaUrl, isCallForwardingAlwaysChecked, callForwardingNumber, postPutCFA) {
 
-        var body = '<?xml version="1.0" encoding="UTF-8"?> <CallForwardingAlways xmlns="http://schema.broadsoft.com/xsi"><active>' + isCallForwardingAlwaysChecked + '</active>';
+        let body = '<?xml version="1.0" encoding="UTF-8"?>'
+          + '<CallForwardingAlways xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + isCallForwardingAlwaysChecked + '</active>';
 
         if (callForwardingNumber) {
             body += '<forwardToPhoneNumber>' + callForwardingNumber + '</forwardToPhoneNumber>';
         }
 
-        if (isCallForwardingAlwaysChecked == false && !callForwardingNumber) {
+        if (isCallForwardingAlwaysChecked === false && !callForwardingNumber) {
             body = body + '<forwardToPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
@@ -121,7 +149,8 @@ export class CallForwardingService {
                 this.callForwardingServiceInput.setIsCallForwardingAlwaysChecked(isCallForwardingAlwaysChecked);
                 this.callForwardingServiceInput.setCallForwardingAlwaysNumber(callForwardingNumber);
 
-                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive() || this.fetchCFNAActive() || this.fetchCFNRActive());
+                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive()
+                                                    || this.fetchCFNAActive() || this.fetchCFNRActive());
 
                 postPutCFA(isCallForwardingAlwaysChecked, null);
             }, (err) => {
@@ -131,12 +160,14 @@ export class CallForwardingService {
 
     putCallForwardingBusyService(cfbUrl, isCallForwardingBusyChecked, callForwardingBusyNumber, postCFBPut) {
 
-        var body = '<?xml version="1.0" encoding="ISO-8859-1"?><CallForwardingBusy xmlns="http://schema.broadsoft.com/xsi"><active>' + isCallForwardingBusyChecked + '</active>';
+        let body = '<?xml version="1.0" encoding="ISO-8859-1"?>'
+          + '<CallForwardingBusy xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + isCallForwardingBusyChecked + '</active>';
         if (callForwardingBusyNumber) {
             body += '<forwardToPhoneNumber>' + callForwardingBusyNumber + '</forwardToPhoneNumber>';
         }
 
-        if (!callForwardingBusyNumber && isCallForwardingBusyChecked == false) {
+        if (!callForwardingBusyNumber && isCallForwardingBusyChecked === false) {
             body += '<forwardToPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
@@ -146,7 +177,8 @@ export class CallForwardingService {
             .subscribe((res) => {
                 this.callForwardingServiceInput.setIsCallForwardingBusyChecked(isCallForwardingBusyChecked);
                 this.callForwardingServiceInput.setCallForwardingBusyNumber(callForwardingBusyNumber);
-                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive() || this.fetchCFNAActive() || this.fetchCFNRActive());
+                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive()
+                                                    || this.fetchCFNAActive() || this.fetchCFNRActive());
 
                 postCFBPut(isCallForwardingBusyChecked, null);
             }, (err) => {
@@ -157,7 +189,12 @@ export class CallForwardingService {
 
     putCFARingSplash(cfaUrl, isCFARingSplashChecked, postCFARingSplashPut) {
 
-        var body = '<?xml version="1.0" encoding="UTF-8"?> <CallForwardingAlways xmlns="http://schema.broadsoft.com/xsi"><active>' + this.callForwardingServiceInput.getIsCallForwardingAlwaysChecked() + '</active><forwardToPhoneNumber>' + this.callForwardingServiceInput.getCallForwardingAlwaysNumber() + '</forwardToPhoneNumber><ringSplash>' + isCFARingSplashChecked + '</ringSplash></CallForwardingAlways>';
+        let body = '<?xml version="1.0" encoding="UTF-8"?>'
+          + '<CallForwardingAlways xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + this.callForwardingServiceInput.getIsCallForwardingAlwaysChecked()
+          + '</active><forwardToPhoneNumber>' + this.callForwardingServiceInput.getCallForwardingAlwaysNumber()
+          + '</forwardToPhoneNumber><ringSplash>' + isCFARingSplashChecked + '</ringSplash></CallForwardingAlways>';
+
         this.httpservices.httpPutRequest(cfaUrl, body)
             .subscribe((res) => {
                 this.callForwardingServiceInput.setCfaRingSplashChecked(isCFARingSplashChecked);
@@ -168,24 +205,28 @@ export class CallForwardingService {
     }
 
     putCallForwardingNoAnswerService(cfnaUrl, isCallForwardingNoAnswerChecked, callForwardingNoAnswerNumber, postCFNAPut) {
-        var body = '<?xml version="1.0" encoding="UTF-8"?> <CallForwardingNoAnswer xmlns="http://schema.broadsoft.com/xsi"><active>' + isCallForwardingNoAnswerChecked + '</active>';
+        let body = '<?xml version="1.0" encoding="UTF-8"?>'
+          + '<CallForwardingNoAnswer xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + isCallForwardingNoAnswerChecked + '</active>';
 
         if (callForwardingNoAnswerNumber) {
 
             body += '<forwardToPhoneNumber>' + callForwardingNoAnswerNumber + '</forwardToPhoneNumber>';
         }
 
-        if (!callForwardingNoAnswerNumber && isCallForwardingNoAnswerChecked == false) {
+        if (!callForwardingNoAnswerNumber && isCallForwardingNoAnswerChecked === false) {
             body += '<forwardToPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
-        body += '<numberOfRings>' + this.callForwardingServiceInput.getCallForwardingNoAnswerRings() + '</numberOfRings></CallForwardingNoAnswer>';
+        body += '<numberOfRings>' + this.callForwardingServiceInput.getCallForwardingNoAnswerRings()
+                  + '</numberOfRings></CallForwardingNoAnswer>';
 
         this.httpservices.httpPutRequest(cfnaUrl, body)
             .subscribe((res) => {
                 this.callForwardingServiceInput.setIsCallForwardingNoAnswerChecked(isCallForwardingNoAnswerChecked);
                 this.callForwardingServiceInput.setCallForwardingNoAnswerNumber(callForwardingNoAnswerNumber);
-                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive() || this.fetchCFNAActive() || this.fetchCFNRActive());
+                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive()
+                                                  || this.fetchCFNAActive() || this.fetchCFNRActive());
 
                 postCFNAPut(isCallForwardingNoAnswerChecked, null);
             }, (err) => {
@@ -194,14 +235,16 @@ export class CallForwardingService {
     }
 
     putCallForwardingNotReachableService(cfnrUrl, isCallForwardingNotReachableChecked, callForwardingNotReachableNumber, postCFNRPut) {
-        var body = '<?xml version="1.0" encoding="UTF-8"?> <CallForwardingNotReachable xmlns="http://schema.broadsoft.com/xsi"><active>' + isCallForwardingNotReachableChecked + '</active>';
-        if (callForwardingNotReachableNumber) {
+        let body = '<?xml version="1.0" encoding="UTF-8"?>'
+          + '<CallForwardingNotReachable xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + isCallForwardingNotReachableChecked + '</active>';
+         if (callForwardingNotReachableNumber) {
             body += '<forwardToPhoneNumber>' + callForwardingNotReachableNumber + '</forwardToPhoneNumber>';
         }
 
-        if (!callForwardingNotReachableNumber && isCallForwardingNotReachableChecked == false) {
-            body += '<forwardToPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
-        }
+         if (!callForwardingNotReachableNumber && isCallForwardingNotReachableChecked === false) {
+             body += '<forwardToPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
+         }
 
         body += '</CallForwardingNotReachable>';
 
@@ -209,7 +252,8 @@ export class CallForwardingService {
             .subscribe((res) => {
                 this.callForwardingServiceInput.setIsCallForwardingNotReachableChecked(isCallForwardingNotReachableChecked);
                 this.callForwardingServiceInput.setCallForwardingNotReachableNumber(callForwardingNotReachableNumber);
-                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive() || this.fetchCFNAActive() || this.fetchCFNRActive());
+                this.callForwardingServiceInput.setIsCFActive(this.fetchCFAActive() || this.fetchCFBActive()
+                                                  || this.fetchCFNAActive() || this.fetchCFNRActive());
                 postCFNRPut(isCallForwardingNotReachableChecked, null);
             }, (err) => {
                 postCFNRPut(!isCallForwardingNotReachableChecked, err);
@@ -218,7 +262,12 @@ export class CallForwardingService {
 
     putCallForwardingNoAnswerRings(cfnaUrl, cfnaNoOfRings, postCFNARingsPut) {
 
-        var body = '<?xml version="1.0" encoding="UTF-8"?> <CallForwardingNoAnswer xmlns="http://schema.broadsoft.com/xsi"><active>' + this.callForwardingServiceInput.getIsCallForwardingNoAnswerChecked() + '</active><forwardToPhoneNumber>' + this.callForwardingServiceInput.getCallForwardingNoAnswerNumber() + '</forwardToPhoneNumber><numberOfRings>' + cfnaNoOfRings + '</numberOfRings></CallForwardingNoAnswer>';
+        let body = '<?xml version="1.0" encoding="UTF-8"?>'
+          + '<CallForwardingNoAnswer xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + this.callForwardingServiceInput.getIsCallForwardingNoAnswerChecked()
+          + '</active><forwardToPhoneNumber>' + this.callForwardingServiceInput.getCallForwardingNoAnswerNumber()
+          + '</forwardToPhoneNumber><numberOfRings>' + cfnaNoOfRings + '</numberOfRings></CallForwardingNoAnswer>';
+
         this.httpservices.httpPutRequest(cfnaUrl, body)
             .subscribe((res) => {
                 this.callForwardingServiceInput.setCallForwardingNoAnswerRings(cfnaNoOfRings);
@@ -303,5 +352,7 @@ export class CallForwardingService {
     fetchCFNARings() {
         return this.callForwardingServiceInput.getCallForwardingNoAnswerRings();
     }
+
+
 }
 

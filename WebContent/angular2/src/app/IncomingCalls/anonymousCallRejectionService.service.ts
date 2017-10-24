@@ -5,7 +5,7 @@ import { Http, Response, Request, Headers, RequestOptions } from '@angular/http'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import { HttpServices } from 'app/AppCommon/httpservices.service';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class AnonymousCallRejectionService {
 
         this.httpservices.httpGetRequest(acrUrl)
             .subscribe((res) => {
-                var acrParsedJson = res.json();
+                let acrParsedJson = res.json();
                 postACRGet(acrParsedJson);
             }, (err) => {
                 postACRGet(null);
@@ -28,7 +28,9 @@ export class AnonymousCallRejectionService {
     }
 
     putAnonymousCallRejectionService(acrUrl, isAnonymousCallRejectionChecked, postACRPut) {
-        var body = '<?xml version="1.0" encoding="ISO-8859-1"?><AnonymousCallRejection xmlns="http://schema.broadsoft.com/xsi"><active>' + isAnonymousCallRejectionChecked + '</active></AnonymousCallRejection>';
+        let body = '<?xml version="1.0" encoding="ISO-8859-1"?>'
+          + '<AnonymousCallRejection xmlns="http://schema.broadsoft.com/xsi"><active>'
+          + isAnonymousCallRejectionChecked + '</active></AnonymousCallRejection>';
         this.httpservices.httpPutRequest(acrUrl, body)
             .subscribe((res) => {
                 postACRPut(res);

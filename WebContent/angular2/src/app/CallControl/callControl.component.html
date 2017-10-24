@@ -1,11 +1,28 @@
 <!-- Copyright © 2017 BroadSoft Inc. -->
 
+<md-card class="seperators" *ngIf='isCallCenterQueueVisible' [class.callsettingDisable]="getCCRetrievingError()">
+    <md-card (click)=focusCallCenter()>
+        <md-card-title class="primaryContentText restrictiveButtonStyle callSettingsFontFamily" [class.errorTextColor]="getCCRetrievingError()" (keyup.enter)=focusCallCenter() tabindex="0">{{customizedTextJson.callcenter.name}}</md-card-title>
+        <md-card-subtitle class="primaryColor restrictiveSmallLabelStyle callSettingsFontFamily" *ngIf="!getCCRetrievingError() && callCenterService.fetchCCAcdState()" tabindex="0">{{customizedTextJson.callcenter.status}} - {{callCenterService.fetchCCAcdState()}}</md-card-subtitle>
+        <md-card-subtitle class="primaryColor restrictiveSmallLabelStyle callSettingsFontFamily" *ngIf="!getCCRetrievingError() && !callCenterService.fetchCCAcdState()" tabindex="0"></md-card-subtitle>
+        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="getCCupdate()"></md-spinner>
+        <div *ngIf="!isCallcenterExpanded && !getCCRetrievingError()" class=" settingExpandIcon  "></div>
+        <div *ngIf="isCallcenterExpanded && !getCCRetrievingError()" class=" settingCollapseIcon ">
+        </div>
+        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="getCCRetrievingError()">
+            <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{getCCRetrievingError()}}</label>
+        </p>
+    </md-card>
+    <md-card *ngIf="isCallcenterExpanded && !getCCRetrievingError()">
+        <callcenter></callcenter>
+    </md-card>
+</md-card>
 
-<md-card class="seperators" *ngIf="broadWorksMobilityVisible" [class.callsettingDisable]="bwMobilityRetrievingError">
+<md-card class="seperators" [class.callsettingDisable]="bwMobilityRetrievingError" *ngIf='broadWorksMobilityVisible'>
     <md-card (click)=focusBroadWorksMobility()>
-        <md-card-title class="primaryContentText restrictiveButtonStyle"  [class.errorTextColor]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.name}}</md-card-title>
-        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == true" class="primaryColor restrictiveSmallLabelStyle" [class.callsettingHide]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.on_text}}</md-card-subtitle>
-        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == false" class="dimmedText restrictiveSmallLabelStyle" [class.callsettingHide]="bwMobilityRetrievingError">{{customizedTextJson.broadworks_mobility.off_text}}</md-card-subtitle>
+        <md-card-title class="primaryContentText restrictiveButtonStyle callSettingsFontFamily"  [class.errorTextColor]="bwMobilityRetrievingError" (keyup.enter)=focusBroadWorksMobility() tabindex="0">{{customizedTextJson.broadworks_mobility.name}}</md-card-title>
+        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == true" class="primaryColor restrictiveSmallLabelStyle callSettingsFontFamily" [class.callsettingHide]="bwMobilityRetrievingError" tabindex="0">{{customizedTextJson.broadworks_mobility.on_text}}</md-card-subtitle>
+        <md-card-subtitle *ngIf="isBroadWorksMobilityActive == false" class="dimmedText restrictiveSmallLabelStyle callSettingsFontFamily" [class.callsettingHide]="bwMobilityRetrievingError" tabindex="0">{{customizedTextJson.broadworks_mobility.off_text}}</md-card-subtitle>
         <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isBWMobilityfetched"></md-spinner>
         <div *ngIf="isBroadWorksMobilityActive == true">
         <div *ngIf="isBroadWorksMobilityActive == true && !isBWMobilityExpanded" class=" settingExpandIcon  ">
@@ -13,10 +30,32 @@
         <div *ngIf="isBroadWorksMobilityActive == false || isBWMobilityExpanded" class=" settingCollapseIcon ">
         </div></div>
         <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="bwMobilityRetrievingError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{bwMobilityRetrievingError}}</label>
+            <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{bwMobilityRetrievingError}}</label>
         </p>
     </md-card>
-    <md-card *ngIf="isBroadWorksMobilityActive && isBWMobilityExpanded"  style="box-shadow:none">
+    <md-card *ngIf="isBroadWorksMobilityActive && isBWMobilityExpanded && !bwMobilityRetrievingError"  >
         <broadworksMobility></broadworksMobility>
     </md-card>
 </md-card>
+
+
+<md-card class="seperators" *ngIf='isBWAnywhereVisible'>
+    <md-card (click)=focusBroadWorksAnywhere()>
+        <md-card-title class="primaryContentText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)=focusBroadWorksAnywhere() tabindex="0">{{customizedTextJson.broadworks_anywhere.name}}</md-card-title>
+        <md-card-subtitle *ngIf="getIsBWAnywhereActive() == true && getIsAnyLocationEnabled() == true" class="primaryColor restrictiveSmallLabelStyle callSettingsFontFamily" tabindex="0" >{{customizedTextJson.service_on}}</md-card-subtitle>
+        <md-card-subtitle *ngIf="getIsBWAnywhereActive() == false" class="dimmedText restrictiveSmallLabelStyle" tabindex="0" >{{customizedTextJson.broadworks_anywhere.off_location_not_configured}}</md-card-subtitle>
+        <md-card-subtitle *ngIf="getIsBWAnywhereActive() == true && getIsAnyLocationEnabled() == false" class="dimmedText restrictiveSmallLabelStyle callSettingsFontFamily" tabindex="0" >
+            {{customizedTextJson.broadworks_anywhere.off_location_not_enabled}}</md-card-subtitle>
+        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="getIsBWAnywhereFetched()"></md-spinner>
+        <div>
+        <div *ngIf="isBWAnywhereExpanded == true" class=" settingCollapseIcon  ">
+        </div>
+        <div *ngIf="isBWAnywhereExpanded == false" class=" settingExpandIcon ">
+        </div>
+        </div>
+    </md-card>
+    <md-card *ngIf="isBWAnywhereExpanded "  >
+        <broadworksAnywhere></broadworksAnywhere>
+    </md-card>
+</md-card>
+

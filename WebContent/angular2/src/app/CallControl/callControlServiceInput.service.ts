@@ -7,8 +7,11 @@ import { Injectable } from '@angular/core';
 export class CallControlServiceInput {
 
     private primaryNumber;
+    private groupId;
+    private serviceProviderId;
+    private isEnterprise;
 
-    constructor(){}
+    constructor() { }
 
     setPrimaryNumber(primaryNumber) {
         this.primaryNumber = primaryNumber;
@@ -17,4 +20,31 @@ export class CallControlServiceInput {
     getPrimaryNumber() {
         return this.primaryNumber;
     }
+
+    setGroupId(groupId) {
+        this.groupId = groupId;
+    }
+
+    getGroupId() {
+        return this.groupId;
+    }
+
+    setIsEnterprise(isEnterprise) {
+        this.isEnterprise = isEnterprise;
+    }
+
+    getIsEnterprise() {
+        return this.isEnterprise;
+    }
+
+
+    setServiceProviderId(serviceProviderId) {
+        this.serviceProviderId = serviceProviderId;
+    }
+
+    getServiceProviderId() {
+        return this.serviceProviderId;
+    }
+
+
 }

@@ -3,117 +3,116 @@
 
 <md-list class="controlBackground primaryContentText">
 
-    <md-list-item class="settingBorder itemHeight44" *ngIf='incomingComponent.cfaVisible' [class.callsettingDisable]="cfAlwaysRetrievingError">
-        <p md-line class=" restrictiveLabelStyle" [class.errorTextColor]="cfAlwaysRetrievingError">{{customizedTextJson.call_forwarding_always.name}}</p>
+    <md-list-item class="settingBorder itemHeight44" *ngIf='getIncomingComponentInstance().cfaVisible' [class.callsettingDisable]="cfAlwaysRetrievingError">
+        <p md-line class=" restrictiveLabelStyle" [class.errorTextColor]="cfAlwaysRetrievingError" tabindex="0">{{customizedTextJson.call_forwarding_always.name}}</p>
         <md-spinner class="callsettingSpinner" [class.callsettingHide]="isCFAFetched"></md-spinner>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfaUpdateSvrErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfaUpdateSvrErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{cfaUpdateSvrErrMsg}}</label></p>
-        <md-slide-toggle [checked]="isCallForwardingAlwaysChecked" (change)="callForwardingAlwaysActive()"> </md-slide-toggle>
+        <md-slide-toggle [checked]="isCallForwardingAlwaysChecked" (change)="callForwardingAlwaysActive()" (keyup.enter)="callForwardingAlwaysActive()" tabindex="0"> </md-slide-toggle>
     </md-list-item>
-    <p md-line class="callsettingCFServerError" *ngIf="cfAlwaysRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{cfAlwaysRetrievingError}}</label></p>
+    <p md-line class="callsettingCFServerError" *ngIf="cfAlwaysRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfAlwaysRetrievingError}}</label></p>
     <md-list-item *ngIf="isCallForwardingAlwaysChecked" class="nestedListItemBottomPadding" [class.callsettingDisable]="cfAlwaysRetrievingError">
         <p md-line class="secondLevelSettingLeftPadding">
-            <md-input-container class="restrictiveLabelStyle inputNumberWidth" floatPlaceholder="never" (keyup.enter)="getCallForwardingAlwaysInput($event)"
+            <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" (keyup.enter)="getCallForwardingAlwaysInput($event)"
                 [class.callsettingErrorInput]="cfaPhonenumberFieldValidationError" [class.inputInvokedColor]="isCFAInputFieldFocused">
                 <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="cfaNumberId"
-                    value="cfAlwaysNumber" [(ngModel)]="cfAlwaysNumber" (keyup)="onPhonenumberChange($event);" (keydown)="onPhonenumberChange($event);"
-                    (blur)="getCallForwardingAlwaysInput($event)">
+                    value="cfAlwaysNumber" [(ngModel)]="cfAlwaysNumber" (keyup)="onPhonenumberChange1($event);" tabindex="0"
+                    (keydown)="onPhonenumberChange1($event);" (blur)="getCallForwardingAlwaysInput($event)" (change)="stopReduntantBlurCall()">
             </md-input-container>
         </p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfAlwaysNumber "><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfAlwaysNumber "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{customizedTextJson.call_forwarding_always.err_text}}</label></p>
         <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfAlwaysNumber && cfaPhonenumberFieldValidationError ">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{cfaPhonenumberFieldValidationError}}</label></p>
+            <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfaPhonenumberFieldValidationError}}</label></p>
         <p md-line class="secondLevelSettingLeftPadding">
-            <md-checkbox [checked]="isCfaRingSplashChecked" (change)="cfaRingSplashActive()" [disableRipple]=true class="nestedCheckboxPadding ">
+            <md-checkbox [checked]="isCfaRingSplashChecked" (change)="cfaRingSplashActive()" (keyup.enter)="cfaRingSplashActive()" class="nestedCheckboxPadding " [disableRipple]=true tabindex="0">
                 {{customizedTextJson.call_forwarding_always.ring_splash}}</md-checkbox>
         </p>
     </md-list-item>
 
-    <md-list-item class="settingBorder itemHeight44" *ngIf='incomingComponent.cfnaVisible' [class.callsettingDisable]="cfNoanswerRetrievingError">
-        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfNoanswerRetrievingError">{{customizedTextJson.call_forwarding_no_answer.name}}</p>
+    <md-list-item class="settingBorder itemHeight44" *ngIf='getIncomingComponentInstance().cfnaVisible' [class.callsettingDisable]="cfNoanswerRetrievingError">
+        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfNoanswerRetrievingError" tabindex="0">{{customizedTextJson.call_forwarding_no_answer.name}}</p>
         <md-spinner class="callsettingSpinner" [class.callsettingHide]="isCFNAFetched"></md-spinner>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfnaUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfnaUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{cfnaUpdateSrvErrMsg}}</label></p>
 
-        <md-slide-toggle [checked]="isCallForwardingNoAnswerChecked" (change)="callForwardingNoAnswerActive()"> </md-slide-toggle>
+        <md-slide-toggle [checked]="isCallForwardingNoAnswerChecked" (change)="callForwardingNoAnswerActive()" (keyup.enter)="callForwardingNoAnswerActive()" tabindex="0"> </md-slide-toggle>
     </md-list-item>
-    <p md-line class="callsettingCFServerError" *ngIf="cfNoanswerRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">
+    <p md-line class="callsettingCFServerError" *ngIf="cfNoanswerRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
         {{cfNoanswerRetrievingError}}</label></p>
     <md-list-item *ngIf="isCallForwardingNoAnswerChecked" [class.callsettingDisable]="cfNoanswerRetrievingError">
         <p md-line class="secondLevelSettingLeftPadding">
-            <md-input-container class="restrictiveLabelStyle inputNumberWidth" floatPlaceholder="never" (keyup.enter)="getCallForwardingNoAnswerInput($event)"
+            <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" (keyup.enter)="getCallForwardingNoAnswerInput($event)"
                 [class.callsettingErrorInput]="cfnaPhonenumberFieldValidationError" [class.inputInvokedColor]="isCFNAInputFieldFocused">
-                <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="cfnaNumberId"
-                    value="cfNoAnswerNumber" [(ngModel)]="cfNoAnswerNumber" (keyup)="onPhonenumberChange($event);" (keydown)="onPhonenumberChange($event);"
-                    (blur)="getCallForwardingNoAnswerInput($event)">
+                <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="cfnaNumberId" tabindex="0"
+                    value="cfNoAnswerNumber" [(ngModel)]="cfNoAnswerNumber"  (keyup)="onPhonenumberChange1($event);" (change)="stopReduntantBlurCall()"
+                    (keydown)="onPhonenumberChange1($event);" (blur)="getCallForwardingNoAnswerInput($event)">
             </md-input-container>
         </p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfNoAnswerNumber "><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfNoAnswerNumber "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{customizedTextJson.call_forwarding_no_answer.err_text}}</label></p>
         <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfNoAnswerNumber && cfnaPhonenumberFieldValidationError ">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{cfnaPhonenumberFieldValidationError}}</label></p>
+            <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfnaPhonenumberFieldValidationError}}</label></p>
 
     </md-list-item>
     <md-list-item *ngIf="isCallForwardingNoAnswerChecked" class="nestedListItemBottomPadding selectListItemComponent" [class.callsettingDisable]="cfNoanswerRetrievingError">
-        <label class="restrictiveLabelStyle secondLevelSettingLeftPadding">{{customizedTextJson.call_forwarding_no_answer.no_of_rings}}</label>
-        <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily" (change)="selectNoOfRings($event)"
-            [(ngModel)]="noOfRingsSelected"> 
-                        <option class="restrictiveLabelStyle primaryContentText" *ngFor="let ring of rings">
+        <label class="restrictiveLabelStyle secondLevelSettingLeftPadding" tabindex="0">{{customizedTextJson.call_forwarding_no_answer.no_of_rings}}</label>
+        <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily" (change)="selectNoOfRings($event)" [(ngModel)]="noOfRingsSelected" tabindex="0"> 
+                        <option class="restrictiveLabelStyle primaryContentText" *ngFor="let ring of rings" tabindex="0">
                             {{ring}}
                         </option>
                     </select>
 
     </md-list-item>
 
-    <md-list-item class="settingBorder itemHeight44" *ngIf='incomingComponent.cfbVisible' [class.callsettingDisable]="cfBusyRetrievingError">
-        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfBusyRetrievingError">{{customizedTextJson.call_forwarding_busy.name}}</p>
+    <md-list-item class="settingBorder itemHeight44" *ngIf='getIncomingComponentInstance().cfbVisible' [class.callsettingDisable]="cfBusyRetrievingError">
+        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfBusyRetrievingError" tabindex="0">{{customizedTextJson.call_forwarding_busy.name}}</p>
         <md-spinner class="callsettingSpinner" [class.callsettingHide]="isCFBFetched"></md-spinner>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfbUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfbUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{cfbUpdateSrvErrMsg}}</label></p>
 
-        <md-slide-toggle [checked]="isCallForwardingBusyChecked" (change)="callForwardingBusyActive()"> </md-slide-toggle>
+        <md-slide-toggle [checked]="isCallForwardingBusyChecked" (change)="callForwardingBusyActive()" (keyup.enter)="callForwardingBusyActive()" tabindex="0"> </md-slide-toggle>
     </md-list-item>
-    <p md-line class="callsettingCFServerError" *ngIf="cfBusyRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">{{cfBusyRetrievingError}}</label></p>
+    <p md-line class="callsettingCFServerError" *ngIf="cfBusyRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfBusyRetrievingError}}</label></p>
     <md-list-item *ngIf="isCallForwardingBusyChecked" class="nestedListItemBottomPadding" [class.callsettingDisable]="cfBusyRetrievingError">
         <p md-line class="secondLevelSettingLeftPadding">
-            <md-input-container class="restrictiveLabelStyle inputNumberWidth" floatPlaceholder="never" (keyup.enter)="getCallForwardingBusyInput($event)"
+            <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" (keyup.enter)="getCallForwardingBusyInput($event)"
                 [class.callsettingErrorInput]="cfbPhonenumberFieldValidationError" [class.inputInvokedColor]="isCFBInputFieldFocused">
                 <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="cfbNumberId"
-                    value="cfBusyNumber" [(ngModel)]="cfBusyNumber" (keyup)="onPhonenumberChange($event);" (keydown)="onPhonenumberChange($event);"
-                    (blur)="getCallForwardingBusyInput($event)">
+                    value="cfBusyNumber" [(ngModel)]="cfBusyNumber" (keyup)="onPhonenumberChange1($event);" (change)="stopReduntantBlurCall()" tabindex="0"
+                    (keydown)="onPhonenumberChange1($event);" (blur)="getCallForwardingBusyInput($event)">
             </md-input-container>
         </p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfBusyNumber "><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfBusyNumber "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0"> 
             {{customizedTextJson.call_forwarding_busy.err_text}}</label></p>
         <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfBusyNumber && cfbPhonenumberFieldValidationError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{cfbPhonenumberFieldValidationError}}</label></p>
+            <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfbPhonenumberFieldValidationError}}</label></p>
 
     </md-list-item>
 
-    <md-list-item class="settingBorder itemHeight44" *ngIf='incomingComponent.cfnrVisible' [class.callsettingDisable]="cfNotReachableRetrievingError">
-        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfNotReachableRetrievingError">{{customizedTextJson.call_forwarding_not_reachable.name}}</p>
+    <md-list-item class="settingBorder itemHeight44" *ngIf='getIncomingComponentInstance().cfnrVisible' [class.callsettingDisable]="cfNotReachableRetrievingError">
+        <p md-line class="restrictiveLabelStyle " [class.errorTextColor]="cfNotReachableRetrievingError" tabindex="0">{{customizedTextJson.call_forwarding_not_reachable.name}}</p>
         <md-spinner class="callsettingSpinner" [class.callsettingHide]="isCFNRFetched"></md-spinner>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfnrUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfnrUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{cfnrUpdateSrvErrMsg}}</label></p>
 
-        <md-slide-toggle [checked]="isCallForwardingNotReachableChecked" (change)="callForwardingNotReachableActive()"> </md-slide-toggle>
+        <md-slide-toggle [checked]="isCallForwardingNotReachableChecked" (change)="callForwardingNotReachableActive()" (keyup.enter)="callForwardingNotReachableActive()" tabindex="0"> </md-slide-toggle>
     </md-list-item>
-    <p md-line class="callsettingCFServerError" *ngIf="cfNotReachableRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor">
+    <p md-line class="callsettingCFServerError" *ngIf="cfNotReachableRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
         {{cfNotReachableRetrievingError}}</label></p>
     <md-list-item *ngIf="isCallForwardingNotReachableChecked" class="nestedListItemBottomPadding" [class.callsettingDisable]="cfNotReachableRetrievingError">
         <p md-line class="secondLevelSettingLeftPadding">
-            <md-input-container class="restrictiveLabelStyle inputNumberWidth" floatPlaceholder="never" (keyup.enter)="getCallForwardingNotReachableInput($event)"
+            <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" (keyup.enter)="getCallForwardingNotReachableInput($event)"
                 [class.callsettingErrorInput]="cfnrPhonenumberFieldValidationError" [class.inputInvokedColor]="isCFNRInputFieldFocused">
                 <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="cfnrNumberId"
-                    value="cfNotReachableNumber" [(ngModel)]="cfNotReachableNumber" (keyup)="onPhonenumberChange($event);" (keydown)="onPhonenumberChange($event);"
-                    (blur)="getCallForwardingNotReachableInput($event)">
+                    value="cfNotReachableNumber" [(ngModel)]="cfNotReachableNumber" (keyup)="onPhonenumberChange1($event);" (change)="stopReduntantBlurCall()"
+                    (keydown)="onPhonenumberChange1($event);" (blur)="getCallForwardingNotReachableInput($event)" tabindex="0">
             </md-input-container>
         </p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfNotReachableNumber "><label class="restrictiveSmallLabelStyle errorTextColor">
+        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!cfNotReachableNumber "><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{customizedTextJson.call_forwarding_not_reachable.err_text}}</label></p>
         <p md-line class="secondLevelSettingLeftPadding" *ngIf="cfNotReachableNumber && cfnrPhonenumberFieldValidationError">
-            <label class="restrictiveSmallLabelStyle errorTextColor">{{cfnrPhonenumberFieldValidationError}}</label></p>
+            <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{cfnrPhonenumberFieldValidationError}}</label></p>
 
     </md-list-item>
 </md-list>

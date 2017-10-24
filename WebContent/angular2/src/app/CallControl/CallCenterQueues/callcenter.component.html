@@ -1,0 +1,57 @@
+<md-list class="controlBackground primaryContentText" *ngIf="newAcdState">
+    <md-list-item class="descriptionTextAlign selectListItemComponent">
+        <p md-line class="restrictiveSmallLabelStyle hintBottomPadding" tabindex="0"> {{customizedTextJson.callcenter.status}}</p>
+        <p md-line> <select class="restrictiveLabelStyle callSettingsFontFamily" [(ngModel)]="newAcdState" (change)="acdStateChange($event)" tabindex="0">
+                        <option *ngFor="let status of acdState " tabindex="0">
+                            {{status}}
+                        </option>
+                    </select></p>
+
+        <p md-line class="hintBottomPadding" *ngIf="acdStateUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{acdStateUpdateErrMsg}}</label></p>
+    </md-list-item>
+    <md-list-item class="descriptionTextAlign" *ngIf="isUnavailableStateSet && isUCenabled && !acdStateUpdateErrMsg">
+        <p md-line class="restrictiveSmallLabelStyle hintBottomPadding secondLevelSettingLeftPadding" tabindex="0"> {{customizedTextJson.callcenter.unavailable_codes}}</p>
+        <p md-line class="secondLevelSettingLeftPadding">
+            <select class="restrictiveLabelStyle callSettingsFontFamily" (change)="setUnavailableCode($event)" [(ngModel)]="unavailableCodeSelected" tabindex="0">
+                        <option *ngFor="let unavailableCodeElement of ucArray " tabindex="0">
+                                {{unavailableCodeElement}}
+                        </option>
+            </select></p>
+        <p md-line class="secondLevelSettingLeftPadding hintBottomPadding" *ngIf="unavailableCodeUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{unavailableCodeUpdateErrMsg}}</label></p>
+    </md-list-item>
+</md-list>
+<div *ngIf="getIsCCIdAvailable() == true" class="settingBorder">
+    <md-card>
+        <md-list class="controlBackground primaryContentText">
+            <md-list-item class="itemHeight44 messageIndicatorAlign" (click)="callCenterChecked()" tabindex="0">
+                <label class="restrictiveLabelStyle" (keyup.enter)="callCenterChecked()" tabindex="0">{{customizedTextJson.callcenter.callcenter_id}}</label>
+                <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isCallCenterIdUpdated"></md-spinner>
+                <div *ngIf="isCallCenterChecked == true" class="settingCollapseIcon callCenterArrow">
+                </div>
+                <div *ngIf="isCallCenterChecked == false" class="settingExpandIcon callCenterArrow">
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card *ngIf="isCallCenterChecked" class="controlBackground">
+        <div *ngFor="let ccElement of callcenterArray ; let i = index ">
+            <div *ngIf="ccElement">
+                <md-list class="primaryContentText">
+                    <md-list-item>
+                        <p md-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="ccElement.errorMessage" tabindex="0">{{ccElement.callCenterName}}</p>
+                        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!ccElement.updateInprogress"></md-spinner>
+                        <md-slide-toggle [checked]="ccElement.getCallCenterActive()" (change)="callcenterActiveChange(ccElement)" (keyup.enter)="callcenterActiveChange(ccElement)" tabindex="0">
+                        </md-slide-toggle>
+                    </md-list-item>
+                    <md-list-item *ngIf="ccElement.number">
+                        <p md-line class="thirdLevelSettingLeftPadding primaryContentText restrictiveLabelStyle " [class.errorTextColor]="ccElement.errorMessage" tabindex="0">{{ccElement.number}} {{customizedTextJson.callcenter.extension}}. {{ccElement.extension}}</p>
+                    </md-list-item>
+                    <md-list-item>
+                    <p md-line class="secondLevelSettingLeftPadding ccMargin" *ngIf="ccElement.errorMessage"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{ccElement.errorMessage}}</label></p>
+                    </md-list-item>
+                    <md-list-item class="descriptionTextAlign"></md-list-item>
+                </md-list>
+            </div>
+        </div>
+    </md-card>
+</div>

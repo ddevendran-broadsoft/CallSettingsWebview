@@ -6,26 +6,29 @@ import { Injectable } from '@angular/core';
 
 export class ServiceRouter {
 
-    doNotDisturbUrl: string ;
-    anonymousCallRejectionUrl: string ;
-    remoteOfficeUrl: string;
-    callWaitingUrl: string;
-    callForwardingAlwaysUrl: string;
-    callForwardingBusyUrl: string;
-    callForwardingNoAnswerUrl: string ;
-    blockCallerIdUrl: string ;
-    callForwardingNotReachableUrl: string;
-    automaticCallbackUrl: string ;
-    personalAssistantUrl: string;
-    broadWorksMobilityUrl: string;
-    simultaneousRingUrl: string;
-    voiceMailUrl: string;
-    voicemailGreetingUrl: string;
-    broadworksMobilityMobileIdentityUrl: string;
+    private doNotDisturbUrl: string ;
+    private anonymousCallRejectionUrl: string ;
+    private remoteOfficeUrl: string;
+    private callWaitingUrl: string;
+    private callForwardingAlwaysUrl: string;
+    private callForwardingBusyUrl: string;
+    private callForwardingNoAnswerUrl: string ;
+    private blockCallerIdUrl: string ;
+    private callForwardingNotReachableUrl: string;
+    private automaticCallbackUrl: string ;
+    private personalAssistantUrl: string;
+    private broadWorksMobilityUrl: string;
+    private simultaneousRingUrl: string;
+    private voiceMailUrl: string;
+    private voicemailGreetingUrl: string;
+    private broadworksMobilityMobileIdentityUrl: string;
+    private callcenterUrl: string;
+    private broadWorksAnywhereUrl: string;
+    private sequentialRingUrl: string
 
-    constructor(){}
+    constructor() {}
 
-    setDoNotDisturbUrl(doNotDisturbUrl){
+    setDoNotDisturbUrl(doNotDisturbUrl) {
         this.doNotDisturbUrl = doNotDisturbUrl;
     }
 
@@ -72,9 +75,13 @@ export class ServiceRouter {
     setBroadWorksMobilityUrl(broadWorksMobilityUrl) {
         this.broadWorksMobilityUrl = broadWorksMobilityUrl;
     }
-    
+
+    setSequentialRingUrl(sequentialRingUrl) {
+        this.sequentialRingUrl = sequentialRingUrl;
+    }
+
     setSimultaneousRingUrl(simultaneousRingUrl) {
-        this.simultaneousRingUrl= simultaneousRingUrl;
+        this.simultaneousRingUrl = simultaneousRingUrl;
     }
 
     setVoicemailUrl(voiceMailUrl) {
@@ -87,11 +94,19 @@ export class ServiceRouter {
     setBroadworksMobilityMobileIdentityUrl(broadworksMobilityMobileIdentityUrl) {
         this.broadworksMobilityMobileIdentityUrl = broadworksMobilityMobileIdentityUrl;
     }
-    
+
+    setCallCenterUrl(callcenterUrl) {
+        this.callcenterUrl = callcenterUrl;
+    }
+
+    setBroadWorksAnywhereUrl(broadWorksAnywhereUrl) {
+        this.broadWorksAnywhereUrl = broadWorksAnywhereUrl;
+    }
+
     getDoNotDisturbUrl() {
         return this.doNotDisturbUrl;
     }
-    
+
     getAnonymousCallRejectionUrl() {
         return this.anonymousCallRejectionUrl;
     }
@@ -136,7 +151,11 @@ export class ServiceRouter {
         return this.broadWorksMobilityUrl;
     }
 
-    getSimultaneousRingUrl(){
+    getSequentialRingUrl() {
+        return this.sequentialRingUrl;
+    }
+
+    getSimultaneousRingUrl() {
         return this.simultaneousRingUrl;
     }
 
@@ -146,6 +165,14 @@ export class ServiceRouter {
 
     getVoicemailGreetingUrl() {
         return this.voicemailGreetingUrl;
+    }
+
+    getCallCenterUrl() {
+        return this.callcenterUrl;
+    }
+
+    getBroadWorksAnywhereUrl() {
+        return this.broadWorksAnywhereUrl;
     }
 
 }

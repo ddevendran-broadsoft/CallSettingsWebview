@@ -1,0 +1,103 @@
+<!-- Copyright © 2017 BroadSoft Inc. -->
+
+
+<md-list class="primaryContentText">
+    <md-list-item class="simRingDescriptionTextAlign">
+        <p md-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.broadworks_anywhere.text}}</label></p>
+    </md-list-item>
+</md-list>
+
+<md-list class="controlBackground primaryContentText">
+    <md-list-item class="itemHeight44 settingBorder">
+        <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.broadworks_anywhere.alert_all_locations}}</p>
+        <md-spinner class="callsettingSpinner bwAnywhereSpinnerPos" [class.callsettingHide]="isResReceived"></md-spinner>
+        <md-slide-toggle (change)="updateAlertAllLocations()" (keyup.enter)="updateAlertAllLocations()" [checked]="isAlertAllLocationsChecked" tabindex="0"> </md-slide-toggle>
+        
+    </md-list-item>
+</md-list>
+
+<md-card (click)="ringNumbersExpand()">
+    <md-list class="controlBackground primaryContentText">
+        <md-list-item class="settingBorder itemHeight44 ">
+            <label class="restrictiveLabelStyle" (keyup.enter)="ringNumbersExpand()" tabindex="0">{{customizedTextJson.broadworks_anywhere.ring_numbers}}</label>
+            <div *ngIf="isRingNumberExpanded == true" class="settingCollapseIcon">
+            </div>
+            <div *ngIf="isRingNumberExpanded == false" class="settingExpandIcon">
+            </div>
+        </md-list-item>
+    </md-list>
+</md-card>
+
+<div *ngIf="isRingNumberExpanded">
+    <md-list class="controlBackground primaryContentText">
+        <div *ngFor="let location of bwAnywhereLocationsUI;">
+
+            <md-list-item>
+                <p md-line class="secondLevelSettingLeftPadding sequentialRingSelectAlign">
+                    <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" [class.inputInvokedColor]="location.numberInpFieldFocused"
+                        [class.callsettingErrorInput]="location.ringNumberDelErr||location.ringNoToggleErr||location.phoneNumUpdErr">
+                        <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} [(ngModel)]="location.phoneNumber"
+                            (blur)="updateRingNumber($event, location)" id="phNum" (keyup.enter)="updateRingNumber($event, location)"
+                            (keyup)="focusNumberInput($event, location);" tabindex="0">
+                    </md-input-container>
+                </p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.ringNumberDelErr">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.ringNumberDelErr}}</label></p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.ringNoToggleErr">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.ringNoToggleErr}}</label></p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.phoneNumUpdErr">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.phoneNumUpdErr}}</label></p>
+                <md-spinner class="callsettingSpinner bwAnywhereSpinnerPos" [class.callsettingHide]="location.isResReceived"></md-spinner>
+                <md-slide-toggle (change)="isRingNumberActive(location);" [checked]="location.isActive" class="toggleAlign" (keyup.enter)="isRingNumberActive(location);" tabindex="0"> </md-slide-toggle>
+
+            </md-list-item>
+            <md-list-item *ngIf="location.isActive" class="noPadding">
+                <p md-line class="thirdLevelSettingLeftPadding broadworksAnywhereAlign">
+                    <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" [class.inputInvokedColor]="location.descInpFieldFocused"
+                        [class.callsettingErrorInput]="location.descError">
+                        <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.broadworks_anywhere.set_description}}
+                            [(ngModel)]="location.description" id="desc" (blur)="updateDescription($event, location)" (keyup.enter)="updateDescription($event, location)"
+                            type="text" (keyup)="focusDescField($event, location)" (change)="changeDescription()" tabindex="0">
+                    </md-input-container>
+                </p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.descError">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.descError}}</label></p>
+
+                <p md-line class="thirdLevelSettingLeftPadding broadworksAnywhereAlign">
+                    <md-checkbox [disableRipple]=true id="dnfCB" (change)="doNotForwardChecked(location)" [checked]="location.doNotForward" (keyup.enter)="doNotForwardChecked(location)" tabindex="0">
+                        {{customizedTextJson.broadworks_anywhere.do_not_forward}}</md-checkbox>
+                </p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.dnfError">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.dnfError}}</label></p>
+                <p md-line class="thirdLevelSettingLeftPadding broadworksAnywhereAlign">
+                    <md-checkbox [disableRipple]=true (change)="isAnswerConfChecked(location)" [checked]="location.answerConfirmation" (keyup.enter)="isAnswerConfChecked(location)" tabindex="0">
+                        {{customizedTextJson.broadworks_anywhere.answer_confirmation}}</md-checkbox>
+                </p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.acError">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.acError}}</label></p>
+                <p md-line class="thirdLevelSettingLeftPadding broadworksAnywhereAlign">
+                    <md-checkbox [disableRipple]=true (change)="isCallControlChecked(location)" [checked]="location.callControl" (keyup.enter)="isCallControlChecked(location)" tabindex="0">
+                        {{customizedTextJson.broadworks_anywhere.call_control}}</md-checkbox>
+                </p>
+                <p md-line class="secondLevelSettingLeftPadding" *ngIf="location.ccError">
+                    <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{location.ccError}}</label></p>
+            </md-list-item>
+            <md-list-item class="nestedListItemBottomPadding"></md-list-item>
+
+        </div>
+
+        <md-list-item>
+            <p md-line class="secondLevelSettingLeftPadding sequentialRingSelectAlign">
+                <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" [class.inputInvokedColor]="isNewNumFieldFocused"
+                    [class.callsettingErrorInput]="phoneNumberValidationErr">
+                    <input mdInput class="inputNumberWidth callsettingMarginNone" id="newNumber" placeholder={{this.customizedTextJson.set_number}}
+                        (blur)="addNewRingNumber($event)" (input)="onPasteEvent($event)" (keyup.enter)="addNewRingNumber($event)" (keyup)="focusNewNumberInp($event)" tabindex="0">
+                </md-input-container>
+            </p>
+            <!-- <md-slide-toggle (change)="isRingNumberActive(location);" class="toggleAlign"> </md-slide-toggle> -->
+            <p md-line class="secondLevelSettingLeftPadding" *ngIf="phoneNumberValidationErr">
+                <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{phoneNumberValidationErr}}</label></p>
+        </md-list-item>
+    </md-list>
+
+</div>
