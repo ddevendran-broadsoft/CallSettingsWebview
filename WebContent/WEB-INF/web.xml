@@ -20,14 +20,14 @@
 		<description>CallSettings Web application version</description>
 		<env-entry-name>webAppVersion</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>		
-		<env-entry-value>@version@</env-entry-value>
+		<env-entry-value>@appVersion@</env-entry-value>
 	</env-entry>
 
 	<env-entry>
 		<description>Name of the Configuration File for this WebApp</description>
 		<env-entry-name>webAppConfigFile</env-entry-name>
 		<env-entry-type>java.lang.String</env-entry-type>
-		<env-entry-value>BWCallSettingsWeb_@version@.properties</env-entry-value>
+		<env-entry-value>BWCallSettingsWeb_@appVersion@.properties</env-entry-value>
 		
 	</env-entry>
 	

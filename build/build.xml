@@ -215,7 +215,7 @@
 				<fileset dir="${staging}/META-INF" includes="MANIFEST.MF" />
 				<fileset dir="${staging}" includes="cswindex.*" />
 			</replace>		
-			<replace token="@version@" value="${version}">
+			<replace token="@appVersion@" value="${appVersion}">
 				<fileset dir="${staging}/WEB-INF" includes="*xml" />
 				<fileset dir="${staging}/META-INF" includes="*xml" />
 				<fileset dir="${staging}/META-INF" includes="MANIFEST.MF" />
@@ -229,14 +229,14 @@
 			depends="clean, staging, compileAng2ForProd, compileJava, postCompile">
 		<echo>Building war file...</echo>
 		<mkdir dir="${distribution}" />
-		<war destfile="${distribution}/${appName}_${version}.war"
+		<war destfile="${distribution}/${appName}_${appVersion}_${buildNo}.war"
 			basedir="${staging}"
 			includes="*/**">
 			<manifest>
 			  <attribute name="Built-By" value="Broadsoft"/>
 			  <attribute name="Implementation-Vendor" value="Broadsoft"/>
 			  <attribute name="Implementation-Title" value="${appName}"/>
-			  <attribute name="Implementation-Version" value="${version}"/>
+			  <attribute name="Implementation-Version" value="${appVersion}"/>
 			  
 			</manifest>
 		</war>

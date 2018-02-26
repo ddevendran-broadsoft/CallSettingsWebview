@@ -1,6 +1,6 @@
 <!--  Copyright © 2017 BroadSoft Inc. All rights reserved. Proprietary Property of BroadSoft, Inc. Gaithersburg, MD. -->
 <!-- The contents of this file will be loaded for each web application -->
-<Context path="/callsettings" docBase="BWCallSettingsWeb_0.1" swallowOutput="true">
+<Context path="/callsettings" docBase="BWCallSettingsWeb_@appVersion@" swallowOutput="true">
 
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
