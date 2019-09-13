@@ -32,12 +32,13 @@ if(applicationMode != null && applicationMode == "true") {
 	
 	if(!(request.getMethod().equals("POST") && request.getContentLength() > 0) ) {
 		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		out.println("Invlaid request received from the application. Please check the request method and request content.");
+		out.println("Invalid request received from the application. Please check the request method and request content.");
 		return;
 	}
 	
 			String heroApplicationInput = "";
 			String customizationTexts = "";
+			String locale = "";
 			try {
 				
 				StringBuilder buffer = new StringBuilder();
@@ -79,6 +80,8 @@ var customStyleUrlString = 'callsettings/customStyle?' + encodeURIComponent(cust
 	  
 	})();
 
+	 
+
 </script>
 
 
@@ -87,10 +90,11 @@ var customStyleUrlString = 'callsettings/customStyle?' + encodeURIComponent(cust
 		try {
 			JSONObject jsonObject = JSONObject.fromObject(heroApplicationInput);
 		
-			String userLocale = jsonObject.get("locale").toString();
+			locale = jsonObject.get("locale").toString();
+			localStorage.setItem('locale','${locale}');
 			String userId = jsonObject.get("userId").toString();
 			
-			customizationTexts = I18nManager.getInstance().getCustomizedLocaleTexts(userId, userLocale);
+			customizationTexts = I18nManager.getInstance().getCustomizedLocaleTexts(userId, locale);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -105,6 +109,7 @@ var customStyleUrlString = 'callsettings/customStyle?' + encodeURIComponent(cust
 
 var customizedTexts = "<%= customizationTexts %>";
 var localeCustomTexts = JSON.parse(customizedTexts);
+var locale = "<%= locale %>";
 
 <html>
 <head>
@@ -115,6 +120,6 @@ var localeCustomTexts = JSON.parse(customizedTexts);
 <link href='assets/css/default.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<bsft-call-settings>Loading Call Settings...</bsft-call-settings>
+	<app-bsft-call-settings></app-bsft-call-settings>
 </body>
 </html>

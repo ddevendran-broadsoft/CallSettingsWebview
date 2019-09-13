@@ -22,7 +22,6 @@ export class Util {
     }
 
     public isE164valid(phoneNumber) {
-
         let phoneNumberWildCard = /^\+?(\*?\#?){1,}\d{1,30}(\#?\*?){1,}$/;
         let isValidNumber = false;
         if (phoneNumber != null && phoneNumber !== '' && phoneNumber !== ' ') {

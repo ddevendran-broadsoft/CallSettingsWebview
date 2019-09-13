@@ -1,3 +1,4 @@
+
 body {
     margin: 0px 0px 0px 0px !important;
 }
@@ -6,6 +7,70 @@ a {
     text-decoration: none !important;
 }
 
+/* my recent changes */
+  
+
+::-webkit-scrollbar {
+    width:8px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background:rgba(0,0,0,0.3);
+}
+  
+/* ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-overflow-scrolling: auto
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    -webkit-overflow-scrolling: auto
+  }
+
+  .scroll-container {
+    max-height: 250px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-overflow-scrolling: auto
+  }
+   */
+/* .alertClass
+.dialogContainer{
+    height: 337px;
+    overflow: visible;
+}
+
+.alertClass
+.mat-dialog-actions{
+    padding: 93px 8px 8px 8px;
+}
+
+.alertClass
+.mat-dialog-content{
+    margin: 0 -24px -65px;
+    padding: 9px 22px 99px 22px;
+} */
+/* my recent changes */
 .noServiceIconPosition {
     height: 200px !important;
     width: 160px !important;
@@ -19,6 +84,11 @@ a {
     position: fixed;
     padding-top: 180px;
     width: 250px;
+}
+
+.mat-select-panel {
+    background-color: white;
+    size: fixed;
 }
 
 .pageStyle{
@@ -63,6 +133,7 @@ label {
 
 .primaryText{
     font-weight: 500 !important ;
+    outline: none;
 }
 
 .headerArrow {
@@ -334,9 +405,9 @@ label {
 .mat-checkbox-inner-container {
     margin: auto 8px auto 0px !important;
 }
-.mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+/* .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
     opacity: 0.3 !important;
-}
+} */
 .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background,
 .mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background {
     background-color: #b0b0b0
@@ -353,6 +424,10 @@ label {
 .mat-input-element:disabled {
     color: rgba(0, 0, 0, .38)
 }
+.mat-input-element{
+    background-color: red;
+}
+
 .mat-input-container {
     min-height: 22px ;
     height: auto !important ;
@@ -385,6 +460,7 @@ label {
 
 .mat-line{
     height:auto !important ;
+    outline: none;
 }
 .mat-list .mat-subheader {
     color: rgba(0, 0, 0, .54)
@@ -417,13 +493,13 @@ margin: 0px 0px 14px 16px !important;
 }
 
 .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
-    opacity: 0.3 !important;
+    opacity: 0.9 !important;
 }
 .mat-slide-toggle.mat-slide-toggle-focused:not(.mat-checked) .mat-ink-ripple {
-    opacity: 0.3 !important;
+    opacity: 0.9 !important;
 }
 .mat-slide-toggle.mat-slide-toggle-focused .mat-ink-ripple {
-    opacity: 0.3 !important;
+    opacity: 0.9 !important;
 }
 .mat-disabled .mat-slide-toggle-thumb {
     background-color: #bdbdbd
@@ -449,7 +525,7 @@ margin: 0px 0px 14px 16px !important;
 .mat-slide-toggle-bar {
     width: 32px !important;
     height: 8px !important;
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
 }
 
 .mat-slide-toggle-thumb-container {
@@ -469,7 +545,11 @@ margin: 0px 0px 14px 16px !important;
 .callsettingMarginNone{
     margin: 0px !important;
 }
-.callsettingSpinner{
+.mat-form-field-wrapper{
+    border-bottom: 1px solid black;
+}
+
+ /* .callsettingSpinner{
     height: 22px !important;
     width: 22px !important;
 }
@@ -479,7 +559,7 @@ margin: 0px 0px 14px 16px !important;
     right: 40px;
     top: 12px;
     margin-left : 8px ;
-}
+}  */
 
 .callsettingHide{
     display: none !important;
@@ -514,13 +594,13 @@ margin: 0px 0px 14px 16px !important;
     border-radius: 6px;
     margin-top: 8px;
 }
-.cswDesktopSelectContainer > md-checkbox:first-child{
+.cswDesktopSelectContainer > mat-checkbox:first-child{
     border-top: 0px !important;
 }
-.cswDesktopSelectContainer > md-checkbox {
+.cswDesktopSelectContainer > mat-checkbox {
     border-top: 1px solid #757575;
 }
-.cswDesktopSelectContainer > md-checkbox >  label{
+.cswDesktopSelectContainer > mat-checkbox >  label{
     padding-left: 10px;
     width: calc(100% - 10px);
 }
@@ -577,8 +657,11 @@ margin: 0px 0px 14px 16px !important;
 
 .loadingPageSpinner {
     top: 40%;
-    left: 43%;
+    left: 41%;
     position:absolute;
+    min-width: 24px; 
+    min-height: 24px; 
+    margin: 5px 10px 0px 0px;
 }
 
 .seqCard{
@@ -597,7 +680,6 @@ margin: 0px 0px 14px 16px !important;
 }
 
 .ccMargin{
-
     margin-top :0px !important ;
     margin-bottom: 8px !important ;
 }
@@ -607,7 +689,92 @@ margin: 0px 0px 14px 16px !important;
     overflow: visible !important;
 }
 
-.bwAnywhereSpinnerPos {
+/* .bwAnywhereSpinnerPos {
 	padding-bottom: 10px !important;
     padding-right: 5px !important;
+} */
+
+
+  /*maximum width*/
+ 
+  /*.appStyle{
+  max-width : 600px ; 
+  }*/
+
+  
+ .mat-dialog-content,
+ mat-dialog-content {
+   /* width: 80px;
+    height: 80px; */
+   align-self: bottom;
+   min-height: 95px;
+   width: 270px;
+ }
+
+ mat-dialog-content,
+ ._ngcontent-c8 {
+
+ }
+
+ .mat-dialog-actions,
+ mat-dialog-actions {
+   margin-left: 75px;
+    /* background-color: blue;  */
+   padding-top: -10px;
+   padding-bottom: -10px;
+   margin-top: 20px;
+ }
+
+ 
+ .mat-checkbox-inner-container {
+    height: 12px !important;
+    /*restrictiveLabelStyle*/
+    width: 12px !important;
+    /*restrictiveLabelStyle*/
+  }
+ 
+  .mat-checkbox-label {
+    font-size: 12px !important;
+    /*restrictiveLabelStyle*/
+    font-family: Roboto !important;
+  }
+
+  
+  
+ .dialogContainer {
+    background-color: white;
+    min-height: 170px;
+    margin: '0 auto';
+    padding: 22px 0px 0px 0px;
+    border-radius: 8px;
+  }
+ 
+  /* the Dialog contents containing the checkbox */ 
+ #popUpCheckbox,
+  .popUpCheckbox {
+    margin-top: 3px;
+    margin-left: 80px;
+    align-content: center;
+    width: 20px;
+    height: 10px;
+    margin: '0 auto',
+  }
+ 
+  .dialogCheckBox {
+     margin-left: 10px;
+  }
+
+  .mat-checkbox
+.mat-checkbox-ripple{
+  position: absolute;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+  height: 40px;
+  /* width: 40px; */
+  z-index: 1;
+  pointer-events: none;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
 }

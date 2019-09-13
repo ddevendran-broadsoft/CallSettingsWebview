@@ -1,8 +1,6 @@
 <!-- Copyright © 2017 BroadSoft Inc. -->
-
-
 <div *ngIf='!isReady' class="loadingPageSpinner" >
-    <md-spinner></md-spinner>
+     <mat-spinner style="height:10px;width:10px"></mat-spinner>
 </div>
 
 <div *ngIf='isReady' class="pageStyle">
@@ -18,9 +16,9 @@
         </div>
         
         <div class="callsettingStickyHeader" *ngIf="isIncomingCallsVisible">
-            <md-card class="primaryBackground settingBorder" (click)="incomingCallExpanded()">
-                <md-list>
-                    <md-list-item class="itemHeight44" >
+            <mat-card class="primaryBackground settingBorder" (click)="incomingCallExpanded()">
+                <mat-list>
+                    <mat-list-item class="itemHeight44" >
                         <div class="headerIcon incomingCallIcon"></div>
                         <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="incomingCallExpanded()" tabindex="0">{{customizedTextJson.incoming_calls}}</label>
                         <div *ngIf="isIncomingCallExpanded == true" class=" headerCollapseIcon headerArrow">
@@ -28,64 +26,64 @@
                         <div *ngIf="isIncomingCallExpanded == false" class=" headerExpandIcon headerArrow">
                         </div>
 
-                    </md-list-item>
-                </md-list>
-            </md-card>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
         </div>
         <div *ngIf="isIncomingCallExpanded">
-            <incoming></incoming>
+            <app-incoming></app-incoming>
         </div>
         <div class="callsettingStickyHeader" *ngIf="isOutgoingCallsVisible">
-            <md-card class="primaryBackground settingBorder" (click)="outgoingCallExpanded()">
-                <md-list >
-                    <md-list-item class="itemHeight44">
+            <mat-card class="primaryBackground settingBorder" (click)="outgoingCallExpanded()">
+                <mat-list >
+                    <mat-list-item class="itemHeight44">
                         <div class="headerIcon outgoingCallIcon"></div>
                         <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="outgoingCallExpanded()" tabindex="0">{{customizedTextJson.outgoing_calls}}</label>
                         <div *ngIf="isOutgoingCallExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isOutgoingCallExpanded == false" class=" headerExpandIcon headerArrow">
                         </div>
-                    </md-list-item>
-                </md-list>
-            </md-card>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
         </div>
         <div *ngIf="isOutgoingCallExpanded">
             <outgoing></outgoing>
         </div>
         <div class="callsettingStickyHeader" *ngIf="isVoiceMailVisible">
-            <md-card class="primaryBackground settingBorder" (click)="voicemailExpanded()">
-                <md-list>
-                    <md-list-item class="itemHeight44">
+            <mat-card class="primaryBackground settingBorder" (click)="voicemailExpanded()">
+                <mat-list>
+                    <mat-list-item class="itemHeight44">
                         <div class="headerIcon voicemailIcon"></div>
                         <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="voicemailExpanded()" tabindex="0">{{customizedTextJson.voice_mail}}</label>
                         <div *ngIf="isVoiceMailExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isVoiceMailExpanded == false" class=" headerExpandIcon headerArrow">
                         </div>
-                    </md-list-item>
-                </md-list>
-            </md-card>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
         </div>
          <div *ngIf="isVoiceMailExpanded">
-            <voicemail></voicemail>
+            <app-voicemail></app-voicemail>
          </div>
 
         <div class="callsettingStickyHeader" *ngIf="isCallControlVisible">
-            <md-card class="primaryBackground settingBorder" (click)="callControlExpanded()">
-                <md-list>
-                    <md-list-item class="itemHeight44">
+            <mat-card class="primaryBackground settingBorder" (click)="callControlExpanded()">
+                <mat-list>
+                    <mat-list-item class="itemHeight44">
                         <div class="headerIcon callControlIcon"></div>
                         <label class="primaryText restrictiveButtonStyle callSettingsFontFamily" (keyup.enter)="callControlExpanded()" tabindex="0">{{customizedTextJson.call_control}}</label>
                         <div *ngIf="isCallControlExpanded == true" class=" headerCollapseIcon headerArrow">
                         </div>
                         <div *ngIf="isCallControlExpanded == false" class=" headerExpandIcon headerArrow">
                         </div>
-                    </md-list-item>
-                </md-list>
-            </md-card>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
         </div>
         <div *ngIf="isCallControlExpanded">
-            <callControl></callControl>
+            <app-call-control></app-call-control>
         </div>
     </div>
 </div>

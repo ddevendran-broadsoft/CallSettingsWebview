@@ -31,7 +31,7 @@ export class CallForwardingService {
                     this.callForwardingServiceInput.setCallForwardingAlwaysNumber
                                                         (cfaParsedJson['CallForwardingAlways']['forwardToPhoneNumber']['$']);
                 } else {
-                    this.callForwardingServiceInput.setCallForwardingAlwaysNumber("");
+                    this.callForwardingServiceInput.setCallForwardingAlwaysNumber('');
                 }
                 if (this.callForwardingServiceInput.getIsCallForwardingAlwaysChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);
@@ -58,7 +58,7 @@ export class CallForwardingService {
                     this.callForwardingServiceInput.setCallForwardingBusyNumber
                                                       (cfbParsedJson['CallForwardingBusy']['forwardToPhoneNumber']['$']);
                 } else {
-                    this.callForwardingServiceInput.setCallForwardingBusyNumber("");
+                    this.callForwardingServiceInput.setCallForwardingBusyNumber('');
                 }
 
                 if (this.callForwardingServiceInput.getIsCallForwardingBusyChecked()) {
@@ -91,7 +91,7 @@ export class CallForwardingService {
                                                         (cfnaParsedJson['CallForwardingNoAnswer']['forwardToPhoneNumber']['$']);
 
                 } else {
-                    this.callForwardingServiceInput.setCallForwardingNoAnswerNumber("");
+                    this.callForwardingServiceInput.setCallForwardingNoAnswerNumber('');
                 }
                 if (this.callForwardingServiceInput.getIsCallForwardingNoAnswerChecked()) {
                     this.callForwardingServiceInput.setIsCFActive(true);

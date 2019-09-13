@@ -1,17 +1,17 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 @Component({
-    selector: 'desktop-select',
+    selector: 'app-desktop-select',
     templateUrl: 'desktopSelectDropdown.component.html',
 })
 
 /*This class prepares a multi-select checkbox for the application for desktop platform*/
 
-export class DesktopSelectDropdown implements AfterViewInit {
+export class DesktopSelectDropdownComponent implements AfterViewInit {
     @Input() selectOptionsList = [];
-    @Input() inputContainer: string = "";
-    @Output("onChange") onChange: EventEmitter<any> = new EventEmitter<any>();
-    @Output("onDesktopSelectMenuHide") onDesktopSelectMenuHide: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input() inputContainer: string = '';
+    @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onDesktopSelectMenuHide: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     customizedTextJson = window['customizedTexts'];
 
@@ -24,7 +24,7 @@ export class DesktopSelectDropdown implements AfterViewInit {
                 || (inputContainer && inputContainer.contains(<HTMLElement>event.target));
             if (isClickInside) {
             } else {
-                this.removeEventListener('click');
+                // this.removeEventListener('click');
                 self.onDesktopSelectMenuHide.emit(false);
             }
         });
@@ -37,7 +37,7 @@ export class DesktopSelectDropdown implements AfterViewInit {
         this.onChange.emit(result);
     }
 
-    private processSelectAllOption() {
+    processSelectAllOption() {
         let result = [];
         let selectAllOption = this.getSelectAllOption();
         let isAllSelected = selectAllOption.isChecked();
@@ -50,7 +50,7 @@ export class DesktopSelectDropdown implements AfterViewInit {
         return result;
     }
 
-    private processSelectNoneOption() {
+    processSelectNoneOption() {
         this.selectOptionsList.forEach(option => {
             if (!option.isNoneOption()) {
                 option.setChecked(false);
@@ -110,7 +110,7 @@ export class DesktopSelectDropdown implements AfterViewInit {
 }
 
 export class DesktopSelectOption {
-    private name: string = "";
+    private name: string = '';
     private checked: boolean = false;
     private selectAllOption: boolean = false;
     private selectNoneOption: boolean = false;

@@ -17,8 +17,8 @@ export class SimultaneousRingService {
     private headers: Headers = new Headers();
     private map: Map<Number, Boolean> = new Map<Number, Boolean>();
     private isDoNotRingWhenOnCallChecked = false;
-    private simRingArray= [];
-    i= 0;
+    private simRingArray = [];
+    i = 0;
 
     constructor(private httpservices: HttpServices, private http: Http,
       private simultaneousRingServiceInput: SimultaneousRingServiceInput) {

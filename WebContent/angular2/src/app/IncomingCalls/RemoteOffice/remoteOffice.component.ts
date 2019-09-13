@@ -7,7 +7,7 @@ import { ServiceRouteProvider } from 'app/AppCommon/serviceRouteProvider.service
 import { Util } from 'app/AppCommon/util';
 
 @Component({
-    selector: 'remoteOffice',
+    selector: 'app-remote-office',
     templateUrl: 'remoteOffice.component.html',
     providers: [ServiceRouteProvider, RemoteOfficeService, IncomingComponent]
 })
@@ -15,7 +15,7 @@ import { Util } from 'app/AppCommon/util';
 export class RemoteOfficeComponent implements AfterViewInit, OnInit {
 
     private isBlurInvokedForPhNum = false;
-    @Output('onRONumberChange') onRONumberChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() onRONumberChange: EventEmitter<boolean> = new EventEmitter<boolean>();
     inputWidth = 160;
     isRemoteOfficeInputFieldFocused = false;
     roPhonenumberFieldValidationError = '';

@@ -11,7 +11,7 @@ import { CallCenterService } from 'app/CallControl/CallCenterQueues/callcenterSe
 import { BroadworksAnywhereService } from 'app/CallControl/BroadworksAnywhere/broadworksAnywhereService.service';
 
 @Component({
-  selector: 'callControl',
+  selector: 'app-call-control',
   templateUrl: 'callControl.component.html',
   providers: [BroadWorksMobilityService]
 })
@@ -22,11 +22,9 @@ export class CallControlComponent implements OnInit {
   static isAnyLocationEnabled: boolean;
   static isBWAnywhereActive: boolean;
   static isBWAnywhereFetched = false;
-  private isQueueChecked: boolean;
-  private isCCIdAvailable: any;
-  private acdUpdate: any;
-
-
+  // private isQueueChecked: boolean;
+  // private isCCIdAvailable: any;
+  // private acdUpdate: any;
   BWAnywhereFetchErr: any;
   broadWorksAnywhereRetrievingErr: string;
   isBWAnywhereVisible: boolean;
@@ -69,7 +67,7 @@ export class CallControlComponent implements OnInit {
       this.isBWMobilityfetched = false;
       this.bwMobilityRetrievingError = '';
       this.broadWorksMobilityService.getBWMobilityStatus(this.serviceRouteProvider.fetchBroadWorksMobilityUrl(),
-                                          this.postBroadWorksMobilityGet.bind(this));
+      this.postBroadWorksMobilityGet.bind(this));
     }
   }
 
@@ -103,7 +101,7 @@ export class CallControlComponent implements OnInit {
       CallControlComponent.isBWAnywhereFetched = false;
       this.broadWorksAnywhereRetrievingErr = '';
       this.broadWorksAnywhereService.getBroadWorksAnywhereService(this.serviceRouteProvider.fetchBroadWorksAnywhereUrl(),
-                                              this.postBWAnywhereGet.bind(this));
+      this.postBWAnywhereGet.bind(this));
     }
 
   }

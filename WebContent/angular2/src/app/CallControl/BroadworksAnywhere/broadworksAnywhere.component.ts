@@ -8,7 +8,7 @@ import { BroadWorksAnywhereLocationsInput } from 'app/CallControl/BroadworksAnyw
 import { CallControlComponent } from 'app/CallControl/callControl.component';
 
 @Component({
-  selector: 'broadworksAnywhere',
+  selector: 'app-broadworks-anywhere',
   templateUrl: 'broadworksAnywhere.component.html'
 })
 

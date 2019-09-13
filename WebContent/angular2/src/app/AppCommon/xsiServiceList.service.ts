@@ -163,7 +163,7 @@ export class XSIServices {
 
                                     case 'Call Center - Standard' :
                                             this.callCenterQueueVisible = element.visible;
-                                            if(this.callCenterQueueVisible) {
+                                            if (this.callCenterQueueVisible) {
                                                 isCallCenterVisible = true;
                                             }
                                             this.masterServicesListVisible.setcallCenterVisible(element.visible);
@@ -171,15 +171,14 @@ export class XSIServices {
 
                                     case 'Call Center - Basic' :
                                             this.callCenterQueueVisible = element.visible;
-                                            if(this.callCenterQueueVisible) {
+                                            if (this.callCenterQueueVisible) {
                                                 isCallCenterVisible = true;
                                             }
                                             this.masterServicesListVisible.setcallCenterVisible(element.visible);
                                             break;
-                                            
                                     case 'Call Center - Premium' :
                                             this.callCenterQueueVisible = element.visible;
-                                            if(this.callCenterQueueVisible) {
+                                            if (this.callCenterQueueVisible) {
                                                 isCallCenterVisible = true;
                                             }
                                             this.masterServicesListVisible.setcallCenterVisible(element.visible);
@@ -201,7 +200,7 @@ export class XSIServices {
                     });
                 }
 
-                if(isCallCenterVisible) {
+                if (isCallCenterVisible) {
                     this.masterServicesListVisible.setcallCenterVisible(true);
                 }
 

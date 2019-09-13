@@ -2,7 +2,6 @@
 
 import { Injectable, Inject, Component } from '@angular/core';
 import { Http, Response, Request, Headers, RequestOptions } from '@angular/http';
-import { Observable } from "rxjs/Observable";
 import { HttpServices } from 'app/AppCommon/httpservices.service';
 import { VoicemailServiceInput } from 'app/Voicemail/voicemailServiceInput.service';
 
@@ -12,7 +11,7 @@ export class VoicemailService {
 
     private res: Response;
     private voicemailBody;
-    private headers: Headers = new Headers();   
+    private headers: Headers = new Headers();
     customizedTextJson = window['customizedTexts'];
 
     constructor(private http: Http, private httpServices: HttpServices, private voicemailServiceInput: VoicemailServiceInput) { }
@@ -21,32 +20,32 @@ export class VoicemailService {
 
         this.httpServices.httpGetRequest(voicemailUrl)
             .subscribe((res) => {
-                var voicemailParsedJson = res.json();
+                let voicemailParsedJson = res.json();
 
-                this.voicemailServiceInput.setActive(voicemailParsedJson["VoiceMessaging"]["active"]["$"] == "true");
+                this.voicemailServiceInput.setActive(voicemailParsedJson['VoiceMessaging']['active']['$'] === 'true');
 
-                this.voicemailServiceInput.setAlwaysRedirectToVoiceMail(voicemailParsedJson["VoiceMessaging"]["alwaysRedirectToVoiceMail"]["$"] == "true");
-                this.voicemailServiceInput.setBusyRedirectToVoiceMail(voicemailParsedJson["VoiceMessaging"]["busyRedirectToVoiceMail"]["$"] == "true");
-                this.voicemailServiceInput.setNoAnswerRedirectToVoiceMail(voicemailParsedJson["VoiceMessaging"]["noAnswerRedirectToVoiceMail"]["$"] == "true");
+                this.voicemailServiceInput.setAlwaysRedirectToVoiceMail(voicemailParsedJson['VoiceMessaging']['alwaysRedirectToVoiceMail']['$'] === 'true');
+                this.voicemailServiceInput.setBusyRedirectToVoiceMail(voicemailParsedJson['VoiceMessaging']['busyRedirectToVoiceMail']['$'] === 'true');
+                this.voicemailServiceInput.setNoAnswerRedirectToVoiceMail(voicemailParsedJson['VoiceMessaging']['noAnswerRedirectToVoiceMail']['$'] === 'true');
 
-                this.voicemailServiceInput.setProcessing(voicemailParsedJson["VoiceMessaging"]["processing"]["$"]);
-                this.voicemailServiceInput.setUnifiedMessagingChecked(voicemailParsedJson["VoiceMessaging"]["processing"]["$"] == "Unified Voice and Email Messaging");
-                this.voicemailServiceInput.setUsePhoneMessageWaitingIndicator(voicemailParsedJson["VoiceMessaging"]["usePhoneMessageWaitingIndicator"]["$"] == "true");
-                this.voicemailServiceInput.setVoiceMessageDeliveryEmailAddress(voicemailParsedJson["VoiceMessaging"]["voiceMessageDeliveryEmailAddress"]["$"]);
+                this.voicemailServiceInput.setProcessing(voicemailParsedJson['VoiceMessaging']['processing']['$']);
+                this.voicemailServiceInput.setUnifiedMessagingChecked(voicemailParsedJson['VoiceMessaging']['processing']['$'] === 'Unified Voice and Email Messaging');
+                this.voicemailServiceInput.setUsePhoneMessageWaitingIndicator(voicemailParsedJson['VoiceMessaging']['usePhoneMessageWaitingIndicator']['$'] === 'true');
+                this.voicemailServiceInput.setVoiceMessageDeliveryEmailAddress(voicemailParsedJson['VoiceMessaging']['voiceMessageDeliveryEmailAddress']['$']);
 
-                this.voicemailServiceInput.setSendVoiceMessageNotifyEmail(voicemailParsedJson["VoiceMessaging"]["sendVoiceMessageNotifyEmail"]["$"] == "true");
-                this.voicemailServiceInput.setNotifyEmailAddress(voicemailParsedJson["VoiceMessaging"]["voiceMessageNotifyEmailAddress"]["$"]);
+                this.voicemailServiceInput.setSendVoiceMessageNotifyEmail(voicemailParsedJson['VoiceMessaging']['sendVoiceMessageNotifyEmail']['$'] === 'true');
+                this.voicemailServiceInput.setNotifyEmailAddress(voicemailParsedJson['VoiceMessaging']['voiceMessageNotifyEmailAddress']['$']);
 
-                this.voicemailServiceInput.setSendCarbonCopyVoiceMessage(voicemailParsedJson["VoiceMessaging"]["sendCarbonCopyVoiceMessage"]["$"] == "true");
-                this.voicemailServiceInput.setVoiceMessageCarbonCopyEmailAddress(voicemailParsedJson["VoiceMessaging"]["voiceMessageCarbonCopyEmailAddress"]["$"]);
+                this.voicemailServiceInput.setSendCarbonCopyVoiceMessage(voicemailParsedJson['VoiceMessaging']['sendCarbonCopyVoiceMessage']['$'] === 'true');
+                this.voicemailServiceInput.setVoiceMessageCarbonCopyEmailAddress(voicemailParsedJson['VoiceMessaging']['voiceMessageCarbonCopyEmailAddress']['$']);
 
-                this.voicemailServiceInput.setTransferOnZeroToPhoneNumber(voicemailParsedJson["VoiceMessaging"]["transferOnZeroToPhoneNumber"]["$"] == "true");
-                this.voicemailServiceInput.setTransferPhoneNumber(voicemailParsedJson["VoiceMessaging"]["transferPhoneNumber"]["$"]);
+                this.voicemailServiceInput.setTransferOnZeroToPhoneNumber(voicemailParsedJson['VoiceMessaging']['transferOnZeroToPhoneNumber']['$'] === 'true');
+                this.voicemailServiceInput.setTransferPhoneNumber(voicemailParsedJson['VoiceMessaging']['transferPhoneNumber']['$']);
 
                 postVoicemailGet(voicemailParsedJson);
 
             }, (err) => {
-                var voicemailParsedJson = null;
+                let voicemailParsedJson = null;
                 postVoicemailGet(voicemailParsedJson);
             });
     }
@@ -78,20 +77,21 @@ export class VoicemailService {
 
     }
 
-    putMessageArrivesService(voicemailUrl,processingType,deliveryEmailAddress,isMessageWaitingIndicatorChecked, postVoicemailPut) {
+    putMessageArrivesService(voicemailUrl, processingType, deliveryEmailAddress, isMessageWaitingIndicatorChecked, postVoicemailPut) {
 
         this.constructInitialBody();
         this.voicemailBody = this.voicemailBody + '<processing>' + processingType + '</processing>';
 
         if (deliveryEmailAddress) {
             this.voicemailBody = this.voicemailBody + '<voiceMessageDeliveryEmailAddress>' + deliveryEmailAddress + '</voiceMessageDeliveryEmailAddress>';
-        }
-        else {
+        } else {
             this.voicemailBody = this.voicemailBody + '<voiceMessageDeliveryEmailAddress xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
         if (this.fetchUnifiedMessagingChecked()) {
             this.voicemailBody = this.voicemailBody + '<usePhoneMessageWaitingIndicator>' + isMessageWaitingIndicatorChecked + '</usePhoneMessageWaitingIndicator>';
+        } else {
+          this.voicemailBody = this.voicemailBody + '<usePhoneMessageWaitingIndicator>' + isMessageWaitingIndicatorChecked + '</usePhoneMessageWaitingIndicator>';
         }
 
         this.constructFinalBody();
@@ -107,14 +107,14 @@ export class VoicemailService {
 
     }
 
-    putSendCallsToVoicemailService(voicemailUrl, isSendCallAlwaysSelected,isSendCallBusySelected,  isSendCallNoAnswerSelected, postVoicemailPut) {
+    putSendCallsToVoicemailService(voicemailUrl, isSendCallAlwaysSelected, isSendCallBusySelected,  isSendCallNoAnswerSelected, postVoicemailPut) {
 
         this.constructInitialBody();
 
         this.voicemailBody = this.voicemailBody + '<alwaysRedirectToVoiceMail>' + isSendCallAlwaysSelected + '</alwaysRedirectToVoiceMail><busyRedirectToVoiceMail>' + isSendCallBusySelected + '</busyRedirectToVoiceMail><noAnswerRedirectToVoiceMail>' + isSendCallNoAnswerSelected + '</noAnswerRedirectToVoiceMail>';
 
         this.constructFinalBody();
-        
+
         this.httpServices.httpPutRequest(voicemailUrl, this.voicemailBody)
             .subscribe((res) => {
                 this.voicemailServiceInput.setAlwaysRedirectToVoiceMail(isSendCallAlwaysSelected);
@@ -132,8 +132,7 @@ export class VoicemailService {
 
         if (notifyEmailAddress) {
             this.voicemailBody = this.voicemailBody + '<sendVoiceMessageNotifyEmail>' + isEmailNotificationChecked + '</sendVoiceMessageNotifyEmail><voiceMessageNotifyEmailAddress>' + notifyEmailAddress + '</voiceMessageNotifyEmailAddress>';
-        }
-        else {
+        } else {
             this.voicemailBody = this.voicemailBody + '<sendVoiceMessageNotifyEmail>' + isEmailNotificationChecked + '</sendVoiceMessageNotifyEmail><voiceMessageNotifyEmailAddress xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
@@ -154,8 +153,7 @@ export class VoicemailService {
 
         if (carbonCopyEmailAddress) {
             this.voicemailBody = this.voicemailBody + '<sendCarbonCopyVoiceMessage>' + isEmailCarbonCopyChecked + '</sendCarbonCopyVoiceMessage><voiceMessageCarbonCopyEmailAddress>' + carbonCopyEmailAddress + '</voiceMessageCarbonCopyEmailAddress>';
-        }
-        else {
+        } else {
             this.voicemailBody = this.voicemailBody + '<sendCarbonCopyVoiceMessage>' + isEmailCarbonCopyChecked + '</sendCarbonCopyVoiceMessage><voiceMessageCarbonCopyEmailAddress xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
@@ -178,8 +176,7 @@ export class VoicemailService {
 
         if (transferPhoneNumber) {
             this.voicemailBody = this.voicemailBody + '<transferOnZeroToPhoneNumber>' + isTransferChecked + '</transferOnZeroToPhoneNumber><transferPhoneNumber>' + transferPhoneNumber + '</transferPhoneNumber>';
-        }
-        else {
+        } else {
             this.voicemailBody = this.voicemailBody + '<transferOnZeroToPhoneNumber>' + isTransferChecked + '</transferOnZeroToPhoneNumber><transferPhoneNumber xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/>';
         }
 
@@ -197,24 +194,24 @@ export class VoicemailService {
     getRingsService(voicemailGreetingUrl, postVoicemailGreetingGet) {
         this.httpServices.httpGetRequest(voicemailGreetingUrl)
             .subscribe((res) => {
-                var voicemailGreetingsParsedJson = res.json();
+                let voicemailGreetingsParsedJson = res.json();
 
-                this.voicemailServiceInput.setSendCallsNumberOfRings(voicemailGreetingsParsedJson["VoiceMessagingGreetings"]["noAnswerNumberOfRings"]["$"]);
+                this.voicemailServiceInput.setSendCallsNumberOfRings(voicemailGreetingsParsedJson['VoiceMessagingGreetings']['noAnswerNumberOfRings']['$']);
 
                 postVoicemailGreetingGet(voicemailGreetingsParsedJson);
 
             }, (err) => {
-                var voicemailGreetingsParsedJson = null;
+                let voicemailGreetingsParsedJson = null;
                 postVoicemailGreetingGet(voicemailGreetingsParsedJson);
             });
     }
 
     putRingsService(voicemailGreetingUrl, voicemailRingSelected, postVoicemailGreetingPut) {
 
-            if(voicemailRingSelected == this.customizedTextJson.voice_management.none){
+            if (voicemailRingSelected === this.customizedTextJson.voice_management.none) {
                voicemailRingSelected = '0';
             }
-        var body = '<?xml version="1.0" encoding="ISO-8859-1"?> <VoiceMessagingGreetings xmlns="http://schema.broadsoft.com/xsi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
+        let body = '<?xml version="1.0" encoding="ISO-8859-1"?> <VoiceMessagingGreetings xmlns="http://schema.broadsoft.com/xsi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">';
 
             body = body + '<noAnswerNumberOfRings>' + voicemailRingSelected + '</noAnswerNumberOfRings>';
 

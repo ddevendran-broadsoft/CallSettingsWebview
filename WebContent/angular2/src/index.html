@@ -5,290 +5,375 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Call Settings</title>
-	<base href="./">
+  <meta charset="utf-8">
+  <title>Call Settings</title>
+  <base href="./">
 
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=yes;" />
-	<link href='assets/css/default.css' rel='stylesheet' type='text/css'>
- 	<link href='assets/css/branding.css' rel='stylesheet' type='text/css'>
-	<link href='assets/fonts/roboto/webfont.css' rel='stylesheet' type='text/css'>
-	<script src='assets/fonts/roboto/webfont.js'></script>
-	
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+  <link href='assets/css/default.css' rel='stylesheet' type='text/css'>
+  <link href='assets/css/branding.css' rel='stylesheet' type='text/css'>
+  <link href='assets/fonts/roboto/webfont.css' rel='stylesheet' type='text/css'>
+  <script src='assets/fonts/roboto/webfont.js'></script>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.js">
 
-	
+  <script src="https://code.jquery.com/jquery-3.2.1.js">
 
-	</script>
-	<script type="text/javascript">
 
-	var isReady = true;
-	var customizedTexts = {
-	"incoming_calls": "Incoming Calls",
-	"outgoing_calls": "Outgoing Calls",
-	"voice_mail": "Voicemail",
-	"call_control": "Call Control",
-	"service_on": "ON",
-	"set_number": "Set number",
-	"none": "None",
-	"error": {
-				"numberexist": "Phone number already exists.",
-				"updatefailed": "Unable to update data. Try again or contact the administrator.",
-				"unabletofetch": "Settings unavailable. Try again or contact the administrator.",
-				"code": "Code: ",
-				"networkerror": "Your network is offline.",
-				"noservice": "Settings unavailable. Try again or contact the administrator."
-			},
-			"do_not_disturb": {
-				"name": "Do Not Disturb",
-				"text": " "
-			},
-			"call_forwarding": {
-				"name": "Call Forwarding",
-				"text": " ",
-				"ring_splash": "Ring Splash",
-				"number_of_rings": "Number of rings",
-				"number_required": "Phone number required.",
-		"off_text": "OFF - Call options not configured",
-		"on_text": "ON",
-				"err_msg": "Data unavailable. Try again or contact the administrator."
-	},
-	"call_forwarding_always": {
-		"name": "Always",
-		"text": " ",
-				"err_text": "Phone number required.",
-		"ring_splash": "Ring Splash",
-				"server_err_text": "Unable to update data. Try again or contact the administrator.",
-				"invalid_phone_number_msg": "Invalid phone number."
-	},
-	"call_forwarding_busy": {
-		"name": "When Busy",
-		"text": " ",
-				"err_text": "Phone number required.",
-				"server_err_text": "Unable to update data. Try again or contact the administrator.",
-				"invalid_phone_number_msg": "Invalid phone number."
-	},
-	"call_forwarding_no_answer": {
-		"name": "When No Answer",
-		"text": " ",
-				"no_of_rings": "Number of rings",
-				"err_text": "Phone number required.",
-				"server_err_text": "Unable to update data. Try again or contact the administrator.",
-				"invalid_phone_number_msg": "Invalid phone number."
-	},
-	"call_forwarding_not_reachable": {
-		"name": "When Not Reachable",
-		"text": " ",
-				"err_text": "Phone number required.",
-				"server_err_text": "Unable to update data. Try again or contact the administrator.",
-				"invalid_phone_number_msg": "Invalid phone number."
-	},
-	"simultaneous_ring": {
-		"name": "Simultaneous Ring",
-		"off_text": "OFF - Ring number not configured",
-				"text": "Ring multiple devices at the same time for incoming calls.",
-				"phone_number_required": "Phone number required.",
-				"donot_ring_when_oncall": "Do Not Ring When On a Call",
-		"ring_numbers": "Ring Numbers",
-		"answer_confirmation_required": "Answer confirmation required",
-		"when_to_ring": "When to Ring",
-				"error_duplicateNumber": "Phone number exists."
-	},
-	"block_caller_id": {
-		"name": "Block My Caller ID",
-		"text": " "
-	},
-	"remote_office": {
-		"name": "Remote Office",
-				"text": "Make calls from a remote phone and have it appear from your business line. In addition, any incoming calls to your business line will ring on this remote phone.",
-		"remote_phone_number": "Remote phone number",
-				"err_msg": "Phone number required.",
-				"invalid_phone_number_msg": "Invalid phone number.",
-		"server_err_msg": "Some Internal Server Error Occurred. Please try again."
-	},
-	"anonymous_call_rejection": {
-		"name": "Anonymous Call Rejection",
-		"text": " "
-	},
-	"automatic_callback": {
-		"name": "Automatic Callback",
-		"text": " "
-	},
-	"call_waiting": {
-		"name": "Call Waiting",
-		"text": " "
-	},
-	"voice_management": {
-		"name": "Voicemail Service",
-		"text": " ",
-		"send_calls_to_voice_mail": "Send Calls to Voice mail",
-		"settings": "Settings",
-		"all_settings": "All settings",
-		"always": "Always",
-		"when_busy": "When busy",
-				"when_unanswered": "When no answer",
-		"number_of_rings": "Number of rings",
-				"when_message_arrives": "When a Message Arrives",
-		"use_unified_messaging": "Use unified messaging",
-		"message_waiting_indicator": "Message waiting indicator",
-		"forward_to_email_address": "Forward to email address",
-		"email_notification": "Email Notification",
-		"email_carbon_copy": "Email Carbon Copy",
-		"set_email_address": "Set email address",
-				"press_0_to_transfer": "Press '0' to transfer",
-				"email_address_required": "Email address required.",
-				"phone_number_required": "Phone number required.",
-				"invalid_phone_number_msg": "Invalid phone number.",
-				"invalid_email_address_msg": "Invalid email address.",
-		"none":"None"
-	},
-	"broadworks_mobility": {
-		"name": "BroadWorks Mobility",
-				"text": "Configuring alerting options for incoming and outgoing calls per number.",
-				"primary_number": "Primary Number",
-		"on_text": "ON",
-				"off_text": "OFF",
-				"ring_fixed_devices": "Ring fixed devices",
-				"shared_call_appearance": "Shared Call Appearance",
-				"broadworks_anywhere": "BroadWorks Anywhere",
-				"executive_assistant": "Executive Assistant",
-				"ring_mobile_devices": "Ring mobile devices",
-				"mobile_number": "Mobile Number",
-				"enable_alerting": "Enable alerting",
-				"general_settings": "General Settings",
-				"all_settings": "All settings",
-				"alert_agent_calls": "Alert agent calls",
-		"alert_click_to_dial_calls": "Alert click to dial calls",
-		"alert_group_paging_calls": "Alert group paging calls",
-		"answer_confirmation": "Answer confirmation",
-		"call_control_services": "Call control services",
-				"enable_diversion_inhibitor": "Enable diversion inhibitor",
-				"use_mobility_calling_line_id": "Use Mobility calling line ID",
-				"dont_forward_calls": "Do Not Forward Calls",
-		"caller_id": "Caller ID",
-				"server_err_text": "Unable to update data. Try again or contact the administrator.",
-		"rng_mobile_dev_validation_msg": "The BW Mobility Alerting Policy set to Ring Mobile Devices only.  However, no mobile number to alert.",
-				"devices_to_ring_checkbox_validation": "The BW Mobility Alerting Policy not set.  The Alerting Policy must be set to Ring Fixed Devices or Ring Mobile Devices or ring both fixed and mobile devices.",
-				"none": "None"
-	}
-};
 
-		var devModeCallSettingsJSON = {
-			"userId": "testAA1@ankit.com",
-			
-			"authorization": "BroadWorksSSO ",
-			"deviceMobileNo": "2402466622",
-			"language": "en_US",
-			"platform": "iOS_Mob",
-			"services": [{
+  </script>
+  <script type="text/javascript">
+    var isReady = true;
+    var customizedTexts = {
+      "incoming_calls": "Incoming Calls",
+      "outgoing_calls": "Outgoing Calls",
+      "voice_mail": "Voicemail",
+      "call_control": "Call Control",
+      "service_on": "ON",
+      "set_number": "Set number",
+      "none": "None",
+      "loading": "Loading Call Settings",
+      "error": {
+        "numberexist": "Phone number already exists.",
+        "updatefailed": "Unable to update data. Try again or contact the administrator.",
+        "unabletofetch": "Settings unavailable. Try again or contact the administrator.",
+        "networkerror": "Your network is offline.",
+        "code": "Code: ",
+        "noservice": "Settings unavailable. Try again or contact the administrator.",
+        "invalid_number": "Invalid phone number.",
+        "number_required": "Phone number required.",
+        "number_rejected": "The destination number is rejected since international calls are not allowed by the Outgoing Calling Plan.",
+        "limit_exceeded": "Data cannot be updated since the value entered exceeds the maximum allowed limit."
+      },
+      "do_not_disturb": {
+        "name": "Do Not Disturb",
+        "text": " "
+      },
+      "call_forwarding": {
+        "name": "Call Forwarding",
+        "text": " ",
+        "ring_splash": "Ring Splash",
+        "number_of_rings": "Number of rings",
+        "number_required": "Phone number required.",
+        "off_text": "OFF - Call options not configured",
+        "on_text": "ON",
+        "err_msg": "Data unavailable. Try again or contact the administrator."
+      },
+      "call_forwarding_always": {
+        "name": "Always",
+        "text": " ",
+        "err_text": "Phone number required.",
+        "ring_splash": "Ring Splash",
+        "server_err_text": "Unable to update data. Try again or contact the administrator.",
+        "invalid_phone_number_msg": "Invalid phone number."
+      },
+      "call_forwarding_busy": {
+        "name": "When Busy",
+        "text": " ",
+        "err_text": "Phone number required.",
+        "server_err_text": "Unable to update data. Try again or contact the administrator.",
+        "invalid_phone_number_msg": "Invalid phone number."
+      },
+      "call_forwarding_no_answer": {
+        "name": "When No Answer",
+        "text": " ",
+        "no_of_rings": "Number of rings",
+        "err_text": "Phone number required.",
+        "server_err_text": "Unable to update data. Try again or contact the administrator.",
+        "invalid_phone_number_msg": "Invalid phone number."
+      },
+      "call_forwarding_not_reachable": {
+        "name": "When Not Reachable",
+        "text": " ",
+        "err_text": "Phone number required.",
+        "server_err_text": "Unable to update data. Try again or contact the administrator.",
+        "invalid_phone_number_msg": "Invalid phone number."
+      },
+      "simultaneous_ring": {
+        "name": "Simultaneous Ring",
+        "off_text": "OFF - Ring number not configured",
+        "text": "Ring multiple devices at the same time for incoming calls.",
+        "phone_number_required": "Phone number required.",
+        "donot_ring_when_oncall": "Do Not Ring When On a Call",
+        "ring_numbers": "Ring Numbers",
+        "answer_confirmation_required": "Answer confirmation required",
+        "when_to_ring": "When to Ring",
+        "error_duplicateNumber": "Phone number exists."
+      },
+      "sequential_ring": {
+        "name": "Sequential Ring",
+        "off_text": "OFF - When to Ring option not selected",
+        "text": "Ring multiple devices one after the other for incoming calls.",
+        "ring_base_location": "Ring Base Location First",
+        "number_of_rings": "Number of rings",
+        "continue_if_busy": "Continue if busy",
+        "caller_may_cancel": "Caller May Cancel",
+        "ring_numbers": "Ring Numbers",
+        "answer_confirmation_required": "Answer confirmation required",
+        "when_to_ring": "When to Ring",
+        "criteria_activation_required": "At least one option must be selected to activate Sequential Ring.",
+        "criteria_required": "Criteria must be added to activate Sequential Ring.",
+        "invalid_phone_number_msg": "Invalid phone number."
+      },
+      "block_caller_id": {
+        "name": "Block My Caller ID",
+        "text": " "
+      },
+      "remote_office": {
+        "name": "Remote Office",
+        "text": "Make calls from a remote phone and have it appear from your business line. In addition, any incoming calls to your business line will ring on this remote phone.",
+        "remote_phone_number": "Remote phone number",
+        "err_msg": "Phone number required.",
+        "invalid_phone_number_msg": "Invalid phone number.",
+        "server_err_msg": "Some Internal Server Error Occurred. Please try again."
+      },
+      "anonymous_call_rejection": {
+        "name": "Anonymous Call Rejection",
+        "text": " "
+      },
+      "automatic_callback": {
+        "name": "Automatic Callback",
+        "text": " "
+      },
+      "call_waiting": {
+        "name": "Call Waiting",
+        "text": " "
+      },
+      "voice_management": {
+        "name": "Voicemail Service",
+        "text": " ",
+        "send_calls_to_voice_mail": "Send Calls to Voicemail",
+        "settings": "Settings",
+        "all_settings": "All settings",
+        "always": "Always",
+        "when_busy": "When busy",
+        "when_unanswered": "When no answer",
+        "number_of_rings": "Number of rings",
+        "when_message_arrives": "When a Message Arrives",
+        "use_unified_messaging": "Use unified messaging",
+        "message_waiting_indicator": "Message waiting indicator",
+        "forward_to_email_address": "Forward to email address",
+        "email_notification": "Email Notification",
+        "email_carbon_copy": "Email Carbon Copy",
+        "set_email_address": "Set email address",
+        "press_0_to_transfer": "Press '0' to transfer",
+        "email_address_required": "Email address required.",
+        "phone_number_required": "Phone number required.",
+        "invalid_phone_number_msg": "Invalid phone number.",
+        "invalid_email_address_msg": "Invalid email address.",
+        "none": "None",
+        "set_settings": "Set Settings",
+        "selected_settings": "Selected Settings"
+      },
+      "out_of_office": {
+        "name": "Out of Office",
+        "off_text": "OFF - Availability not specified",
+        "on_text": "ON",
+        "text": "Generate an auto-response message that includes your availability, when you will return, and the option to transfer the call to an alternate number.",
+        "availability": "Availability",
+        "until": "Until",
+        "transfer": "Transfer",
+        "ring_splash": "Ring Splash",
+        "business_trip": "Business Trip",
+        "gone_for_the_day": "Gone for the Day",
+        "lunch": "Lunch",
+        "meeting": "Meeting",
+        "out_of_office": "Out Of Office",
+        "temporarily_out": "Temporarily Out",
+        "training": "Training",
+        "unavailable": "Unavailable",
+        "vacation": "Vacation",
+        "forever": "Forever",
+        "one_day": "1 day",
+        "one_hour": "1 hour",
+        "none": "None",
+        "expire_time_err": "Invalid Expiration date time.",
+        "date_time_require": "Expiration date time required."
+      },
+      "broadworks_mobility": {
+        "name": "BroadWorks Mobility",
+        "text": "Configuring alerting options for incoming and outgoing calls per number.",
+        "primary_number": "Primary Number",
+        "on_text": "ON",
+        "off_text": "OFF",
+        "ring_fixed_devices": "Ring fixed devices",
+        "shared_call_appearance": "Shared call appearance",
+        "broadworks_anywhere": "BroadWorks Anywhere",
+        "executive_assistant": "Executive assistant",
+        "ring_mobile_devices": "Ring mobile devices",
+        "mobile_number": "Mobile Number",
+        "enable_alerting": "Enable alerting",
+        "general_settings": "General settings",
+        "all_settings": "All settings",
+        "alert_agent_calls": "Alert agent calls",
+        "alert_click_to_dial_calls": "Alert click to dial calls",
+        "alert_group_paging_calls": "Alert group paging calls",
+        "answer_confirmation": "Answer confirmation",
+        "call_control_services": "Call control services",
+        "enable_diversion_inhibitor": "Enable diversion inhibitor",
+        "use_mobility_calling_line_id": "Use Mobility calling line ID",
+        "dont_forward_calls": "Do Not Forward Calls",
+        "caller_id": "Caller ID",
+        "server_err_text": "Unable to update data. Try again or contact the administrator.",
+        "rng_mobile_dev_validation_msg": "The BW Mobility Alerting Policy set to Ring Mobile Devices only.  However, no mobile number to alert.",
+        "devices_to_ring_checkbox_validation": "The BW Mobility Alerting Policy not set.  The Alerting Policy must be set to Ring Fixed Devices or Ring Mobile Devices or ring both fixed and mobile devices.",
+        "none": "None",
+        "set_devices": "Set Devices",
+        "call_anchoring": "Call Anchoring",
+        "selected_devices": "Selected Devices",
+        "no_settings_set": "No Settings Set",
+        "no_devices_set": "No Devices Set"
+      },
+      "callcenter": {
+        "name": "Call Center Queues",
+        "status": "Status",
+        "unavailable_codes": "Unavailable codes",
+        "sign_in": "Signed In",
+        "sign_out": "Signed Out",
+        "available": "Available",
+        "unavailable": "Unavailable",
+        "wrap_up": "Wrapping Up",
+        "callcenter_id": "Call Center ID's",
+        "extension": "ext.",
+        "none": "None"
+      },
+      "broadworks_anywhere": {
+        "name": "BroadWorks Anywhere",
+        "off_location_not_configured": "OFF - Location not configured",
+        "off_location_not_enabled": "OFF - Location not enabled",
+        "text": "Use your selected phones as an extension of your business phone number and dial plan.",
+        "alert_all_locations": "Alert All Locations",
+        "ring_numbers": "Ring Numbers",
+        "set_description": "Set description",
+        "do_not_forward": "Do not forward",
+        "answer_confirmation": "Answer confirmation",
+        "call_control": "Call control",
+        "phone_number_required": "Phone number is required to activate Broadworks Anywhere.",
+        "phone_number_exists": "Phone number already exists."
+      },
+      dialog: {
+        "ok" : "OK",
+        "cancel" : "Cancel"
+      }
+    };
 
-				"name": "Call Forwarding Always",
-				"visible": false
-			}, {
-				"name": "Anonymous Call Rejection",
-				"visible": false
-			}, {
+    var devModeCallSettingsJSON = {
+      "userId": "devuser1@arun23.com",
 
-				"name": "Call Forwarding Busy",
-				"visible": false
-			}, {
+      "authorization": "BroadWorksSSO ",
+      "deviceMobileNo": "3693691024",
+      "language": "en_US",
+      "platform": "iOS_Mob",
+      "services": [{
 
-				"name": "Call Forwarding Not Reachable",
-				"visible": false
-			}, {
+        "name": "Call Forwarding Always",
+        "visible": true
+      }, {
+        "name": "Anonymous Call Rejection",
+        "visible": true
+      }, {
 
-				"name": "Call Forwarding No Answer",
-				"visible": false
-			}, {
+        "name": "Call Forwarding Busy",
+        "visible": true
+      }, {
 
-				"name": "Simultaneous Ring Personal",
-				"visible": false
-			},  {
+        "name": "Call Forwarding Not Reachable",
+        "visible": true
+      }, {
 
-				"name": "Sequential Ring",
-				"visible": false
-			}, {
+        "name": "Call Forwarding No Answer",
+        "visible": true
+      }, {
 
-				"name": "Calling Line ID Delivery Blocking",
-				"visible": false
-			}, {
+        "name": "Simultaneous Ring Personal",
+        "visible": true
+      }, {
 
-				"name": "Do Not Disturb",
-				"visible": false
-			}, {
+        "name": "Sequential Ring",
+        "visible": true
+      }, {
 
-				"name": "Remote Office",
-				"visible": false
-			},  {
+        "name": "Calling Line ID Delivery Blocking",
+        "visible": true
+      }, {
 
-				"name": "Automatic Callback",
-				"visible": false
-			}, {
+        "name": "Do Not Disturb",
+        "visible": true
+      }, {
 
-				"name": "Call Waiting",
-				"visible": false
-			},  {
+        "name": "Remote Office",
+        "visible": true
+      }, {
 
-				"name": "Basic Call Logs",
-				"visible": false
-			}, {
+        "name": "Automatic Callback",
+        "visible": true
+      }, {
 
-				"name": "Busy Lamp Field",
-				"visible": false
-			}, {
+        "name": "Call Waiting",
+        "visible": true
+      }, {
 
-				"name": "Voice Messaging User",
-				"visible": true
-			},  {
+        "name": "Basic Call Logs",
+        "visible": true
+      }, {
 
-				 "name": "BroadWorks Mobility",
-				 "visible": false
-			}],
-			"branding": {
-				"primary_button": "#2DBD9B",
-				"content_background": "#FFFFFF",
-				"headers_background": "#F8F8F8",
-				"header_text": "#323232",
-				"primary_content_text": "#323232",
-				"tertiary_content_text": "#929292",
-				"dimmed_text": "#b4b4b4"
-			}
+        "name": "Busy Lamp Field",
+        "visible": true
+      }, {
 
-		}
-		this.isAccessible = "";
-		var devModeUserId = devModeCallSettingsJSON.userId;
-		var devModePwd = "111111";
-		var devModeXspURL = devModeCallSettingsJSON.xsp;
-		var devModeProxyServerURL = 'http://localhost:8081/BWWebProxy/proxy';
+        "name": "Voice Messaging User",
+        "visible": true
+      }, {
 
-		var devModeBaseXsiURL = devModeXspURL + "/com.broadsoft.xsi-actions/v2.0/user";
+        "name": "BroadWorks Mobility",
+        "visible": true
+      }],
+      "branding": {
+        "primary_button": "#2DBD9B",
+        "content_background": "#FFFFFF",
+        "headers_background": "#F8F8F8",
+        "header_text": "#323232",
+        "primary_content_text": "#323232",
+        "tertiary_content_text": "#929292",
+        "dimmed_text": "#b4b4b4"
+      }
 
-		var loginTokenGenURL = devModeBaseXsiURL + "/" + devModeUserId + "/profile/LoginToken";
-		var authHeaderValue = btoa(devModeUserId + ":" + devModePwd);
+    }
+    this.isAccessible = "";
+    var devModeUserId = devModeCallSettingsJSON.userId;
+    var devModePwd = "111111";
+    var devModeXspURL = devModeCallSettingsJSON.xsp;
+    var devModeProxyServerURL = 'http://localhost:8080/BWWebProxy/proxy';
 
-		console.log("CallSettings : Login for the user " + devModeUserId + " & Password " + devModePwd + " with the encoded token : " + authHeaderValue);
-	</script>
+    var devModeBaseXsiURL = devModeXspURL + "/com.broadsoft.xsi-actions/v2.0/user";
 
-	<script type="text/javascript">
-		
-		(function () {
-			
-			window['applicationMode'] = "dev";
-			window['callSettingsHeroInput'] = devModeCallSettingsJSON;
-			window['customizedTexts'] = customizedTexts;
-			window['xsiActionsBaseURL'] = "http://10.99.4.110/com.broadsoft.xsi-actions";
-			window['devUserPwd'] = devModePwd;
-			
-		})();
-	</script>
+    var loginTokenGenURL = devModeBaseXsiURL + "/" + devModeUserId + "/profile/LoginToken";
+    var authHeaderValue = btoa(devModeUserId + ":" + devModePwd);
+
+    console.log("CallSettings : Login for the user " + devModeUserId + " & Password " + devModePwd +
+      " with the encoded token : " + authHeaderValue);
+
+  </script>
+
+  <script type="text/javascript">
+    (function () {
+
+      window['applicationMode'] = "dev";
+      window['callSettingsHeroInput'] = devModeCallSettingsJSON;
+      window['customizedTexts'] = customizedTexts;
+      window['xsiActionsBaseURL'] = "http://10.143.63.55/com.broadsoft.xsi-actions";
+      window['devUserPwd'] = devModePwd;
+      window['locale'] = "en_US"
+
+    })();
+
+  </script>
 </head>
 
 <body>
+  <app-bsft-call-settings></app-bsft-call-settings>
 
-	<bsft-call-settings>Loading...</bsft-call-settings>
-	<div id="helperText" class="callsettingHelperText restrictiveLabelStyle callSettingsFontFamily"></div>
+  <div id="helperText" class="callsettingHelperText restrictiveLabelStyle callSettingsFontFamily"></div>
 </body>
 
 </html>

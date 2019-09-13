@@ -1,7 +1,7 @@
 .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
    background-color: <PrimaryButton> !important; /*PrimaryButton */
 }
-.mat-checkbox-indeterminate .mat-checkbox-background, .mat-checkbox-checked .mat-checkbox-background{
+.mat-checkbox-determinate .mat-checkbox-background, .mat-checkbox-checked .mat-checkbox-background{
    background-color: <PrimaryButton> !important; /*PrimaryButton */
 }
 
@@ -24,7 +24,7 @@
 .mat-slide-toggle-bar,
 .mat-slide-toggle-thumb {
     background-color: <DimmedText> !important;
-} 
+}
 
 .mat-input-placeholder {
        color: <DimmedText>!important; /*DimmedText */
@@ -36,7 +36,7 @@
 
 .mat-progress-circle path,
 .mat-progress-spinner path,
-.mat-spinner path {
+.mat-progress-spinner path {
     stroke: <SymbolicGreen> ;
 }
 
@@ -44,7 +44,7 @@
     stroke: <ContentBackground> !important
 }
 
-.mat-card {   
+.mat-card {
     background: <ContentBackground> !important ; /*ContentBackground*/
 }
 
@@ -70,28 +70,34 @@ option{
 }
 
 .restrictiveButtonStyle{
-    font-size: <RestrictiveButtonStyle>px !important ; 
+    font-size: <RestrictiveButtonStyle>px !important ;
+     outline: none !important;
 }
 
  .restrictiveLabelStyle{
- font-size:<RestrictiveLabelStyle>px !important; 
+ font-size:<RestrictiveLabelStyle>px !important;
+ outline: none !important;
 }
 
 .restrictiveSmallLabelStyle{
-    font-size:<RestrictiveSmallLabelStyle>px !important; 
+    font-size:<RestrictiveSmallLabelStyle>px !important;
+    outline: none !important;
 }
 
 .primaryContentText{
     color:<PrimaryContentText> !important ;
+    outline: none !important;
 }
 
 .primaryText{
     color:<PrimaryText> !important ;
+    outline: none !important ;
 }
 
 .dimmedText {
 
     color :<DimmedText> !important ;
+    outline: none !important ;
 }
 
 .primaryColor{
@@ -115,34 +121,34 @@ option{
 .seperators{
     border-bottom: 1px solid <Separators>;
 }
- 
+
 .settingBorder{
     border-top: 1px solid <ContentBackground>;
 }
 
 .headerExpandIcon
 {
-     background:url("<customImagesLocation>/chevron_header_closed.png") no-repeat  !important ;
+     background:url("<customImagesLocation>/chevronHeaderClosed.png") no-repeat  !important ;
 	 background-repeat: no-repeat !important ;
      background-size: contain !important ;
  }
 
 .headerCollapseIcon{
-     background:url("<customImagesLocation>/chevron_header_open.png") no-repeat !important ;
+     background:url("<customImagesLocation>/chevronHeaderOpen.png") no-repeat !important ;
 	 background-repeat: no-repeat !important ;
      background-size: contain !important ;
 }
 
 .settingExpandIcon{
-     background:url("<customImagesLocation>/chevron_content_closed.png") no-repeat !important ;
+     background:url("<customImagesLocation>/chevronContentClosed.png") no-repeat !important ;
 	 background-size: contain !important;
 }
 
 .settingCollapseIcon{
-     background:url("<customImagesLocation>/chevron_content_open.png") no-repeat !important ;
+     background:url("<customImagesLocation>/chevronContentOpen.png") no-repeat !important ;
 	 background-size: contain !important;
 }
- 
+
 
 .incomingCallIcon{
      background:url("<customImagesLocation>/incomingcalls.png") no-repeat !important ;
@@ -164,7 +170,7 @@ option{
 
 .callControlIcon{
 
-     background:url("<customImagesLocation>/call_control.png") no-repeat !important ;
+     background:url("<customImagesLocation>/callControl.png") no-repeat !important ;
      background-repeat: no-repeat !important ;
      background-size: contain !important ;
  }
@@ -180,7 +186,7 @@ option{
     width: <RestrictiveLabelStyle>px !important; /*restrictiveLabelStyle*/
 }
 
-.mat-checkbox-label{ 
+.mat-checkbox-label{
      font-size:<RestrictiveLabelStyle>px !important; /*restrictiveLabelStyle*/
      font-family:<FontFamily> !important ;
 }
@@ -201,4 +207,47 @@ option{
 
     border-right: 1px solid <DimmedText>; /*DimmedText Color */
     border-left: 1px solid <DimmedText>; /*DimmedText Color */
+}
+
+.mat-datepicker-content-touch
+ .mat-calendar {
+   background-color: <ContentBackground> !important; /*ContentBackground */
+   color: <PrimaryText> !important; /* PrimaryText */
+ }
+.mat-icon-button {
+     background-color: <PrimaryButton> !important; /*PrimaryButton */
+     color: <PrimaryText> !important; /* PrimaryText */
+ }
+ .mat-calendar-period-button {
+     background-color: <PrimaryButton> !important; /*PrimaryButton */
+     color: <PrimaryText> !important; /* PrimaryText */
+ }
+
+ .mat-button-ripple
+ .mat-ripple
+ .mat-button-ripple-round {
+     background-color: <PrimaryButton> !important; /*PrimaryButton */
+ }
+
+ .mat-button-ripple
+ .mat-ripple {
+    background-color: <PrimaryButton> !important; /*PrimaryButton */
+ }
+
+ .buttonClass {
+   background-color: <PrimaryBackground> !important ;
+   color: <PrimaryText> !important; /* PrimaryText */
+   text-align: center;
+   min-width: 30px;
+   min-height: 30px;
+ }
+
+ .SetSettingsButtonClass {
+  background-color: <PrimaryBackground> !important ;
+  color: <PrimaryText> !important; /* PrimaryText */
+ }
+
+.mat-calendar-body-selected{
+    background-color: <PrimaryButton> !important; /*PrimaryButton */
+    color: <PrimaryText> !important; /* PrimaryText */
 }

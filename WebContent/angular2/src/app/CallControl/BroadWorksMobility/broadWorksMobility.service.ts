@@ -16,9 +16,9 @@ export class BroadWorksMobilityService {
 
         this.httpServices.httpGetRequest(broadWorksMobilityUrl)
             .subscribe((res) => {
-                var bwMobilityParsedJson = res.json();
+                let bwMobilityParsedJson = res.json();
                 this.broadWorksMobilityServiceInput.setbwMobilityParsedJson(bwMobilityParsedJson);
-                this.broadWorksMobilityServiceInput.setIsBroadWorksMobilityActive((bwMobilityParsedJson.BroadWorksMobility.active.$ == "true"));
+                this.broadWorksMobilityServiceInput.setIsBroadWorksMobilityActive((bwMobilityParsedJson.BroadWorksMobility.active.$ === 'true'));
                 postBroadWorksMobilityGet(bwMobilityParsedJson);
             },
             (err) => {
@@ -29,15 +29,15 @@ export class BroadWorksMobilityService {
 
     getBroadworksMobilityMobileIdentitySettings(broadworksMobilityMobileIdentityUrl, postBroadworksMobilityMobileIdentitySettingsGet) {
 
-        broadworksMobilityMobileIdentityUrl = broadworksMobilityMobileIdentityUrl + "/mobileidentity/" + window["callSettingsHeroInput"].deviceMobileNo;
+        broadworksMobilityMobileIdentityUrl = broadworksMobilityMobileIdentityUrl + '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
         this.httpServices.httpGetRequest(broadworksMobilityMobileIdentityUrl)
             .subscribe((res) => {
-                var broadworksMobilityMobileIdentitySettingsParsedJson = res.json();
+                let broadworksMobilityMobileIdentitySettingsParsedJson = res.json();
                 this.broadWorksMobilityServiceInput.setBroadworksMobilityMobileIdentitySettingsParsedJson(broadworksMobilityMobileIdentitySettingsParsedJson);
                 postBroadworksMobilityMobileIdentitySettingsGet(broadworksMobilityMobileIdentitySettingsParsedJson);
             },
             (err) => {
-                console.log("Error: ", err);
+                console.log('Error: ', err);
                 postBroadworksMobilityMobileIdentitySettingsGet(null);
             })
 
@@ -46,10 +46,10 @@ export class BroadWorksMobilityService {
 
     putSelectedSettingsInsideBWMobility(broadWorksMobilityUrl, allSelectedSettings, postSelectedSettingsInsideBWMobilityPut) {
 
-        var isExecutiveAssistantSelected: boolean;
-        var isBroadWorksAnywhereSelected: boolean;
-        var isSharedCallAppearanceSelected: boolean;
-        var body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+        let isExecutiveAssistantSelected: boolean;
+        let isBroadWorksAnywhereSelected: boolean;
+        let isSharedCallAppearanceSelected: boolean;
+        let body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
             '<BroadWorksMobility xmlns="http://schema.broadsoft.com/xsi">' +
             '<active>true</active>' +
             '<allowCallAnchoringControl>true</allowCallAnchoringControl>' +
@@ -90,14 +90,14 @@ export class BroadWorksMobilityService {
         this.broadWorksMobilityServiceInput.setIsSharedCallAppearanceActive(isSharedCallAppearanceSelected);
         this.broadWorksMobilityServiceInput.setAllSelectedSettingsInBWMob(allSelectedSettings);
         postSelectedSettingsInsideBWMobilityPut(false, null);
-        // boolean "false" in the method parameter indicates there is no error occurred in the response
+        //  boolean 'false' in the method parameter indicates there is no error occurred in the response
     },
     (err) => {
 
         postSelectedSettingsInsideBWMobilityPut(true, err);
-        //boolean "true" in the method parameter indicates there is some error occurred
+        //  boolean 'true' in the method parameter indicates there is some error occurred
 
-        console.log("Some Error occurred while setting value to bw mobility.")
+        console.log('Some Error occurred while setting value to bw mobility.')
 
     });
     }
@@ -105,10 +105,10 @@ export class BroadWorksMobilityService {
 putSelectedSettingsInsideMobileNumber(broadWorksMobilityUrl, allSelectedSettingsMobileNumber, postSelectedSettingsInsideMobileNumberPut) {
 
     broadWorksMobilityUrl += '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
-    var isExecutiveAssistantSelected: boolean;
-    var isBroadWorksAnywhereSelected: boolean;
-    var isSharedCallAppearanceSelected: boolean;
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi">' +
+    let isExecutiveAssistantSelected: boolean;
+    let isBroadWorksAnywhereSelected: boolean;
+    let isSharedCallAppearanceSelected: boolean;
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi">' +
         '<mobileAlertingPolicy>';
 
         if (allSelectedSettingsMobileNumber.includes(this.customizedTextJson.broadworks_mobility.shared_call_appearance)) {
@@ -143,15 +143,15 @@ putSelectedSettingsInsideMobileNumber(broadWorksMobilityUrl, allSelectedSettings
             this.broadWorksMobilityServiceInput.setIsSharedCallAppearanceActiveInsideMobileNumber(isSharedCallAppearanceSelected);
             this.broadWorksMobilityServiceInput.setAllSelectedSettingsMobileNumber(allSelectedSettingsMobileNumber);
             postSelectedSettingsInsideMobileNumberPut(false, null);
-            // boolean "false" in the method parameter indicates there is no error occurred in the response
+            //  boolean 'false' in the method parameter indicates there is no error occurred in the response
 
         },
         (err) => {
 
             postSelectedSettingsInsideMobileNumberPut(true, err);
-            //boolean "true" in the method parameter indicates there is some error occurred
+            //  boolean 'true' in the method parameter indicates there is some error occurred
 
-            console.log("Some Error occurred while setting value to bw mobility.")
+            console.log('Some Error occurred while setting value to bw mobility.')
 
         });
 
@@ -162,16 +162,16 @@ putSelectedSettingsInsideMobileNumber(broadWorksMobilityUrl, allSelectedSettings
 
 putSelectedMobileDeviceNumbers(broadWorksMobilityUrl, allSelectedMobileDeviceNumbers, postSelectedMobileDeviceNumbersPut) {
 
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
         '<BroadWorksMobility xmlns="http://schema.broadsoft.com/xsi">' +
         '<active>true</active>' +
         '<allowCallAnchoringControl>true</allowCallAnchoringControl>' +
         '<preventCallsToOwnMobiles>false</preventCallsToOwnMobiles>' +
         '<profileIdentity><profileAlertingPolicy>';
 
-    if (allSelectedMobileDeviceNumbers.length == 0) {
+    if (allSelectedMobileDeviceNumbers.length === 0) {
 
-        body += '<mobileNumbersAlertList xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/></profileAlertingPolicy></profileIdentity></BroadWorksMobility>';
+        body += '<mobileNumbersAlertList xs:nil="true" xmlns:xs="http:// www.w3.org/2001/XMLSchema-instance"/></profileAlertingPolicy></profileIdentity></BroadWorksMobility>';
 
     } else {
 
@@ -189,7 +189,7 @@ putSelectedMobileDeviceNumbers(broadWorksMobilityUrl, allSelectedMobileDeviceNum
         .subscribe((res) => {
             this.broadWorksMobilityServiceInput.setAllSelectedMobileDeviceNumbers(allSelectedMobileDeviceNumbers);
             postSelectedMobileDeviceNumbersPut(allSelectedMobileDeviceNumbers, null);
-            //boolean "false"" indicates that no error occurred in the response
+            //  boolean 'false'' indicates that no error occurred in the response
         },
         (err) => {
             postSelectedMobileDeviceNumbersPut(null, err);
@@ -201,11 +201,11 @@ putSelectedMobileNumbersUnderMobileIdentity(broadWorksMobilityUrl, allSelectedMo
 
     broadWorksMobilityUrl += '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
 
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
-        '<BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi">' +
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+        '<BroadWorksMobilityMobileIdentity xmlns="http:// schema.broadsoft.com/xsi">' +
         '<mobileAlertingPolicy>';
 
-    if (allSelectedMobileNumbersUnderMobileIdentity.length == 0) {
+    if (allSelectedMobileNumbersUnderMobileIdentity.length === 0) {
         body += '<mobileNumbersAlertList xs:nil="true" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"/></mobileAlertingPolicy></BroadWorksMobilityMobileIdentity>'
     } else {
 
@@ -232,9 +232,9 @@ putSelectedMobileNumbersUnderMobileIdentity(broadWorksMobilityUrl, allSelectedMo
 putEnableAlerting(broadWorksMobilityUrl, isEnableAlertingChecked, postEnableAlertingPut) {
 
     broadWorksMobilityUrl += '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
         '<BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi">' +
-        '<mobileNumber>' + window["callSettingsHeroInput"].deviceMobileNo + '</mobileNumber><description>Mobile 2</description>' +
+        '<mobileNumber>' + window['callSettingsHeroInput'].deviceMobileNo + '</mobileNumber><description>Mobile 2</description>' +
         '<enableAlerting>' + isEnableAlertingChecked + '</enableAlerting><primary>false</primary></BroadWorksMobilityMobileIdentity>';
 
     this.httpServices.httpPutRequest(broadWorksMobilityUrl, body)
@@ -242,25 +242,25 @@ putEnableAlerting(broadWorksMobilityUrl, isEnableAlertingChecked, postEnableAler
             postEnableAlertingPut(isEnableAlertingChecked, null);
         },
         (err) => {
-            console.log("Some Error occurred while updating Enable Alerting");
+            console.log('Some Error occurred while updating Enable Alerting');
             postEnableAlertingPut(!isEnableAlertingChecked, err);
         });
 }
 
 putSelectedGeneralSettingsOptions(broadWorksMobilityUrl, allSelectedGeneralSettingsOptions, postSelectedGeneralSettingsOptionsPut) {
-
-    broadWorksMobilityUrl += "/mobileidentity/" + window['callSettingsHeroInput'].deviceMobileNo;
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
+    broadWorksMobilityUrl += '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?>' +
         '<BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi">';
 
 
-    var isAlertAgentCallsChecked: boolean;
-    var isAlertClickToDialCallsChecked: boolean;
-    var isAlertGroupPagingCallsChecked: boolean;
-    var isUseMobilityCallingLineIDChecked: boolean;
-    var isUseDiversionInhibitorChecked: boolean;
-    var isAnswerConfirmationRequiredChecked: boolean;
-    var isBroadworksCallControlChecked: boolean;
+    let isAlertAgentCallsChecked: boolean;
+    let isAlertClickToDialCallsChecked: boolean;
+    let isAlertGroupPagingCallsChecked: boolean;
+    let isUseMobilityCallingLineIDChecked: boolean;
+    let isUseDiversionInhibitorChecked: boolean;
+    let isAnswerConfirmationRequiredChecked: boolean;
+    let isBroadworksCallControlChecked: boolean;
+    let isCallAnchoringChecked: boolean;
 
     if (allSelectedGeneralSettingsOptions.includes(this.customizedTextJson.broadworks_mobility.alert_agent_calls)) {
         isAlertAgentCallsChecked = true;
@@ -297,10 +297,15 @@ putSelectedGeneralSettingsOptions(broadWorksMobilityUrl, allSelectedGeneralSetti
     } else {
         isBroadworksCallControlChecked = false;
     }
+    if (allSelectedGeneralSettingsOptions.includes(this.customizedTextJson.broadworks_mobility.call_anchoring)) {
+        isCallAnchoringChecked = true;
+    } else {
+        isCallAnchoringChecked = false;
+    }
 
     body += '<alertAgentCalls>' + isAlertAgentCallsChecked + '</alertAgentCalls><alertClickToDialCalls>' + isAlertClickToDialCallsChecked + '</alertClickToDialCalls><alertGroupPagingCalls>' + isAlertGroupPagingCallsChecked + '</alertGroupPagingCalls>' +
         '<useMobilityCallingLineID>' + isUseMobilityCallingLineIDChecked + '</useMobilityCallingLineID><useDiversionInhibitor>' + isUseDiversionInhibitorChecked + '</useDiversionInhibitor>' +
-        '<answerConfirmationRequired>' + isAnswerConfirmationRequiredChecked + '</answerConfirmationRequired><broadworksCallControl>' + isBroadworksCallControlChecked + '</broadworksCallControl>' +
+        '<answerConfirmationRequired>' + isAnswerConfirmationRequiredChecked + '</answerConfirmationRequired><broadworksCallControl>' + isBroadworksCallControlChecked + '</broadworksCallControl><mobileCallAnchoringPolicy><enableCallAnchoring>' + isCallAnchoringChecked + '</enableCallAnchoring></mobileCallAnchoringPolicy>' +
         '</BroadWorksMobilityMobileIdentity>';
 
     this.httpServices.httpPutRequest(broadWorksMobilityUrl, body)
@@ -312,6 +317,7 @@ putSelectedGeneralSettingsOptions(broadWorksMobilityUrl, allSelectedGeneralSetti
             this.broadWorksMobilityServiceInput.setIsUseDiversionInhibitorChecked(isUseDiversionInhibitorChecked);
             this.broadWorksMobilityServiceInput.setIsAnswerConfirmationRequiredChecked(isAnswerConfirmationRequiredChecked);
             this.broadWorksMobilityServiceInput.setIsBroadworksCallControlChecked(isBroadworksCallControlChecked);
+            this.broadWorksMobilityServiceInput.setIsCallAnchoringChecked(isCallAnchoringChecked);
             postSelectedGeneralSettingsOptionsPut(null);
         }, (err) => {
             postSelectedGeneralSettingsOptionsPut(err);
@@ -321,18 +327,16 @@ putSelectedGeneralSettingsOptions(broadWorksMobilityUrl, allSelectedGeneralSetti
 
 putDevicesToRing(broadWorksMobilityUrl, isRingFixedDevicesUnderBWMobilityChecked, isRingMobileDevicesUnderBWMobilityChecked, postDevicesToRingPut) {
 
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobility xmlns="http://schema.broadsoft.com/xsi">' +
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobility xmlns="http:// schema.broadsoft.com/xsi">' +
         '<active>true</active><allowCallAnchoringControl>true</allowCallAnchoringControl>' +
         '<preventCallsToOwnMobiles>false</preventCallsToOwnMobiles><profileIdentity><profileAlertingPolicy>';
-    var devicesToRing: string;
+    let devicesToRing: string;
     if (isRingMobileDevicesUnderBWMobilityChecked && isRingFixedDevicesUnderBWMobilityChecked) {
-        devicesToRing = "Both";
-    }
-    else if (isRingMobileDevicesUnderBWMobilityChecked == false && isRingFixedDevicesUnderBWMobilityChecked == true) {
-        devicesToRing = "Fixed";
-    }
-    else if (isRingMobileDevicesUnderBWMobilityChecked == true && isRingFixedDevicesUnderBWMobilityChecked == false) {
-        devicesToRing = "Mobile";
+        devicesToRing = 'Both';
+    } else if (isRingMobileDevicesUnderBWMobilityChecked === false && isRingFixedDevicesUnderBWMobilityChecked === true) {
+        devicesToRing = 'Fixed';
+    } else if (isRingMobileDevicesUnderBWMobilityChecked === true && isRingFixedDevicesUnderBWMobilityChecked === false) {
+        devicesToRing = 'Mobile';
     }
 
     body += '<devicesToRing>' + devicesToRing + '</devicesToRing></profileAlertingPolicy></profileIdentity></BroadWorksMobility>';
@@ -349,17 +353,15 @@ putDevicesToRing(broadWorksMobilityUrl, isRingFixedDevicesUnderBWMobilityChecked
 
 putDevicesToRingUnderMobileIdentity(broadWorksMobilityUrl, isRingFixedDevicesMobileIdentityChecked, isRingMobileDevicesUnderMobileIdentityChecked, postDevicesToRingUnderMobileIdentityPut) {
 
-    broadWorksMobilityUrl += "/mobileidentity/" + window['callSettingsHeroInput'].deviceMobileNo;
-    var deviceToRingUnderMobileIdentity: string;
-    var body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi"><mobileAlertingPolicy>';
+    broadWorksMobilityUrl += '/mobileidentity/' + window['callSettingsHeroInput'].deviceMobileNo;
+    let deviceToRingUnderMobileIdentity: string;
+    let body = '<?xml version="1.0" encoding="ISO-8859-1"?> <BroadWorksMobilityMobileIdentity xmlns="http://schema.broadsoft.com/xsi"><mobileAlertingPolicy>';
     if (isRingFixedDevicesMobileIdentityChecked && isRingMobileDevicesUnderMobileIdentityChecked) {
-        deviceToRingUnderMobileIdentity = "Both";
-    }
-    else if (!isRingFixedDevicesMobileIdentityChecked && isRingMobileDevicesUnderMobileIdentityChecked) {
-        deviceToRingUnderMobileIdentity = "Mobile";
-    }
-    else if (isRingFixedDevicesMobileIdentityChecked && !isRingMobileDevicesUnderMobileIdentityChecked) {
-        deviceToRingUnderMobileIdentity = "Fixed";
+        deviceToRingUnderMobileIdentity = 'Both';
+    } else if (!isRingFixedDevicesMobileIdentityChecked && isRingMobileDevicesUnderMobileIdentityChecked) {
+        deviceToRingUnderMobileIdentity = 'Mobile';
+    } else if (isRingFixedDevicesMobileIdentityChecked && !isRingMobileDevicesUnderMobileIdentityChecked) {
+        deviceToRingUnderMobileIdentity = 'Fixed';
     }
     body += '<devicesToRing>' + deviceToRingUnderMobileIdentity + '</devicesToRing></mobileAlertingPolicy></BroadWorksMobilityMobileIdentity>';
 
@@ -417,6 +419,10 @@ setIsAnswerConfirmationRequiredChecked(isAnswerConfirmationRequiredChecked) {
     this.broadWorksMobilityServiceInput.setIsAnswerConfirmationRequiredChecked(isAnswerConfirmationRequiredChecked);
 }
 
+setIsCallAnchoringChecked(isCallAnchoringChecked) {
+    this.broadWorksMobilityServiceInput.setIsCallAnchoringChecked(isCallAnchoringChecked);
+}
+
 setIsBroadworksCallControlChecked(isBroadworksCallControlChecked) {
     this.broadWorksMobilityServiceInput.setIsBroadworksCallControlChecked(isBroadworksCallControlChecked);
 }
@@ -453,7 +459,7 @@ setAllSelectedSettingsInBWMob(allSelectedSettings) {
     this.broadWorksMobilityServiceInput.setAllSelectedSettingsInBWMob(allSelectedSettings)
 }
 
-//DesktopOptions start
+//  DesktopOptions start
 setPNRFDDOList(list) {
     return this.broadWorksMobilityServiceInput.setPNRFDDOList(list);
 }
@@ -485,7 +491,7 @@ fetchMNRFDDOList() {
 fetchMNRMDDOList() {
     return this.broadWorksMobilityServiceInput.getMNRMDDOList();
 }
-//DesktopOptions end
+//  DesktopOptions end
 
 fetchAllSelectedSettingsInBWMob() {
     return this.broadWorksMobilityServiceInput.getAllSelectedSettingsInBWMob();
@@ -561,6 +567,10 @@ fetchIsAlertGroupPagingCallsChecked() {
 
 fetchIsAnswerConfirmationRequiredChecked() {
     return this.broadWorksMobilityServiceInput.getIsAnswerConfirmationRequiredChecked();
+}
+
+fetchIsCallAnchoringChecked() {
+    return this.broadWorksMobilityServiceInput.getIsCallAnchoringChecked();
 }
 
 fetchIsBroadworksCallControlChecked() {
