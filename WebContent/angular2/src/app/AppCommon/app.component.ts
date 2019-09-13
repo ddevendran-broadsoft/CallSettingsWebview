@@ -1,6 +1,6 @@
 /* Copyright © 2017 BroadSoft Inc. */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import {XSIServices} from 'app/AppCommon/xsiServiceList.service';
 import {HttpServices} from 'app/AppCommon/httpservices.service';
 import {ServiceRouteProvider} from 'app/AppCommon/serviceRouteProvider.service';
@@ -17,7 +17,6 @@ import {SimultaneousRingServiceInput} from 'app/IncomingCalls/SimultaneousRing/s
 import {VoicemailService} from 'app/Voicemail/voicemailService.service';
 import {VoicemailServiceInput} from 'app/Voicemail/voicemailServiceInput.service';
 import {SequentialRingServiceInput} from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
-import {SequentialRingService} from 'app/IncomingCalls/SequentialRing/sequentialRing.service';
 import {CallControlService} from 'app/CallControl/callControlService.service';
 import {CallCenterService} from 'app/CallControl/CallCenterQueues/callcenterService.service';
 import {CallCenterServiceInput} from 'app/CallControl/CallCenterQueues/callcenterServiceInput.service';
@@ -27,8 +26,9 @@ import {BroadworksAnywhereServiceInput} from 'app/CallControl/BroadworksAnywhere
 import {BroadWorksAnywhereLocationsInput} from 'app/CallControl/BroadworksAnywhere/broadworksAnywhereLocationsInput.service';
 import {Util} from 'app/AppCommon/util';
 
+
 @Component({
-  selector: 'bsft-call-settings',
+  selector: 'app-bsft-call-settings',
   templateUrl: 'app.component.html',
   providers: [BroadWorksMobilityServiceInput, CallControlServiceInput, CallForwardingServiceInput,
     CallForwardingService, MasterServiceListVisible, XSIMasterServicesList, XSIServices, HttpServices,
@@ -40,9 +40,9 @@ import {Util} from 'app/AppCommon/util';
 })
 
 /*This class handles the UI components for the application*/
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
-  customizedTextJson = window['customizedTexts'];
+  customizedTextJson = {};
 
   xsiServicesList: string;
   isIncomingCallExpanded = false;
@@ -58,13 +58,22 @@ export class AppComponent implements OnInit {
   isNoServiceVisible: boolean;
 
   constructor(private xsiMasterServicesList: XSIMasterServicesList, private serviceRouteProvider: ServiceRouteProvider,
-    private xsiServices: XSIServices) {
+    private xsiServices: XSIServices, private ref: ChangeDetectorRef) {
 
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    const self = this;
+    setTimeout (function() {
+      if ( self.customizedTextJson !== window['customizedTexts'] ) {
+        self.customizedTextJson = window['customizedTexts'];
+        self.ref.detectChanges();
+      }
+    }, 1000);
+  }
 
-      /*Generates the login token for dev/QA purposes only*/
+  ngOnInit() {
+    /*Generates the login token for dev/QA purposes only*/
     console.log('Application mode : ' + window['applicationMode']);
     if (window['applicationMode'] === 'dev' || window['applicationMode'] === 'qa') {
       this.xsiServices.generateLoginTokenAndUse(this.postGeneratedLoginToken.bind(this));
@@ -86,7 +95,7 @@ export class AppComponent implements OnInit {
     this.isReady = true;
     if (!masterServicesList) {
       /*No services is to be shown */
-      console.log("No services is to be shown ");
+      console.log('No services is to be shown ');
     } else { /*Check the visibility criteria for the section headers*/
       console.log('Master Services List: ', this.xsiServices.fetchMasterServicesList());
 

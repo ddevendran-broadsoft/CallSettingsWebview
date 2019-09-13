@@ -17,7 +17,7 @@ import { CallForwardingServiceInput } from 'app/IncomingCalls/CallForwarding/cal
 import { Util } from 'app/AppCommon/util';
 
 @Component({
-  selector: 'incoming',
+  selector: 'app-incoming',
   templateUrl: 'incoming.component.html',
   providers: [
     AppComponent, AnonymousCallRejectionService, DoNotDisturbService, CallWaitingService, RemoteOfficeService,
@@ -27,7 +27,10 @@ import { Util } from 'app/AppCommon/util';
 
 export class IncomingComponent implements OnInit {
 
+  static simRingExpandGet: boolean;
+  static seqRingExpandGet: boolean;
   static isCFFetchingFirstTime: boolean;
+  static isPAFetchingFirstTime: boolean;
 
   private isSimRingServiceFetched = false;
   private isCFAFetched = false;
@@ -57,8 +60,6 @@ export class IncomingComponent implements OnInit {
   private callForwardingNotReachableUrl: string;
   private personalAssistantUrl: string;
 
-  static simRingExpandGet: boolean;
-  static seqRingExpandGet: boolean;
   paVisible: boolean;
   pAFetchErrMsg: any;
   customizedTextJson = window['customizedTexts'];
@@ -111,7 +112,7 @@ export class IncomingComponent implements OnInit {
   isOutOfOfficeRetrievingFailed = false;
   isCallWaitingInProgress = false;
   roUpdateErrMsg: string;
-  static isPAFetchingFirstTime: boolean;
+
 
   constructor(private outOfOfficeService: OutOfOfficeService, private callForwardingServiceInput: CallForwardingServiceInput,
               private callForwardingService: CallForwardingService, private xsiServices: XSIServices,
@@ -194,7 +195,7 @@ export class IncomingComponent implements OnInit {
     this.initializeCallForwardingBusyService();
     this.initializeCallForwardingNoAnswerService();
     this.initializeCallForwardingNotReachableService();
-    console.log("isCFFetchingFirstTime is set to ", IncomingComponent.isCFFetchingFirstTime);
+    console.log('isCFFetchingFirstTime is set to ', IncomingComponent.isCFFetchingFirstTime);
   }
 
   initializeCallForwardingAlwaysService() {
@@ -572,7 +573,7 @@ export class IncomingComponent implements OnInit {
   }
   postSimultaneousRingGet(simultaneousRingParsedJson) {
     if (simultaneousRingParsedJson) {
-      // this.isSimultaneousRingExpanded = (simultaneousRingParsedJson["SimultaneousRingPersonal"]["active"]["$"] == "true")
+      // this.isSimultaneousRingExpanded = (simultaneousRingParsedJson['SimultaneousRingPersonal']['active']['$'] == 'true')
       // To expand the card if the service is on.
     } else {
       console.log('Some Error occured in SimultaneousRing!');
@@ -663,7 +664,7 @@ export class IncomingComponent implements OnInit {
 
     console.log('In remoteOfficeChecked RO = ', this.isRemoteOfficeChecked)
     this.roUpdateErrMsg = '';
-    if(this.isRemoteOfficeChecked) {
+    if (this.isRemoteOfficeChecked) {
       this.isRemoteOfficeChecked = false;
     } else {
       this.isRemoteOfficeChecked = true;

@@ -2,151 +2,151 @@
 
 
 
-<md-card class="seperators" *ngIf='dndVisible' [class.callsettingDisable]="dndRetrievingError">
-    <md-list class="primaryContentText">
-        <md-list-item class="itemHeight44">
-            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="dndRetrievingError || dndUpdateError" tabindex="0">{{customizedTextJson.do_not_disturb.name}}</h3>
-            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isdndServiceFetched && !isdndUpdateInProgress"></md-spinner>
-            <md-slide-toggle [checked]="isDndChecked" (keyup.enter)="dndActive()" (change)="dndActive()" tabindex="0"> </md-slide-toggle>
-        </md-list-item>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndRetrievingError">
+<mat-card class="seperators" *ngIf='dndVisible' [class.callsettingDisable]="dndRetrievingError">
+    <mat-list class="primaryContentText">
+        <mat-list-item class="itemHeight44">
+            <h3 mat-line class="restrictiveButtonStyle" [class.errorTextColor]="dndRetrievingError || dndUpdateError" tabindex="0">{{customizedTextJson.do_not_disturb.name}}</h3>
+            <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="isdndServiceFetched && !isdndUpdateInProgress"> </mat-spinner>
+            <mat-slide-toggle [checked]="isDndChecked" (keyup.enter)="dndActive()" (change)="dndActive()" tabindex="0"> </mat-slide-toggle>
+        </mat-list-item>
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndRetrievingError">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily">{{dndRetrievingError}}</label>
         </p>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndUpdateError">
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="dndUpdateError">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily">{{dndUpdateError}}</label>
         </p>
-    </md-list>
-</md-card>
+    </mat-list>
+</mat-card>
 
-<md-card class="seperators" *ngIf="paVisible" [class.callsettingDisable]="pAFetchErrMsg">
-    <md-card (click)="outOfOfficeActive()">
-        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle callSettingsFontFamily"
+<mat-card class="seperators" *ngIf="paVisible" [class.callsettingDisable]="pAFetchErrMsg">
+    <mat-card (click)="outOfOfficeActive()">
+        <mat-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle callSettingsFontFamily"
             [class.errorTextColor]="pAFetchErrMsg" tabindex="0" (keyup.enter)="outOfOfficeActive()">
-            {{customizedTextJson.out_of_office.name}} </md-card-title>
+            {{customizedTextJson.out_of_office.name}} </mat-card-title>
         
-        <md-card-subtitle *ngIf="getPAStatus() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" tabindex="0">
-            {{customizedTextJson.service_on}}</md-card-subtitle>
-        <md-card-subtitle  *ngIf="getPAStatus() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" tabindex="0">
-            {{customizedTextJson.out_of_office.off_text}}</md-card-subtitle>
-            <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="pAFetchErrMsg">
+        <mat-card-subtitle *ngIf="getPAStatus() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" tabindex="0">
+            {{customizedTextJson.service_on}}</mat-card-subtitle>
+        <mat-card-subtitle  *ngIf="getPAStatus() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" tabindex="0">
+            {{customizedTextJson.out_of_office.off_text}}</mat-card-subtitle>
+            <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="pAFetchErrMsg">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily">{{pAFetchErrMsg}}</label>
         </p>
-            <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isPAFetched"></md-spinner>
+            <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="isPAFetched"> </mat-spinner>
         <div *ngIf="isOutOfOfficeExpanded && !pAFetchErrMsg" class=" settingCollapseIcon ">
         </div>
         <div *ngIf="!isOutOfOfficeExpanded && !pAFetchErrMsg" class=" settingExpandIcon ">
         </div>
-    </md-card>
-    <md-card *ngIf="isOutOfOfficeExpanded && !pAFetchErrMsg">
-        <outOfOffice></outOfOffice>
-    </md-card>
-</md-card>
+    </mat-card>
+    <mat-card *ngIf="isOutOfOfficeExpanded && !pAFetchErrMsg">
+        <app-out-of-office></app-out-of-office>
+    </mat-card>
+</mat-card>
 
-<md-card class="seperators" *ngIf='acrVisible' [class.callsettingDisable]="isAcrServiceRetrievingError">
-    <md-list class="primaryContentText">
-        <md-list-item class="itemHeight44">
-<h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="isAcrServiceRetrievingError  || acrUpdateError" tabindex="0">{{customizedTextJson.anonymous_call_rejection.name}}</h3>
-            <md-spinner class="callsettingSpinner" [class.callsettingHide]="isAcrServiceFetched && !isACRUpdateInProgress"></md-spinner>
-            <md-slide-toggle [checked]="isAnonymousCallRejectionChecked" (keyup.enter)="anonymousCallRejectionActive()" (change)="anonymousCallRejectionActive()" tabindex="0"> </md-slide-toggle>
-        </md-list-item>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcrServiceRetrievingError">
+<mat-card class="seperators" *ngIf='acrVisible' [class.callsettingDisable]="isAcrServiceRetrievingError">
+    <mat-list class="primaryContentText">
+        <mat-list-item class="itemHeight44">
+<h3 mat-line class="restrictiveButtonStyle" [class.errorTextColor]="isAcrServiceRetrievingError  || acrUpdateError" tabindex="0">{{customizedTextJson.anonymous_call_rejection.name}}</h3>
+            <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="isAcrServiceFetched && !isACRUpdateInProgress"> </mat-spinner>
+            <mat-slide-toggle [checked]="isAnonymousCallRejectionChecked" (keyup.enter)="anonymousCallRejectionActive()" (change)="anonymousCallRejectionActive()" tabindex="0"> </mat-slide-toggle>
+        </mat-list-item>
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isAcrServiceRetrievingError">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{isAcrServiceRetrievingError}}</label>
         </p>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="acrUpdateError">
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="acrUpdateError">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{acrUpdateError}}</label>
         </p>
-    </md-list>
-</md-card>
+    </mat-list>
+</mat-card>
 
 
-<md-card class="seperators" *ngIf='cfVisible' [class.callsettingDisable]="isCfRetrievingFailed">
-    <md-card (click)="callForwardingActive()">
-        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle"
+<mat-card class="seperators" *ngIf='cfVisible' [class.callsettingDisable]="isCfRetrievingFailed">
+    <mat-card (click)="callForwardingActive()">
+        <mat-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle"
             [class.errorTextColor]="isCfRetrievingFailed" (keyup.enter)="callForwardingActive()" tabindex="0">
-            {{customizedTextJson.call_forwarding.name}} </md-card-title>
+            {{customizedTextJson.call_forwarding.name}} </mat-card-title>
         
-        <md-card-subtitle *ngIf="getCFStatus() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle"
+        <mat-card-subtitle *ngIf="getCFStatus() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle"
             [class.callsettingHide]="isCfRetrievingFailed" tabindex="0">
-            {{customizedTextJson.call_forwarding.on_text}}</md-card-subtitle>
-        <md-card-subtitle  *ngIf="getCFStatus() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle"
+            {{customizedTextJson.call_forwarding.on_text}}</mat-card-subtitle>
+        <mat-card-subtitle  *ngIf="getCFStatus() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle"
             [class.callsettingHide]="isCfRetrievingFailed" tabindex="0">
-            {{customizedTextJson.call_forwarding.off_text}}</md-card-subtitle>
-        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="isCfRetrievingFailed">
+            {{customizedTextJson.call_forwarding.off_text}}</mat-card-subtitle>
+        <p mat-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="isCfRetrievingFailed">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{customizedTextJson.error.unabletofetch}}</label>
         </p>
-        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="isAllCFServicesFetched"></md-spinner>
+        <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="isAllCFServicesFetched"> </mat-spinner>
         <div *ngIf="isCallForwardingExpanded == true" class=" settingCollapseIcon ">
         </div>
         <div *ngIf="isCallForwardingExpanded == false" class=" settingExpandIcon ">
         </div>
-    </md-card>
-    <md-card *ngIf="isCallForwardingExpanded">
-        <callForward [cfAlwaysRetrievingError]="cfAlwaysRetrievingError" [cfBusyRetrievingError]="cfBusyRetrievingError"
-          [cfNoanswerRetrievingError]="cfNoanswerRetrievingError" [cfNotReachableRetrievingError]="cfNotReachableRetrievingError"></callForward>
-    </md-card>
-</md-card>
-<md-card class="seperators" *ngIf='simultaneousRingVisible' [class.callsettingDisable]="simulRingRetrievingError">
-    <md-card (click)="simultaneousRingActive()">
-        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle" [class.errorTextColor]="simulRingRetrievingError" (keyup.enter)="simultaneousRingActive()" tabindex="0">{{customizedTextJson.simultaneous_ring.name}}</md-card-title>
-        <md-card-subtitle *ngIf="giveIsSimultaneousRingActive() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError" tabindex="0">{{customizedTextJson.service_on}}</md-card-subtitle>
-        <md-card-subtitle *ngIf="giveIsSimultaneousRingActive() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError" tabindex="0">{{customizedTextJson.simultaneous_ring.off_text}}</md-card-subtitle>
-        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="simulRingRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{simulRingRetrievingError}}</label></p>
+    </mat-card>
+    <mat-card *ngIf="isCallForwardingExpanded">
+        <app-call-forward [cfAlwaysRetrievingError]="cfAlwaysRetrievingError" [cfBusyRetrievingError]="cfBusyRetrievingError"
+          [cfNoanswerRetrievingError]="cfNoanswerRetrievingError" [cfNotReachableRetrievingError]="cfNotReachableRetrievingError"></app-call-forward>
+    </mat-card>
+</mat-card>
+<mat-card class="seperators" *ngIf='simultaneousRingVisible' [class.callsettingDisable]="simulRingRetrievingError">
+    <mat-card (click)="simultaneousRingActive()">
+        <mat-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle" [class.errorTextColor]="simulRingRetrievingError" (keyup.enter)="simultaneousRingActive()" tabindex="0">{{customizedTextJson.simultaneous_ring.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="giveIsSimultaneousRingActive() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError" tabindex="0">{{customizedTextJson.service_on}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="giveIsSimultaneousRingActive() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="simulRingRetrievingError" tabindex="0">{{customizedTextJson.simultaneous_ring.off_text}}</mat-card-subtitle>
+        <p mat-line class="callsettingTwoLinesHeaderServerErrorMsg" *ngIf="simulRingRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{simulRingRetrievingError}}</label></p>
         <div *ngIf="isSimultaneousRingExpanded == true" class=" settingCollapseIcon ">
         </div>
         <div *ngIf="isSimultaneousRingExpanded == false" class=" settingExpandIcon ">
         </div>
-    </md-card>
-    <md-card *ngIf="isSimultaneousRingExpanded">
-        <simultaneousRing></simultaneousRing>
-    </md-card>
-</md-card>
+    </mat-card>
+    <mat-card *ngIf="isSimultaneousRingExpanded">
+        <app-simultaneous-ring></app-simultaneous-ring>
+    </mat-card>
+</mat-card>
 
-<md-card class="seperators" *ngIf='sequentialRingVisible' [class.callsettingDisable]="seqRingRetrievingError">
-    <md-card (click)="sequentialRingActive()">
-        <md-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle" [class.errorTextColor]="seqRingRetrievingError" (keyup.enter)="sequentialRingActive()" tabindex="0">{{customizedTextJson.sequential_ring.name}}</md-card-title>
-        <md-card-subtitle *ngIf="giveIsSequentialRingActive() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="seqRingRetrievingError" tabindex="0">{{customizedTextJson.service_on}}</md-card-subtitle>
-        <md-card-subtitle *ngIf="giveIsSequentialRingActive() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="seqRingRetrievingError" tabindex="0">{{customizedTextJson.sequential_ring.off_text}}</md-card-subtitle>
-        <p md-line class="callsettingTwoLinesHeaderServerErrorMsg"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{simulRingRetrievingError}}</label></p>
+<mat-card class="seperators" *ngIf='sequentialRingVisible' [class.callsettingDisable]="seqRingRetrievingError">
+    <mat-card (click)="sequentialRingActive()">
+        <mat-card-title class="primaryContentText callSettingsFontFamily restrictiveButtonStyle" [class.errorTextColor]="seqRingRetrievingError" (keyup.enter)="sequentialRingActive()" tabindex="0">{{customizedTextJson.sequential_ring.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="giveIsSequentialRingActive() == true" class="primaryColor callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="seqRingRetrievingError" tabindex="0">{{customizedTextJson.service_on}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="giveIsSequentialRingActive() == false" class="dimmedText callSettingsFontFamily restrictiveSmallLabelStyle" [class.callsettingHide]="seqRingRetrievingError" tabindex="0">{{customizedTextJson.sequential_ring.off_text}}</mat-card-subtitle>
+        <p mat-line class="callsettingTwoLinesHeaderServerErrorMsg"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{simulRingRetrievingError}}</label></p>
         <div *ngIf="isSequentialRingExpanded == true" class=" settingCollapseIcon ">
         </div>
         <div *ngIf="isSequentialRingExpanded == false" class=" settingExpandIcon ">
         </div>
-    </md-card>
-    <md-card *ngIf="isSequentialRingExpanded">
-        <sequentialRing></sequentialRing>
-    </md-card>
-</md-card>
+    </mat-card>
+    <mat-card *ngIf="isSequentialRingExpanded">
+        <app-sequential-ring></app-sequential-ring>
+    </mat-card>
+</mat-card>
 
-<md-card class="seperators" *ngIf='roVisible' [class.callsettingDisable]="roRetrievingError">
-    <md-card>
-        <md-list class="primaryContentText">
-            <md-list-item class="itemHeight44">
-                <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="roRetrievingError || roUpdateError" tabindex="0">{{customizedTextJson.remote_office.name}}</h3>
-                <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{roUpdateErrMsg}}</label></p>
-                <md-spinner class="callsettingSpinner" [class.callsettingHide]="isRoServiceFetched && !isROUpdateInprogress"></md-spinner>
-                <md-slide-toggle [checked]="isRemoteOfficeChecked" (change)="remoteOfficeActive()" (keyup.enter)="remoteOfficeActive()" tabindex="0"> </md-slide-toggle>
-            </md-list-item>
-            <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateError">
+<mat-card class="seperators" *ngIf='roVisible' [class.callsettingDisable]="roRetrievingError">
+    <mat-card>
+        <mat-list class="primaryContentText">
+            <mat-list-item class="itemHeight44">
+                <h3 mat-line class="restrictiveButtonStyle" [class.errorTextColor]="roRetrievingError || roUpdateError" tabindex="0">{{customizedTextJson.remote_office.name}}</h3>
+                <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{roUpdateErrMsg}}</label></p>
+                <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="isRoServiceFetched && !isROUpdateInprogress"> </mat-spinner>
+                <mat-slide-toggle [checked]="isRemoteOfficeChecked" (change)="remoteOfficeActive()" (keyup.enter)="remoteOfficeActive()" tabindex="0"> </mat-slide-toggle>
+            </mat-list-item>
+            <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roUpdateError">
                 <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{roUpdateError}}</label>
             </p>
-        </md-list>
-    </md-card>
-    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{roRetrievingError}}</label></p>
-    <md-card *ngIf="isRemoteOfficeChecked">
-        <remoteOffice (onRONumberChange)="onRONumberChange($event);"></remoteOffice>
-    </md-card>
-</md-card>
+        </mat-list>
+    </mat-card>
+    <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="roRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{roRetrievingError}}</label></p>
+    <mat-card *ngIf="isRemoteOfficeChecked">
+        <app-remote-office (onRONumberChange)="onRONumberChange($event);"></app-remote-office>
+    </mat-card>
+</mat-card>
 
-<md-card class="seperators" *ngIf='cwVisible' [class.callsettingDisable]="iscwServiceRetrievingError">
-    <md-list class="primaryContentText">
-        <md-list-item class="itemHeight44">
-            <h3 md-line class="restrictiveButtonStyle" [class.errorTextColor]="iscwServiceRetrievingError || callWaitingUpdateError" tabindex="0">{{customizedTextJson.call_waiting.name}}</h3>
-            <md-spinner class="callsettingSpinner" [class.callsettingHide]="iscwServiceFetched && !isCallWaitingInProgress"></md-spinner>
-            <md-slide-toggle [checked]="isCallWaitingChecked" (change)="callWaitingActive()" (keyup.enter)="callWaitingActive()" tabindex="0"> </md-slide-toggle>
-        </md-list-item>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="iscwServiceRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{iscwServiceRetrievingError}}</label></p>
-        <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="callWaitingUpdateError">
+<mat-card class="seperators" *ngIf='cwVisible' [class.callsettingDisable]="iscwServiceRetrievingError">
+    <mat-list class="primaryContentText">
+        <mat-list-item class="itemHeight44">
+            <h3 mat-line class="restrictiveButtonStyle" [class.errorTextColor]="iscwServiceRetrievingError || callWaitingUpdateError" tabindex="0">{{customizedTextJson.call_waiting.name}}</h3>
+            <mat-spinner [diameter]="20" style="margin-left: 20px; margin-bottom: 8px" [class.callsettingHide]="iscwServiceFetched && !isCallWaitingInProgress"> </mat-spinner>
+            <mat-slide-toggle [checked]="isCallWaitingChecked" (change)="callWaitingActive()" (keyup.enter)="callWaitingActive()" tabindex="0"> </mat-slide-toggle>
+        </mat-list-item>
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="iscwServiceRetrievingError"><label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{iscwServiceRetrievingError}}</label></p>
+        <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="callWaitingUpdateError">
             <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{callWaitingUpdateError}}</label>
         </p>
-    </md-list>
-</md-card>
+    </mat-list>
+</mat-card>

@@ -11,7 +11,7 @@ import { SimRingArray } from 'app/IncomingCalls/SimultaneousRing/simultaneousRin
 import { CriteriaArray } from 'app/IncomingCalls/SimultaneousRing/simultaneousRingServiceInput.service';
 import { Util } from 'app/AppCommon/util';
 @Component({
-  selector: 'simultaneousRing',
+  selector: 'app-simultaneous-ring',
   templateUrl: 'simultaneousRing.component.html',
   providers: [SimultaneousRingService]
 })
@@ -47,7 +47,7 @@ export class SimultaneousRingComponent implements OnInit {
 
   ngOnInit() {
 
-    if(IncomingComponent.simRingExpandGet === true) {
+    if (IncomingComponent.simRingExpandGet === true) {
       this.isDoNotRingWhenOnCallChecked = this.simultaneousRingService.fetchIsDoNotRingWhenOnCallChecked();
       this.isSimultaneousRingActive = this.simultaneousRingService.fetchIsSimultaneousRingActive();
       this.isRingNumbersChecked = this.isSimultaneousRingActive;
@@ -68,7 +68,7 @@ export class SimultaneousRingComponent implements OnInit {
     }
     if (!this.criteriaArray) {
       this.criteriaArray = new Array();
-    }    
+    }
     if (!this.simRingArray) {
       this.simRingArray = new Array();
     }
@@ -242,7 +242,7 @@ export class SimultaneousRingComponent implements OnInit {
           this.simRingUpdateError = this.customizedTextJson.error.networkerror;
         } else if (res.status >= 400) {
          errorStatus = ' ' + res.status;
-          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
       this.isSimRingUpdateInProgress = false;
@@ -316,7 +316,6 @@ export class SimultaneousRingComponent implements OnInit {
     this.isDoNotRingWhenOnCallUpdateError = '';
     this.isDoNotRingWhenOnCallUpdateInprogress = true;
     this.simultaneousRingServiceInput.setIsDoNotRingWhenOnCallChecked(event.checked);
-    
     this.simultaneousRingService.sendSimultaneousRingPut(this.serviceRouteProvider.fetchSimultaneousRingUrl(),
       this.postDoNotRingWhenOnCallPutCB.bind(this), this.SIM_RING_DEFAULT_UPDATE_FLAG);
   }
@@ -327,7 +326,6 @@ export class SimultaneousRingComponent implements OnInit {
     this.isDoNotRingWhenOnCallUpdateInprogress = true;
     this.isDoNotRingWhenOnCallChecked = !doNotRingWhenOnCallChecked;
     this.simultaneousRingServiceInput.setIsDoNotRingWhenOnCallChecked(this.isDoNotRingWhenOnCallChecked);
-    
     this.simultaneousRingService.sendSimultaneousRingPut(this.serviceRouteProvider.fetchSimultaneousRingUrl(),
       this.postDoNotRingWhenOnCallPutCB.bind(this), this.SIM_RING_DEFAULT_UPDATE_FLAG);
   }
@@ -343,7 +341,7 @@ export class SimultaneousRingComponent implements OnInit {
           this.isDoNotRingWhenOnCallUpdateError = this.customizedTextJson.error.networkerror;
         } else {
           errorStatus = ' ' + res.status;
-          this.isDoNotRingWhenOnCallUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.isDoNotRingWhenOnCallUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
 
@@ -365,7 +363,7 @@ export class SimultaneousRingComponent implements OnInit {
         if (res.status === 0) {
           this.simRingUpdateError = this.customizedTextJson.error.networkerror;
         } else if (res.status >= 400) {
-          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
+          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
         }
       }
     }
@@ -385,7 +383,6 @@ export class SimultaneousRingComponent implements OnInit {
       }
     });
   }
-  
   postSimultaneousRingGet(simultaneousRingParsedJson) {
     if (simultaneousRingParsedJson) {
       this.isDoNotRingWhenOnCallChecked = this.simultaneousRingService.fetchIsDoNotRingWhenOnCallChecked();
@@ -448,12 +445,11 @@ export class SimultaneousRingComponent implements OnInit {
 
   ringNumberSwitch() {
 
-    if(this.isRingNumbersChecked) {
+    if (this.isRingNumbersChecked) {
       this.isRingNumbersChecked = false;
     } else {
       this.isRingNumbersChecked = true;
     }
-    
     this.removeInvalidSRPhNumbers();
     this.removeDuplicatePhNumbers();
     this.clearErrorMessages();
@@ -473,20 +469,19 @@ export class SimultaneousRingComponent implements OnInit {
       this.simultaneousRingService.sendSimultaneousRingPut(this.serviceRouteProvider.fetchSimultaneousRingUrl(),
         this.postSimultaneousRingPut.bind(this), this.SIM_RING_DEFAULT_UPDATE_FLAG);
     }
-    
   }
 
   whenToRingChecked() {
     if (this.isWhenToRingExpanded) {
       this.isWhenToRingExpanded = false;
-    }else {
+    } else {
       this.isWhenToRingExpanded = true;
     }
   }
 
   onCriteriaUpdate(criteria: CriteriaArray) {
     this.simultaneousRingServiceInput.setCriteriaArray(criteria);
-    if(criteria.getIsActive()) {
+    if (criteria.getIsActive()) {
       criteria.setIsActive(false);
     } else {
       criteria.setIsActive(true);
@@ -508,8 +503,8 @@ export class SimultaneousRingComponent implements OnInit {
         errorStatus = ' ' + res.status;
         if (res.status === 0) {
           criteria.setErrorMsg(this.customizedTextJson.error.networkerror);
-        }else {
-          criteria.setErrorMsg(this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus));
+        } else {
+          criteria.setErrorMsg(this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus));
           this.isSimRingUpdateInProgress = false;
         }
       }
@@ -519,14 +514,13 @@ export class SimultaneousRingComponent implements OnInit {
 
   updateAnswerConfirmationRequired(simRing) {
     let self = this;
-    if(simRing.isAnswerConfirmationRequired) {
+    if (simRing.isAnswerConfirmationRequired) {
         simRing.isAnswerConfirmationRequired = false;
       } else {
         simRing.isAnswerConfirmationRequired = true;
       }
-      
     setTimeout(function () {
-      
+
       self.simultaneousRingServiceInput.setSimRingArray(simRing);
       self.simRingUpdateError = '';
       if (self.isAllPhoneNumbersValid() && self.hasNoDuplicatePhoneNumbers()) {
@@ -543,7 +537,7 @@ export class SimultaneousRingComponent implements OnInit {
         if (res.status === 0) {
           this.simRingUpdateError = this.customizedTextJson.error.networkerror;
         } else if (res.status >= 400) {
-          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
+          this.simRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
         }
       }
     } else {

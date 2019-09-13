@@ -4,14 +4,22 @@ import { IncomingComponent } from 'app/IncomingCalls/incoming.component';
 import { Util } from 'app/AppCommon/util';
 import { ServiceRouteProvider } from 'app/AppCommon/serviceRouteProvider.service';
 import { XSIServices } from 'app/AppCommon/xsiServiceList.service';
+import * as moment from 'moment';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
-    selector: 'outOfOffice',
+    selector: 'app-out-of-office',
     templateUrl: 'outOfOffice.component.html',
-    providers: [IncomingComponent, Util, OutOfOfficeService, XSIServices]
+    providers: [IncomingComponent, Util, OutOfOfficeService, XSIServices, {provide: MAT_DATE_LOCALE, useValue: window['locale']},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS}]
 })
 
 export class OutOfOfficeComponent implements OnInit {
+
     isUntilToggleDisabled = false;
     isUntilFetched = true;
     isEnableTransferFetched = true;
@@ -41,6 +49,7 @@ export class OutOfOfficeComponent implements OnInit {
     transferNo: any;
     selectedExpiryOption: any;
     expiryTimeUpdateErrMsg: any;
+    formatErrMsg: any;
     presenceUpdateErrMsg: any;
     customizedTextJson = window['customizedTexts'];
     availability = [];
@@ -50,7 +59,7 @@ export class OutOfOfficeComponent implements OnInit {
     isTransferEnabled = false;
 
     constructor(private util: Util, private outOfOfficeService: OutOfOfficeService, private serviceRouteProvider: ServiceRouteProvider,
-        private xsiServices: XSIServices) {
+        private xsiServices: XSIServices, private adapter: DateAdapter<any>) {
 
         this.availability = [this.customizedTextJson.out_of_office.none, this.customizedTextJson.out_of_office.business_trip,
         this.customizedTextJson.out_of_office.gone_for_the_day,
@@ -192,6 +201,7 @@ export class OutOfOfficeComponent implements OnInit {
         this.transferEnableErrMsg = '';
         this.untilUpdateErrMsg = '';
         this.transferNoUpdateErrMsg = '';
+        this.formatErrMsg = '';
     }
 
     onSelectAvailability(event) {
@@ -234,12 +244,12 @@ export class OutOfOfficeComponent implements OnInit {
             case this.customizedTextJson.out_of_office.meeting: selectedAvailabilityOption = this.outOfOfficeService.MEETING;
                 break;
             case this.customizedTextJson.out_of_office.temporarily_out: selectedAvailabilityOption =
-                                                                                    this.outOfOfficeService.TEMPORARILY_OUT;
+                this.outOfOfficeService.TEMPORARILY_OUT;
                 break;
             case this.customizedTextJson.out_of_office.business_trip: selectedAvailabilityOption = this.outOfOfficeService.BUSINESS_TRIP;
                 break;
             case this.customizedTextJson.out_of_office.gone_for_the_day: selectedAvailabilityOption =
-                                                                                    this.outOfOfficeService.GONE_FOR_THE_DAY;
+                this.outOfOfficeService.GONE_FOR_THE_DAY;
                 break;
             case this.customizedTextJson.out_of_office.training: selectedAvailabilityOption = this.outOfOfficeService.TRAINING;
                 break;
@@ -294,19 +304,16 @@ export class OutOfOfficeComponent implements OnInit {
     }
 
     selectExpirationTimeOption(event) {
-
         this.isDateTimeSelectorFocused = false;
         this.clearErrMsgs();
         this.isUntilFocused = false;
-
-        let selectedTimeInEpoch = event.srcElement.valueAsNumber;
+        let selectedTimeInEpoch = event.value;
         if (selectedTimeInEpoch) {
-            let date = new Date(selectedTimeInEpoch);
-            let updatedISOTime = this.util.getUserInpTimeISO(selectedTimeInEpoch);
-
-            this.outOfOfficeService.putSelectedExpirationTime(this.serviceRouteProvider.fetchPersonalAssistantUrl(), updatedISOTime,
-                this.postPutSelectedExpTime.bind(this));
-
+            let selectedDate = + new Date(selectedTimeInEpoch);
+            console.log('new Date(selectedTimeInEpoch)', new Date(selectedTimeInEpoch));
+            let updatedISOTimeFormat = moment(selectedDate).format('YYYY-MM-DD\T\HH:mm:ss.SSS\Z');
+            this.outOfOfficeService.putSelectedExpirationTime(this.serviceRouteProvider.fetchPersonalAssistantUrl(), updatedISOTimeFormat,
+            this.postPutSelectedExpTime.bind(this));
         }
     }
 
@@ -458,7 +465,7 @@ export class OutOfOfficeComponent implements OnInit {
             }
         } else {
             this.selectedExpiryOption = !isUntilChecked && this.presence
-                                            !== this.customizedTextJson.none ? this.customizedTextJson.out_of_office.forever : '';
+                !== this.customizedTextJson.none ? this.customizedTextJson.out_of_office.forever : '';
         }
         this.isUntilChecked = this.outOfOfficeService.fetchIsExpirationTimeEnabled();
     }
@@ -471,8 +478,9 @@ export class OutOfOfficeComponent implements OnInit {
         }
     }
 
-    focusDateTimeSelector() {
+    focusDateTimeSelector(event) {
         this.isDateTimeSelectorFocused = true;
+        console.log('event', event);
     }
 
 }

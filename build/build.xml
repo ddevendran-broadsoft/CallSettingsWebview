@@ -37,18 +37,18 @@
 	
 	<target name="compileAng2ForDev" description="Building angular in Dev mode">
 		<echo>Building angular files...</echo>
-		<exec executable="cmd" dir="${codeSrc}/angular2/">
-			<arg value="/c" />
-			<arg value="ng build -dev --base-href ./../" />
+		<exec executable="/bin/sh" dir="${codeSrc}/angular2/">
+			<arg value="-c" />
+			<arg value="ng build --dev" />
 			
 		</exec>
 	</target>
 
 	<target name="compileAng2ForProd" description="Building angular in Production mode">
 		<echo>Building angular files...</echo>
-		<exec executable="cmd" dir="${codeSrc}/angular2/">
-			<arg value="/c" />
-			<arg value="ng build --prod --base-href ./" />
+		<exec executable="/bin/sh" dir="${codeSrc}/angular2/">
+			<arg value="-c" />
+			<arg value="ng build --prod" />
 
 		</exec>
 	</target>
@@ -79,7 +79,13 @@
 					
 				</fileset>
 			</move>
-				
+			<move file="${staging}/js/cswindex.jsp" todir="${staging}"/>
+      <move file="${staging}/js/3rdpartylicenses.txt" todir="${staging}"/>
+      <move todir="${staging}">
+      <fileset dir="${staging}/js/">
+                    
+      </fileset>
+      </move>
 			
 
 			<replace token="@codeImport@" value=" 
@@ -151,14 +157,29 @@
 					
 					${line.separator}${line.separator}
 					if(brandableApp != null &amp;&amp; brandableApp.trim().length() &gt; 0) { ${line.separator}
-			
+					${line.separator}${line.separator}
+					try { ${line.separator}
+						${line.separator}
 						heroApplicationInput = ApplicationUtil.readJSONForAppTest(); ${line.separator}
-			
+					} catch (Exception ex) { ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Exception occurred in reading the JSON input data.&quot; + ApplicationUtil.getStackTrace(ex) ); ${line.separator}
+					}	${line.separator}
+					${line.separator}${line.separator}
 					} ${line.separator}
 					${line.separator}${line.separator}
-					
-					userDomain = ApplicationUtil.getDomainForRequest(request);${line.separator}
+					try { ${line.separator}
+					    ${line.separator}
+						userDomain = ApplicationUtil.getDomainForRequest(request);${line.separator}
+					} catch (Exception ex) { ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Exception occurred while getting Domain for Request.&quot; + ApplicationUtil.getStackTrace(ex) ); ${line.separator}
+					}	${line.separator}
+					${line.separator}${line.separator}
+					try { ${line.separator}
+						${line.separator}
 					xsiContextPath = ApplicationUtil.getXsiContextPathOrUrl(request);${line.separator}
+					} catch (Exception ex) { ${line.separator}
+						ChannelLoggerUtil.getLogger().log(ChannelSeverity.WARN, &quot;cswindex.jsp &quot;, &quot;Exception occurred while getting XSI Path or URL.&quot; + ApplicationUtil.getStackTrace(ex) ); ${line.separator}
+					}	${line.separator}
 					${line.separator}
 					%&gt; ${line.separator}
 				">

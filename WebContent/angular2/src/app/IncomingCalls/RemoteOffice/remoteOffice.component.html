@@ -1,26 +1,27 @@
 <!-- Copyright © 2017 BroadSoft Inc. -->
 
 
-<md-list class="primaryContentText">
-    <md-list-item class="remoteOfficeDescriptionTextAlign">
-        <p md-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.remote_office.text}}</label></p>
-    </md-list-item>
-    <md-list-item class="nestedListItemBottomPadding">
-        <p md-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="secondaryContentText restrictiveSmallLabelStyle " tabindex="0">
+<mat-list class="primaryContentText">
+    <mat-list-item class="remoteOfficeDescriptionTextAlign">
+        <p mat-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.remote_office.text}}</label></p>
+    </mat-list-item>
+    <mat-list-item class="nestedListItemBottomPadding">
+        <p mat-line class="secondLevelSettingLeftPadding hintBottomPadding"><label class="secondaryContentText restrictiveSmallLabelStyle " tabindex="0">
             {{customizedTextJson.remote_office.text.remote_phone_number}}</label></p>
-        <p md-line class="secondLevelSettingLeftPadding">
-            <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" [class.callsettingErrorInput]="roPhonenumberFieldValidationError"
+        <p mat-line class="secondLevelSettingLeftPadding">
+            <mat-form-field class="restrictiveLabelStyle inputNumberWidth placeholderText" floatLabel="never" [class.callsettingErrorInput]="roPhonenumberFieldValidationError"
                 [class.inputInvokedColor]="isRemoteOfficeInputFieldFocused">
-                <input mdInput class="inputNumberWidth callsettingMarginNone" placeholder={{this.customizedTextJson.set_number}} id="remoteOfficeNumberId"
+                <input matInput class="inputNumberWidth callsettingMarginNone" id="remoteOfficeNumberId"
                     value="remoteOfficeNumber" [style.width.px]="inputWidth" [(ngModel)]="remoteOfficeNumber" (input)="updateInputCotainerWidth();"
                     (keyup.enter)="onPhonenumberChange($event);" (blur)="onAdditionalsettingsPhonenumberBlur($event);" (change)="stopRedundantBlurCall()" tabindex="0">
-            </md-input-container>
+                    <mat-placeholder class="placeholder">{{this.customizedTextJson.set_number}}</mat-placeholder>
+            </mat-form-field>
         </p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="roUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+        <p mat-line class="secondLevelSettingLeftPadding" *ngIf="roUpdateSrvErrMsg"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{roUpdateSrvErrMsg}}</label></p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="!remoteOfficeNumber"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
+        <p mat-line class="secondLevelSettingLeftPadding" *ngIf="!remoteOfficeNumber"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">
             {{this.customizedTextJson.remote_office.err_msg}}</label></p>
-        <p md-line class="secondLevelSettingLeftPadding" *ngIf="remoteOfficeNumber && roPhonenumberFieldValidationError">
+        <p mat-line class="secondLevelSettingLeftPadding" *ngIf="remoteOfficeNumber && roPhonenumberFieldValidationError">
             <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{roPhonenumberFieldValidationError}}</label></p>
-    </md-list-item>
-</md-list>
+    </mat-list-item>
+</mat-list>

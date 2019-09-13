@@ -1,5 +1,5 @@
 <div id="desktopSelectContainer" class="cswDesktopSelectContainer cswFullWidth cswSelectDropdown restrictiveLabelStyle"
  [class.cswHide]="!selectOptionsList || !selectOptionsList.length">
-        <md-checkbox *ngFor="let opt of selectOptionsList" [attr.data-value]="opt.name" class="cswInputContainerOption"
-        (change)="onSendCallsUpdateOptions(opt.isSelectAllOption(), opt.isNoneOption());" [checked]="opt.checked" [(ngModel)]="opt.checked" tabindex="1">{{opt.getName()}}</md-checkbox>
+        <mat-checkbox *ngFor="let opt of selectOptionsList" [attr.data-value]="opt.name" class="cswInputContainerOption"
+        (change)="onSendCallsUpdateOptions(opt.isSelectAllOption(), opt.isNoneOption());" [checked]="opt.checked" [(ngModel)]="opt.checked" tabindex="1">{{opt.getName()}}</mat-checkbox>
 </div>

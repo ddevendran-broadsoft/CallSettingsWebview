@@ -11,7 +11,7 @@ import 'rxjs/add/observable/throw';
 /*This class handles the communication between the application and the server (XSI)*/
 export class HttpServices {
 
-  proxyUrl = 'http://127.0.0.1:8081/BWWebProxy/proxy';
+  proxyUrl = 'http://127.0.0.1:8080/BWWebProxy/proxy';
   headers: Headers = new Headers();
 
   constructor(private http: Http) {}

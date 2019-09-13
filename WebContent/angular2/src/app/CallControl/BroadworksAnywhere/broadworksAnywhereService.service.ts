@@ -116,7 +116,6 @@ export class BroadworksAnywhereService {
             '<BroadWorksAnywhereLocation xmlns="http://schema.broadsoft.com/xsi">' +
             '<broadworksCallControl>' + isCallControlChecked + '</broadworksCallControl>' +
             '</BroadWorksAnywhereLocation>';
-        console.log('Location:===========>', location.locationUrl)
         this.httpServices.httpPutRequest(location.locationUrl, body)
             .subscribe((res) => {
                 this.broadWorksAnywhereLocationsInput.setIsCallControlChecked(isCallControlChecked)
@@ -188,7 +187,7 @@ export class BroadworksAnywhereService {
                 if (window['applicationMode'] === 'dev') {
                     locationUrl = this.util.getBWAnywhereLocationUrl(userInpRingNumber);
                 } else {
-                    let map = res.headers._headers;
+                    let map = res.headers;
                     locationUrl = map.get('location')[0];
                 }
                 if (existingLocations) {

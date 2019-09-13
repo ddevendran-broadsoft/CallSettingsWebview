@@ -1,17 +1,17 @@
 /* Copyright © 2017 BroadSoft Inc. */
 
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {IncomingComponent} from 'app/IncomingCalls/incoming.component';
-import {SequentialRingService} from 'app/IncomingCalls/SequentialRing/sequentialRing.service';
-import {ServiceRouteProvider} from 'app/AppCommon/serviceRouteProvider.service';
+import { IncomingComponent } from 'app/IncomingCalls/incoming.component';
+import { SequentialRingService } from 'app/IncomingCalls/SequentialRing/sequentialRing.service';
+import { ServiceRouteProvider } from 'app/AppCommon/serviceRouteProvider.service';
 import { XSIServices } from 'app/AppCommon/xsiServiceList.service';
-import {SequentialRingServiceInput} from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
-import {SeqRingArray} from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
-import {CriteriaArray} from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
-import {Util} from 'app/AppCommon/util';
+import { SequentialRingServiceInput } from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
+import { SeqRingArray } from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
+import { CriteriaArray } from 'app/IncomingCalls/SequentialRing/sequentialRingServiceInput.service';
+import { Util } from 'app/AppCommon/util';
 @Component({
-  selector: 'sequentialRing',
+  selector: 'app-sequential-ring',
   templateUrl: 'sequentialRing.component.html',
   providers: [SequentialRingService]
 })
@@ -60,7 +60,7 @@ export class SequentialRingComponent implements OnInit {
 
   ngOnInit() {
 
-    if(IncomingComponent.seqRingExpandGet === true) {
+    if (IncomingComponent.seqRingExpandGet === true) {
       this.isRingBaseLocationChecked = this.sequentialRingService.fetchIsRingBaseLocationFirst();
       this.baseLocationRingSelected = this.sequentialRingService.fetchBaseLocationNumberOfRings();
       this.isContinueIfBusyChecked = this.sequentialRingService.fetchIsContinueIfBaseLocationIsBusy();
@@ -77,7 +77,7 @@ export class SequentialRingComponent implements OnInit {
         this.seqRingRetrievingError = '';
         this.seqRingUpdateError = '';
         this.sequentialRingService.getSequentialRingService(this.serviceRouteProvider.fetchSequentialRingUrl(),
-                                        this.postSequentialRingGet.bind(this));
+          this.postSequentialRingGet.bind(this));
       }
     }
     if (!this.criteriaArray) {
@@ -113,10 +113,10 @@ export class SequentialRingComponent implements OnInit {
       this.seqRingArray = this.sequentialRingService.fetchSeqRingArray();
       this.criteriaArray = this.sequentialRingService.fetchCriteriaArray();
       this.addDefaultPhoneNumberEntry();
-    // Checking if any criterion is present and setting the error message accordingly...
-    if (!this.criteriaArray.length) {
-      this.criteriaRequiredError = this.customizedTextJson.sequential_ring.criteria_required;
-    }
+      // Checking if any criterion is present and setting the error message accordingly...
+      if (!this.criteriaArray.length) {
+        this.criteriaRequiredError = this.customizedTextJson.sequential_ring.criteria_required;
+      }
     } else {
       console.log('Some error occured in getting Sequential Ring.');
     }
@@ -126,8 +126,8 @@ export class SequentialRingComponent implements OnInit {
   ringBaseLocationUpdate(event) {
     this.ringBaseUpdateError = '';
     this.ringBaseUpdateInProgress = true;
-    if(event.key) {
-      if(event.key == 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isRingBaseLocationChecked = !this.isRingBaseLocationChecked;
       }
     } else {
@@ -135,7 +135,7 @@ export class SequentialRingComponent implements OnInit {
     }
 
     this.sequentialRingServiceInput.setIsRingBaseLocationFirst(this.isRingBaseLocationChecked);
-    
+
     this.sequentialRingService.sendSequentialRingPut(this.serviceRouteProvider.fetchSequentialRingUrl(),
       this.postRingBaseLocationPut.bind(this), this.RING_BASE_LOCATION_UPDATE_FLAG);
   }
@@ -148,13 +148,13 @@ export class SequentialRingComponent implements OnInit {
       if (res && (res.status === 0 || res.status)) {
         if (res.status === 0) {
           this.ringBaseUpdateError = this.customizedTextJson.error.networkerror;
+        } else if ((res.status === 400) && (JSON.parse(res._body).ErrorInfo.errorCode.$ === '6660')) {
+          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
         } else {
           errorStatus = ' ' + res.status;
-          this.ringBaseUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
-
-
     } else {
       this.sequentialRingServiceInput.setIsRingBaseLocationFirst(this.isRingBaseLocationChecked);
     }
@@ -178,10 +178,9 @@ export class SequentialRingComponent implements OnInit {
           this.ringBaseUpdateError = this.customizedTextJson.error.networkerror;
         } else {
           errorStatus = ' ' + res.status;
-          this.ringBaseUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.ringBaseUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
-
 
     } else {
       this.sequentialRingServiceInput.setBaseLocationNumberOfRings(this.sequentialRingServiceInput.getBaseLocationNumberOfRings());
@@ -191,8 +190,8 @@ export class SequentialRingComponent implements OnInit {
   updateContinueIfBusy(event) {
     this.ringBaseUpdateError = '';
     this.ringBaseUpdateInProgress = true;
-    if(event.key) {
-      if(event.key == 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isContinueIfBusyChecked = !this.isContinueIfBusyChecked;
       }
     } else {
@@ -213,7 +212,7 @@ export class SequentialRingComponent implements OnInit {
           this.ringBaseUpdateError = this.customizedTextJson.error.networkerror;
         } else {
           errorStatus = ' ' + res.status;
-          this.ringBaseUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.ringBaseUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
 
@@ -227,15 +226,15 @@ export class SequentialRingComponent implements OnInit {
   updateCallerMayCancel(event) {
     this.callerCancelUpdateError = '';
     this.callerCancelUpdateInProgress = true;
-    if(event.key) {
-      if(event.key == 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isCallerMayCancelChecked = !this.isCallerMayCancelChecked;
       }
     } else {
       this.isCallerMayCancelChecked = event.checked;
     }
     this.sequentialRingServiceInput.setIsCallerMayStopSearch(this.isCallerMayCancelChecked);
-    
+
     this.sequentialRingService.sendSequentialRingPut(this.serviceRouteProvider.fetchSequentialRingUrl(),
       this.postUpdateCallerMayCancelPut.bind(this), this.CALLER_MAY_CANCEL_UPDATE_FLAG);
   }
@@ -272,7 +271,7 @@ export class SequentialRingComponent implements OnInit {
         this.seqRingArray[index].setNumber(input);
         isValidData = this.validatePhoneNumber(input, index);
       }
-      if (!input && index !== this.seqRingArray.length - 1) {
+      if (!input && (index !== this.seqRingArray.length - 1)) {
         this.sequentialRingNumberDelete(index);
       } else if (!input && index === this.seqRingArray.length - 1) {   // To make last number field empty...
         this.sequentialRingService.setIsModified(true);
@@ -281,7 +280,7 @@ export class SequentialRingComponent implements OnInit {
         this.seqRingArray[index].setError('');
       }
       let self = this;
-      setTimeout(function() {
+      setTimeout(function () {
         if ((!input || isValidData) && self.isAllValidNumbers()) {
           self.ringNumbersUpdateProgress = true;
 
@@ -291,7 +290,7 @@ export class SequentialRingComponent implements OnInit {
       }, 50);
     }
   }
-
+// Update Number of Rings - throw error if limit exceeds
   postUpdateRingNumberPut(res) {
     this.ringNumbersUpdateProgress = false;
     if (!res || !(res.status >= 200 && res.status < 400)) {
@@ -299,9 +298,11 @@ export class SequentialRingComponent implements OnInit {
       if (res && (res.status === 0 || res.status)) {
         if (res.status === 0) {
           this.seqRingUpdateError = this.customizedTextJson.error.networkerror;
-        } else if (res.status >= 400) {
+        } else if ((res.status === 400) && (JSON.parse(res._body).ErrorInfo.errorCode.$ === '6660')) {
+          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
+        } else {
           errorStatus = ' ' + res.status;
-          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus);
+          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, errorStatus);
         }
       }
     } else {
@@ -392,7 +393,7 @@ export class SequentialRingComponent implements OnInit {
         if (res.status === 0) {
           this.seqRingUpdateError = this.customizedTextJson.error.networkerror;
         } else if (res.status >= 400) {
-          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
+          this.seqRingUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
         }
       }
     }
@@ -400,7 +401,7 @@ export class SequentialRingComponent implements OnInit {
 
   updateAnswerConfirmation(seqRing, index) {
     if (this.isAllValidNumbers()) {
-      if(seqRing.isAnswerConfirmationRequired) {
+      if (seqRing.isAnswerConfirmationRequired) {
         seqRing.isAnswerConfirmationRequired = false;
       } else {
         seqRing.isAnswerConfirmationRequired = true;
@@ -424,7 +425,7 @@ export class SequentialRingComponent implements OnInit {
 
   onCriteriaUpdate(criteria: CriteriaArray) {
     this.sequentialRingServiceInput.setCriteriaArray(criteria);
-    if(criteria.getIsActive()) {
+    if (criteria.getIsActive()) {
       criteria.setIsActive(false);
     } else {
       criteria.setIsActive(true);

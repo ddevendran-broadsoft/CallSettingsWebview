@@ -18,9 +18,10 @@ export class BroadWorksMobilityServiceInput {
     private isExecutiveAssistantActiveInsideMobileNumber: boolean;
     private isSharedCallAppearanceActiveInsideMobileNumber: boolean;
     private isAlertAgentCallsChecked: boolean;
-    private isAlertClickToDialCallsChecked : boolean ;
+    private isAlertClickToDialCallsChecked: boolean;
     private isAlertGroupPagingCallsChecked: boolean;
     private isAnswerConfirmationRequiredChecked: boolean;
+    private isCallAnchoringChecked: boolean;
     private isBroadworksCallControlChecked: boolean;
     private isUseDiversionInhibitorChecked: boolean;
     private isUseMobilityCallingLineIDChecked: boolean;
@@ -32,13 +33,13 @@ export class BroadWorksMobilityServiceInput {
     private allMobileDeviceNumbers = [];
     private allSelectedSettingsInBWMob = [];
 
-    //DesktopSelectOptionsList start
+    // DesktopSelectOptionsList start
     private pnrfdDOList = [];
     private pnrmdDOList = [];
     private mngsDOList = [];
     private mnrfdDOList = [];
     private mnrmdDOList = [];
-    //DesktopSelectOptionsList end
+    // DesktopSelectOptionsList end
 
     setIsBroadWorksMobilityActive(isBroadWorksMobilityActive) {
         this.isBroadWorksMobilityActive = isBroadWorksMobilityActive;
@@ -120,11 +121,11 @@ export class BroadWorksMobilityServiceInput {
         return this.isSharedCallAppearanceActiveInsideMobileNumber;
     }
 
-    setIsAlertAgentCallsChecked(isAlertAgentCallsChecked){
+    setIsAlertAgentCallsChecked(isAlertAgentCallsChecked) {
         this.isAlertAgentCallsChecked = isAlertAgentCallsChecked
     }
 
-    setIsAlertClickToDialCallsChecked(isAlertClickToDialCallsChecked){
+    setIsAlertClickToDialCallsChecked(isAlertClickToDialCallsChecked) {
         this.isAlertClickToDialCallsChecked = isAlertClickToDialCallsChecked
     }
 
@@ -136,7 +137,7 @@ export class BroadWorksMobilityServiceInput {
         return this.isAlertClickToDialCallsChecked;
     }
 
-    setIsAlertGroupPagingCallsChecked(isAlertGroupPagingCallsChecked){
+    setIsAlertGroupPagingCallsChecked(isAlertGroupPagingCallsChecked) {
         this.isAlertGroupPagingCallsChecked = isAlertGroupPagingCallsChecked
     }
 
@@ -150,6 +151,14 @@ export class BroadWorksMobilityServiceInput {
 
     getIsAnswerConfirmationRequiredChecked() {
         return this.isAnswerConfirmationRequiredChecked;
+    }
+
+    setIsCallAnchoringChecked(isCallAnchoringChecked) {
+        this.isCallAnchoringChecked = isCallAnchoringChecked
+    }
+
+    getIsCallAnchoringChecked() {
+        return this.isCallAnchoringChecked;
     }
 
     setIsBroadworksCallControlChecked(isBroadworksCallControlChecked) {
@@ -181,7 +190,7 @@ export class BroadWorksMobilityServiceInput {
     }
 
     getAllSelectedMobileNumbersUnderMobileIdentity() {
-        return  this.allSelectedMobileNumbersUnderMobileIdentity;
+        return this.allSelectedMobileNumbersUnderMobileIdentity;
     }
 
     setDevicesToRing(isRingFixedDevicesUnderBWMobilityChecked, isRingMobileDevicesUnderBWMobilityChecked) {
@@ -234,7 +243,7 @@ export class BroadWorksMobilityServiceInput {
         return this.allSelectedSettingsInBWMob;
     }
 
-    //------------
+    // ------------
     setPNRFDDOList(list) {
         this.pnrfdDOList = list;
     }

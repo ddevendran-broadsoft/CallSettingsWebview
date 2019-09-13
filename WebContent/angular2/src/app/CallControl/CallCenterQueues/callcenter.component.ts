@@ -15,21 +15,22 @@ import { CallControlService } from 'app/CallControl/callControlService.service';
 
 
 @Component({
-  selector: 'callcenter',
+  selector: 'app-call-center',
   templateUrl: 'callcenter.component.html',
   providers: [XSIServices, ServiceRouteProvider, AppComponent]
 })
 
-export class CallCenterComponent {
-
+export class CallCenterComponent implements OnInit {
+  static isCallCenterUpdated: boolean;
+  static callcenterServiceRetrievingError: string = '';
+  static isCallcenterFetchedFirstTime: boolean;
+  static acdStateSelected: string;
   private unavailableCodeUrl: string;
   private callCenterNameUrl: string;
   private unavailableCodeArray: UnavailableCodeArray[];
   private unavailableCodeIndex: number;
 
-  static isCallCenterUpdated: boolean;
-  static callcenterServiceRetrievingError: string = "";
-  static acdStateSelected: string;
+
 
   unavailableCodeUpdateErrMsg: any;
   isCallCenterIdUpdated: boolean;
@@ -46,7 +47,7 @@ export class CallCenterComponent {
   unavailableCodeSelected: string;
   isUCenabled: boolean;
   ucArray = [];
-  static isCallcenterFetchedFirstTime: boolean;
+
   isCallCenterQueueVisible: boolean;
 
   constructor(private xsiServices: XSIServices, private serviceRouteProvider: ServiceRouteProvider,
@@ -63,10 +64,9 @@ export class CallCenterComponent {
     if (CallCenterComponent.isCallcenterFetchedFirstTime) {
 
       this.newAcdState = this.callCenterService.fetchCCAcdState();
-      if (this.newAcdState == this.customizedTextJson.callcenter.unavailable) {
+      if (this.newAcdState === this.customizedTextJson.callcenter.unavailable) {
         this.isUnavailableStateSet = true;
-      }
-      else {
+      } else {
         this.isUnavailableStateSet = false;
       }
       this.callcenterArray = this.callCenterServiceInput.getCallCenterArray();
@@ -107,8 +107,7 @@ export class CallCenterComponent {
       this.newAcdState = CallCenterComponent.acdStateSelected;
       if (this.newAcdState === this.customizedTextJson.callcenter.unavailable) {
         this.isUnavailableStateSet = true;
-      }
-      else {
+      } else {
         this.isUnavailableStateSet = false;
       }
       this.callcenterArray = this.callCenterServiceInput.getCallCenterArray();
@@ -141,7 +140,7 @@ export class CallCenterComponent {
     CallCenterComponent.isCallCenterUpdated = true;
 
     if (error) {
-      if (error.status == 0) {
+      if (error.status === 0) {
         this.acdStateUpdateErrMsg = this.customizedTextJson.error.networkerror;
       } else {
         this.acdStateUpdateErrMsg = this.customizedTextJson.error.updatefailed;
@@ -157,7 +156,7 @@ export class CallCenterComponent {
     CallCenterComponent.isCallCenterUpdated = true;
 
     if (error) {
-      if (error.status == 0) {
+      if (error.status === 0) {
         this.unavailableCodeUpdateErrMsg = this.customizedTextJson.error.networkerror;
       } else {
         this.unavailableCodeUpdateErrMsg = this.customizedTextJson.error.updatefailed;
@@ -173,10 +172,9 @@ export class CallCenterComponent {
     this.newAcdState = event.target.value;
     CallCenterComponent.isCallCenterUpdated = false;
     this.clearErrorMessages()
-    if (this.newAcdState == this.customizedTextJson.callcenter.unavailable) {
+    if (this.newAcdState === this.customizedTextJson.callcenter.unavailable) {
       this.isUnavailableStateSet = true;
-    }
-    else {
+    } else {
       this.isUnavailableStateSet = false;
     }
 
@@ -195,19 +193,18 @@ export class CallCenterComponent {
     CallCenterComponent.isCallCenterUpdated = false;
     for (let index = 0; index < this.ucArray.length; ++index) {
 
-      if (event.srcElement.options[index].selected == true) {
+      if (event.srcElement.options[index].selected === true) {
         this.unavailableCodeIndex = index;
       }
     }
 
-    if (this.unavailableCodeIndex != 0) {
+    if (this.unavailableCodeIndex !== 0) {
 
       this.unavailableCode = this.unavailableCodeArray[this.unavailableCodeIndex - 1].code;
-    }
-    else {
+    } else {
       this.unavailableCode = this.customizedTextJson.callcenter.none;
     }
-    console.log("Unavailable code set >>>> ", this.unavailableCode);
+    console.log('Unavailable code set >>>> ', this.unavailableCode);
 
     this.callCenterService.putAcdState(this.serviceRouteProvider.fetchCallCenterUrl(),
       this.newAcdState, this.isUnavailableStateSet,
@@ -225,9 +222,9 @@ export class CallCenterComponent {
     }
 
     ccElement.setUpdateInprogress(true);
-    ccElement.setErrorMsg("");
+    ccElement.setErrorMsg('');
     this.clearErrorMessages();
-    console.log("event ", ccElement);
+    console.log('event ', ccElement);
 
     this.callCenterService.putCCData(this.serviceRouteProvider.fetchCallCenterUrl(), ccElement, this.postCCput.bind(this, ccElement));
 
@@ -239,13 +236,12 @@ export class CallCenterComponent {
     ccElement.setUpdateInprogress(false);
 
     if (!res || !(res.status >= 200 && res.status < 400)) {
-      let errorStatus = "";
+      let errorStatus = '';
       if (res && (res.status === 0 || res.status)) {
-        errorStatus = " " + res.status;
+        errorStatus = ' ' + res.status;
         if (res.status === 0) {
           ccElement.setErrorMsg(this.customizedTextJson.error.networkerror);
-        }
-        else {
+        } else {
           ccElement.setErrorMsg(this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, errorStatus));
         }
       }
@@ -254,16 +250,16 @@ export class CallCenterComponent {
 
   initializeUnavailableCodes() {
 
-    console.log("this.callControlServiceInput.getIsEnterprise >>>>>>>>>>>", this.callControlServiceInput.getIsEnterprise())
-    CallCenterComponent.callcenterServiceRetrievingError = "";
+    console.log('this.callControlServiceInput.getIsEnterprise >>>>>>>>>>>', this.callControlServiceInput.getIsEnterprise())
+    CallCenterComponent.callcenterServiceRetrievingError = '';
 
-    if (this.callControlServiceInput.getIsEnterprise() == "true") {
+    if (this.callControlServiceInput.getIsEnterprise() === 'true') {
 
-      this.unavailableCodeUrl = window['xsiActionsBaseURL'] + "/v2.0/group/" + this.callControlServiceInput.getGroupId() + "/services/callcenter/unavailablecodes?enterpriseId=" +
+      this.unavailableCodeUrl = window['xsiActionsBaseURL'] + '/v2.0/group/' + this.callControlServiceInput.getGroupId() + '/services/callcenter/unavailablecodes?enterpriseId=' +
         this.callControlServiceInput.getServiceProviderId();
     } else {
 
-      this.unavailableCodeUrl = window['xsiActionsBaseURL'] + "/v2.0/group/" + this.callControlServiceInput.getGroupId() + "/services/callcenter/unavailablecodes?serviceProviderId=" +
+      this.unavailableCodeUrl = window['xsiActionsBaseURL'] + '/v2.0/group/' + this.callControlServiceInput.getGroupId() + '/services/callcenter/unavailablecodes?serviceProviderId=' +
         this.callControlServiceInput.getServiceProviderId();
     }
 
@@ -274,26 +270,25 @@ export class CallCenterComponent {
   postUCget(error) {
     if (!error) {
 
-      console.log("Unavailable codes fetched");
+      console.log('Unavailable codes fetched');
 
       this.isUCenabled = this.callCenterServiceInput.getIsUCenabled();
-      console.log("this.isUCenabled >>>>>>>", this.isUCenabled);
+      console.log('this.isUCenabled >>>>>>>', this.isUCenabled);
       if (this.isUCenabled) {
         this.unavailableCodeArray = this.callCenterServiceInput.getUnavailableCodeArray();
 
         for (let index = 0; index < this.unavailableCodeArray.length; ++index) {
-          this.ucArray[index] = this.unavailableCodeArray[index].code + " - " + this.unavailableCodeArray[index].name;
+          this.ucArray[index] = this.unavailableCodeArray[index].code + ' - ' + this.unavailableCodeArray[index].name;
         }
 
         this.ucArray.unshift(this.customizedTextJson.callcenter.none);
 
-        console.log("this.callCenterServiceInput.getSelectedUnavailableCode()", this.callCenterServiceInput.getSelectedUnavailableCode())
+        console.log('this.callCenterServiceInput.getSelectedUnavailableCode()', this.callCenterServiceInput.getSelectedUnavailableCode())
 
         this.setUnavailableCodeText();
 
       }
-    }
-    else {
+    } else {
       CallCenterComponent.callcenterServiceRetrievingError = this.customizedTextJson.error.unabletofetch;
     }
 
@@ -304,11 +299,11 @@ export class CallCenterComponent {
 
     let size = this.callcenterArray.length;
     this.isCallCenterIdUpdated = false;
-    CallCenterComponent.callcenterServiceRetrievingError = "";
+    CallCenterComponent.callcenterServiceRetrievingError = '';
 
     for (let index = 0; index < size; ++index) {
 
-      this.callCenterNameUrl = window['xsiActionsBaseURL'] + "/v2.0/callcenter/" + this.callcenterArray[index].getCallCenterId() + "/profile?";
+      this.callCenterNameUrl = window['xsiActionsBaseURL'] + '/v2.0/callcenter/' + this.callcenterArray[index].getCallCenterId() + '/profile?';
       this.callCenterService.getCallCenterName(this.callCenterNameUrl, index, this.postCCnameGet.bind(this));
 
     }
@@ -319,8 +314,7 @@ export class CallCenterComponent {
     if (!error) {
       this.isCallCenterIdUpdated = true;
       console.log(this.callcenterArray);
-    }
-    else {
+    } else {
       CallCenterComponent.callcenterServiceRetrievingError = this.customizedTextJson.error.unabletofetch;
     }
   }
@@ -330,16 +324,15 @@ export class CallCenterComponent {
 
     if (this.isCallCenterChecked) {
       this.isCallCenterChecked = false;
-    }
-    else {
+    } else {
       this.isCallCenterChecked = true;
     }
   }
 
   clearErrorMessages() {
-    this.acdStateUpdateErrMsg = "";
-    this.ccActiveUpdateErrMsg = "";
-    this.unavailableCodeUpdateErrMsg = "";
+    this.acdStateUpdateErrMsg = '';
+    this.ccActiveUpdateErrMsg = '';
+    this.unavailableCodeUpdateErrMsg = '';
   }
 
   setUnavailableCodeText() {
@@ -347,13 +340,12 @@ export class CallCenterComponent {
 
       for (let index = 0; index < this.unavailableCodeArray.length; ++index) {
 
-        if (this.unavailableCodeArray[index].code == this.callCenterServiceInput.getSelectedUnavailableCode()) {
+        if (this.unavailableCodeArray[index].code === this.callCenterServiceInput.getSelectedUnavailableCode()) {
 
-          this.unavailableCodeSelected = this.unavailableCodeArray[index].code + " - " + this.unavailableCodeArray[index].name;
+          this.unavailableCodeSelected = this.unavailableCodeArray[index].code + ' - ' + this.unavailableCodeArray[index].name;
         }
       }
-    }
-    else {
+    } else {
       this.unavailableCodeSelected = this.customizedTextJson.callcenter.none;
     }
   }
