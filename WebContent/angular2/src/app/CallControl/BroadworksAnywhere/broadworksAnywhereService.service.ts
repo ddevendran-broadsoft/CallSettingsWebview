@@ -185,12 +185,7 @@ export class BroadworksAnywhereService {
         this.httpServices.httpPostRequest(bwAnywhereLocationUrl, body)
             .subscribe((res) => {
                 let existingLocations = this.broadworksAnywhereServiceInput.getBWAnywhereLocations();
-                if (window['applicationMode'] === 'dev') {
                     locationUrl = this.util.getBWAnywhereLocationUrl(userInpRingNumber);
-                } else {
-                    let map = res.headers._headers;
-                    locationUrl = map.get('location')[0];
-                }
                 if (existingLocations) {
                     this.updateExistingLocs(existingLocations, locationUrl, userInpRingNumber);
                 } else {
