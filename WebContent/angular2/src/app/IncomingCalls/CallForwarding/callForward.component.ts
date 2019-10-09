@@ -9,7 +9,7 @@ import { IncomingComponent } from 'app/IncomingCalls/incoming.component';
 import { Util } from 'app/AppCommon/util';
 
 @Component({
-  selector: 'callForward',
+  selector: 'app-call-forward',
   templateUrl: 'callForward.component.html',
   providers: [XSIServices, CallForwardingService, ServiceRouteProvider]
 })
@@ -535,6 +535,8 @@ export class CallForwardComponent implements OnInit {
     if (err) {
       if (err.status === 0) {
         this.cfaUpdateSvrErrMsg = this.customizedTextJson.error.networkerror;
+      } else if ((err.status === 400) && (err._body) && (JSON.parse(err._body).ErrorInfo.errorCode.$ === '4624')) {
+        this.cfaUpdateSvrErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, err.status);
       } else {
         this.cfaUpdateSvrErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }
@@ -550,6 +552,8 @@ export class CallForwardComponent implements OnInit {
     if (err) {
       if (err.status === 0) {
         this.cfbUpdateSrvErrMsg = this.customizedTextJson.error.networkerror;
+      } else if ((err.status === 400) && (err._body) && (JSON.parse(err._body).ErrorInfo.errorCode.$ === '4624')) {
+        this.cfbUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, err.status);
       } else {
         this.cfbUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }
@@ -564,6 +568,8 @@ export class CallForwardComponent implements OnInit {
     if (err) {
       if (err.status === 0) {
         this.cfnaUpdateSrvErrMsg = this.customizedTextJson.error.networkerror;
+      } else if ((err.status === 400) && (err._body) && (JSON.parse(err._body).ErrorInfo.errorCode.$ === '4624')) {
+        this.cfnaUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, err.status);
       } else {
         this.cfnaUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }
@@ -580,6 +586,8 @@ export class CallForwardComponent implements OnInit {
     if (err) {
       if (err.status === 0) {
         this.cfnrUpdateSrvErrMsg = this.customizedTextJson.error.networkerror;
+      } else if ((err.status === 400) && (err._body) && (JSON.parse(err._body).ErrorInfo.errorCode.$ === '4624')) {
+        this.cfnrUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, err.status);
       } else {
         this.cfnrUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }
@@ -610,6 +618,8 @@ export class CallForwardComponent implements OnInit {
     if (err) {
       if (err.status === 0) {
         this.cfnaUpdateSrvErrMsg = this.customizedTextJson.error.networkerror;
+      } else if ((err.status === 400) && (JSON.parse(err._body).ErrorInfo.errorCode.$ === '6660')) {
+        this.cfnaUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, err.status);
       } else {
         this.cfnaUpdateSrvErrMsg = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, err.status);
       }

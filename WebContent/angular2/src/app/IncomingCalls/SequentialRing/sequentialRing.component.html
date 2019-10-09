@@ -1,19 +1,19 @@
 <!-- Copyright © 2017 BroadSoft Inc. -->
 
-<md-list class="primaryContentText">
-    <md-list-item class="simRingDescriptionTextAlign">
-        <p md-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.text}}</label></p>
-    </md-list-item>
-</md-list>
+<mat-list class="primaryContentText">
+    <mat-list-item class="simRingDescriptionTextAlign">
+        <p mat-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.text}}</label></p>
+    </mat-list-item>
+</mat-list>
 
-<md-list class="controlBackground primaryContentText">
-    <md-list-item class="itemHeight44">
-        <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.ring_base_location}}</p>
-        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!ringBaseUpdateInProgress"></md-spinner>
-        <md-slide-toggle [checked]="isRingBaseLocationChecked" (change)="ringBaseLocationUpdate($event)" (keyup.enter)="ringBaseLocationUpdate($event)" tabindex="0"> </md-slide-toggle>
-    </md-list-item>
-    <md-list-item> <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{ringBaseUpdateError}}</label></md-list-item>
-    <md-list-item class="sequentialRingSelectAlign" *ngIf="isRingBaseLocationChecked">
+<mat-list class="controlBackground primaryContentText">
+    <mat-list-item class="itemHeight44">
+        <p mat-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.ring_base_location}}</p>
+        <mat-spinner [diameter]="20" [class.callsettingHide]="!ringBaseUpdateInProgress"> </mat-spinner>
+        <mat-slide-toggle [checked]="isRingBaseLocationChecked" (change)="ringBaseLocationUpdate($event)" (keyup.enter)="ringBaseLocationUpdate($event)" tabindex="0"> </mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item> <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{ringBaseUpdateError}}</label></mat-list-item>
+    <mat-list-item class="sequentialRingSelectAlign" *ngIf="isRingBaseLocationChecked">
         <label class="restrictiveLabelStyle secondLevelSettingLeftPadding numberOfRingsAlign" tabindex="0">{{customizedTextJson.sequential_ring.number_of_rings}}</label>
         <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily" (change)="updateBaseNumberOfRings($event)"
             [(ngModel)]="baseLocationRingSelected" tabindex="0">
@@ -21,52 +21,53 @@
                      {{ringBaseLocationRing}}
             </option>
         </select>
-    </md-list-item>
-    <md-list-item class="nestedListItemBottomPadding selectListItemComponent"  *ngIf="isRingBaseLocationChecked">
-           <p md-line class="secondLevelSettingLeftPadding"><md-checkbox  [disableRipple]=true [checked]="isContinueIfBusyChecked" 
-           (change)="updateContinueIfBusy($event)" (keyup.enter)="updateContinueIfBusy($event)" tabindex="0">{{customizedTextJson.sequential_ring.continue_if_busy}}</md-checkbox></p>
-    </md-list-item>
-    <md-list-item class="itemHeight44 settingBorder">
-         <p md-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.caller_may_cancel}}</p>
+    </mat-list-item>
+    <mat-list-item class="nestedListItemBottomPadding selectListItemComponent"  *ngIf="isRingBaseLocationChecked">
+           <p mat-line class="secondLevelSettingLeftPadding"><mat-checkbox  [disableRipple]=true [checked]="isContinueIfBusyChecked" 
+           (change)="updateContinueIfBusy($event)" (keyup.enter)="updateContinueIfBusy($event)" tabindex="0">{{customizedTextJson.sequential_ring.continue_if_busy}}</mat-checkbox></p>
+    </mat-list-item>
+    <mat-list-item class="itemHeight44 settingBorder">
+         <p mat-line class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.sequential_ring.caller_may_cancel}}</p>
         
-        <md-spinner class="callsettingSpinner"  [class.callsettingHide]="!callerCancelUpdateInProgress"></md-spinner>
-        <md-slide-toggle [checked]="isCallerMayCancelChecked" (change)="updateCallerMayCancel($event)" (keyup.enter)="updateCallerMayCancel($event)" tabindex="0"> </md-slide-toggle>
-    </md-list-item>
-    <md-list-item> <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{callerCancelUpdateError}}</label></md-list-item>
-</md-list>
+        <mat-spinner [diameter]="20"  [class.callsettingHide]="!callerCancelUpdateInProgress"> </mat-spinner>
+        <mat-slide-toggle [checked]="isCallerMayCancelChecked" (change)="updateCallerMayCancel($event)" (keyup.enter)="updateCallerMayCancel($event)" tabindex="0"> </mat-slide-toggle>
+    </mat-list-item>
+    <mat-list-item> <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{callerCancelUpdateError}}</label></mat-list-item>
+</mat-list>
 
-<md-card (click)="ringNumbersExpand()">
-<md-list class="controlBackground primaryContentText">
- <md-list-item class="settingBorder itemHeight44" >
+<mat-card (click)="ringNumbersExpand()">
+<mat-list class="controlBackground primaryContentText">
+ <mat-list-item class="settingBorder itemHeight44" >
         <label class="restrictiveLabelStyle" [class.errorTextColor]="seqRingUpdateError" (keyup.enter)="ringNumbersExpand()" tabindex="0">{{customizedTextJson.sequential_ring.ring_numbers}}</label>
         
-        <md-spinner class="callsettingSpinner callSettingSpinnerPosition" [class.callsettingHide]="!ringNumbersUpdateProgress"></md-spinner>
+        <mat-spinner [diameter]="20" [class.callsettingHide]="!ringNumbersUpdateProgress"> </mat-spinner>
             <div *ngIf="isRingNumberExpanded == true" class= "settingCollapseIcon">
             </div>
             <div *ngIf="isRingNumberExpanded == false" class= "settingExpandIcon">
             </div>
 
- </md-list-item>
- <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="seqRingUpdateError">
+ </mat-list-item>
+ <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="seqRingUpdateError">
         <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{seqRingUpdateError}}</label></p>
-</md-list>
-</md-card>
+</mat-list>
+</mat-card>
 <div *ngIf="isRingNumberExpanded">
     <div *ngFor="let seqRing of seqRingArray ; let i = index " [class.callsettingHide]="!isRingNumberExpanded">
         <div *ngIf="seqRing">
-        <md-list class="controlBackground primaryContentText">
-            <md-list-item>
-                <p md-line class="secondLevelSettingLeftPadding">
-                    <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" 
+        <mat-list class="controlBackground primaryContentText">
+            <mat-list-item>
+                <p mat-line class="secondLevelSettingLeftPadding">
+                    <mat-form-field class="restrictiveLabelStyle inputNumberWidth placeholderText" floatLabel="never" 
                      [class.callsettingErrorInput]="seqRing.error"  [class.inputInvokedColor]="seqRing.validNumber">
-                        <input mdInput class="inputNumberWidth callsettingMarginNone" id="{{i}}_seqRing" (keyup)="onNumberChangeUp($event)" (keyup.enter)="sequentialRingNumberEntered($event)"
-                        (blur)="sequentialRingNumberEntered($event)" (focus)="onfocus(seqRing)" placeholder={{this.customizedTextJson.set_number}}
+                        <input matInput class="inputNumberWidth callsettingMarginNone" id="{{i}}_seqRing" (keyup)="onNumberChangeUp($event)" (keyup.enter)="sequentialRingNumberEntered($event)"
+                        (blur)="sequentialRingNumberEntered($event)" (focus)="onfocus(seqRing)"
                             value="{{seqRing.getNumber()}}" type="text" attr.maxlength="{{phoneNumberMaxLength}}" tabindex="0">
-                    </md-input-container>
+                            <mat-placeholder class="placeholder">{{this.customizedTextJson.set_number}}</mat-placeholder>
+                    </mat-form-field>
                 </p>
-                <p md-line class="callsettingSequentialRingFieldError" *ngIf="seqRing.error"><label class="restrictiveSmallLabelStyle errorTextColor">{{seqRing.error}}</label></p>
-            </md-list-item>
-                    <md-list-item class="sequentialRingSelectAlign">
+                <p mat-line class="callsettingSequentialRingFieldError" *ngIf="seqRing.error"><label class="restrictiveSmallLabelStyle errorTextColor">{{seqRing.error}}</label></p>
+            </mat-list-item>
+                    <mat-list-item class="sequentialRingSelectAlign">
         <ng-container *ngIf="!seqRing.error && seqRing.getNumber()">
         <label class="restrictiveLabelStyle thirdLevelSettingLeftPadding numberOfRingsAlign" tabindex="0">{{customizedTextJson.sequential_ring.number_of_rings}}</label>
         <select class="restrictiveLabelStyle primaryColor selectLeftMargin callSettingsFontFamily"
@@ -76,44 +77,44 @@
                 </option>
         </select>
         </ng-container>
-                    </md-list-item>
-                <md-list-item class="sequentialRingSelectAlign nestedListItemBottomPadding">
-                <p [class.callsettingHide]="!seqRing.getNumber()"  md-line class="callsettingSequentialRingNumberInput restrictiveLabelStyle thirdLevelSettingLeftPadding numberOfRingsAlign">
-                    <md-checkbox id="{{i}}_seqRingOption" *ngIf="!seqRing.error" [checked]="seqRing.getIsAnswerConfirmationRequired()"
-                    [disableRipple]=true (change)="updateAnswerConfirmation(seqRing, i)" (keyup.enter)="updateAnswerConfirmation(seqRing, i)" tabindex="0" >{{customizedTextJson.sequential_ring.answer_confirmation_required}}</md-checkbox>
+                    </mat-list-item>
+                <mat-list-item class="sequentialRingSelectAlign nestedListItemBottomPadding">
+                <p [class.callsettingHide]="!seqRing.getNumber()"  mat-line class="callsettingSequentialRingNumberInput restrictiveLabelStyle thirdLevelSettingLeftPadding numberOfRingsAlign">
+                    <mat-checkbox id="{{i}}_seqRingOption" *ngIf="!seqRing.error" [checked]="seqRing.getIsAnswerConfirmationRequired()"
+                    [disableRipple]=true (change)="updateAnswerConfirmation(seqRing, i)" (keyup.enter)="updateAnswerConfirmation(seqRing, i)" tabindex="0" >{{customizedTextJson.sequential_ring.answer_confirmation_required}}</mat-checkbox>
                 </p>
-            </md-list-item>
-        </md-list>
+            </mat-list-item>
+        </mat-list>
         </div>
     </div>
 </div>
     
-<md-card>
-    <md-card (click)="whenToRingChecked()"  class="controlBackground seqCard">
-        <md-card-title class="restrictiveLabelStyle callSettingsFontFamily" (keyup.enter)="whenToRingChecked()" tabindex="0" >{{customizedTextJson.sequential_ring.when_to_ring}}</md-card-title>
-        <md-card-subtitle *ngIf="criteriaRequiredError" class="errorTextColor callSettingsFontFamily restrictiveSmallLabelStyle whenToRingErrorMessage" tabindex="0" >{{criteriaRequiredError}}</md-card-subtitle>
+<mat-card>
+    <mat-card (click)="whenToRingChecked()"  class="controlBackground seqCard">
+        <mat-card-title class="restrictiveLabelStyle callSettingsFontFamily primaryContentText" (keyup.enter)="whenToRingChecked()" tabindex="0" >{{customizedTextJson.sequential_ring.when_to_ring}}</mat-card-title>
+        <mat-card-subtitle *ngIf="criteriaRequiredError" class="errorTextColor callSettingsFontFamily restrictiveSmallLabelStyle whenToRingErrorMessage" tabindex="0" >{{criteriaRequiredError}}</mat-card-subtitle>
            <div *ngIf="isWhenToRingExpanded == true" class=" settingCollapseIcon ">
         </div>
         <div *ngIf="isWhenToRingExpanded == false" class=" settingExpandIcon ">
         </div>
-    </md-card>
+    </mat-card>
 
-<md-card class="simRingCriteriaItemBottomAlign controlBackground"></md-card>
-<md-card *ngIf="isWhenToRingExpanded" class="controlBackground">
+<mat-card class="simRingCriteriaItemBottomAlign controlBackground"></mat-card>
+<mat-card *ngIf="isWhenToRingExpanded" class="controlBackground">
     <div *ngFor="let criteria of criteriaArray;">
         <div *ngIf="criteria">
-            <md-list class="primaryContentText">
-                <md-list-item class="simRingCriteriaAlign">
-                    <p md-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="criteria.errorMessage" tabindex="0">{{criteria.getName()}}</p>
-                    <md-spinner class="callsettingSpinner" [class.callsettingHide]="!criteria.isUpdateInprogress()"></md-spinner>
-                    <md-slide-toggle [checked]="criteria.getIsActive()" (change)="onCriteriaUpdate(criteria)" (keyup.enter)="onCriteriaUpdate(criteria)" tabindex="0">
-                    </md-slide-toggle>
-                </md-list-item>
-                <p md-line class="callsettingPanelHeaderServerErrorMsg secondLevelSettingLeftPadding" *ngIf="criteria.errorMessage">
+            <mat-list class="primaryContentText">
+                <mat-list-item class="simRingCriteriaAlign">
+                    <p mat-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="criteria.errorMessage" tabindex="0">{{criteria.getName()}}</p>
+                    <mat-spinner [diameter]="20" [class.callsettingHide]="!criteria.isUpdateInprogress()"> </mat-spinner>
+                    <mat-slide-toggle [checked]="criteria.getIsActive()" (change)="onCriteriaUpdate(criteria)" (keyup.enter)="onCriteriaUpdate(criteria)" tabindex="0">
+                    </mat-slide-toggle>
+                </mat-list-item>
+                <p mat-line class="callsettingPanelHeaderServerErrorMsg secondLevelSettingLeftPadding" *ngIf="criteria.errorMessage">
                     <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{criteria.errorMessage}}</label>
-            </md-list>
+            </mat-list>
         </div>
     </div>
-    <md-card class="simRingCriteriaItemBottomAlign controlBackground" ></md-card>
-</md-card>
+    <mat-card class="simRingCriteriaItemBottomAlign controlBackground" ></mat-card>
+</mat-card>
 

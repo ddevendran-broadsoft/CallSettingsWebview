@@ -1,4 +1,4 @@
-/* Copyright © 2017 BroadSoft Inc. */
+/* Copyright Â© 2017 BroadSoft Inc. */
 package com.broadsoft.callsettingsweb.server.branding;
 
 import java.io.File;

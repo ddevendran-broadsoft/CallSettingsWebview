@@ -1,0 +1,20 @@
+<div class="dialogContainer">
+<mat-dialog-content minHeight="7">
+  <br>
+  <div id="popUpCheckbox" class="popUpCheckbox" tabindex="1"> 
+    <mat-checkbox class="dialogCheckBox" *ngFor="let opt of data.callSettingsOptionsList" [attr.data-value]="opt.name" [checked]="opt.checked" [(ngModel)]="opt.checked" [value]="data.sendCallsSelectedOptions.lastIndexOf(opt.checked)>-1" tabindex="1">{{opt.getName()}}</mat-checkbox>
+  </div>
+
+
+   <!-- <select *ngIf="!isDesktop" id="callsettingsOptions" class="cswFullWidth restrictiveLabelStyle callSettingsFontFamily" [class.cswInputContainerFocus]="isCallsettingsFocused" size="{{callSettingsOptionsList.length < 5 ? callSettingsOptionsList.length : 5}}"
+  (blur)="hideSendCallsCurrentOptionsDropdown()" (change)="onSendCallsUpdateOptions($event);" (focus)="setFocus()" multiple>
+ <option *ngFor="let opt of callSettingsOptionsList" [value]="opt.name" [selected]="sendCallsSelectedOptions.lastIndexOf(opt.name)>-1" class="restrictiveLabelStyle">{{opt.getName()}}</option>
+   </select>
+   -->
+                   
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" class="buttonClass">{{this.customizedTextJson.dialog.cancel}}</button>
+  <button mat-button [mat-dialog-close]="data.callSettingsOptionsList" class="buttonClass" cdkFocusInitial>{{this.customizedTextJson.dialog.ok}}</button>
+</mat-dialog-actions>
+</div>

@@ -1,0 +1,21 @@
+<div class="dialogContainer">
+    <mat-dialog-content minHeight="7">
+      <br>
+      <div id="popUpCheckbox" class="popUpCheckbox" tabindex="1"> 
+        <mat-checkbox class="dialogCheckBox" *ngFor="let mobileDeviceNumber of data.pnrmdDOList" [attr.data-value]="mobileDeviceNumber" [checked]="mobileDeviceNumber.checked" [(ngModel)]="mobileDeviceNumber.checked" [value]="data.allSelectedMobileDeviceNumbers && data.allSelectedMobileDeviceNumbers.lastIndexOf(mobileDeviceNumber)>-1" tabindex="1">{{mobileDeviceNumber.getName()}}</mat-checkbox>
+      </div>
+    
+    
+  
+                  <!-- <select *ngIf="!isDesktop" id="pnrmdSelectDropdown" class="cswFullWidth cswSelectDropdown restrictiveLabelStyle callSettingsFontFamily" size="{{mobileDeviceNumbers.length < 4 ? mobileDeviceNumbers.length : 4}}"
+                    (change)="onUpdateRingMobileOptions($event);" [class.cswInputContainerFocus]="isPNRMDOptionsFocused" (focus)="showRingMobileOptionsDropdown();" (blur)="onPNRMDOptionsBlur()" multiple>
+                    <option *ngFor="let mobileDeviceNumber of mobileDeviceNumbers" [value]="mobileDeviceNumber" class="restrictiveLabelStyle"
+                       [selected]="allSelectedMobileDeviceNumbers && allSelectedMobileDeviceNumbers.lastIndexOf(mobileDeviceNumber)>-1" tabindex="0">{{mobileDeviceNumber}}</option>
+                </select> -->
+                       
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onNoClick()" class="buttonClass">{{this.customizedTextJson.dialog.cancel}}</button>
+      <button mat-button [mat-dialog-close]="data.pnrmdDOList" class="buttonClass" cdkFocusInitial>{{this.customizedTextJson.dialog.ok}}</button>
+    </mat-dialog-actions>
+    </div>

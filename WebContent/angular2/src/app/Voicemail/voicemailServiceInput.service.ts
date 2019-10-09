@@ -1,6 +1,6 @@
 /* Copyright © 2017 BroadSoft Inc. */
 
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class VoicemailServiceInput {
@@ -18,9 +18,9 @@ export class VoicemailServiceInput {
     private sendVoiceMessageNotifyEmail: boolean;
     private notifyEmailAddress: string;
     private transferOnZeroToPhoneNumber: boolean;
-    private transferPhoneNumber: string = "";
+    private transferPhoneNumber: string = '';
     private sendCarbonCopyVoiceMessage: boolean;
-    private voiceMessageCarbonCopyEmailAddress: string = "";
+    private voiceMessageCarbonCopyEmailAddress: string = '';
 
     constructor() { }
 

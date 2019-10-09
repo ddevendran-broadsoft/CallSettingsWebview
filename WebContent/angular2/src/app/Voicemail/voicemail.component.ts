@@ -9,32 +9,41 @@ import { XSIServices } from 'app/AppCommon/xsiServiceList.service';
 import { VoicemailService } from 'app/Voicemail/voicemailService.service';
 import { VoicemailServiceInput } from 'app/Voicemail/voicemailServiceInput.service';
 import { DesktopSelectOption } from 'app/common/desktopSelectDropdown.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'app/dialog/dialog.component';
 
+
+export interface DialogData {
+  sendCallsSelectedOptions;
+  callSettingsOptionsList;
+  onSendCallsUpdateOptions(event);
+}
 
 @Component({
-  selector: 'voicemail',
+  selector: 'app-voicemail',
   templateUrl: 'voicemail.component.html',
-  providers: [XSIServices, ServiceRouteProvider, AppComponent]
+  providers: [XSIServices, ServiceRouteProvider, AppComponent, DialogComponent]
 })
 
-export class voicemailComponent implements AfterViewInit {
+export class VoicemailComponent implements AfterViewInit, OnInit {
 
   customizedTextJson = window['customizedTexts'];
-
-  baseUrl: string = window['callSettingsHeroInput'].xsp + "/com.broadsoft.xsi-actions/v2.0/user/" + window['callSettingsHeroInput'].userId + "/services/";
-
+  dialogData = [];
+  checkedData = [];
+  baseUrl: string = window['callSettingsHeroInput'].xsp + '/com.broadsoft.xsi-actions/v2.0/user/' + window['callSettingsHeroInput'].userId + '/services/';
+  dialogResults: string
   voicemailVisible: boolean = false;
   isVoicemailServiceChecked: boolean;
-  vmServiceRetrievingError: string = "";
+  vmServiceRetrievingError: string = '';
   isVMServiceUpdateInprgress: boolean = false;
-  vmServiceUpdateError: string = "";
+  vmServiceUpdateError: string = '';
 
   issendCallstoVoicemailChecked: boolean = false;
   isSendCallAlwaysSelected: boolean = false;
   isSendCallBusySelected: boolean = false;
   isSendCallNoAnswerSelected: boolean = false;
   isSendCallAllSettingsSelected: boolean = false;
-  sendCallsUpdateError:string;
+  sendCallsUpdateError: string;
 
   isEmailNotificationChecked: boolean = false;
   isTransferChecked: boolean = false;
@@ -65,16 +74,17 @@ export class voicemailComponent implements AfterViewInit {
   processingType: string;
 
   voicemailRings: string[];
+  selected: string[];
   voicemailRingSelected: string;
-  vmRingSelectedRetrievingError: string = "";
+  vmRingSelectedRetrievingError: string = '';
   callstoVoicemail: string[];
 
   callSettingsOptionsList: DesktopSelectOption[] = new Array();
   private isCallsettingsFocused = false;
-  private vmsLastSelectedValues;//holds the previous selected vm settings option list
+  private vmsLastSelectedValues; //  holds the previous selected vm settings option list
 
   sendCallsSelectedOptions = [];
-  csSelectedOptionsTextContinerId = "csSelectedOptionsTextContrainer";
+  csSelectedOptionsTextContinerId = 'csSelectedOptionsTextContrainer';
   inputValue: String = this.customizedTextJson.voice_management.none;
 
   EmailNotificationInputWidth = 160;
@@ -88,7 +98,7 @@ export class voicemailComponent implements AfterViewInit {
   cswDesktopMenuShow: boolean = false;
 
 
-  constructor(private xsiServices: XSIServices, private serviceRouteProvider: ServiceRouteProvider, private voicemailService: VoicemailService, private voicemailServiceInput: VoicemailServiceInput, private util: Util) {
+  constructor(private xsiServices: XSIServices, private serviceRouteProvider: ServiceRouteProvider, private voicemailService: VoicemailService, private voicemailServiceInput: VoicemailServiceInput, private util: Util, public dialog: MatDialog) {
     this.voicemailRings = [this.customizedTextJson.voice_management.none, '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'];
     this.phoneNumberMaxLength = this.util.PHONENUMBERMAXLENGTH;
     this.isDesktop = util.isDesktopPlatform();
@@ -111,9 +121,9 @@ export class voicemailComponent implements AfterViewInit {
       this.voicemailVisible = this.xsiServices.fetchVoicemailVisible();
     }
     if (this.voicemailVisible) {
-      this.vmServiceRetrievingError = "";
+      this.vmServiceRetrievingError = '';
       this.voicemailService.getVoicemailService(this.serviceRouteProvider.fetchVoicemailUrl(), this.postVoicemailGet.bind(this));
-      this.vmRingSelectedRetrievingError = "";
+      this.vmRingSelectedRetrievingError = '';
       this.voicemailService.getRingsService(this.serviceRouteProvider.fetchVoicemailGreetingUrl(), this.postVoicemailGreetingGet.bind(this));
     }
 
@@ -123,7 +133,7 @@ export class voicemailComponent implements AfterViewInit {
     this.updateSendCallsCurrentOptions(result);
   }
 
-  //Initialize voicemail component data
+  //  Initialize voicemail component data
   postVoicemailGet(voicemailParsedJson) {
 
     this.isVoicemailServiceFetched = true;
@@ -135,13 +145,13 @@ export class voicemailComponent implements AfterViewInit {
       this.isSendCallBusySelected = this.voicemailServiceInput.getIsBusyRedirectToVoiceMail();
       this.isSendCallNoAnswerSelected = this.voicemailServiceInput.getIsNoAnswerRedirectToVoiceMail();
 
-      if (this.isSendCallAlwaysSelected){
+      if (this.isSendCallAlwaysSelected) {
         this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.always);
       }
-      if (this.isSendCallBusySelected){
+      if (this.isSendCallBusySelected) {
         this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_busy);
       }
-      if (this.isSendCallNoAnswerSelected){
+      if (this.isSendCallNoAnswerSelected) {
         this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_unanswered);
       }
 
@@ -156,17 +166,17 @@ export class voicemailComponent implements AfterViewInit {
       }
 
       this.vmsLastSelectedValues = [];
-      if(this.isSendCallAllSettingsSelected){
+      if (this.isSendCallAllSettingsSelected) {
         this.callSettingsOptionsList = [];
         this.vmsLastSelectedValues.push(this.customizedTextJson.voice_management.always);
         this.vmsLastSelectedValues.push(this.customizedTextJson.voice_management.when_busy);
         this.vmsLastSelectedValues.push(this.customizedTextJson.voice_management.when_unanswered);
       } else {
         this.callSettingsOptionsList = [];
-        if(this.isSendCallBusySelected){
+        if (this.isSendCallBusySelected) {
           this.vmsLastSelectedValues.push(this.customizedTextJson.voice_management.when_busy);
         }
-        if(this.isSendCallNoAnswerSelected){
+        if (this.isSendCallNoAnswerSelected) {
           this.vmsLastSelectedValues.push(this.customizedTextJson.voice_management.when_unanswered);
         }
       }
@@ -175,7 +185,7 @@ export class voicemailComponent implements AfterViewInit {
       this.callSettingsOptionsList.push(new DesktopSelectOption(this.customizedTextJson.voice_management.when_busy, this.isSendCallBusySelected));
       this.callSettingsOptionsList.push(new DesktopSelectOption(this.customizedTextJson.voice_management.when_unanswered, this.isSendCallNoAnswerSelected));
 
-      if(this.isDesktop){
+      if (this.isDesktop) {
         if (this.sendCallsSelectedOptions.length > 0) {
           this.inputValue = this.sendCallsSelectedOptions.join();
         } else {
@@ -187,13 +197,13 @@ export class voicemailComponent implements AfterViewInit {
       if (this.isSendCallAlwaysSelected || this.isSendCallBusySelected || this.isSendCallNoAnswerSelected) {
         this.issendCallstoVoicemailChecked = true;
       }
-      if (this.voicemailService.fetchProcessing() == "Unified Voice and Email Messaging") {
+      if (this.voicemailService.fetchProcessing() === 'Unified Voice and Email Messaging') {
         this.iswhenMessageArrivesChecked = true;
         this.isunifiedMessagingChecked = true;
         this.isforwardToEmailChecked = false;
       }
 
-      if (this.voicemailService.fetchProcessing() == "Deliver To Email Address Only") {
+      if (this.voicemailService.fetchProcessing() === 'Deliver To Email Address Only') {
         this.iswhenMessageArrivesChecked = true;
         this.isforwardToEmailChecked = true;
         this.isunifiedMessagingChecked = false;
@@ -216,15 +226,22 @@ export class voicemailComponent implements AfterViewInit {
       this.vmServiceRetrievingError = this.customizedTextJson.error.unabletofetch;
     }
 
+    this.dialogData = this.sendCallsSelectedOptions;
+
+    if (this.sendCallsSelectedOptions.length > 0) {
+      this.dialogResults = this.sendCallsSelectedOptions.toString();
+    } else {
+      this.dialogResults = this.customizedTextJson.broadworks_mobility.no_settings_set;
+    }
   }
 
-  //Initialize Number of Rings data
+  // Initialize Number of Rings data
   postVoicemailGreetingGet(voicemailGreetingsParsedJson) {
     if (voicemailGreetingsParsedJson) {
       this.voicemailRingSelected = this.voicemailServiceInput.getSendCallsRings();
-       if(this.voicemailRingSelected == '0'){
-               this.voicemailRingSelected = this.customizedTextJson.voice_management.none ;
-            }
+      if (this.voicemailRingSelected === '0') {
+        this.voicemailRingSelected = this.customizedTextJson.voice_management.none;
+      }
     } else {
       this.vmRingSelectedRetrievingError = this.customizedTextJson.error.unabletofetch;
     }
@@ -241,7 +258,7 @@ export class voicemailComponent implements AfterViewInit {
     this.ForwardToEmailInputWidth = this.util.getInputDynamicWidth(this.deliveryEmailAddress);
   }
 
-  // Invoked when the voicemail service toggle is switched ON/OFF
+  //  Invoked when the voicemail service toggle is switched ON/OFF
   voicemailServiceActive() {
 
     if (this.isVoicemailServiceChecked) {
@@ -250,16 +267,16 @@ export class voicemailComponent implements AfterViewInit {
       this.isVoicemailServiceChecked = true;
     }
     this.isVMServiceUpdateInprgress = true;
-    this.vmServiceUpdateError = "";
+    this.vmServiceUpdateError = '';
     this.voicemailService.putVoicemailService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isVoicemailServiceChecked, this.postVoicemailSwitchPut.bind(this));
   }
 
-  //Voicemail service switch Callback
+  // Voicemail service switch Callback
   postVoicemailSwitchPut(res) {
     this.isVMServiceUpdateInprgress = false;
     if (!res || !(res.status >= 200 && res.status < 400)) {
       this.isVoicemailServiceChecked = !this.isVoicemailServiceChecked;
-      
+
       if (res) {
         if (res.status === 0) {
           this.vmServiceUpdateError = this.customizedTextJson.error.networkerror;
@@ -271,15 +288,15 @@ export class voicemailComponent implements AfterViewInit {
     }
   }
 
-  //Send Calls Options Update Callback
-  postVMSendCallsPut(res){
-        this.isVMServiceUpdateInprgress = false;
-        this.sendCallsUpdateError="";
-    if(!res || !(res.status >= 200 && res.status < 400)){
+  // Send Calls Options Update Callback
+  postVMSendCallsPut(res) {
+    this.isVMServiceUpdateInprgress = false;
+    this.sendCallsUpdateError = '';
+    if (!res || !(res.status >= 200 && res.status < 400)) {
       this.isSendCallAlwaysSelected = !this.isSendCallAlwaysSelected;
-      this.isSendCallBusySelected = !this.isSendCallBusySelected ;
-      this.isSendCallNoAnswerSelected = !this.isSendCallNoAnswerSelected ;
-      
+      this.isSendCallBusySelected = !this.isSendCallBusySelected;
+      this.isSendCallNoAnswerSelected = !this.isSendCallNoAnswerSelected;
+
       if (res) {
         if (res.status === 0) {
           this.sendCallsUpdateError = this.customizedTextJson.error.networkerror;
@@ -289,12 +306,12 @@ export class voicemailComponent implements AfterViewInit {
       }
     }
   }
-  
-  //Email Notification Update Callback
+
+  // Email Notification Update Callback
   postVMNotifyEmailAddressPut(res) {
-        this.isVMServiceUpdateInprgress = false;
-        this.emailNotificationUpdateError ="";
-    if(!res || !(res.status >= 200 && res.status < 400)){
+    this.isVMServiceUpdateInprgress = false;
+    this.emailNotificationUpdateError = '';
+    if (!res || !(res.status >= 200 && res.status < 400)) {
       this.isEmailNotificationChecked = !this.isEmailNotificationChecked;
 
       if (res) {
@@ -303,15 +320,15 @@ export class voicemailComponent implements AfterViewInit {
         } else {
           this.emailNotificationUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
         }
-      
+
       }
-    }  
+    }
   }
 
-  //Email Carbon Copy Update Callback
+  // Email Carbon Copy Update Callback
   postVMEmailCarbonCopyPut(res) {
     this.isVMServiceUpdateInprgress = false;
-    this.emailCarbonCopyUpdateError = "";
+    this.emailCarbonCopyUpdateError = '';
     if (!res || !(res.status >= 200 && res.status < 400)) {
       this.isEmailCarbonCopyChecked = !this.isEmailCarbonCopyChecked;
 
@@ -327,35 +344,37 @@ export class voicemailComponent implements AfterViewInit {
     }
   }
 
-  //Press 0 to transfer Update Callback
+  // Press 0 to transfer Update Callback
   postVMTransferCheckedPut(res) {
-        this.isVMServiceUpdateInprgress = false;
-        this.transferNumberUpdateError="";
-        this.isTransferChecked = this.voicemailService.fetchIsTransferToPhoneNumberChecked();
-        this.transferPhoneNumber = this.voicemailService.fetchTransferNumber();
-    if(!res || !(res.status >= 200 && res.status < 400)){ 
-      if(res){
+    this.isVMServiceUpdateInprgress = false;
+    this.transferNumberUpdateError = '';
+    this.isTransferChecked = this.voicemailService.fetchIsTransferToPhoneNumberChecked();
+    this.transferPhoneNumber = this.voicemailService.fetchTransferNumber();
+    if (!res || !(res.status >= 200 && res.status < 400)) {
+      if (res) {
         if (res.status === 0) {
           this.transferNumberUpdateError = this.customizedTextJson.error.networkerror;
+        } else if ((res.status === 400) && (JSON.parse(res._body).ErrorInfo.errorCode.$ === '4624')) {
+          this.transferNumberUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, res.status);
         } else {
-          this.transferNumberUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
+          this.transferNumberUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.number_rejected, res.status);
         }
       }
-      
+
     }
   }
 
-  //When message arrives Update Callback
+  // When message arrives Update Callback
   postVMWhenMessageArrivesPut(res) {
-        this.isVMServiceUpdateInprgress = false;
-        this.forwardToEmailUpdateError ="";
-    if(!res || !(res.status >= 200 && res.status < 400)){
-      this.processingType=this.voicemailServiceInput.getProcessing();
+    this.isVMServiceUpdateInprgress = false;
+    this.forwardToEmailUpdateError = '';
+    if (!res || !(res.status >= 200 && res.status < 400)) {
+      this.processingType = this.voicemailServiceInput.getProcessing();
       this.isforwardToEmailChecked = !this.isforwardToEmailChecked;
       this.isunifiedMessagingChecked = !this.isunifiedMessagingChecked;
-    
-      if(res){
-         if (res.status === 0) {
+
+      if (res) {
+        if (res.status === 0) {
           this.forwardToEmailUpdateError = this.customizedTextJson.error.networkerror;
         } else {
           this.forwardToEmailUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
@@ -364,34 +383,36 @@ export class voicemailComponent implements AfterViewInit {
     }
   }
 
-  //Number of rings update callback
+  // Number of rings update callback
   postVoicemailGreetingPut(res) {
     this.isVMServiceUpdateInprgress = false;
-        this.sendCallsUpdateError="";
-    if(!res || !(res.status >= 200 && res.status < 400)){
+    this.sendCallsUpdateError = '';
+    if (!res || !(res.status >= 200 && res.status < 400)) {
 
-      if(res){
+      if (res) {
         if (res.status === 0) {
           this.sendCallsUpdateError = this.customizedTextJson.error.networkerror;
+        } else if ((res.status === 400) && (JSON.parse(res._body).ErrorInfo.errorCode.$ === '6660')) {
+          this.sendCallsUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.limit_exceeded, res.status);
         } else {
           this.sendCallsUpdateError = this.util.frameErrorMessage(this.customizedTextJson.error.updatefailed, res.status);
         }
       }
-     
+
     }
   }
 
-  //Invoked to validate the input keys when input for "Press 0 to transfer" is provided
+  // Invoked to validate the input keys when input for 'Press 0 to transfer' is provided
   private onPhonenumberKeydown(event) {
-    if (event.keyCode == 8 || event.key == "Backspace" || event.keyCode == 46 || event.key == "Delete") {
+    if (event.keyCode === 8 || event.key === 'Backspace' || event.keyCode === 46 || event.key === 'Delete') {
     }
   }
 
-    //Invoked to validate the input keys when input for "Press 0 to transfer" is provided
+  // Invoked to validate the input keys when input for 'Press 0 to transfer' is provided
   private onPhoneNumberChange(event) {
     let key;
-    this.transferNumberError = "";
-    this.isTransferNumberFocused = true ;
+    this.transferNumberError = '';
+    this.isTransferNumberFocused = true;
     if (event.key) {
       key = event.key;
     } else {
@@ -403,75 +424,75 @@ export class voicemailComponent implements AfterViewInit {
       if (event.preventDefault) {
         event.preventDefault();
       }
-    } 
+    }
   }
 
-  //Invoked when input for "Press 0 to transfer" is provided by paste
+  // Invoked when input for 'Press 0 to transfer' is provided by paste
   private onPasteEvent(event) {
     this.util.validatePhoneNumberOnCopyPaste(event);
   }
 
-  //Invoked when there is a Number of Rings update
+  // Invoked when there is a Number of Rings update
   setNumberOfRings(event) {
     this.voicemailRingSelected = event.target.value;
-    this.voicemailService.putRingsService(this.serviceRouteProvider.fetchVoicemailGreetingUrl(), this.voicemailRingSelected ,this.postVoicemailGreetingPut.bind(this));
+    this.voicemailService.putRingsService(this.serviceRouteProvider.fetchVoicemailGreetingUrl(), this.voicemailRingSelected, this.postVoicemailGreetingPut.bind(this));
   }
 
-  //Invoked when Email Notification toggle is switched ON/OFF
+  // Invoked when Email Notification toggle is switched ON/OFF
   emailNotificationChecked(event) {
 
-    if(event.key) {
-      if(event.key === 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isEmailNotificationChecked = !this.isEmailNotificationChecked;
       }
     } else {
       this.isEmailNotificationChecked = event.checked;
     }
 
-    if ((this.notifyEmailAddress && !this.emailNotificationError) || (!this.isEmailNotificationChecked && this.notifyEmailAddress )) {
+    if ((this.notifyEmailAddress && !this.emailNotificationError) || (!this.isEmailNotificationChecked && this.notifyEmailAddress)) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      if(this.emailNotificationError){
+      this.vmServiceUpdateError = '';
+      if (this.emailNotificationError) {
         this.notifyEmailAddress = this.voicemailServiceInput.getNotifyEmailAddress();
-        this.emailNotificationError="";
+        this.emailNotificationError = '';
       }
-      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress ,this.postVMNotifyEmailAddressPut.bind(this));
-    } else if (!this.notifyEmailAddress){
+      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress, this.postVMNotifyEmailAddressPut.bind(this));
+    } else if (!this.notifyEmailAddress) {
       this.emailNotificationError = this.customizedTextJson.voice_management.email_address_required;
     }
 
   }
 
-  //Invoked when email address for Email Notification is provided
+  // Invoked when email address for Email Notification is provided
   emailNotificationInput(event) {
-    this.emailNotificationError = "";
+    this.emailNotificationError = '';
     this.isEmailNotificationFocused = false;
     this.notifyEmailAddress = event.target.value;
     if (!this.util.emailRegx.test(this.notifyEmailAddress)) {
       this.emailNotificationError = this.customizedTextJson.voice_management.invalid_email_address_msg;
     }
     if (this.notifyEmailAddress && !this.emailNotificationError) {
-      this.isEmailNotificationChecked=true;
+      this.isEmailNotificationChecked = true;
     } else if (!this.notifyEmailAddress) {
       this.isEmailNotificationChecked = false;
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress , this.postVMNotifyEmailAddressPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress, this.postVMNotifyEmailAddressPut.bind(this));
       this.emailNotificationError = this.customizedTextJson.voice_management.email_address_required;
     }
-    if (!this.emailNotificationError){
+    if (!this.emailNotificationError) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress , this.postVMNotifyEmailAddressPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putEmailNotificationService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailNotificationChecked, this.notifyEmailAddress, this.postVMNotifyEmailAddressPut.bind(this));
     }
 
   }
 
-  //Invoked when Email Carbon Copy toggle is switched ON/OFF
+  // Invoked when Email Carbon Copy toggle is switched ON/OFF
   emailCarbonCopyChecked(event) {
 
-    if(event.key) {
-      if(event.key === 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isEmailCarbonCopyChecked = !(this.isEmailCarbonCopyChecked);
       }
     } else {
@@ -482,47 +503,47 @@ export class voicemailComponent implements AfterViewInit {
       this.voicemailServiceInput.setSendCarbonCopyVoiceMessage(this.isEmailCarbonCopyChecked);
 
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      if(this.emailCarbonCopyError){
+      this.vmServiceUpdateError = '';
+      if (this.emailCarbonCopyError) {
         this.carbonCopyEmailAddress = this.voicemailServiceInput.getVoiceMessageCarbonCopyEmailAddress();
-        this.emailCarbonCopyError="";
+        this.emailCarbonCopyError = '';
       }
-      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(),this.isEmailCarbonCopyChecked ,this.carbonCopyEmailAddress ,this.postVMEmailCarbonCopyPut.bind(this));
+      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailCarbonCopyChecked, this.carbonCopyEmailAddress, this.postVMEmailCarbonCopyPut.bind(this));
     } else if (!this.carbonCopyEmailAddress) {
       this.emailCarbonCopyError = this.customizedTextJson.voice_management.email_address_required;
-     }
+    }
   }
 
-  //Invoked when email address for Email Carbon Copy is provided
+  // Invoked when email address for Email Carbon Copy is provided
   emailCarbonCopyInput(event) {
     this.isEmailCarbonCopyFocused = false;
-    this.emailCarbonCopyError = "";
+    this.emailCarbonCopyError = '';
     this.carbonCopyEmailAddress = event.target.value;
     if (!this.util.emailRegx.test(this.carbonCopyEmailAddress)) {
       this.emailCarbonCopyError = this.customizedTextJson.voice_management.invalid_email_address_msg;
     }
     if (this.carbonCopyEmailAddress && !this.emailCarbonCopyError) {
-       this.isEmailCarbonCopyChecked = true;
+      this.isEmailCarbonCopyChecked = true;
     } else if (!this.carbonCopyEmailAddress) {
       this.isEmailCarbonCopyChecked = false;
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailCarbonCopyChecked ,this.carbonCopyEmailAddress ,this.postVMEmailCarbonCopyPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailCarbonCopyChecked, this.carbonCopyEmailAddress, this.postVMEmailCarbonCopyPut.bind(this));
       this.emailCarbonCopyError = this.customizedTextJson.voice_management.email_address_required;
     }
-    if (!this.emailCarbonCopyError){
+    if (!this.emailCarbonCopyError) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(),this.isEmailCarbonCopyChecked ,this.carbonCopyEmailAddress , this.postVMEmailCarbonCopyPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putEmailCarbonCopyService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isEmailCarbonCopyChecked, this.carbonCopyEmailAddress, this.postVMEmailCarbonCopyPut.bind(this));
     }
 
   }
 
-  //Invoked when Press 0 to transfer toggle is switched ON/OFF
+  // Invoked when Press 0 to transfer toggle is switched ON/OFF
   transferNumberChecked(event) {
 
-    if(event.key) {
-      if(event.key === 'Enter') {
+    if (event.key) {
+      if (event.key === 'Enter') {
         this.isTransferChecked = !(this.isTransferChecked);
       }
     } else {
@@ -531,24 +552,24 @@ export class voicemailComponent implements AfterViewInit {
 
     if ((this.transferPhoneNumber && !this.transferNumberError) || (!this.isTransferChecked && this.transferPhoneNumber)) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-        if(this.transferNumberError || this.transferNumberUpdateError){
+      this.vmServiceUpdateError = '';
+      if (this.transferNumberError || this.transferNumberUpdateError) {
         this.transferPhoneNumber = this.voicemailService.fetchTransferNumber();
-        
-        this.transferNumberError="";
-        this.transferNumberUpdateError = "";
+
+        this.transferNumberError = '';
+        this.transferNumberUpdateError = '';
       }
-      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isTransferChecked , this.transferPhoneNumber ,this.postVMTransferCheckedPut.bind(this));
+      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isTransferChecked, this.transferPhoneNumber, this.postVMTransferCheckedPut.bind(this));
     } else if (!this.transferPhoneNumber) {
       this.transferNumberError = this.customizedTextJson.voice_management.phone_number_required;
     }
 
   }
 
-  //Invoked when phone number for Press 0 to transfer is provided
+  // Invoked when phone number for Press 0 to transfer is provided
   transferPhoneNumberInput(event) {
-    this.transferNumberError = "";
-    this.isTransferNumberFocused=false;
+    this.transferNumberError = '';
+    this.isTransferNumberFocused = false;
     this.transferPhoneNumber = event.target.value;
     if (this.transferPhoneNumber) {
       if (!this.util.isE164valid(this.transferPhoneNumber)) {
@@ -559,90 +580,89 @@ export class voicemailComponent implements AfterViewInit {
     } else if (!this.transferPhoneNumber) {
       this.isTransferChecked = false;
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isTransferChecked , this.transferPhoneNumber ,this.postVMTransferCheckedPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isTransferChecked, this.transferPhoneNumber, this.postVMTransferCheckedPut.bind(this));
       this.transferNumberError = this.customizedTextJson.voice_management.phone_number_required;
     }
-    if (!this.transferNumberError){
+    if (!this.transferNumberError) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(),this.isTransferChecked , this.transferPhoneNumber ,  this.postVMTransferCheckedPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putTransferToNumberService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isTransferChecked, this.transferPhoneNumber, this.postVMTransferCheckedPut.bind(this));
     }
 
   }
 
-  //Invoked to make the Email Notification service input in focus
+  // Invoked to make the Email Notification service input in focus
   emailNotificationKeyup() {
-    this.emailNotificationError = "";
+    this.emailNotificationError = '';
     this.isEmailNotificationFocused = true;
   }
 
-  //Invoked to make the Email Carbon Copy service input in focus
+  // Invoked to make the Email Carbon Copy service input in focus
   emailCarbonCopyKeyup() {
-    this.emailCarbonCopyError = "";
+    this.emailCarbonCopyError = '';
     this.isEmailCarbonCopyFocused = true;
   }
 
-  //Invoked when When Message Arrives is expanded
+  // Invoked when When Message Arrives is expanded
   whenMessageArrivesChecked() {
 
-    if (this.iswhenMessageArrivesChecked){
+    if (this.iswhenMessageArrivesChecked) {
       this.iswhenMessageArrivesChecked = false;
-    } else { 
+    } else {
       this.iswhenMessageArrivesChecked = true;
     }
   }
 
-  //Invoked when Use unified messaging toggle is switched ON/OFF
+  // Invoked when Use unified messaging toggle is switched ON/OFF
   isUnifiedMessagingEnabled() {
     if (this.isunifiedMessagingChecked) {
       this.isunifiedMessagingChecked = false;
       this.isforwardToEmailChecked = true;
       if (this.deliveryEmailAddress) {
-        this.processingType = "Deliver To Email Address Only";
+        this.processingType = 'Deliver To Email Address Only';
       } else {
-        this.processingType = "Unified Voice and Email Messaging";
+        this.processingType = 'Unified Voice and Email Messaging';
       }
     } else {
       this.isunifiedMessagingChecked = true;
       this.isforwardToEmailChecked = false;
-      this.processingType = "Unified Voice and Email Messaging";
+      this.processingType = 'Unified Voice and Email Messaging';
     }
 
     this.isVMServiceUpdateInprgress = true;
-    this.vmServiceUpdateError = "";
-    this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType , this.deliveryEmailAddress , this.isMessageWaitingIndicatorChecked,this.postVMWhenMessageArrivesPut.bind(this));
+    this.vmServiceUpdateError = '';
+    this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType, this.deliveryEmailAddress, this.isMessageWaitingIndicatorChecked, this.postVMWhenMessageArrivesPut.bind(this));
   }
 
-  //Invoked when Forward to Email Address toggle is switched ON/OFF
+  // Invoked when Forward to Email Address toggle is switched ON/OFF
   isForwardToEmailEnabled() {
 
     if (this.isforwardToEmailChecked) {
       this.isforwardToEmailChecked = false;
       this.isunifiedMessagingChecked = true;
-      this.processingType = "Unified Voice and Email Messaging";
-    }
-    else {
+      this.processingType = 'Unified Voice and Email Messaging';
+    } else {
       this.isforwardToEmailChecked = true;
       this.isunifiedMessagingChecked = false;
-      this.processingType = "Deliver To Email Address Only";
+      this.processingType = 'Deliver To Email Address Only';
     }
 
     if ((this.deliveryEmailAddress && !this.forwardToEmailError) || (!this.isforwardToEmailChecked && this.deliveryEmailAddress)) {
 
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      if(this.forwardToEmailError){
+      this.vmServiceUpdateError = '';
+      if (this.forwardToEmailError) {
         this.deliveryEmailAddress = this.voicemailServiceInput.getVoiceMessageDeliveryEmailAddress();
-        this.forwardToEmailError="";
+        this.forwardToEmailError = '';
       }
-      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType , this.deliveryEmailAddress , this.isMessageWaitingIndicatorChecked,this.postVMWhenMessageArrivesPut.bind(this));
+      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType, this.deliveryEmailAddress, this.isMessageWaitingIndicatorChecked, this.postVMWhenMessageArrivesPut.bind(this));
     } else {
       this.forwardToEmailError = this.customizedTextJson.voice_management.email_address_required;
     }
   }
 
-  //Invoked when checkbox corresponding to Message Waiting Indicator is checked/unchecked
+  // Invoked when checkbox corresponding to Message Waiting Indicator is checked/unchecked
   unifiedMessagingIndicatorChecked() {
     if (this.isMessageWaitingIndicatorChecked) {
       this.isMessageWaitingIndicatorChecked = false;
@@ -652,93 +672,108 @@ export class voicemailComponent implements AfterViewInit {
 
     this.voicemailServiceInput.setUnifiedMessagingChecked(this.isMessageWaitingIndicatorChecked);
 
-    this.processingType = "Unified Voice and Email Messaging";
+    this.processingType = 'Unified Voice and Email Messaging';
     this.isVMServiceUpdateInprgress = true;
-    this.vmServiceUpdateError = "";
-   this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType , this.deliveryEmailAddress , this.isMessageWaitingIndicatorChecked,this.postVMWhenMessageArrivesPut.bind(this));
+    this.vmServiceUpdateError = '';
+    this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType, this.deliveryEmailAddress, this.isMessageWaitingIndicatorChecked, this.postVMWhenMessageArrivesPut.bind(this));
 
   }
 
-  //Invoked when email address for Forward to Email Address is provided
+  // Invoked when email address for Forward to Email Address is provided
   forwardToEmailAddress(event) {
-    this.forwardToEmailError = "";
-    this.isForwardToEmailFocused=false;
+    this.forwardToEmailError = '';
+    this.isForwardToEmailFocused = false;
     this.deliveryEmailAddress = event.target.value;
     if (!this.util.emailRegx.test(this.deliveryEmailAddress)) {
       this.forwardToEmailError = this.customizedTextJson.voice_management.invalid_email_address_msg;
     }
     if (this.deliveryEmailAddress && !this.forwardToEmailError) {
-      this.processingType = "Deliver To Email Address Only";
+      this.processingType = 'Deliver To Email Address Only';
     } else if (!this.deliveryEmailAddress) {
       this.isforwardToEmailChecked = false;
       this.isunifiedMessagingChecked = true;
-      this.processingType = "Unified Voice and Email Messaging";
+      this.processingType = 'Unified Voice and Email Messaging';
 
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType , this.deliveryEmailAddress , this.isMessageWaitingIndicatorChecked,this.postVMWhenMessageArrivesPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType, this.deliveryEmailAddress, this.isMessageWaitingIndicatorChecked, this.postVMWhenMessageArrivesPut.bind(this));
 
       this.forwardToEmailError = this.customizedTextJson.voice_management.email_address_required;
     }
-    if (!this.forwardToEmailError){
+    if (!this.forwardToEmailError) {
       this.isVMServiceUpdateInprgress = true;
-      this.vmServiceUpdateError = "";
-      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType , this.deliveryEmailAddress , this.isMessageWaitingIndicatorChecked,this.postVMWhenMessageArrivesPut.bind(this));
+      this.vmServiceUpdateError = '';
+      this.voicemailService.putMessageArrivesService(this.serviceRouteProvider.fetchVoicemailUrl(), this.processingType, this.deliveryEmailAddress, this.isMessageWaitingIndicatorChecked, this.postVMWhenMessageArrivesPut.bind(this));
 
     }
   }
 
-  //Invoked to make the Forward to email address service input in focus
+  // Invoked to make the Forward to email address service input in focus
   forwardToEmailKeyup() {
-    this.forwardToEmailError = "";
+    this.forwardToEmailError = '';
     this.isForwardToEmailFocused = true;
   }
 
-
-  //Invoked when Send Calls to Voicemail option is selected
-  private onSendCallsUpdateOptions(event) {
-    
-    let selectedCallOptions = event.currentTarget.selectedOptions;
-    let result = [], callOptions;
-    if (selectedCallOptions.length > 0) {
-
-      for (var i = 0, iLen = selectedCallOptions.length; i < iLen; i++) {
-        callOptions = selectedCallOptions[i];
-        if (callOptions.selected) {
-          result.push(callOptions.value || callOptions.text);
-        }
-      }
+  // Invoked when Send Calls to Voicemail option is selected
+  onSendCallsUpdateOptions(res) {
+    let result = [];
+    if (res) {
+      result.push(res);
+    } else {
+      this.dialogResults = this.customizedTextJson.broadworks_mobility.no_settings_set;
     }
 
     this.updateSendCallsCurrentOptions(result);
   }
 
-  //Invoked to update the Send Calls to Voicemail selected options
-  private updateSendCallsCurrentOptions(result) {
-    
+  // Invoked when Send Calls to Voicemail option is selected
+  // onSendCallsUpdateOptions(event) {
 
-        this.sendCallsSelectedOptions = [];
+  //   console.log('this is the event inside the onSend()', event);
 
-    if (result.indexOf(this.customizedTextJson.voice_management.always) > -1) {
-      this.isSendCallAlwaysSelected = true;
-      this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.always);
-    } else {
-      this.isSendCallAlwaysSelected = false;
+  //   let selectedCallOptions = event.currentTarget.selectedOptions;
+  //   let result = [], callOptions;
+  //   if (selectedCallOptions.length > 0) {
+
+  //     for (let i = 0, iLen = selectedCallOptions.length; i < iLen; i++) {
+  //       callOptions = selectedCallOptions[i];
+  //       if (callOptions.selected) {
+  //         result.push(callOptions.value || callOptions.text);
+  //       }
+  //     }
+  //   }
+
+  //   this.updateSendCallsCurrentOptions(result);
+  // }
+
+  // Invoked to update the Send Calls to Voicemail selected options
+  updateSendCallsCurrentOptions(result) {
+
+
+    this.sendCallsSelectedOptions = [];
+    for (let i = 0, iLen = result.length; i < iLen; i++) {
+      if (result[i].indexOf(this.customizedTextJson.voice_management.always) > -1) {
+        this.isSendCallAlwaysSelected = true;
+        this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.always);
+      } else {
+        this.isSendCallAlwaysSelected = false;
+      }
+      if (result[i].indexOf(this.customizedTextJson.voice_management.when_busy) > -1) {
+        this.isSendCallBusySelected = true;
+        this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_busy);
+      } else {
+        this.isSendCallBusySelected = false;
+      }
+      if (result[i].indexOf(this.customizedTextJson.voice_management.when_unanswered) > -1) {
+        this.isSendCallNoAnswerSelected = true;
+        this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_unanswered);
+      } else {
+        this.isSendCallNoAnswerSelected = false;
+      }
     }
-    if (result.indexOf(this.customizedTextJson.voice_management.when_busy) > -1) {
-      this.isSendCallBusySelected = true;
-      this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_busy);
-    } else {
-      this.isSendCallBusySelected = false;
-    }
-    if (result.indexOf(this.customizedTextJson.voice_management.when_unanswered) > -1) {
-      this.isSendCallNoAnswerSelected = true;
-      this.sendCallsSelectedOptions.push(this.customizedTextJson.voice_management.when_unanswered);
-    } else {
-      this.isSendCallNoAnswerSelected = false;
-    }
-    if(this.isDesktop){
-      if(result.length === 0){
+
+    if (this.isDesktop) {
+      if (result.length === 0) {
         this.inputValue = this.customizedTextJson.none;
       } else {
         this.inputValue = result.join();
@@ -746,8 +781,8 @@ export class voicemailComponent implements AfterViewInit {
     }
 
     this.isVMServiceUpdateInprgress = true;
-    this.vmServiceUpdateError = "";
-    this.voicemailService.putSendCallsToVoicemailService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isSendCallAlwaysSelected,this.isSendCallBusySelected,  this.isSendCallNoAnswerSelected,this.postVMSendCallsPut.bind(this));
+    this.vmServiceUpdateError = '';
+    this.voicemailService.putSendCallsToVoicemailService(this.serviceRouteProvider.fetchVoicemailUrl(), this.isSendCallAlwaysSelected, this.isSendCallBusySelected, this.isSendCallNoAnswerSelected, this.postVMSendCallsPut.bind(this));
   }
 
   onDesktopSelectMenuHide(flag: boolean) {
@@ -755,30 +790,86 @@ export class voicemailComponent implements AfterViewInit {
     this.hideSendCallsCurrentOptionsDropdown();
   }
 
-  private showSendCallsCurrentOptionsDropdown(event) {
+  showSendCallsCurrentOptionsDropdown(event) {
     this.isCallsettingsFocused = true;
     if (this.isDesktop) {
       this.cswDesktopMenuShow = true;
     }
   }
-  private hideSendCallsCurrentOptionsDropdown() {
+  public hideSendCallsCurrentOptionsDropdown() {
     this.isCallsettingsFocused = false;
   }
 
 
-  //Invoked when Send Calls To Voicemail is expanded
+  // Invoked when Send Calls To Voicemail is expanded
   sendCallstoVoicemailChecked() {
-    if (this.issendCallstoVoicemailChecked){
+    if (this.issendCallstoVoicemailChecked) {
       this.issendCallstoVoicemailChecked = false;
     } else {
       this.issendCallstoVoicemailChecked = true;
     }
   }
 
-  //Invoked to make the SendCallsToVoicemail Select options in focus
-  setFocus(){
+  // Invoked to make the SendCallsToVoicemail Select options in focus
+  setFocus() {
     this.isCallsettingsFocused = true;
   }
 
+  // dialog function
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      minWidth: '350px',
+       minHeight: '300px',
 
+      data: { callSettingsOptionsList: this.callSettingsOptionsList, sendCallsSelectedOptions: this.sendCallsSelectedOptions, }
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     console.log('result--====-', result);
+    //     this.dialogResults = '';
+    //     this.dialogData = [];
+    //     for (let i = 0, iLen = result.length; i < iLen; i++) {
+    //       if (result[i].checked === true) {
+    //         this.checkedData.push(result[i].name);
+    //       } else {
+    //         this.dialogData.push(result[i].name);
+    //       }
+    //     }
+    //     if (this.checkedData.length > 0) {
+    //       this.onSendCallsUpdateOptions(this.checkedData);
+    //       this.dialogResults = this.sendCallsSelectedOptions.toString();
+    //       console.log('voicemail - ', this.sendCallsSelectedOptions);
+    //     } else if (this.dialogData.length > 0) {
+    //       this.onSendCallsUpdateOptions(this.checkedData);
+    //       this.dialogResults = this.customizedTextJson.broadworks_mobility.no_settings_set;
+    //     }
+    //   } else {
+    //     if (this.sendCallsSelectedOptions.length > 0) {
+    //        this.dialogResults = this.sendCallsSelectedOptions.toString();
+    //     }
+    //   }
+    // });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.checkedData = [];
+        for (let i = 0 ; i < result.length; i++) {
+          if (result[i].checked) {
+            this.checkedData.push(result[i].name);
+          }
+        }
+        this.onSendCallsUpdateOptions(this.checkedData);
+        this.dialogResults = this.customizedTextJson.broadworks_mobility.no_settings_set;
+        if (this.checkedData.length > 0) {
+          this.dialogResults = this.sendCallsSelectedOptions.toString();
+          console.log('voicemail - ', this.sendCallsSelectedOptions);
+        }
+      } else {
+        if (this.sendCallsSelectedOptions.length > 0) {
+           this.dialogResults = this.sendCallsSelectedOptions.toString();
+        }
+      }
+    });
+  }
 }

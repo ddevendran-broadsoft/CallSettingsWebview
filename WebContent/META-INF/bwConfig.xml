@@ -14,7 +14,7 @@
     till the context path of Xsi-Actions, where the FQDN of the URL should 
     be a clustered host name. If the parameter is set to partial URL 
     i.e. the contextPath, then the FQDN of the URL shall be formed from the 
-    host of the incoming request. Default is '/com.broadsoft.xsi-actions'.
+    host of the app-incoming request. Default is '/com.broadsoft.xsi-actions'.
     </help>
     <format defaultValue="/com.broadsoft.xsi-actions">
       <string minLength="1" maxLength="255"></string>

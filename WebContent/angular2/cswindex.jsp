@@ -24,7 +24,7 @@ var isTextsLoaded = false;
 	
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	    	window['customizedTexts'] = JSON.parse(this.responseText);
+				window['customizedTexts'] = JSON.parse(this.responseText);
 	    }
 	    
 	    isTextsLoaded = true;
@@ -87,29 +87,34 @@ var customStyleUrlString = 'customStyle?' + encodeURIComponent(customStyleUrl);
 
 <script type="text/javascript">
 
-(function () {
+	(function () {
+		
+		window['applicationMode'] = "prod";
+		window['callSettingsHeroInput'] = callSettingsHeroInput;
+		if (!window['customizedTexts']) {
+			window['customizedTexts'] = localeCustomTexts;
+		}
+		window['xsiActionsBaseURL'] = xsiActionsBaseURL;
 	
-	window['applicationMode'] = "prod";
-	window['callSettingsHeroInput'] = callSettingsHeroInput;
-	window['customizedTexts'] = localeCustomTexts;
-	window['xsiActionsBaseURL'] = xsiActionsBaseURL;
-
-	// Developer mode constants
-	window['devUserPwd'] = "111111";
-	if(window.location.href.indexOf("brandable") > 0) {
-		window['applicationMode'] = "qa";
-	}
+		// Developer mode constants
+		window['devUserPwd'] = "111111";
+		if(window.location.href.indexOf("brandable") > 0) {
+			window['applicationMode'] = "qa";
+		}
 	
-})();
-
-
+		window['locale'] = callSettingsHeroInput.language;
+		
+	})();
+	
+	
 </script>
+
 <html>
 <head>
  <meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>@appName@</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 
 <link href='assets/fonts/roboto/webfont.css' rel='stylesheet' type='text/css'>
 <script src='assets/fonts/roboto/webfont.js'></script>
@@ -118,7 +123,7 @@ var customStyleUrlString = 'customStyle?' + encodeURIComponent(customStyleUrl);
 </head>
 
 <body>
-	<bsft-call-settings>Loading Call Settings...</bsft-call-settings>
+	<app-bsft-call-settings></app-bsft-call-settings>
 	<div id="helperText" class="callsettingHelperText restrictiveLabelStyle callSettingsFontFamily"></div>
 </body>
 

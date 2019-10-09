@@ -1,87 +1,88 @@
 <!-- Copyright © 2017 BroadSoft Inc. -->
 
 
-<md-list class="primaryContentText">
-    <md-list-item class="simRingDescriptionTextAlign">
-        <p md-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.simultaneous_ring.text}}</label></p>
-    </md-list-item>
-</md-list>
-<md-list class="controlBackground primaryContentText">
-    <md-list-item class="settingBorder itemHeight44">
-        <p md-line class="restrictiveLabelStyle" [class.errorTextColor]="isDoNotRingWhenOnCallUpdateError" tabindex="0">{{customizedTextJson.simultaneous_ring.donot_ring_when_oncall}}</p>
-        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!isDoNotRingWhenOnCallUpdateInprogress"></md-spinner>
-        <md-slide-toggle [(ngModel)]="isDoNotRingWhenOnCallChecked" [checked]="isDoNotRingWhenOnCallChecked" (change)="doNotRingWhenOnCallActive($event)" (keyup.enter)="doNotRingWhenOnCallKeyup(isDoNotRingWhenOnCallChecked)" tabindex="0"> </md-slide-toggle>
-    </md-list-item>
-    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isDoNotRingWhenOnCallUpdateError">
+<mat-list class="primaryContentText">
+    <mat-list-item class="simRingDescriptionTextAlign">
+        <p mat-line><label class="restrictiveLabelStyle" tabindex="0">{{customizedTextJson.simultaneous_ring.text}}</label></p>
+    </mat-list-item>
+</mat-list>
+<mat-list class="controlBackground primaryContentText">
+    <mat-list-item class="settingBorder itemHeight44">
+        <p mat-line class="restrictiveLabelStyle" [class.errorTextColor]="isDoNotRingWhenOnCallUpdateError" tabindex="0">{{customizedTextJson.simultaneous_ring.donot_ring_when_oncall}}</p>
+        <mat-spinner [diameter]="20" [class.callsettingHide]="!isDoNotRingWhenOnCallUpdateInprogress"> </mat-spinner>
+        <mat-slide-toggle [(ngModel)]="isDoNotRingWhenOnCallChecked" [checked]="isDoNotRingWhenOnCallChecked" (change)="doNotRingWhenOnCallActive($event)" (keyup.enter)="doNotRingWhenOnCallKeyup(isDoNotRingWhenOnCallChecked)" tabindex="0"> </mat-slide-toggle>
+    </mat-list-item>
+    <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="isDoNotRingWhenOnCallUpdateError">
         <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{isDoNotRingWhenOnCallUpdateError}}</label>
     </p>
 
-    <md-list-item class="settingBorder itemHeight44">
-        <p md-line class="restrictiveLabelStyle" [class.errorTextColor]="simRingUpdateError" tabindex="0">{{customizedTextJson.simultaneous_ring.ring_numbers}}</p>
-        <md-spinner class="callsettingSpinner" [class.callsettingHide]="!isSimRingUpdateInProgress"></md-spinner>
-        <md-slide-toggle [checked]="isRingNumbersChecked" (change)="ringNumberSwitch()" (keyup.enter)="ringNumberSwitch()" tabindex="0"> </md-slide-toggle>
-    </md-list-item>
+    <mat-list-item class="settingBorder itemHeight44">
+        <p mat-line class="restrictiveLabelStyle" [class.errorTextColor]="simRingUpdateError" tabindex="0">{{customizedTextJson.simultaneous_ring.ring_numbers}}</p>
+        <mat-spinner [diameter]="20" [class.callsettingHide]="!isSimRingUpdateInProgress"> </mat-spinner>
+        <mat-slide-toggle [checked]="isRingNumbersChecked" (change)="ringNumberSwitch()" (keyup.enter)="ringNumberSwitch()" tabindex="0"> </mat-slide-toggle>
+    </mat-list-item>
     
-    <p md-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="simRingUpdateError">
+    <p mat-line class="callsettingPanelHeaderServerErrorMsg" *ngIf="simRingUpdateError">
         <label class="restrictiveSmallLabelStyle errorTextColor callSettingsFontFamily" tabindex="0">{{simRingUpdateError}}</label>
     </p>
-</md-list>
+</mat-list>
 <div *ngIf="isRingNumbersChecked">
 <div *ngFor="let simRing of simRingArray ; let i = index " [class.callsettingHide]="!isRingNumbersChecked">
     <div *ngIf="simRing && !simRing.tempDeleted">
-        <md-list class="controlBackground primaryContentText">
-            <md-list-item>
-                <p md-line class="secondLevelSettingLeftPadding">
-                    <md-input-container class="restrictiveLabelStyle inputNumberWidth placeholderText" floatPlaceholder="never" (keyup.enter)="simultaneousRingNumberEntered($event)" 
+        <mat-list class="controlBackground primaryContentText">
+            <mat-list-item>
+                <p mat-line class="secondLevelSettingLeftPadding">
+                    <mat-form-field class="restrictiveLabelStyle inputNumberWidth placeholderText" floatLabel="never" (keyup.enter)="simultaneousRingNumberEntered($event)" 
                     [class.callsettingErrorInput]="simRing.error"  [class.inputInvokedColor]="simRing.validNumber">
-                        <input mdInput class="inputNumberWidth callsettingMarginNone" id="{{i}}_simRing" (keyup)="onPhonenumberChange($event);"
-                            (blur)="simultaneousRingNumberEntered($event)" (focus)="onfocus(simRing)" placeholder={{this.customizedTextJson.set_number}}
+                        <input matInput class="inputNumberWidth callsettingMarginNone" id="{{i}}_simRing" (keyup)="onPhonenumberChange($event);"
+                            (blur)="simultaneousRingNumberEntered($event)" (focus)="onfocus(simRing)"
                             value="{{simRing.getNumber()}}" type="text" attr.maxlength="{{phoneNumberMaxLength}}">
-                    </md-input-container>
+                            <mat-placeholder class="placeholder">{{this.customizedTextJson.set_number}}</mat-placeholder>
+                    </mat-form-field>
                 </p>
                 
-                <p md-line class="callsettingSimultaneousRingFieldError" *ngIf="simRing.error"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{simRing.error}}</label></p>
-                <p [class.callsettingHide]="!simRing.getNumber()" md-line class="callsettingSimultaneousRingNumberInput">
-                    <md-checkbox id="{{i}}_simRingOption" *ngIf="!simRing.error" [checked]="simRing.getIsAnswerConfirmationRequired()" tabindex="0"
-                        [disableRipple]=true (change)="updateAnswerConfirmationRequired(simRing)" (keyup.enter)="updateAnswerConfirmationRequired(simRing)">{{customizedTextJson.simultaneous_ring.answer_confirmation_required}}</md-checkbox>
+                <p mat-line class="callsettingSimultaneousRingFieldError" *ngIf="simRing.error"><label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{simRing.error}}</label></p>
+                <p [class.callsettingHide]="!simRing.getNumber()" mat-line class="callsettingSimultaneousRingNumberInput">
+                    <mat-checkbox id="{{i}}_simRingOption" *ngIf="!simRing.error" [checked]="simRing.getIsAnswerConfirmationRequired()" tabindex="0"
+                        [disableRipple]=true (change)="updateAnswerConfirmationRequired(simRing)" (keyup.enter)="updateAnswerConfirmationRequired(simRing)">{{customizedTextJson.simultaneous_ring.answer_confirmation_required}}</mat-checkbox>
                 </p>
                 
-            </md-list-item>
-        </md-list>
+            </mat-list-item>
+        </mat-list>
     </div>
 </div>
-<md-card class="simRingRingNumbersBottomAlign controlBackground"></md-card>
+<mat-card class="simRingRingNumbersBottomAlign controlBackground"></mat-card>
 </div>
 
-<md-card class="controlBackground settingBorder" (click)="whenToRingChecked()" *ngIf="criteriaArray.length">
-    <md-list class="primaryContentText">
-        <md-list-item class="itemHeight44">
+<mat-card class="controlBackground settingBorder" (click)="whenToRingChecked()" *ngIf="criteriaArray.length">
+    <mat-list class="primaryContentText">
+        <mat-list-item class="itemHeight44">
         <label class="restrictiveLabelStyle" (keyup.enter)="whenToRingChecked()" tabindex="0">{{customizedTextJson.simultaneous_ring.when_to_ring}}</label>
             <div *ngIf="isWhenToRingExpanded == true" class= "settingCollapseIcon">
             </div>
             <div *ngIf="isWhenToRingExpanded == false" class= "settingExpandIcon">
             </div>
-        </md-list-item>
-    </md-list>
-</md-card>
-<md-card class="simRingCriteriaItemBottomAlign controlBackground"></md-card>
-<md-card *ngIf="isWhenToRingExpanded" class="controlBackground">
+        </mat-list-item>
+    </mat-list>
+</mat-card>
+<mat-card class="simRingCriteriaItemBottomAlign controlBackground"></mat-card>
+<mat-card *ngIf="isWhenToRingExpanded" class="controlBackground">
     <div *ngFor="let criteria of criteriaArray;">
         <div *ngIf="criteria">
-            <md-list class="primaryContentText">
-                <md-list-item class="simRingCriteriaAlign">
-                    <p md-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="criteria.errorMessage" tabindex="0">{{criteria.getName()}}</p>
-                    <md-spinner class="callsettingSpinner" [class.callsettingHide]="!criteria.isUpdateInprogress()"></md-spinner>
-                    <md-slide-toggle [checked]="criteria.getIsActive()" (change)="onCriteriaUpdate(criteria)" (keyup.enter)="onCriteriaUpdate(criteria)" tabindex="0">
-                    </md-slide-toggle>
-                </md-list-item>
-                <md-list-item>
-                <p md-line class="callsettingPanelHeaderServerErrorMsg secondLevelSettingLeftPadding" *ngIf="criteria.errorMessage">
+            <mat-list class="primaryContentText">
+                <mat-list-item class="simRingCriteriaAlign">
+                    <p mat-line class="secondLevelSettingLeftPadding primaryContentText restrictiveLabelStyle" [class.errorTextColor]="criteria.errorMessage" tabindex="0">{{criteria.getName()}}</p>
+                    <mat-spinner [diameter]="20" [class.callsettingHide]="!criteria.isUpdateInprogress()"> </mat-spinner>
+                    <mat-slide-toggle [checked]="criteria.getIsActive()" (change)="onCriteriaUpdate(criteria)" (keyup.enter)="onCriteriaUpdate(criteria)" tabindex="0">
+                    </mat-slide-toggle>
+                </mat-list-item>
+                <mat-list-item>
+                <p mat-line class="callsettingPanelHeaderServerErrorMsg secondLevelSettingLeftPadding" *ngIf="criteria.errorMessage">
                     <label class="restrictiveSmallLabelStyle errorTextColor" tabindex="0">{{criteria.errorMessage}}</label>
                 </p>
-                </md-list-item>
-            </md-list>
+                </mat-list-item>
+            </mat-list>
         </div>
     </div>
-    <md-card  *ngIf="isWhenToRingExpanded == true" class="simRingCriteriaItemBottomAlign controlBackground"></md-card>
-</md-card>
+    <mat-card  *ngIf="isWhenToRingExpanded == true" class="simRingCriteriaItemBottomAlign controlBackground"></mat-card>
+</mat-card>

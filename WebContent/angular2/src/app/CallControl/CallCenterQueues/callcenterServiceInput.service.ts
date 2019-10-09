@@ -1,13 +1,13 @@
 /* Copyright © 2017 BroadSoft Inc. */
 
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 
 export class CallCenterServiceInput {
     isAcdUpdateInProgress: any;
     isCCIdAvailable: boolean = true;
-     customizedTextJson = window['customizedTexts'];
+    customizedTextJson = window['customizedTexts'];
 
     private acdState: string;
     private isUCEnabled: boolean;
@@ -28,58 +28,55 @@ export class CallCenterServiceInput {
 
     setCallcenter(ccParsedjson) {
 
-        console.log(">>>>>>>>>CallCenter details ", ccParsedjson.CallCenter)
+        console.log('>>>>>>>>>CallCenter details ', ccParsedjson.CallCenter)
 
         this.callcenterArray = new Array();
         if (ccParsedjson.CallCenter.callCenterList && ccParsedjson.CallCenter.callCenterList.callCenterDetails) {
 
             this.setCCIdAvailable(true);
 
-            if (ccParsedjson.CallCenter.callCenterList.callCenterDetails.constructor == Array) {
+            if (ccParsedjson.CallCenter.callCenterList.callCenterDetails.constructor === Array) {
                 let size = ccParsedjson.CallCenter.callCenterList.callCenterDetails.length;
 
-                console.log(">>>>>>>>>CallCenter size ", size)
+                console.log('>>>>>>>>>CallCenter size ', size)
 
                 for (let index = 0; index < size; ++index) {
                     if (ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].serviceUserId && ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].available) {
                         if (ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].phoneNumber && ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].extension) {
                             this.callcenterArray.push(new CallCenterArray(ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].serviceUserId.$,
-                                (ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].available.$ === "true"),
+                                (ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].available.$ === 'true'),
                                 ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].phoneNumber.$,
                                 ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].extension.$));
-                        }
-                        else {
+                        } else {
                             this.callcenterArray.push(new CallCenterArray(ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].serviceUserId.$,
-                                ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].available.$ == "true", "", ""));
+                                ccParsedjson.CallCenter.callCenterList.callCenterDetails[index].available.$ === 'true', '', ''));
 
                         }
                     }
                 }
-                console.log("Callcenter Array >>>>>>", this.callcenterArray)
+                console.log('Callcenter Array >>>>>>', this.callcenterArray)
             } else {
 
-                console.log(">>>>>>>>>>>>OBJECT")
+                console.log('>>>>>>>>>>>>OBJECT')
 
                 if (ccParsedjson.CallCenter.callCenterList.callCenterDetails.serviceUserId && ccParsedjson.CallCenter.callCenterList.callCenterDetails.available) {
                     if (ccParsedjson.CallCenter.callCenterList.callCenterDetails.phoneNumber && ccParsedjson.CallCenter.callCenterList.callCenterDetails.extension) {
                         this.callcenterArray.push(new CallCenterArray(ccParsedjson.CallCenter.callCenterList.callCenterDetails.serviceUserId.$,
-                            ccParsedjson.CallCenter.callCenterList.callCenterDetails.available.$ == "true",
+                            ccParsedjson.CallCenter.callCenterList.callCenterDetails.available.$ === 'true',
                             ccParsedjson.CallCenter.callCenterList.callCenterDetails.phoneNumber.$,
                             ccParsedjson.CallCenter.callCenterList.callCenterDetails.extension.$));
-                    }
-                    else {
+                    } else {
                         this.callcenterArray.push(new CallCenterArray(ccParsedjson.CallCenter.callCenterList.callCenterDetails.serviceUserId.$,
-                            ccParsedjson.CallCenter.callCenterList.callCenterDetails.available.$ == "true", "", ""));
+                            ccParsedjson.CallCenter.callCenterList.callCenterDetails.available.$ === 'true', '', ''));
 
                     }
 
 
                 }
             }
-        }
-        else {
+        } else {
 
-            console.log("No CC available>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            console.log('No CC available>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
             this.setCCIdAvailable(false);
 
         }
@@ -115,27 +112,27 @@ export class CallCenterServiceInput {
 
 
     setUnavailableCodeArray(ucParsedJson) {
-        console.log(">>>>>>>>>Unavaiable code details ", ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail)
+        console.log('>>>>>>>>>Unavaiable code details ', ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail)
         this.unavailableCodeArray = new Array();
-        if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.constructor == Array) {
+        if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.constructor === Array) {
             let size = ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.length;
             for (let index = 0; index < size; ++index) {
-                if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].active.$ == "true") {
-                    if(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].description.$){
-                    this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].description.$,
-                        ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].code.$));
-                    }else{
+                if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].active.$ === 'true') {
+                    if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].description.$) {
+                        this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].description.$,
+                            ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].code.$));
+                    } else {
                         this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].code.$,
                             ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail[index].code.$));
                     }
                 }
             }
-            console.log("Unavailable code Array >>>>>>", this.unavailableCodeArray)
+            console.log('Unavailable code Array >>>>>>', this.unavailableCodeArray)
         } else {
-            if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.active.$ == "true") {
-                if(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.description.$){
-                this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.description.$,
-                    ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.code.$));
+            if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.active.$ === 'true') {
+                if (ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.description.$) {
+                    this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.description.$,
+                        ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.code.$));
                 } else {
                     this.unavailableCodeArray.push(new UnavailableCodeArray(ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.code.$,
                         ucParsedJson.ACDAgentUnavailableCodes.unavailableCodes.unavailableCodeDetail.code.$));
@@ -154,7 +151,7 @@ export class CallCenterServiceInput {
     setCallCenterName(callCenterName, index) {
 
         this.callcenterArray[index].setCallCenterName(callCenterName);
-        console.log("index >>> callcenter name >>>", this.callcenterArray[index].getCallCenterName());
+        console.log('index >>> callcenter name >>>', this.callcenterArray[index].getCallCenterName());
     }
 
     setIsUCenabled(isUCEnabled) {
@@ -205,7 +202,7 @@ export class CallCenterArray {
         this.number = number;
         this.extension = extension;
         this.active = active;
-        this.callCenterName = "";
+        this.callCenterName = '';
     }
     getCallCenterId() {
         return this.callCenterId;
@@ -255,7 +252,7 @@ export class CallCenterArray {
     setUpdateInprogress(flag: boolean) {
         this.updateInprogress = flag;
     }
-    isUpdateInprogress() {
-        this.updateInprogress;
+    isUpdateInprogress(flag: boolean) {
+        this.updateInprogress = flag;
     }
 }
